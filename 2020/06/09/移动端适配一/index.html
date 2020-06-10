@@ -6,16 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://zhoubb96.github.io">
-  <title>分类 | 周斌斌的个人博客</title>
+  <title>移动端适配一 | 周斌斌的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="https://zhoubb96.github.io/categories/index.html">
+  <meta name="description" content="适配的意义在不同设备上实现等比例显示  相对单位em是相对字体大小来计算的，谷歌下1fontsize一般是16像素，所以此时1em&#x3D;16pxrem相对于根元素的字体大小来计算的，根元素是html，计算方法同上vw 相对于视口宽度进行计算的，100vw&#x3D;一个视口宽度。 1vw&#x3D;视口宽度&#x2F;100Vh 相对于视口高度进行计算，计算方法同上 适配方法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动端适配一">
+<meta property="og:url" content="https://zhoubb96.github.io/2020/06/09/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E4%B8%80/index.html">
 <meta property="og:site_name" content="周斌斌的个人博客">
+<meta property="og:description" content="适配的意义在不同设备上实现等比例显示  相对单位em是相对字体大小来计算的，谷歌下1fontsize一般是16像素，所以此时1em&#x3D;16pxrem相对于根元素的字体大小来计算的，根元素是html，计算方法同上vw 相对于视口宽度进行计算的，100vw&#x3D;一个视口宽度。 1vw&#x3D;视口宽度&#x2F;100Vh 相对于视口高度进行计算，计算方法同上 适配方法">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-06-08T06:18:47.000Z">
-<meta property="article:modified_time" content="2020-06-08T08:07:23.502Z">
+<meta property="article:published_time" content="2020-06-09T01:09:01.000Z">
+<meta property="article:modified_time" content="2020-06-10T04:13:57.243Z">
 <meta property="article:author" content="Zhoubb">
+<meta property="article:tag" content="移动端适配">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="周斌斌的个人博客" type="application/atom+xml">
@@ -156,27 +159,45 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
+            <article id="post-移动端适配一" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      分类
+      移动端适配一
     </h1>
   
 
         
-        <a href="/categories/index.html" class="archive-article-date">
-  	<time datetime="2020-06-08T06:18:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-08</time>
+        <a href="/2020/06/09/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E4%B8%80/" class="archive-article-date">
+  	<time datetime="2020-06-09T01:09:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-09</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h2 id="适配的意义"><a href="#适配的意义" class="headerlink" title="适配的意义"></a>适配的意义</h2><p>在不同设备上实现等比例显示 </p>
+<h2 id="相对单位"><a href="#相对单位" class="headerlink" title="相对单位"></a>相对单位</h2><p>em是相对字体大小来计算的，谷歌下1fontsize一般是16像素，所以此时1em=16px<br>rem相对于根元素的字体大小来计算的，根元素是html，计算方法同上<br>vw 相对于视口宽度进行计算的，100vw=一个视口宽度。 1vw=视口宽度/100<br>Vh 相对于视口高度进行计算，计算方法同上</p>
+<h2 id="适配方法"><a href="#适配方法" class="headerlink" title="适配方法"></a>适配方法</h2><a id="more"></a>
+
+<h3 id="rem适配"><a href="#rem适配" class="headerlink" title="rem适配"></a>rem适配</h3><p>—原理<br>    一个元素在不同设备上的<strong>css像素的个数不一样</strong>  </p>
+<p>—实现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#test&#123;</span><br><span class="line">	width: 8rem;</span><br><span class="line">	height: 1rem;</span><br><span class="line">	background: pink;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(function()&#123;</span><br><span class="line">	var styleNode &#x3D; document.createElement(&quot;style&quot;);&#x2F;&#x2F;创建style标签节点</span><br><span class="line">	var w &#x3D; document.documentElement.clientWidth&#x2F;16;&#x2F;&#x2F;计算fontsize，这里获取了布局视口宽度</span><br><span class="line">	styleNode.innerHTML &#x3D; &quot;html&#123;font-size:&quot;+w+&quot;px!important&#125;&quot;;&#x2F;&#x2F;在style里设置html中的fontsize</span><br><span class="line">	ocument.head.appendChild(styleNode);&#x2F;&#x2F;把标签节点插入到head标签里</span><br><span class="line">	&#125;)()</span><br></pre></td></tr></table></figure>
+
+<p>—优缺点<br>优点：可以使用完美视口（没有改变缩放系数）<br>缺点：px到rem的转化特别麻烦（每次都要自己算）</p>
+<h3 id="viewport适配"><a href="#viewport适配" class="headerlink" title="viewport适配"></a>viewport适配</h3><p>将所有设备布局视口宽度设置为设计图宽度,方法是调整系统缩放倍数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#test&#123;</span><br><span class="line">	width: 320px;</span><br><span class="line">	height: 100px;</span><br><span class="line">	background: pink;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(function()&#123;</span><br><span class="line">	    var targetW &#x3D; 640;</span><br><span class="line">		var scale &#x3D; document.documentElement.clientWidth&#x2F;targetW;</span><br><span class="line">		var meta &#x3D;	document.querySelector(&quot;meta[name&#x3D;&#39;viewport&#39;]&quot;);</span><br><span class="line">		meta.content&#x3D;&quot;initial-scale&#x3D;&quot;+scale+&quot;,minimum-scale&#x3D;&quot;+scale+&quot;,maximum-scale&#x3D;&quot;+scale+&quot;,user-scalable&#x3D;no&quot;;</span><br><span class="line">		&#125;)()</span><br></pre></td></tr></table></figure>
+
+<p>–原理：<br>            viewport适配方案中，每一个元素在不同设备上占据的css像素的个数是一样的。但是css像素和物理像素的<strong>比例</strong>是不一样的，等比的</p>
+<p>–优缺点：<br>            优点:所量即所得（只算一次）<br>            缺点:没有使用完美视口（<strong>改变了缩放系数，不为1了</strong>）</p>
+
       
 
       
@@ -215,6 +236,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">移动端适配</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -265,7 +297,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://zhoubb96.github.io/categories/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://zhoubb96.github.io/2020/06/09/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E4%B8%80/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -277,6 +309,25 @@
 </article>
 
   
+<nav id="article-nav">
+  
+    <a href="/2020/06/09/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E4%BA%8C/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          移动端适配二
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/06/08/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">移动端基础概念</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -310,7 +361,7 @@
 <script src="https://www.wenjunjiang.win/js/gitment.js"></script>
 <script>
 var gitment = new Gitment({
-  id: "https://zhoubb96.github.io/categories/index.html",
+  id: "https://zhoubb96.github.io/2020/06/09/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E4%B8%80/",
   owner: 'zhoubb96',
   repo: 'zhoubb96.github.io',
   oauth: {
@@ -343,7 +394,7 @@ gitment.render('gitment-ctn')
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
