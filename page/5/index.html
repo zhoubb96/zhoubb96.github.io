@@ -6,19 +6,14 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://zhoubb96.github.io">
-  <title>JS查漏补缺一变量回顾 | 周斌斌的个人博客</title>
+  <title>周斌斌的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="编程语言的工作1，合适的数据结构存储数据 2，合适的算法管理数据 也就是经典的等式：程序&#x3D;数据结构+算法 变量的声明与赋值1，声明开辟空间（一般会有个初始值），同一作用域一般只声明一次（var例外，会覆盖）；不同的作用域可以声明同名变量，不受影响 2，赋值放入指定内容（支持连续等号赋值） Js弱类型，变量的类型由值决定">
-<meta property="og:type" content="article">
-<meta property="og:title" content="JS查漏补缺一变量回顾">
-<meta property="og:url" content="https://zhoubb96.github.io/2020/06/10/%E5%8F%98%E9%87%8F%E5%9B%9E%E9%A1%BE/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="周斌斌的个人博客">
+<meta property="og:url" content="https://zhoubb96.github.io/page/5/index.html">
 <meta property="og:site_name" content="周斌斌的个人博客">
-<meta property="og:description" content="编程语言的工作1，合适的数据结构存储数据 2，合适的算法管理数据 也就是经典的等式：程序&#x3D;数据结构+算法 变量的声明与赋值1，声明开辟空间（一般会有个初始值），同一作用域一般只声明一次（var例外，会覆盖）；不同的作用域可以声明同名变量，不受影响 2，赋值放入指定内容（支持连续等号赋值） Js弱类型，变量的类型由值决定">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-06-10T01:30:33.000Z">
-<meta property="article:modified_time" content="2020-06-10T07:08:00.003Z">
 <meta property="article:author" content="Zhoubb">
-<meta property="article:tag" content="JavaScripe查漏补缺">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="周斌斌的个人博客" type="application/atom+xml">
@@ -159,80 +154,35 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-变量回顾" class="article article-type-post " itemscope itemprop="blogPost">
+            
+  
+    <article id="post-移动端适配二" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 class="article-title" itemprop="name">
-      JS查漏补缺一变量回顾
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/09/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E4%BA%8C/">移动端适配二</a>
     </h1>
   
 
         
-        <a href="/2020/06/10/%E5%8F%98%E9%87%8F%E5%9B%9E%E9%A1%BE/" class="archive-article-date">
-  	<time datetime="2020-06-10T01:30:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-10</time>
+        <a href="/2020/06/09/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E4%BA%8C/" class="archive-article-date">
+  	<time datetime="2020-06-09T01:19:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-09</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="编程语言的工作"><a href="#编程语言的工作" class="headerlink" title="编程语言的工作"></a>编程语言的工作</h3><p>1，合适的数据结构存储数据</p>
-<p>2，合适的算法管理数据</p>
-<p>也就是经典的等式：程序=数据结构+算法</p>
-<h3 id="变量的声明与赋值"><a href="#变量的声明与赋值" class="headerlink" title="变量的声明与赋值"></a>变量的声明与赋值</h3><p>1，声明开辟空间（一般会有个初始值），<strong>同一作用域</strong>一般只声明一次（var例外，会覆盖）；<strong>不同的作用域可以声明同名变量，不受影响</strong></p>
-<p>2，赋值放入指定内容（支持连续等号赋值）</p>
-<p>Js弱类型，变量的类型由值决定</p>
-<a id="more"></a>
-
-
-
-<h3 id="变量提升（用let！）"><a href="#变量提升（用let！）" class="headerlink" title="变量提升（用let！）"></a>变量提升（用let！）</h3><p><strong>使用var关键字声明的变量</strong>会在<strong>所有的代码</strong>执行之前被声明，<strong>但是不会赋值</strong>（undefined）。所以我们可以在变量声明前使用变量（作用）。但是不使用var关键字声明的变量（成为全局变量）不会被声明提前。</p>
-<p>1，<strong>变量提升不影响内部变量与外部变量的私有特性。</strong></p>
-<p>2，但是如果不写var，变量又会变成全局变量，污染全局。</p>
-<p>3，<strong>var有函数作用域，但是没有块作用域（for循环里的i会影响到外面的i）</strong>，在此之前一般都是使用<strong>立即执行函数</strong>来解决无块作用域产生的作用域污染问题；后面出现了let。</p>
-<p>4，<strong>同一作用域下</strong>var重复声明变量不会提醒（会直接覆盖），而let会报错（只能声明一次）。</p>
-<p><u>全局变量保存在window对象里（全局上下文对象）</u></p>
-<h3 id="函数提升"><a href="#函数提升" class="headerlink" title="函数提升"></a>函数提升</h3><p>使用函数声明创建的函数（function fun(){}）,会在所有的代码执行之前被创建，也就是我们可以在函数声明前去调用函数（作用），但是使用函数表达式(<strong>var fun = function(){}</strong>)创建的函数没有该特性，变量提升优先级高于函数提升。</p>
-<p><u>函数作用域内的变量保存对应的函数上下文对象里</u></p>
-<p><u>尽量避免变量提升，尽量利用函数提升。</u></p>
-<p><u>注意！！！如果在预解析阶段出错，那么整体是不会开始执行的，直接报错</u></p>
-
+        <h3 id="1，一物理像素问题"><a href="#1，一物理像素问题" class="headerlink" title="1，一物理像素问题"></a>1，一物理像素问题</h3><h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p><strong>让1个px单位始终只占据1个物理像素。</strong>（通过尺缩比抵消像素比的放大，做到始终1比1）</p>
+<h4 id="实现一，整体的rem适配（适合项目比较大情况，一劳永逸）"><a href="#实现一，整体的rem适配（适合项目比较大情况，一劳永逸）" class="headerlink" title="实现一，整体的rem适配（适合项目比较大情况，一劳永逸）"></a>实现一，整体的rem适配（适合项目比较大情况，一劳永逸）</h4><p><strong>就是在rem适配（只管rem单位）下，依然保持px单位的显示效果</strong>；（主体）响应式布局rem（放大再缩小）+（px）变换缩放（缩小）</p>
+        
+          <a class="article-more-a" href="/2020/06/09/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E4%BA%8C/#more">more >></a>
+        
       
 
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢老板，老板大气<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/img/alipay.jpg">
-                      <span class="reward-type">支付宝</span>
-                    </div>
-                    
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/img/wechatpay.jpg">
-                      <span class="reward-type">微信</span>
-                    </div>
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -243,7 +193,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JavaScripe查漏补缺</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">移动端适配</a>
         		</li>
       		
 		</ul>
@@ -252,84 +202,16 @@
       
 
       
-
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/09/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E4%BA%8C/">展开全文 >></a>
+        </p>
       
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
-        </div>
-      </div>
-    </span>
-  </div>
-</div>
 
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://zhoubb96.github.io/2020/06/10/%E5%8F%98%E9%87%8F%E5%9B%9E%E9%A1%BE/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2020/06/10/Object%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95%E4%B8%8E%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          JS查漏补缺一Object静态方法与逻辑运算符
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2020/06/09/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E4%BA%8C/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">移动端适配二</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -349,31 +231,179 @@
 
 
 
-  
-  
-  
 
   
-
+    <article id="post-移动端适配一" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/09/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E4%B8%80/">移动端适配一</a>
+    </h1>
   
 
+        
+        <a href="/2020/06/09/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E4%B8%80/" class="archive-article-date">
+  	<time datetime="2020-06-09T01:09:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="适配的意义"><a href="#适配的意义" class="headerlink" title="适配的意义"></a>适配的意义</h2><p>在不同设备上实现等比例显示 </p>
+<h2 id="相对单位"><a href="#相对单位" class="headerlink" title="相对单位"></a>相对单位</h2><p>em是相对字体大小来计算的，谷歌下1fontsize一般是16像素，所以此时1em=16px<br>rem相对于根元素的字体大小来计算的，根元素是html，计算方法同上<br>vw 相对于视口宽度进行计算的，100vw=一个视口宽度。 1vw=视口宽度/100<br>Vh 相对于视口高度进行计算，计算方法同上</p>
+<h2 id="适配方法"><a href="#适配方法" class="headerlink" title="适配方法"></a>适配方法</h2>
+        
+          <a class="article-more-a" href="/2020/06/09/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E4%B8%80/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">移动端适配</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/09/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E4%B8%80/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
-  <div id="gitment-ctn"></div> 
-<link rel="stylesheet" href="https://jjeejj.github.io/css/gitment.css">
-<script src="https://www.wenjunjiang.win/js/gitment.js"></script>
-<script>
-var gitment = new Gitment({
-  id: "https://zhoubb96.github.io/2020/06/10/%E5%8F%98%E9%87%8F%E5%9B%9E%E9%A1%BE/",
-  owner: 'zhoubb96',
-  repo: 'zhoubb96.github.io',
-  oauth: {
-    client_id: 'd69a1010836abb7a0ac2',
-    client_secret: '472db00ee1d9e261a120200bf1c491333c8ad974',
-  },
-})
-gitment.render('gitment-ctn')
-</script>
+    <article id="post-移动端基础概念" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/08/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/">移动端基础概念</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/08/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/" class="archive-article-date">
+  	<time datetime="2020-06-08T08:32:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="APP的三种类型"><a href="#APP的三种类型" class="headerlink" title="APP的三种类型"></a>APP的三种类型</h2><ul>
+<li>web app，使用html5，需要向服务器请求资源，性能较慢但是现在有了提升，开发快，成本低，更新迭代快，会是将来的主流。</li>
+<li>native app，原生应用，资源在本地，性能高。安卓使用java语言，ios使用objectC</li>
+<li>混合app，结合性能与开发速度</li>
+</ul>
+<hr>
+<h2 id="关于适配的相关概念"><a href="#关于适配的相关概念" class="headerlink" title="关于适配的相关概念"></a>关于适配的相关概念</h2><h3 id="1-屏幕"><a href="#1-屏幕" class="headerlink" title="1. 屏幕"></a>1. 屏幕</h3><ul>
+<li>屏幕尺寸：屏幕对角线的长度，单位为英寸，1英寸=2.54厘米。</li>
+<li>屏幕分辨率：屏幕的两个方向物理像素点数，单位px，1px=1像素点。1080*1920</li>
+<li>屏幕密度：每英寸物理像素的个数</li>
+</ul>
+<h3 id="2-像素"><a href="#2-像素" class="headerlink" title="2. 像素"></a>2. 像素</h3>
+        
+          <a class="article-more-a" href="/2020/06/08/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">移动端适配</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/08/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/page/4/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/">下一页</a>
+    </nav>
+  
+
 
 
           </div>
@@ -395,8 +425,8 @@ gitment.render('gitment-ctn')
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: false,
-		isPost: true,
+		isHome: true,
+		isPost: false,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
