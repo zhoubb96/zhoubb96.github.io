@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://zhoubb96.github.io">
-  <title>JS查漏补缺一变量回顾 | 周斌斌的个人博客</title>
+  <title>数据结构与算法-单向链表 | 周斌斌的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="编程语言的工作1，合适的数据结构存储数据 2，合适的算法管理数据 也就是经典的等式：程序&#x3D;数据结构+算法 变量的声明与赋值1，声明开辟空间（一般会有个初始值），同一作用域一般只声明一次（var例外，会覆盖）；不同的作用域可以声明同名变量，不受影响 2，赋值放入指定内容（支持连续等号赋值） Js弱类型，变量的类型由值决定">
+  <meta name="description" content="链表1，与链表相比数组的缺点：  必须申请连续的储存空间 在开头以及中间插入数据要进行大量的位移  链表可以很好的解决这两个问题。链表可以充分利用计算机储存空间，并且在插入和删除数据的时候要方便一些，不用移动元素（寻找插入位置时要费劲些，但是比移动元素开销少）时间复杂度可以达到o(1) 2，链表也有它的缺点:  访问查询时总得从头开始访问  无法通过下标直接访问元素，要遍历判断循环找。  链表有带">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JS查漏补缺一变量回顾">
-<meta property="og:url" content="https://zhoubb96.github.io/2020/06/10/%E5%8F%98%E9%87%8F%E5%9B%9E%E9%A1%BE/index.html">
+<meta property="og:title" content="数据结构与算法-单向链表">
+<meta property="og:url" content="https://zhoubb96.github.io/2020/06/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E5%8D%95%E5%90%91%E9%93%BE%E8%A1%A8/index.html">
 <meta property="og:site_name" content="周斌斌的个人博客">
-<meta property="og:description" content="编程语言的工作1，合适的数据结构存储数据 2，合适的算法管理数据 也就是经典的等式：程序&#x3D;数据结构+算法 变量的声明与赋值1，声明开辟空间（一般会有个初始值），同一作用域一般只声明一次（var例外，会覆盖）；不同的作用域可以声明同名变量，不受影响 2，赋值放入指定内容（支持连续等号赋值） Js弱类型，变量的类型由值决定">
+<meta property="og:description" content="链表1，与链表相比数组的缺点：  必须申请连续的储存空间 在开头以及中间插入数据要进行大量的位移  链表可以很好的解决这两个问题。链表可以充分利用计算机储存空间，并且在插入和删除数据的时候要方便一些，不用移动元素（寻找插入位置时要费劲些，但是比移动元素开销少）时间复杂度可以达到o(1) 2，链表也有它的缺点:  访问查询时总得从头开始访问  无法通过下标直接访问元素，要遍历判断循环找。  链表有带">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-06-10T01:30:33.000Z">
-<meta property="article:modified_time" content="2020-06-10T07:08:00.003Z">
+<meta property="article:published_time" content="2020-06-12T12:37:31.000Z">
+<meta property="article:modified_time" content="2020-06-13T13:46:44.504Z">
 <meta property="article:author" content="Zhoubb">
-<meta property="article:tag" content="JavaScripe查漏补缺">
+<meta property="article:tag" content="数据结构与算法">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="周斌斌的个人博客" type="application/atom+xml">
@@ -159,46 +159,43 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-变量回顾" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-数据结构与算法-单向链表" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      JS查漏补缺一变量回顾
+      数据结构与算法-单向链表
     </h1>
   
 
         
-        <a href="/2020/06/10/%E5%8F%98%E9%87%8F%E5%9B%9E%E9%A1%BE/" class="archive-article-date">
-  	<time datetime="2020-06-10T01:30:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-10</time>
+        <a href="/2020/06/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E5%8D%95%E5%90%91%E9%93%BE%E8%A1%A8/" class="archive-article-date">
+  	<time datetime="2020-06-12T12:37:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-12</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="编程语言的工作"><a href="#编程语言的工作" class="headerlink" title="编程语言的工作"></a>编程语言的工作</h3><p>1，合适的数据结构存储数据</p>
-<p>2，合适的算法管理数据</p>
-<p>也就是经典的等式：程序=数据结构+算法</p>
-<h3 id="变量的声明与赋值"><a href="#变量的声明与赋值" class="headerlink" title="变量的声明与赋值"></a>变量的声明与赋值</h3><p>1，声明开辟空间（一般会有个初始值），<strong>同一作用域</strong>一般只声明一次（var例外，会覆盖）；<strong>不同的作用域可以声明同名变量，不受影响</strong></p>
-<p>2，赋值放入指定内容（支持连续等号赋值）</p>
-<p>Js弱类型，变量的类型由值决定</p>
-<a id="more"></a>
+        <h4 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h4><p><strong>1，与链表相比数组的缺点：</strong></p>
+<ul>
+<li>必须申请连续的储存空间</li>
+<li>在开头以及中间插入数据要进行大量的位移</li>
+</ul>
+<p>链表可以很好的解决这两个问题。链表可以充分利用计算机储存空间，并且在插入和删除数据的时候要方便一些，不用移动元素（寻找插入位置时要费劲些，但是比移动元素开销少）时间复杂度可以达到o(1)</p>
+<p><strong>2，链表也有它的缺点:</strong></p>
+<ul>
+<li><p>访问查询时总得从头开始访问</p>
+</li>
+<li><p>无法通过下标直接访问元素，要遍历判断循环找。</p>
+</li>
+<li><p>链表有带头结点与不带头指针两种。今后自己统以用带头指针的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">LinkedList</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">Node</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.data = data</span><br><span class="line">    <span class="keyword">this</span>.next = <span class="literal">null</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//属性：头指针，当前指针，长度</span></span><br><span class="line">  <span class="keyword">this</span>.header = <span class="literal">null</span></span><br><span class="line">  <span class="keyword">this</span>.length = <span class="number">0</span><span class="comment">//注意实时更新</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">//1,append追加方法，在尾部添加元素</span></span><br><span class="line">  LinkedList.prototype.append = <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> newNode = <span class="keyword">new</span> Node(data)</span><br><span class="line">    <span class="comment">//是第一个元素，直接修改头指针</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.length===<span class="number">0</span>) &#123;<span class="comment">//if (this.header===null)</span></span><br><span class="line">      <span class="keyword">this</span>.header = newNode</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">let</span> current = <span class="keyword">this</span>.header</span><br><span class="line">      <span class="comment">//不是第一个元素，循环找到最后一个节点</span></span><br><span class="line">      <span class="keyword">while</span> (current.next)&#123;<span class="comment">//直到他的next为空，就是最后一个</span></span><br><span class="line">        current = current.next</span><br><span class="line">      &#125;</span><br><span class="line">      current.next = newNode</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//更新长度</span></span><br><span class="line">    <span class="keyword">this</span>.length++</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//2,insert在指定位置添加元素</span></span><br><span class="line">  LinkedList.prototype.insert = <span class="function"><span class="keyword">function</span>(<span class="params">position,data</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//边界判断</span></span><br><span class="line">    <span class="keyword">if</span>(position&lt;<span class="number">0</span>||position&gt;<span class="keyword">this</span>.length)&#123;<span class="comment">//可以等于</span></span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> newNode = <span class="keyword">new</span> Node(data)</span><br><span class="line">    <span class="keyword">let</span> current = <span class="keyword">this</span>.header</span><br><span class="line">    <span class="comment">//在头部添加</span></span><br><span class="line">    <span class="keyword">if</span>(position===<span class="number">0</span>)&#123;</span><br><span class="line">      newNode.next=<span class="keyword">this</span>.header</span><br><span class="line">      <span class="keyword">this</span>.header=newNode</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">//不是在头部,所以i从1开始</span></span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">let</span> i=<span class="number">1</span>;i&lt;position;i++)&#123;</span><br><span class="line">        current = current.next</span><br><span class="line">      &#125;</span><br><span class="line">      newNode.next = current.next</span><br><span class="line">      current.next = newNode </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.length++<span class="comment">//更新长度</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//3，将链表转换为字符串返回</span></span><br><span class="line">  LinkedList.prototype.toString = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> current = <span class="keyword">this</span>.header</span><br><span class="line">    <span class="keyword">let</span> listString = <span class="string">""</span></span><br><span class="line">    <span class="comment">//循环获取节点</span></span><br><span class="line">    <span class="keyword">while</span> (current)&#123;</span><br><span class="line">      listString+=current.data+<span class="string">" "</span></span><br><span class="line">      current=current.next</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> listString</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">  <span class="comment">//4，获取指定下标的元素</span></span><br><span class="line">  LinkedList.prototype.get = <span class="function"><span class="keyword">function</span>(<span class="params">index</span>)</span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(index&lt;<span class="number">0</span>||index&gt;=<span class="keyword">this</span>.length)&#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">let</span> current = <span class="keyword">this</span>.header</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;index;i++)&#123;</span><br><span class="line">          current=current.next</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> current.data</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//5，获取元素的索引</span></span><br><span class="line">  LinkedList.prototype.indexOf = <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> current = <span class="keyword">this</span>.header</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> index=<span class="number">0</span>;index&lt;<span class="keyword">this</span>.length;index++)&#123;</span><br><span class="line">      <span class="keyword">if</span>(current.data===data)&#123;</span><br><span class="line">        <span class="keyword">return</span> index</span><br><span class="line">      &#125;</span><br><span class="line">      current=current.next</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//6，删除指定位置的元素</span></span><br><span class="line">  LinkedList.prototype.removeAt = <span class="function"><span class="keyword">function</span>(<span class="params">position</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//越界判断多次会用到，可以抽离出来成一个函数</span></span><br><span class="line">    <span class="keyword">if</span>(position&lt;<span class="number">0</span>||position&gt;=<span class="keyword">this</span>.length)&#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">      &#125;</span><br><span class="line">    <span class="keyword">let</span> current = <span class="keyword">this</span>.header</span><br><span class="line">    <span class="keyword">let</span> previous = <span class="literal">null</span></span><br><span class="line">    <span class="keyword">if</span>(position===<span class="number">0</span>)&#123;</span><br><span class="line">      <span class="keyword">this</span>.header=current.next</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;position;i++)&#123;</span><br><span class="line">        previous = current</span><br><span class="line">        current=current.next</span><br><span class="line">      &#125;</span><br><span class="line">      previous.next=current.next</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.length--</span><br><span class="line">    <span class="keyword">return</span> current.data</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line">  </span><br><span class="line"><span class="comment">//测试</span></span><br><span class="line"><span class="keyword">let</span> list=<span class="keyword">new</span> LinkedList()</span><br><span class="line">list.append(<span class="string">'abc'</span>)</span><br><span class="line">list.append(<span class="string">'cba'</span>)</span><br><span class="line">list.append(<span class="string">'nba'</span>)</span><br><span class="line">list.insert(<span class="number">3</span>,<span class="string">'swk'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(list)</span><br><span class="line"><span class="built_in">console</span>.log(list.toString())<span class="comment">//abc cba nba swk</span></span><br><span class="line"><span class="built_in">console</span>.log(list.get(<span class="number">3</span>))<span class="comment">//swk</span></span><br><span class="line"><span class="built_in">console</span>.log(list.indexOf(<span class="string">'swk'</span>))<span class="comment">//3</span></span><br><span class="line">list.removeAt(<span class="number">2</span>)</span><br><span class="line"><span class="built_in">console</span>.log(list.toString())<span class="comment">//abc cba swk</span></span><br></pre></td></tr></table></figure>
 
-
-
-<h3 id="变量提升（用let！）"><a href="#变量提升（用let！）" class="headerlink" title="变量提升（用let！）"></a>变量提升（用let！）</h3><p><strong>使用var关键字声明的变量</strong>会在<strong>所有的代码</strong>执行之前被声明，<strong>但是不会赋值</strong>（undefined）。所以我们可以在变量声明前使用变量（作用）。但是不使用var关键字声明的变量（成为全局变量）不会被声明提前。</p>
-<p>1，<strong>变量提升不影响内部变量与外部变量的私有特性。</strong></p>
-<p>2，但是如果不写var，变量又会变成全局变量，污染全局。</p>
-<p>3，<strong>var有函数作用域，但是没有块作用域（for循环里的i会影响到外面的i）</strong>，在此之前一般都是使用<strong>立即执行函数</strong>来解决无块作用域产生的作用域污染问题；后面出现了let。</p>
-<p>4，<strong>同一作用域下</strong>var重复声明变量不会提醒（会直接覆盖），而let会报错（只能声明一次）。</p>
-<p><u>全局变量保存在window对象里（全局上下文对象）</u></p>
-<h3 id="函数提升"><a href="#函数提升" class="headerlink" title="函数提升"></a>函数提升</h3><p>使用函数声明创建的函数（function fun(){}）,会在所有的代码执行之前被创建，也就是我们可以在函数声明前去调用函数（作用），但是使用函数表达式(<strong>var fun = function(){}</strong>)创建的函数没有该特性，变量提升优先级高于函数提升。</p>
-<p><u>函数作用域内的变量保存对应的函数上下文对象里</u></p>
-<p><u>尽量避免变量提升，尽量利用函数提升。</u></p>
-<p><u>注意！！！如果在预解析阶段出错，那么整体是不会开始执行的，直接报错</u></p>
+</li>
+</ul>
 
       
 
@@ -243,7 +240,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JavaScripe查漏补缺</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数据结构与算法</a>
         		</li>
       		
 		</ul>
@@ -299,7 +296,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://zhoubb96.github.io/2020/06/10/%E5%8F%98%E9%87%8F%E5%9B%9E%E9%A1%BE/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://zhoubb96.github.io/2020/06/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E5%8D%95%E5%90%91%E9%93%BE%E8%A1%A8/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -313,18 +310,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/06/10/Object%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95%E4%B8%8E%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/06/13/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E6%A1%88%E4%BE%8B%E4%B8%80/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          JS查漏补缺一Object静态方法与逻辑运算符
+          移动端适配案例一
         
       </div>
     </a>
   
   
-    <a href="/2020/06/09/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E4%BA%8C/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">移动端适配二</div>
+    <a href="/2020/06/12/JS%E6%97%A5%E6%9C%9F%E7%9B%B8%E5%85%B3/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JS日期相关</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -363,7 +360,7 @@
 <script src="https://www.wenjunjiang.win/js/gitment.js"></script>
 <script>
 var gitment = new Gitment({
-  id: "https://zhoubb96.github.io/2020/06/10/%E5%8F%98%E9%87%8F%E5%9B%9E%E9%A1%BE/",
+  id: "https://zhoubb96.github.io/2020/06/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E5%8D%95%E5%90%91%E9%93%BE%E8%A1%A8/",
   owner: 'zhoubb96',
   repo: 'zhoubb96.github.io',
   oauth: {
@@ -480,6 +477,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">sort(),reduce()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">find(),findIndex()</a>
               </li>
             
             <div class="clearfix"></div>

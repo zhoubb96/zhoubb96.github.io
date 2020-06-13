@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://zhoubb96.github.io">
-  <title>JS字符串-高级操作 | 周斌斌的个人博客</title>
+  <title>JS字符串与Number-高级操作 | 周斌斌的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="截取操作 slice(), substring(), substr()。不会改变原数组 12345let name &#x3D; &quot;Zhoubinbin&quot;  console.log(name.slice(1,3))&#x2F;&#x2F;ho;起始与结束位置，输入负数则起始位置从后算。  console.log(name.slice(-3,-1))&#x2F;&#x2F;bi  console.log(name.substring(1,3))&#x2F;&#x2F;">
+  <meta name="description" content="1,截取操作slice(), substring(), substr()。不会改变原字符串 12345let name &#x3D; &quot;Zhoubinbin&quot;  console.log(name.slice(1,3))&#x2F;&#x2F;ho;起始与结束位置，输入负数则起始位置从后算。  console.log(name.slice(-3,-1))&#x2F;&#x2F;bi  console.log(name.substring(1,3))">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JS字符串-高级操作">
-<meta property="og:url" content="https://zhoubb96.github.io/2020/06/11/JS%E5%AD%97%E7%AC%A6%E4%B8%B2-%E9%AB%98%E7%BA%A7%E6%93%8D%E4%BD%9C/index.html">
+<meta property="og:title" content="JS字符串与Number-高级操作">
+<meta property="og:url" content="https://zhoubb96.github.io/2020/06/11/JS%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%8ENumber-%E9%AB%98%E7%BA%A7%E6%93%8D%E4%BD%9C/index.html">
 <meta property="og:site_name" content="周斌斌的个人博客">
-<meta property="og:description" content="截取操作 slice(), substring(), substr()。不会改变原数组 12345let name &#x3D; &quot;Zhoubinbin&quot;  console.log(name.slice(1,3))&#x2F;&#x2F;ho;起始与结束位置，输入负数则起始位置从后算。  console.log(name.slice(-3,-1))&#x2F;&#x2F;bi  console.log(name.substring(1,3))&#x2F;&#x2F;">
+<meta property="og:description" content="1,截取操作slice(), substring(), substr()。不会改变原字符串 12345let name &#x3D; &quot;Zhoubinbin&quot;  console.log(name.slice(1,3))&#x2F;&#x2F;ho;起始与结束位置，输入负数则起始位置从后算。  console.log(name.slice(-3,-1))&#x2F;&#x2F;bi  console.log(name.substring(1,3))">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-06-11T10:03:52.000Z">
-<meta property="article:modified_time" content="2020-06-11T10:56:46.890Z">
+<meta property="article:modified_time" content="2020-06-13T09:04:07.204Z">
 <meta property="article:author" content="Zhoubb">
 <meta property="article:tag" content="JavaScripe查漏补缺">
 <meta name="twitter:card" content="summary">
@@ -159,19 +159,19 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-JS字符串-高级操作" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-JS字符串与Number-高级操作" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      JS字符串-高级操作
+      JS字符串与Number-高级操作
     </h1>
   
 
         
-        <a href="/2020/06/11/JS%E5%AD%97%E7%AC%A6%E4%B8%B2-%E9%AB%98%E7%BA%A7%E6%93%8D%E4%BD%9C/" class="archive-article-date">
+        <a href="/2020/06/11/JS%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%8ENumber-%E9%AB%98%E7%BA%A7%E6%93%8D%E4%BD%9C/" class="archive-article-date">
   	<time datetime="2020-06-11T10:03:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-11</time>
 </a>
         
@@ -179,16 +179,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>截取操作</p>
-<p>slice(), substring(), substr()。不会改变原数组</p>
+        <h4 id="1-截取操作"><a href="#1-截取操作" class="headerlink" title="1,截取操作"></a>1,截取操作</h4><p>slice(), substring(), substr()。不会改变原字符串</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> name = <span class="string">"Zhoubinbin"</span></span><br><span class="line">  <span class="built_in">console</span>.log(name.slice(<span class="number">1</span>,<span class="number">3</span>))<span class="comment">//ho;起始与结束位置，输入负数则起始位置从后算。</span></span><br><span class="line">  <span class="built_in">console</span>.log(name.slice(<span class="number">-3</span>,<span class="number">-1</span>))<span class="comment">//bi</span></span><br><span class="line">  <span class="built_in">console</span>.log(name.substring(<span class="number">1</span>,<span class="number">3</span>))<span class="comment">//ho；同上，只是不可以使用负数（输入负数当0看待）</span></span><br><span class="line">  <span class="built_in">console</span>.log(name.substr(<span class="number">1</span>,<span class="number">3</span>))<span class="comment">//hou；起始位置可以用负数与截取长度</span></span><br></pre></td></tr></table></figure>
 
-<p>检索操作</p>
-<p>indexOf()，lastIndexOf()</p>
+<h4 id="2-检索操作"><a href="#2-检索操作" class="headerlink" title="2,检索操作"></a>2,检索操作</h4><p>indexOf()，lastIndexOf()</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let name &#x3D; &quot;Zhoubinbin&quot;</span><br><span class="line">    console.log(name.indexOf(&quot;i&quot;))&#x2F;&#x2F;5；从头开始，返回字符“i”第一次出现的下标</span><br><span class="line">    console.log(name.indexOf(&quot;i&quot;,6))&#x2F;&#x2F;8；6表示从什么位置开始查找，忽略前面</span><br><span class="line">    console.log(name.includes(&quot;i&quot;))&#x2F;&#x2F;true；返回布尔值</span><br><span class="line">    console.log(name.includes(&quot;i&quot;,9))&#x2F;&#x2F;false</span><br><span class="line">    console.log(name.lastIndexOf(&quot;i&quot;))&#x2F;&#x2F;8;从后开始查找</span><br></pre></td></tr></table></figure>
 
-<p>拆分和拼接操作</p>
+<h4 id="3-替换操作"><a href="#3-替换操作" class="headerlink" title="3,替换操作"></a>3,替换操作</h4><p><code>stringObject.replace(regexp/substr,replacement)</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> name = <span class="string">"Zhoubinbin"</span></span><br><span class="line">    <span class="built_in">console</span>.log(name.replace(<span class="string">'i'</span>,<span class="string">'o'</span>))<span class="comment">//Zhoubonbin只改了第一个i，如果要全部替换必须使用正则表达式</span></span><br></pre></td></tr></table></figure>
 
+<h4 id="4-拆分和拼接操作"><a href="#4-拆分和拼接操作" class="headerlink" title="4,拆分和拼接操作"></a>4,拆分和拼接操作</h4>
       
 
       
@@ -288,7 +288,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://zhoubb96.github.io/2020/06/11/JS%E5%AD%97%E7%AC%A6%E4%B8%B2-%E9%AB%98%E7%BA%A7%E6%93%8D%E4%BD%9C/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://zhoubb96.github.io/2020/06/11/JS%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%8ENumber-%E9%AB%98%E7%BA%A7%E6%93%8D%E4%BD%9C/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -312,8 +312,8 @@
     </a>
   
   
-    <a href="/2020/06/11/JS%E5%AD%97%E7%AC%A6%E4%B8%B2-%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">JS字符串-基本操作.md</div>
+    <a href="/2020/06/11/JS%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%8ENumber-%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JS字符串与Number-基本操作.md</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -352,7 +352,7 @@
 <script src="https://www.wenjunjiang.win/js/gitment.js"></script>
 <script>
 var gitment = new Gitment({
-  id: "https://zhoubb96.github.io/2020/06/11/JS%E5%AD%97%E7%AC%A6%E4%B8%B2-%E9%AB%98%E7%BA%A7%E6%93%8D%E4%BD%9C/",
+  id: "https://zhoubb96.github.io/2020/06/11/JS%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%8ENumber-%E9%AB%98%E7%BA%A7%E6%93%8D%E4%BD%9C/",
   owner: 'zhoubb96',
   repo: 'zhoubb96.github.io',
   oauth: {
@@ -469,6 +469,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">sort(),reduce()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">find(),findIndex()</a>
               </li>
             
             <div class="clearfix"></div>

@@ -156,37 +156,54 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-数据结构与算法-栈" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-JS字符串与Number-基本操作" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E6%A0%88/">数据结构与算法-栈</a>
+      <a class="article-title" href="/2020/06/11/JS%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%8ENumber-%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">JS字符串与Number-基本操作.md</a>
     </h1>
   
 
         
-        <a href="/2020/06/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E6%A0%88/" class="archive-article-date">
-  	<time datetime="2020-06-10T08:20:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-10</time>
+        <a href="/2020/06/11/JS%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%8ENumber-%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" class="archive-article-date">
+  	<time datetime="2020-06-11T09:30:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-11</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>1，JS的数组结构，可以直接调用API（编程题考察的一般都是数组，所以JS基础最重要，<strong>数组的操作需要进行十分熟练</strong>）</p>
-<p>数组的<strong>插入和删除</strong>是比较麻烦，原因是需要不断的移动数据。但是，数组通过下标<strong>查询以及修</strong>改元素的时候，效率是很高的。</p>
-<p>除了数组，其他的结构都是自己构造出来的，一般是利用对象加指针进行实现。（比如树就是递归出来的）</p>
-<p>2，栈结构（是要自己实现的？）</p>
-<p>因为栈的特点是先进后出，且进出都在一个位置操作，那么基于数组实现就是只操作数组尾部数据，也就是push与pop（那么队列就是unshift与pop或者shift与push）</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//基于数组实现栈，外部是栈，内部是数组</span></span><br><span class="line">&lt;script&gt;</span><br><span class="line">        <span class="comment">//栈的封装实现,利用数组的push和pop，始终都在数组尾部进行操作（就符合了栈的特性）</span></span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">Stack</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="comment">//属性</span></span><br><span class="line">            <span class="keyword">this</span>.items = []</span><br><span class="line">            <span class="comment">//操作</span></span><br><span class="line">            <span class="comment">//1，压栈，尾部添加</span></span><br><span class="line">            Stack.prototype.push = <span class="function"><span class="keyword">function</span>(<span class="params">element</span>)</span>&#123;<span class="comment">//需要传参，下面的不用</span></span><br><span class="line">                <span class="keyword">this</span>.items.push(element)</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//2，弹栈，尾部删除</span></span><br><span class="line">            Stack.prototype.pop = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">this</span>.items.pop()</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//3，查看栈顶，用下标查询最后一个元素</span></span><br><span class="line">            Stack.prototype.peak = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">this</span>.items[<span class="keyword">this</span>.items.length<span class="number">-1</span>]</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//4,判断是否为空，利用数组长度进行判断</span></span><br><span class="line">            Stack.prototype.isEmpty = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">this</span>.items.length==<span class="number">0</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//5，获取栈的长度，也就是数组的长度</span></span><br><span class="line">            Stack.prototype.size = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">this</span>.items.length</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//6，转换为字符串，遍历+拼串</span></span><br><span class="line">            Stack.prototype.toString = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                <span class="keyword">var</span> resultString = <span class="string">' '</span><span class="comment">//设置一个初始空字符串</span></span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">let</span> i =<span class="number">0</span>;i&lt;<span class="keyword">this</span>.items.length;i++)&#123;</span><br><span class="line">                    resultString += <span class="keyword">this</span>.items[i] + <span class="string">' '</span><span class="comment">//拼串1 2 3 4以空格分开了</span></span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> resultString</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">var</span> s = <span class="keyword">new</span> Stack()</span><br><span class="line">        s.push(<span class="number">1</span>)</span><br><span class="line">        s.push(<span class="number">2</span>)</span><br><span class="line">        s.push(<span class="number">3</span>)</span><br><span class="line">        s.push(<span class="number">4</span>)</span><br><span class="line">        s.pop()</span><br><span class="line">        <span class="built_in">console</span>.log(s)</span><br><span class="line">        <span class="built_in">console</span>.log(s.isEmpty())</span><br><span class="line">        <span class="built_in">console</span>.log(s.peak())</span><br><span class="line">        <span class="built_in">console</span>.log(s.toString())</span><br><span class="line">    &lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/基于链表实现（二级考试题中出现过的）</span></span><br></pre></td></tr></table></figure>
+        <h4 id="字符串的常见操作有"><a href="#字符串的常见操作有" class="headerlink" title="字符串的常见操作有"></a>字符串的常见操作有</h4><ul>
+<li><p>length，长度</p>
+</li>
+<li><p>toUpperCase(), toLowerCase(),大小写转换</p>
+</li>
+<li><p>trim()，去除所有空格</p>
+</li>
+<li><p>字符串拼串</p>
+<ul>
+<li><p>可以直接用+号（如果不做类型转换+默认是拼串，所以要做数学运算的的话要转换类型1，乘一个1就自动转换；2，Number（str）方法）</p>
+</li>
+<li><p>contact方法。（join是数组的方法）,</p>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">	<span class="keyword">let</span> name = <span class="string">" Zhoubinbin "</span></span><br><span class="line">   <span class="built_in">console</span>.log(name.length)<span class="comment">//12</span></span><br><span class="line">   <span class="built_in">console</span>.log(name.toUpperCase()) ZHOUBINBIN </span><br><span class="line">   <span class="built_in">console</span>.log(name.toLowerCase()) zhoubinbin</span><br><span class="line">   <span class="built_in">console</span>.log(name.trim().length)<span class="comment">//10</span></span><br><span class="line"><span class="keyword">const</span> string = <span class="string">"99"</span></span><br><span class="line">   <span class="built_in">console</span>.log(string+<span class="number">1</span>)<span class="comment">//991</span></span><br><span class="line">   <span class="built_in">console</span>.log(string*<span class="number">1</span>+<span class="number">1</span>)<span class="comment">//100</span></span><br><span class="line">   <span class="built_in">console</span>.log(<span class="built_in">Number</span>(string)+<span class="number">1</span>)<span class="comment">//100</span></span><br></pre></td></tr></table></figure>
 
-<p>利用栈可以进制的转换。(依次相除将所得结果依次压栈，最后出栈后就是结果)，当然利用数组也可以，只是输出的时候要手动调整顺序</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//利用栈的进制转换函数</span></span><br><span class="line"><span class="comment">//设置两个变量用来存储商和余数，余数压栈，商继续做除法，一直到商为0</span></span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">dec2bin</span>(<span class="params">decNumber</span>)</span>&#123;</span><br><span class="line">            <span class="comment">//1，创建栈对象用以存储</span></span><br><span class="line">            <span class="keyword">var</span> stack = <span class="keyword">new</span> Stack</span><br><span class="line">            <span class="comment">//2，循环操作</span></span><br><span class="line">            <span class="keyword">while</span>(decNumber &gt; <span class="number">0</span>)&#123;</span><br><span class="line">                element = decNumber % <span class="number">2</span></span><br><span class="line">                stack.push(element)<span class="comment">//可以直接优化为一句stack.push(decNumber%2)</span></span><br><span class="line">                <span class="comment">//decNumber = decNumber/2 ；重新赋值,这里如果这样写会出错，因为有小数点</span></span><br><span class="line">                <span class="comment">//必须用数学方法Math.floor和parseInt都是返回小于等于x的最大整数:</span></span><br><span class="line">                decNumber = <span class="built_in">Math</span>.floor(decNumber/<span class="number">2</span>)</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//3，取出栈中元素并以字符传形式返回</span></span><br><span class="line">            <span class="keyword">var</span> binaryString = <span class="string">''</span><span class="comment">//空字符串</span></span><br><span class="line">            <span class="keyword">while</span>(!stack.isEmpty())&#123;</span><br><span class="line">                binaryString += stack.pop()<span class="comment">//1010，没有和上面一样添加空格分隔</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> binaryString</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        alert(dec2bin(<span class="number">10</span>))</span><br><span class="line"><span class="comment">//当然可以做到任意进制互换，这时候就需要传入多个参数</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>字符串的拆分</p>
+<p><code>split(&quot;str&quot;)</code>  用字符串中的某个符号str拆分一个字符串，将拆分结果放入一个数组，返回这个数组。如果不传str，仅仅是<code>split(&quot;&quot;)</code>那就是逐个字符拆开。<strong>返回的是一个数组</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> name = <span class="string">"Zhoubinbin,yangchengyu"</span></span><br><span class="line"><span class="built_in">console</span>.log(name.split(<span class="string">""</span>))<span class="comment">// ["Z", "h", "o", "u", "b", "i", "n", "b", "i", "n", ",", "y", "a", "n", "g", "c", "h", "e", "n", "g", "y", "u"]不传参全部单个拆分</span></span><br><span class="line"><span class="built_in">console</span>.log(name.split(<span class="string">","</span>))<span class="comment">//["Zhoubinbin", "yangchengyu"]按逗号拆分为两个</span></span><br></pre></td></tr></table></figure>
 
 
+
+</li>
+</ul>
+<h4 id="Number相关的常用操作"><a href="#Number相关的常用操作" class="headerlink" title="Number相关的常用操作"></a>Number相关的常用操作</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> num=<span class="number">1.6</span></span><br><span class="line">   <span class="built_in">console</span>.log(<span class="built_in">parseInt</span>(num))<span class="comment">//1；可以解析字符串，把字符串开头的整提取出来，舍弃掉其他字符，返回一个整数</span></span><br><span class="line">   <span class="built_in">console</span>.log(<span class="built_in">Math</span>.floor(num))<span class="comment">//1；返回小于等于num的最大整数，向下取整</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Math</span>.round(num))<span class="comment">//2；四舍五入</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Math</span>.ceil(num))<span class="comment">//2;向上取整</span></span><br><span class="line">   <span class="built_in">console</span>.log(<span class="built_in">parseFloat</span>(num))<span class="comment">//1.6；可以解析字符串，把字符串开头的浮点数取出来，舍弃掉其他字符，返回一个浮点数</span></span><br><span class="line">   <span class="built_in">console</span>.log(<span class="built_in">Math</span>.fround(num))<span class="comment">//1.600000023841858单精度浮点数</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Number</span>.isInteger(num))<span class="comment">//flase</span></span><br><span class="line"><span class="built_in">console</span>.log(num.toFixed(<span class="number">2</span>))<span class="comment">//1.60</span></span><br></pre></td></tr></table></figure>
 
 
       
@@ -201,7 +218,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数据结构与算法</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JavaScripe查漏补缺</a>
         		</li>
       		
 		</ul>
@@ -211,7 +228,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E6%A0%88/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/06/11/JS%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%8ENumber-%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">展开全文 >></a>
         </p>
       
 
@@ -241,33 +258,31 @@
 
 
   
-    <article id="post-Object静态方法与逻辑运算符" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-JS-for-in与for-of的使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/10/Object%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95%E4%B8%8E%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6/">JS查漏补缺一Object静态方法与逻辑运算符</a>
+      <a class="article-title" href="/2020/06/11/JS-for-in%E4%B8%8Efor-of%E7%9A%84%E4%BD%BF%E7%94%A8/">JS-for-in与for-of的使用</a>
     </h1>
   
 
         
-        <a href="/2020/06/10/Object%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95%E4%B8%8E%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6/" class="archive-article-date">
-  	<time datetime="2020-06-10T06:30:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-10</time>
+        <a href="/2020/06/11/JS-for-in%E4%B8%8Efor-of%E7%9A%84%E4%BD%BF%E7%94%A8/" class="archive-article-date">
+  	<time datetime="2020-06-11T06:58:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-11</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="1，Object静态方法"><a href="#1，Object静态方法" class="headerlink" title="1，Object静态方法"></a>1，Object静态方法</h4><p>一般情况下，常量对象的内部值也是可以改变的。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> HOST = &#123;</span><br><span class="line">    url: <span class="string">"https://zhoubb96.github.io/"</span></span><br><span class="line">    port: <span class="number">443</span></span><br><span class="line">&#125;</span><br><span class="line">HOST.port = <span class="number">80</span><span class="comment">//此时可以修改，类似于指针常量指针不可变但是里面的内容可变。</span></span><br></pre></td></tr></table></figure>
-
-<p>如果同时要禁止对内容得修改，就用到了Object的静态方法</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.freeze(HOST)</span><br><span class="line">HOST.post = <span class="number">80</span> <span class="comment">//这条语句不生效，但是在非严格模式不会报错。</span></span><br></pre></td></tr></table></figure>
+        <h4 id="1，forEach"><a href="#1，forEach" class="headerlink" title="1，forEach"></a>1，forEach</h4><p>自己定义两个形参接受键与值，同时遍历。<strong>注意，forEach第一个参数是值（value）在前！</strong></p>
+<h4 id="2，for-in（数组与对象都能用）"><a href="#2，for-in（数组与对象都能用）" class="headerlink" title="2，for-in（数组与对象都能用）"></a>2，for-in（数组与对象都能用）</h4><p>数组遍历的是数组下标；对象遍历的是键</p>
+<h4 id="3，for-of（原生对象不能使用）"><a href="#3，for-of（原生对象不能使用）" class="headerlink" title="3，for-of（原生对象不能使用）"></a>3，for-of（原生对象不能使用）</h4><p>遍历的是值；原生对象不能使用</p>
         
-          <a class="article-more-a" href="/2020/06/10/Object%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95%E4%B8%8E%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6/#more">more >></a>
+          <a class="article-more-a" href="/2020/06/11/JS-for-in%E4%B8%8Efor-of%E7%9A%84%E4%BD%BF%E7%94%A8/#more">more >></a>
         
       
 
@@ -291,7 +306,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/10/Object%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95%E4%B8%8E%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/06/11/JS-for-in%E4%B8%8Efor-of%E7%9A%84%E4%BD%BF%E7%94%A8/">展开全文 >></a>
         </p>
       
 
@@ -321,35 +336,44 @@
 
 
   
-    <article id="post-变量回顾" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-JS控制结构" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/10/%E5%8F%98%E9%87%8F%E5%9B%9E%E9%A1%BE/">JS查漏补缺一变量回顾</a>
+      <a class="article-title" href="/2020/06/11/JS%E6%8E%A7%E5%88%B6%E7%BB%93%E6%9E%84/">JS控制结构</a>
     </h1>
   
 
         
-        <a href="/2020/06/10/%E5%8F%98%E9%87%8F%E5%9B%9E%E9%A1%BE/" class="archive-article-date">
-  	<time datetime="2020-06-10T01:30:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-10</time>
+        <a href="/2020/06/11/JS%E6%8E%A7%E5%88%B6%E7%BB%93%E6%9E%84/" class="archive-article-date">
+  	<time datetime="2020-06-11T06:15:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-11</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="编程语言的工作"><a href="#编程语言的工作" class="headerlink" title="编程语言的工作"></a>编程语言的工作</h3><p>1，合适的数据结构存储数据</p>
-<p>2，合适的算法管理数据</p>
-<p>也就是经典的等式：程序=数据结构+算法</p>
-<h3 id="变量的声明与赋值"><a href="#变量的声明与赋值" class="headerlink" title="变量的声明与赋值"></a>变量的声明与赋值</h3><p>1，声明开辟空间（一般会有个初始值），<strong>同一作用域</strong>一般只声明一次（var例外，会覆盖）；<strong>不同的作用域可以声明同名变量，不受影响</strong></p>
-<p>2，赋值放入指定内容（支持连续等号赋值）</p>
-<p>Js弱类型，变量的类型由值决定</p>
-        
-          <a class="article-more-a" href="/2020/06/10/%E5%8F%98%E9%87%8F%E5%9B%9E%E9%A1%BE/#more">more >></a>
-        
+        <h2 id="控制结构本身很容易，难点在于灵活使用它们设计解决算法问题"><a href="#控制结构本身很容易，难点在于灵活使用它们设计解决算法问题" class="headerlink" title="控制结构本身很容易，难点在于灵活使用它们设计解决算法问题"></a>控制结构本身很容易，难点在于灵活使用它们设计解决算法问题</h2><h5 id="1-条件控制结构有"><a href="#1-条件控制结构有" class="headerlink" title="1.条件控制结构有"></a>1.条件控制结构有</h5><p>1，if和else；2，三元表达式；3switch这三种。在js当中switch语句中的case后面是可以加判断语句的</p>
+<h5 id="2-循环控制结构"><a href="#2-循环控制结构" class="headerlink" title="2.循环控制结构"></a>2.循环控制结构</h5><p>1，while循环；2，dowhile循环；3，for循环</p>
+<ul>
+<li><p>建议在不确定循环次数的时候使用while循环。</p>
+</li>
+<li><p>dowhile循环，见名知意do会直接先执行一次，然后才到while的判断里面。</p>
+</li>
+</ul>
+<p>使用循环的时候思考，1，要用几个循环以及每个循环用来干什么？；2，不同层数循环变量之间有没有关系？；3，循环的终止条件</p>
+<p>break-continue与label标签的的使用</p>
+<ul>
+<li>break会退出整个循环</li>
+<li>continue只会跳过循环的本次执行（所以要注意continue的位置）</li>
+<li>label跳转（go to语句）</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//初始化计数器（很多时候都要使用到计数器，注意利用好计数器）</span></span><br><span class="line"><span class="keyword">let</span> count = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">1</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">    <span class="comment">//只取偶数</span></span><br><span class="line">    <span class="keyword">if</span>(i%<span class="number">2</span>)&#123;</span><br><span class="line">        <span class="comment">//只要前三个</span></span><br><span class="line">        <span class="keyword">if</span>(count++==<span class="number">3</span>) <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
       
 
       
@@ -372,7 +396,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/10/%E5%8F%98%E9%87%8F%E5%9B%9E%E9%A1%BE/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/06/11/JS%E6%8E%A7%E5%88%B6%E7%BB%93%E6%9E%84/">展开全文 >></a>
         </p>
       
 
@@ -404,7 +428,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/3/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/">下一页</a>
+      <a class="extend prev" rel="prev" href="/page/3/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/5/">下一页</a>
     </nav>
   
 
@@ -514,6 +538,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">sort(),reduce()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">find(),findIndex()</a>
               </li>
             
             <div class="clearfix"></div>

@@ -156,31 +156,71 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-移动端适配二" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-JS数组一" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/09/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E4%BA%8C/">移动端适配二</a>
+      <a class="article-title" href="/2020/06/11/JS%E6%95%B0%E7%BB%84%E4%B8%80/">JS数组一</a>
     </h1>
   
 
         
-        <a href="/2020/06/09/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E4%BA%8C/" class="archive-article-date">
-  	<time datetime="2020-06-09T01:19:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-09</time>
+        <a href="/2020/06/11/JS%E6%95%B0%E7%BB%84%E4%B8%80/" class="archive-article-date">
+  	<time datetime="2020-06-11T04:18:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-11</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1，一物理像素问题"><a href="#1，一物理像素问题" class="headerlink" title="1，一物理像素问题"></a>1，一物理像素问题</h3><h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p><strong>让1个px单位始终只占据1个物理像素。</strong>（通过尺缩比抵消像素比的放大，做到始终1比1）</p>
-<h4 id="实现一，整体的rem适配（适合项目比较大情况，一劳永逸）"><a href="#实现一，整体的rem适配（适合项目比较大情况，一劳永逸）" class="headerlink" title="实现一，整体的rem适配（适合项目比较大情况，一劳永逸）"></a>实现一，整体的rem适配（适合项目比较大情况，一劳永逸）</h4><p><strong>就是在rem适配（只管rem单位）下，依然保持px单位的显示效果</strong>；（主体）响应式布局rem（放大再缩小）+（px）变换缩放（缩小）</p>
-        
-          <a class="article-more-a" href="/2020/06/09/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E4%BA%8C/#more">more >></a>
-        
+        <h4 id="1，typeof与instanceof"><a href="#1，typeof与instanceof" class="headerlink" title="1，typeof与instanceof"></a>1，typeof与instanceof</h4><p>小知识。typeof不能区分array数组和object对象，对二者操作都会输出object，但是函数是可以区分的。</p>
+<ul>
+<li><p>typeof只会输出【基本类型，Object，函数】</p>
+</li>
+<li><p>基本类型只有String，Number，Boolean，Null，undefined这五种。</p>
+</li>
+<li><p>数组不是基本类型，是引用类型；数组是一种数据结构（对数组输出object是因为数据结构是由对象组织的）,而且数组可以直接调用自带API。（C语言中虽然没有类，但<strong>有struct结构体，可以模拟类的行为</strong>，所以c语言虽然不是面向对象的语言，但是<strong>c语言是可以有对象的，就是c语言理论上可以做到面向对象，只是没那么方便</strong>）</p>
+</li>
+</ul>
+<p>为此要区分数组（或其他数据结构）与普通对象的区别，可以使用 <strong>instanceof</strong>，原型链判断。</p>
+<h4 id="2，多维数组"><a href="#2，多维数组" class="headerlink" title="2，多维数组"></a>2，多维数组</h4><p>多维数组就是数组的嵌套，但是一般不这么做，这种情况会用对象来存储以避免嵌套。未赋值的数组元素是<strong>undefined</strong>（C语言是空）</p>
+<h4 id="3，数组操作常用操作"><a href="#3，数组操作常用操作" class="headerlink" title="3，数组操作常用操作"></a>3，数组操作常用操作</h4><ul>
+<li><p>1，数组的创建</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">6</span>]<span class="comment">//字面量</span></span><br><span class="line"><span class="keyword">let</span> arr = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">6</span>)<span class="comment">//返回一个长度为6的未赋值的数组</span></span><br><span class="line"><span class="keyword">let</span> arr = <span class="built_in">Array</span>.of(<span class="number">6</span>)<span class="comment">//创建一个长度为1，且这个元素的值为6</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>2，数组首尾元素的追加与删除push,pop,unshift,shift</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="string">"abc"</span>]</span><br><span class="line"><span class="keyword">let</span> arr2=[<span class="string">"cba"</span>,<span class="string">"nba"</span>]</span><br><span class="line">arr[arr.length]=<span class="number">4</span></span><br><span class="line">arr.push(<span class="number">5</span>)</span><br><span class="line">arr.push(...arr2)<span class="comment">//可以简化数组的合并</span></span><br><span class="line">arr.pop(<span class="string">"nba"</span>)</span><br><span class="line"><span class="built_in">console</span>.log(arr)<span class="comment">//[1, 2, 3, "abc", 4, 5, "cba"]</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>3，单个数组内部<strong>元素的连接</strong>：<code>join(“str”)</code></p>
+<p> 将数组内<strong>所有元素</strong>用指定字符<strong>str</strong>连接<strong>返回一个字符串</strong>，常用空格连接，方便使用trim()</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="string">"zhoubinbin"</span>,<span class="string">"yangchenyu"</span>]</span><br><span class="line"><span class="built_in">console</span>.log(arr.join(<span class="string">"+"</span>))<span class="comment">//zhoubinbin+yangchenyu</span></span><br><span class="line"><span class="built_in">console</span>.log(arr.join(<span class="string">"|"</span>))<span class="comment">//zhoubinbin|yangchenyu</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>4，数组的截取，<strong>返回的是数组</strong></p>
+<ul>
+<li><code>slice(begin，end)</code>，<strong>第二个参数是结束位置</strong>，<strong>不会修改原数组</strong>，不包括结束位置的元素</li>
+<li><code>splice(begin，num，element)</code>，<strong>第二个参数是截取的长度</strong>，<strong>会修改原数组</strong>，还可以给数组在截掉的位置添加元素,达到替换的效果。没有第三个参数，是<strong>删除</strong>；有第三个参数，如果num是0，那就是<strong>增加</strong>；有第三个参数，如果num不是是0，那就是<strong>替换</strong>；只有一个参数<code>split(0)</code>表示清空整个数组，只有个一个参数会截取到最后。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line"><span class="built_in">console</span>.log(arr.slice(<span class="number">1</span>,<span class="number">2</span>))<span class="comment">//[2]</span></span><br><span class="line"><span class="built_in">console</span>.log(arr)<span class="comment">//[1,2,3,4,5]</span></span><br><span class="line"><span class="built_in">console</span>.log(arr.splice(<span class="number">1</span>,<span class="number">2</span>,<span class="string">'cba'</span>))<span class="comment">//[2,3]</span></span><br><span class="line"><span class="built_in">console</span>.log(arr)<span class="comment">//[1,"cba", 4, 5]</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>5，两个数组的连接<code>contact()</code>,现在更加常用三点展开语法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="string">"abc"</span>]</span><br><span class="line"><span class="keyword">let</span> arr2=[<span class="string">"cba"</span>,<span class="string">"nba"</span>]</span><br><span class="line">arr.contact(arr2)</span><br><span class="line">arr.push(...arr2)</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h4 id="4，其他类型转数组"><a href="#4，其他类型转数组" class="headerlink" title="4，其他类型转数组"></a>4，其他类型转数组</h4><p>  如果想用数组的方法，就需要先转为数组；Array.from(obj)；还有常见的字符串的split(“”)也是转化为一个数组；还有map方法。一般对象的话要有长度属性才可以转换成功；三点展开语法也可以用来转数组。</p>
+<h4 id="5，三点展开语法"><a href="#5，三点展开语法" class="headerlink" title="5，三点展开语法"></a>5，三点<strong>展开语法</strong></h4>  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">  <span class="keyword">let</span> arr = [<span class="string">"zbb"</span>,<span class="string">"ycy"</span>]</span><br><span class="line">  <span class="keyword">let</span> arr2 = [<span class="string">"ycy"</span>,<span class="string">"zbb"</span>]</span><br><span class="line">  <span class="comment">//1，合并数组</span></span><br><span class="line">  arr3=[...arr,...arr2]</span><br><span class="line">  <span class="built_in">console</span>.log(arr3)<span class="comment">//"zbb","ycy","ycy","zbb"</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">//2，用于接受多个参数</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">...args</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> args.reduce(<span class="function">(<span class="params">s,v</span>)=&gt;</span>&#123;</span><br><span class="line">      <span class="keyword">return</span> s+=v</span><br><span class="line">    &#125;,<span class="number">0</span>)</span><br><span class="line">  &#125;</span><br><span class="line"><span class="built_in">console</span>.log(sum(<span class="number">1</span>,<span class="number">2</span>))<span class="comment">//3</span></span><br><span class="line"><span class="built_in">console</span>.log(sum(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>))<span class="comment">//6</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//3，将字符串转化为数组</span></span><br><span class="line">	<span class="keyword">let</span> str = <span class="string">"zbb"</span></span><br><span class="line">  <span class="built_in">console</span>.log(...str)<span class="comment">//z b b</span></span><br><span class="line">	<span class="comment">//const [...arr]="str";console.log(arr)</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//4，将dom节点变为数组</span></span><br><span class="line"><span class="keyword">const</span> div = ducument.querySelect(<span class="string">"div"</span>)</span><br><span class="line"><span class="built_in">console</span>.log([...div])<span class="comment">//从Nodelist变成了Array，dom元素转到数组</span></span><br></pre></td></tr></table></figure>
+
+
+
+
       
 
       
@@ -193,7 +233,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">移动端适配</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JavaScripe查漏补缺</a>
         		</li>
       		
 		</ul>
@@ -203,7 +243,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/09/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E4%BA%8C/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/06/11/JS%E6%95%B0%E7%BB%84%E4%B8%80/">展开全文 >></a>
         </p>
       
 
@@ -233,32 +273,42 @@
 
 
   
-    <article id="post-移动端适配一" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-移动端适配三" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/09/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E4%B8%80/">移动端适配一</a>
+      <a class="article-title" href="/2020/06/11/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E4%B8%89/">移动端适配三</a>
     </h1>
   
 
         
-        <a href="/2020/06/09/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E4%B8%80/" class="archive-article-date">
-  	<time datetime="2020-06-09T01:09:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-09</time>
+        <a href="/2020/06/11/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E4%B8%89/" class="archive-article-date">
+  	<time datetime="2020-06-11T01:07:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-11</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="适配的意义"><a href="#适配的意义" class="headerlink" title="适配的意义"></a>适配的意义</h2><p>在不同设备上实现等比例显示 </p>
-<h2 id="相对单位"><a href="#相对单位" class="headerlink" title="相对单位"></a>相对单位</h2><p>em是相对字体大小来计算的，谷歌下1fontsize一般是16像素，所以此时1em=16px<br>rem相对于根元素的字体大小来计算的，根元素是html，计算方法同上<br>vw 相对于视口宽度进行计算的，100vw=一个视口宽度。 1vw=视口宽度/100<br>Vh 相对于视口高度进行计算，计算方法同上</p>
-<h2 id="适配方法"><a href="#适配方法" class="headerlink" title="适配方法"></a>适配方法</h2>
-        
-          <a class="article-more-a" href="/2020/06/09/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E4%B8%80/#more">more >></a>
-        
+        <h4 id="1，三个触屏列表"><a href="#1，三个触屏列表" class="headerlink" title="1，三个触屏列表"></a>1，三个触屏列表</h4><ul>
+<li><p>changedTouches：触发当前事件的手指列表（变化的），用的最多</p>
+</li>
+<li><p>targetTouches：触发当前事件时<strong>元素</strong>上的手指列表</p>
+</li>
+<li><p>touches：触发事件时，<strong>屏幕</strong>上的手指列表</p>
+</li>
+</ul>
+<h4 id="2，四个常见问题"><a href="#2，四个常见问题" class="headerlink" title="2，四个常见问题"></a>2，四个常见问题</h4><ul>
+<li>禁止电话与邮件的默认行为，<code>&lt;meta name=&quot;format-detection&quot; content=&quot;telephone=no email=no&quot;&gt;</code>；如果要重新开启可以考虑加一个a标签。</li>
+<li>链接高亮，解决方法时添加<code>-webkit-tap-highlight-color:rgba(0,0,0,0)</code>,也就是将高亮背景变为透明色</li>
+<li>解决按钮圆角默认为圆，解决方法设置<code>-webkit-appearance:none</code></li>
+<li>font boosting，浏览器自动放大字体。解决方法是添加最大高度<code>max-height:xxpx</code></li>
+</ul>
+<h4 id="3，关于querySelector与getElementBy…的性能与差异"><a href="#3，关于querySelector与getElementBy…的性能与差异" class="headerlink" title="3，关于querySelector与getElementBy…的性能与差异"></a>3，关于querySelector与getElementBy…的性能与差异</h4><p>getElementBy…的性能好很多，而且返回的是动态列表的；querySelector性能差些，而且返回的是静态列表，但是querySelector用起来方便。最后推荐多用更优秀的getElementBy…养成习惯</p>
+
       
 
       
@@ -281,7 +331,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/09/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E4%B8%80/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/06/11/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E4%B8%89/">展开全文 >></a>
         </p>
       
 
@@ -311,41 +361,33 @@
 
 
   
-    <article id="post-移动端基础概念" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-数据结构与算法-队列" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/08/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/">移动端基础概念</a>
+      <a class="article-title" href="/2020/06/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E9%98%9F%E5%88%97/">数据结构与算法-队列</a>
     </h1>
   
 
         
-        <a href="/2020/06/08/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/" class="archive-article-date">
-  	<time datetime="2020-06-08T08:32:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-08</time>
+        <a href="/2020/06/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E9%98%9F%E5%88%97/" class="archive-article-date">
+  	<time datetime="2020-06-10T14:03:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-10</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="APP的三种类型"><a href="#APP的三种类型" class="headerlink" title="APP的三种类型"></a>APP的三种类型</h2><ul>
-<li>web app，使用html5，需要向服务器请求资源，性能较慢但是现在有了提升，开发快，成本低，更新迭代快，会是将来的主流。</li>
-<li>native app，原生应用，资源在本地，性能高。安卓使用java语言，ios使用objectC</li>
-<li>混合app，结合性能与开发速度</li>
-</ul>
-<hr>
-<h2 id="关于适配的相关概念"><a href="#关于适配的相关概念" class="headerlink" title="关于适配的相关概念"></a>关于适配的相关概念</h2><h3 id="1-屏幕"><a href="#1-屏幕" class="headerlink" title="1. 屏幕"></a>1. 屏幕</h3><ul>
-<li>屏幕尺寸：屏幕对角线的长度，单位为英寸，1英寸=2.54厘米。</li>
-<li>屏幕分辨率：屏幕的两个方向物理像素点数，单位px，1px=1像素点。1080*1920</li>
-<li>屏幕密度：每英寸物理像素的个数</li>
-</ul>
-<h3 id="2-像素"><a href="#2-像素" class="headerlink" title="2. 像素"></a>2. 像素</h3>
-        
-          <a class="article-more-a" href="/2020/06/08/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/#more">more >></a>
-        
+        <h4 id="1，队列的实现"><a href="#1，队列的实现" class="headerlink" title="1，队列的实现"></a>1，队列的实现</h4><p>因为队列的特点是先进先出，在头front出队尾rear入队进行操作，所以利用数组实现队列就用shift与push，操作头部与尾部数据</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">      <span class="comment">//数组构造队列</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Queue</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">          <span class="keyword">this</span>.items = []</span><br><span class="line">          <span class="comment">//1,入队，后面入队</span></span><br><span class="line">          Queue.prototype.enqueue = <span class="function"><span class="keyword">function</span>(<span class="params">element</span>)</span>&#123;</span><br><span class="line">              <span class="keyword">this</span>.items.push(element)</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="comment">//2，出队，前面出队</span></span><br><span class="line">          Queue.prototype.dequeue = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">              <span class="keyword">return</span> <span class="keyword">this</span>.items.shift()</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="comment">//其他操作和栈一样了</span></span><br><span class="line">          Queue.prototype.size = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">              <span class="keyword">return</span> <span class="keyword">this</span>.items.length</span><br><span class="line">          &#125;</span><br><span class="line">          Queue.prototype.front = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">              <span class="keyword">return</span> <span class="keyword">this</span>.items[<span class="number">0</span>]</span><br><span class="line">      &#125;</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+
+<p>编程题，利用队列（链表）解决击鼓传花，报数出列或者叫约瑟夫环问题，利用队列的话，边界判断就容易很多。（三种解法，数组（易于理解），循环链表（要构造链表），递归（形式最为简洁））</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//报数变量（1到5）、标记值（5）和累加变量（1—），报数变量在到达标记值的时候重新赋值，再用累加变量对标记值取余数得到队列的下标</span></span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">passgame</span>(<span class="params">nameList,tag</span>)</span>&#123;</span><br><span class="line">            <span class="comment">//1,创建队列</span></span><br><span class="line">            <span class="keyword">var</span> queue = <span class="keyword">new</span> Queue()</span><br><span class="line">            <span class="comment">//2，初始入队</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;nameList.length;i++)&#123;</span><br><span class="line">                queue.enqueue(nameList[i])</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//3,报数开始</span></span><br><span class="line">            <span class="keyword">while</span>(queue.size()&gt;<span class="number">1</span>)&#123;<span class="comment">//不知道具体循环次数时用while</span></span><br><span class="line">                <span class="comment">//此时不是tag，重新加入加入队列</span></span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; tag; i++) &#123;<span class="comment">//报数从1开始，或者用0到tag-1也行。</span></span><br><span class="line">                queue.enqueue(queue.dequeue())<span class="comment">//将取出的元素重新入列</span></span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">//此时是tag时，将其从队列删除 </span></span><br><span class="line">                queue.dequeue()</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">var</span> endName = queue.front()</span><br><span class="line">            alert(endName)</span><br><span class="line">            <span class="keyword">return</span> nameList.indeOf(endName)<span class="comment">//上面的操作没有操作namelist而是操作的queue，最后找到剩下的元素在原先列表的位置</span></span><br><span class="line">        &#125;</span><br><span class="line">		names=[<span class="string">'Lily'</span>,<span class="string">'Lucy'</span>,<span class="string">'Tom'</span>,<span class="string">'Lilei'</span>,<span class="string">'Tomi'</span>]</span><br><span class="line">        passgame(names,<span class="number">3</span>)<span class="comment">//测试用例</span></span><br><span class="line"><span class="comment">//数组方法，如果是数组方法，不想修改原数组的话，要再建立一个数组来进行操作（因为这个操作的数组最后只有一个元素下标必然为0，要利用它的值在原数组里找下标，如果只要返回值那么一个数组就够了）</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//递归方法</span></span><br></pre></td></tr></table></figure>
+
+
       
 
       
@@ -358,7 +400,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">移动端适配</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数据结构与算法</a>
         		</li>
       		
 		</ul>
@@ -368,7 +410,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/08/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/06/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E9%98%9F%E5%88%97/">展开全文 >></a>
         </p>
       
 
@@ -400,7 +442,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/4/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/">下一页</a>
+      <a class="extend prev" rel="prev" href="/page/4/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/6/">下一页</a>
     </nav>
   
 
@@ -510,6 +552,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">sort(),reduce()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">find(),findIndex()</a>
               </li>
             
             <div class="clearfix"></div>

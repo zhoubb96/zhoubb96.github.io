@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="https://zhoubb96.github.io">
   <title>移动端适配三 | 周斌斌的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="三个触屏列表 changedTouches：触发当前事件的手指列表（变化的），用的最多  targetTouches：触发当前事件时元素上的手指列表  touches：触发事件时，屏幕上的手指列表   四个常见问题 禁止电话与邮件的默认行为，&lt;meta name&#x3D;&quot;format-detection&quot; content&#x3D;&quot;telephone&#x3D;no email&#x3D;no&amp;">
+  <meta name="description" content="1，三个触屏列表 changedTouches：触发当前事件的手指列表（变化的），用的最多  targetTouches：触发当前事件时元素上的手指列表  touches：触发事件时，屏幕上的手指列表   2，四个常见问题 禁止电话与邮件的默认行为，&lt;meta name&#x3D;&quot;format-detection&quot; content&#x3D;&quot;telephone&#x3D;no email">
 <meta property="og:type" content="article">
 <meta property="og:title" content="移动端适配三">
 <meta property="og:url" content="https://zhoubb96.github.io/2020/06/11/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E4%B8%89/index.html">
 <meta property="og:site_name" content="周斌斌的个人博客">
-<meta property="og:description" content="三个触屏列表 changedTouches：触发当前事件的手指列表（变化的），用的最多  targetTouches：触发当前事件时元素上的手指列表  touches：触发事件时，屏幕上的手指列表   四个常见问题 禁止电话与邮件的默认行为，&lt;meta name&#x3D;&quot;format-detection&quot; content&#x3D;&quot;telephone&#x3D;no email&#x3D;no&amp;">
+<meta property="og:description" content="1，三个触屏列表 changedTouches：触发当前事件的手指列表（变化的），用的最多  targetTouches：触发当前事件时元素上的手指列表  touches：触发事件时，屏幕上的手指列表   2，四个常见问题 禁止电话与邮件的默认行为，&lt;meta name&#x3D;&quot;format-detection&quot; content&#x3D;&quot;telephone&#x3D;no email">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-06-11T01:07:17.000Z">
-<meta property="article:modified_time" content="2020-06-11T02:29:17.699Z">
+<meta property="article:modified_time" content="2020-06-12T10:58:48.640Z">
 <meta property="article:author" content="Zhoubb">
 <meta property="article:tag" content="移动端适配">
 <meta name="twitter:card" content="summary">
@@ -179,7 +179,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="三个触屏列表"><a href="#三个触屏列表" class="headerlink" title="三个触屏列表"></a>三个触屏列表</h4><ul>
+        <h4 id="1，三个触屏列表"><a href="#1，三个触屏列表" class="headerlink" title="1，三个触屏列表"></a>1，三个触屏列表</h4><ul>
 <li><p>changedTouches：触发当前事件的手指列表（变化的），用的最多</p>
 </li>
 <li><p>targetTouches：触发当前事件时<strong>元素</strong>上的手指列表</p>
@@ -187,16 +187,13 @@
 <li><p>touches：触发事件时，<strong>屏幕</strong>上的手指列表</p>
 </li>
 </ul>
-<h4 id="四个常见问题"><a href="#四个常见问题" class="headerlink" title="四个常见问题"></a>四个常见问题</h4><ul>
-<li><p>禁止电话与邮件的默认行为，<code>&lt;meta name=&quot;format-detection&quot; content=&quot;telephone=no email=no&quot;&gt;</code>；如果要重新开启可以考虑加一个a标签。</p>
-</li>
-<li><p>链接高亮，解决方法时添加<code>-webkit-tap-highlight-color:rgba(0,0,0,0)</code>,也就是将高亮背景变为透明色</p>
-</li>
-<li><p>解决按钮圆角默认为圆，解决方法设置<code>-webkit-appearance:none</code></p>
-</li>
-<li><p>font boosting，浏览器自动放大字体。解决方法是添加最大高度<code>max-height:xxpx</code></p>
-</li>
+<h4 id="2，四个常见问题"><a href="#2，四个常见问题" class="headerlink" title="2，四个常见问题"></a>2，四个常见问题</h4><ul>
+<li>禁止电话与邮件的默认行为，<code>&lt;meta name=&quot;format-detection&quot; content=&quot;telephone=no email=no&quot;&gt;</code>；如果要重新开启可以考虑加一个a标签。</li>
+<li>链接高亮，解决方法时添加<code>-webkit-tap-highlight-color:rgba(0,0,0,0)</code>,也就是将高亮背景变为透明色</li>
+<li>解决按钮圆角默认为圆，解决方法设置<code>-webkit-appearance:none</code></li>
+<li>font boosting，浏览器自动放大字体。解决方法是添加最大高度<code>max-height:xxpx</code></li>
 </ul>
+<h4 id="3，关于querySelector与getElementBy…的性能与差异"><a href="#3，关于querySelector与getElementBy…的性能与差异" class="headerlink" title="3，关于querySelector与getElementBy…的性能与差异"></a>3，关于querySelector与getElementBy…的性能与差异</h4><p>getElementBy…的性能好很多，而且返回的是动态列表的；querySelector性能差些，而且返回的是静态列表，但是querySelector用起来方便。最后推荐多用更优秀的getElementBy…养成习惯</p>
 
       
 
@@ -311,11 +308,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/06/11/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E6%A1%88%E4%BE%8B%E4%B8%80/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/06/11/JS%E6%95%B0%E7%BB%84%E4%B8%80/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          移动端适配案例一
+          JS数组一
         
       </div>
     </a>
@@ -478,6 +475,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">sort(),reduce()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">find(),findIndex()</a>
               </li>
             
             <div class="clearfix"></div>

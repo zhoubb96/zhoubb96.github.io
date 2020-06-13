@@ -156,106 +156,51 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-移动端适配案例一" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-JS基本类型的类型转换" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/11/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E6%A1%88%E4%BE%8B%E4%B8%80/">移动端适配案例一</a>
+      <a class="article-title" href="/2020/06/12/JS%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E7%9A%84%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/">JS基本类型的类型转换</a>
     </h1>
   
 
         
-        <a href="/2020/06/11/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E6%A1%88%E4%BE%8B%E4%B8%80/" class="archive-article-date">
-  	<time datetime="2020-06-11T02:30:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-11</time>
+        <a href="/2020/06/12/JS%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E7%9A%84%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" class="archive-article-date">
+  	<time datetime="2020-06-12T08:16:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-12</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/11/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E6%A1%88%E4%BE%8B%E4%B8%80/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-移动端适配三" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/11/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E4%B8%89/">移动端适配三</a>
-    </h1>
-  
-
-        
-        <a href="/2020/06/11/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E4%B8%89/" class="archive-article-date">
-  	<time datetime="2020-06-11T01:07:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="三个触屏列表"><a href="#三个触屏列表" class="headerlink" title="三个触屏列表"></a>三个触屏列表</h4><ul>
-<li><p>changedTouches：触发当前事件的手指列表（变化的），用的最多</p>
+        <h4 id="1，数值类型基本转换"><a href="#1，数值类型基本转换" class="headerlink" title="1，数值类型基本转换"></a>1，数值类型基本转换</h4><ul>
+<li><p>NaN指不是一个数字，NaN不能互相比较（NaN==NaN无结果）</p>
+<ul>
+<li>使用<code>Number.isNaN()</code>判断</li>
+<li>使用<code>Object.is(2/&quot;1&quot;, NaN)</code>判断</li>
+</ul>
 </li>
-<li><p>targetTouches：触发当前事件时<strong>元素</strong>上的手指列表</p>
+<li><p><code>toString()</code></p>
 </li>
-<li><p>touches：触发事件时，<strong>屏幕</strong>上的手指列表</p>
+<li><p><code>Number()</code>，一般从键盘获取的都是字符串要先转换。或者用parseInteresting()</p>
 </li>
 </ul>
-<h4 id="四个常见问题"><a href="#四个常见问题" class="headerlink" title="四个常见问题"></a>四个常见问题</h4><ul>
-<li><p>禁止电话与邮件的默认行为，<code>&lt;meta name=&quot;format-detection&quot; content=&quot;telephone=no email=no&quot;&gt;</code>；如果要重新开启可以考虑加一个a标签。</p>
+<h4 id="2，布尔值隐式转换"><a href="#2，布尔值隐式转换" class="headerlink" title="2，布尔值隐式转换"></a>2，布尔值隐式转换</h4><ul>
+<li><p>数值类型除了0，都为真</p>
 </li>
-<li><p>链接高亮，解决方法时添加<code>-webkit-tap-highlight-color:rgba(0,0,0,0)</code>,也就是将高亮背景变为透明色</p>
+<li><p>字符串类型除了空串，都为真</p>
 </li>
-<li><p>解决按钮圆角默认为圆，解决方法设置<code>-webkit-appearance:none</code></p>
-</li>
-<li><p>font boosting，浏览器自动放大字体。解决方法是添加最大高度<code>max-height:xxpx</code></p>
+<li><p>引用类型永远为真（不管对象或者数组是不是空）</p>
 </li>
 </ul>
+<h4 id="3-数学方法"><a href="#3-数学方法" class="headerlink" title="3, 数学方法"></a>3, 数学方法</h4><p>Math.max/min/ceil/floor/round/random</p>
+<p>最大，最小，向上取整，取整，四舍五入，随机数区间为（0，1）。</p>
+<p><strong>初见apply数组传参的优点</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">grade &#x3D; [119,64,69,138]</span><br><span class="line">console.log(Math.max(grade))&#x2F;&#x2F;报错，因为Math.max()只支持多参数传参，不支持数组</span><br><span class="line">console.log(Math.max.apply(null,grade))&#x2F;&#x2F;apply可以以数组传参数</span><br></pre></td></tr></table></figure>
+
 
       
 
@@ -269,7 +214,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">移动端适配</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JavaScripe查漏补缺</a>
         		</li>
       		
 		</ul>
@@ -279,7 +224,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/11/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E4%B8%89/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/06/12/JS%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E7%9A%84%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/">展开全文 >></a>
         </p>
       
 
@@ -309,32 +254,34 @@
 
 
   
-    <article id="post-数据结构与算法-队列" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-数据结构与算法-优先级队列" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E9%98%9F%E5%88%97/">数据结构与算法-队列</a>
+      <a class="article-title" href="/2020/06/11/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97/">数据结构与算法-优先级队列</a>
     </h1>
   
 
         
-        <a href="/2020/06/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E9%98%9F%E5%88%97/" class="archive-article-date">
-  	<time datetime="2020-06-10T14:03:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-10</time>
+        <a href="/2020/06/11/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97/" class="archive-article-date">
+  	<time datetime="2020-06-11T13:30:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-11</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>1，队列的实现</p>
-<p>因为队列的特点是先进先出，在头front出队尾rear入队进行操作，所以利用数组实现队列就用shift与push，操作头部与尾部数据</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">      <span class="comment">//数组构造队列</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Queue</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">          <span class="keyword">this</span>.items = []</span><br><span class="line">          <span class="comment">//1,入队，后面入队</span></span><br><span class="line">          Queue.prototype.enqueue = <span class="function"><span class="keyword">function</span>(<span class="params">element</span>)</span>&#123;</span><br><span class="line">              <span class="keyword">this</span>.items.push(element)</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="comment">//2，出队，前面出队</span></span><br><span class="line">          Queue.prototype.dequeue = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">              <span class="keyword">return</span> <span class="keyword">this</span>.items.shift()</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="comment">//其他操作和栈一样了</span></span><br><span class="line">          Queue.prototype.size = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">              <span class="keyword">return</span> <span class="keyword">this</span>.items.length</span><br><span class="line">          &#125;</span><br><span class="line">          Queue.prototype.front = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">              <span class="keyword">return</span> <span class="keyword">this</span>.items[<span class="number">0</span>]</span><br><span class="line">      &#125;</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
-
-<p>编程题，利用队列（链表）解决击鼓传花，报数出列或者叫约瑟夫环问题，利用队列的话，边界判断就容易很多。（三种解法，数组（易于理解），循环链表（要构造链表），递归（形式最为简洁））</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//报数变量（1到5）、标记值（5）和累加变量（1—），报数变量在到达标记值的时候重新赋值，再用累加变量对标记值取余数得到队列的下标</span></span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">passgame</span>(<span class="params">nameList,tag</span>)</span>&#123;</span><br><span class="line">            <span class="comment">//1,创建队列</span></span><br><span class="line">            <span class="keyword">var</span> queue = <span class="keyword">new</span> Queue()</span><br><span class="line">            <span class="comment">//2，初始入队</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;nameList.length;i++)&#123;</span><br><span class="line">                queue.enqueue(nameList[i])</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//3,报数开始</span></span><br><span class="line">            <span class="keyword">while</span>(queue.size()&gt;<span class="number">1</span>)&#123;<span class="comment">//不知道具体循环次数时用while</span></span><br><span class="line">                <span class="comment">//此时不是tag，重新加入加入队列</span></span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; tag; i++) &#123;<span class="comment">//报数从1开始，或者用0到tag-1也行。</span></span><br><span class="line">                queue.enqueue(queue.dequeue())<span class="comment">//将取出的元素重新入列</span></span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">//此时是tag时，将其从队列删除 </span></span><br><span class="line">                queue.dequeue()</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">var</span> endName = queue.front()</span><br><span class="line">            alert(endName)</span><br><span class="line">            <span class="keyword">return</span> nameList.indeOf(endName)<span class="comment">//上面的操作没有操作namelist而是操作的queue，最后找到剩下的元素在原先列表的位置</span></span><br><span class="line">        &#125;</span><br><span class="line">		names=[<span class="string">'Lily'</span>,<span class="string">'Lucy'</span>,<span class="string">'Tom'</span>,<span class="string">'Lilei'</span>,<span class="string">'Tomi'</span>]</span><br><span class="line">        passgame(names,<span class="number">3</span>)<span class="comment">//测试用例</span></span><br><span class="line"><span class="comment">//数组方法，如果是数组方法，不想修改原数组的话，要再建立一个数组来进行操作（因为这个操作的数组最后只有一个元素下标必然为0，要利用它的值在原数组里找下标，如果只要返回值那么一个数组就够了）</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//递归方法</span></span><br></pre></td></tr></table></figure>
+        <h4 id="优先级队列"><a href="#优先级队列" class="headerlink" title="优先级队列"></a>优先级队列</h4><ul>
+<li>普通的队列插入一个元素，该元素位于最后端，在前面的数据都处理完后才会处理后插入的数据。</li>
+<li>优先级队列在插入时会考虑该数据的优先级（在普通队列添加一个属性存储优先级）</li>
+<li>在处理时根据优先级决定处理顺序，也就是根据优先级调整插入数据的位置</li>
+</ul>
+<p>两个问题：1，元素多了一个优先级属性，这就需要用对象封装；2，入队时要比较插入位置</p>
+<p>优先级队列数组实现</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">    <span class="comment">//优先级队列数组实现</span></span><br><span class="line">     <span class="function"><span class="keyword">function</span> <span class="title">PriorityQueue</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="function"><span class="keyword">function</span> <span class="title">QueueElement</span>(<span class="params">element,priority</span>)</span>&#123;</span><br><span class="line">                <span class="keyword">this</span>.element=element</span><br><span class="line">                <span class="keyword">this</span>.priority=priority</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//封装属性（对象数组）</span></span><br><span class="line">            <span class="keyword">this</span>.items = []</span><br><span class="line"></span><br><span class="line">            <span class="comment">//1,入队，根据优先级入队</span></span><br><span class="line">            PriorityQueue.prototype.enqueue = <span class="function"><span class="keyword">function</span>(<span class="params">element,priority</span>)</span>&#123;</span><br><span class="line">                <span class="comment">//获取原先队列长度</span></span><br><span class="line">                length=<span class="keyword">this</span>.items.length</span><br><span class="line"></span><br><span class="line">                <span class="comment">//创建队列元素</span></span><br><span class="line">                <span class="keyword">var</span> queuelement=<span class="keyword">new</span> QueueElement(element,priority)</span><br><span class="line"></span><br><span class="line">                <span class="comment">//原队列无元素就直接插入</span></span><br><span class="line">                <span class="keyword">if</span>(length==<span class="number">0</span>)&#123;</span><br><span class="line">                    <span class="keyword">this</span>.items.push(queuelement)</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="comment">//原队列有元素，1，在原队列间插入；2，在原队列后面追加</span></span><br><span class="line">                    <span class="keyword">var</span> insert = <span class="literal">false</span></span><br><span class="line">                    <span class="comment">//这里只能获取到已有位置，如果在最后插入获取不到位置,就不能解决在尾部插入的问题</span></span><br><span class="line">                    <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;length;i++)&#123;</span><br><span class="line">                        <span class="comment">//比较各个元素的优先级，寻找插入位置(规定数字越小优先级越高)（比较对象的属性值）</span></span><br><span class="line">                        <span class="keyword">if</span>(queuelement.priority&lt;<span class="keyword">this</span>.items[i].priority)&#123;</span><br><span class="line">                            insert = <span class="literal">true</span></span><br><span class="line">                            <span class="comment">//1，在原队列间插入</span></span><br><span class="line">                            <span class="keyword">this</span>.items.splice(i,<span class="number">0</span>,queuelement)<span class="comment">//这一条是最简做法，直接插入移动全全完成</span></span><br><span class="line">                            <span class="keyword">break</span> </span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="comment">//2，在原队列后面追加</span></span><br><span class="line">                    <span class="keyword">if</span>(!insert)&#123;</span><br><span class="line">                        <span class="keyword">this</span>.items.push(queuelement)</span><br><span class="line">                    &#125; </span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//2，出队，前面出队</span></span><br><span class="line">            PriorityQueue.prototype.dequeue = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">this</span>.items.shift()</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//其他操作和栈一样了</span></span><br><span class="line">            PriorityQueue.prototype.size = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">this</span>.items.length</span><br><span class="line">            &#125;</span><br><span class="line">            PriorityQueue.prototype.front = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">this</span>.items[<span class="number">0</span>]</span><br><span class="line">        &#125;</span><br><span class="line">     &#125;</span><br><span class="line"><span class="comment">//验证</span></span><br><span class="line">     <span class="keyword">let</span> pq = <span class="keyword">new</span> PriorityQueue()</span><br><span class="line">     pq.enqueue(<span class="string">'abc'</span>,<span class="number">111</span>)</span><br><span class="line">     pq.enqueue(<span class="string">'cba'</span>,<span class="number">200</span>)</span><br><span class="line">     pq.enqueue(<span class="string">'nba'</span>,<span class="number">50</span>)</span><br><span class="line">     pq.enqueue(<span class="string">'nba'</span>,<span class="number">66</span>)</span><br><span class="line">     <span class="built_in">console</span>.log(pq)</span><br></pre></td></tr></table></figure>
 
 
       
@@ -359,7 +306,89 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E9%98%9F%E5%88%97/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/06/11/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-JS字符串与Number-高级操作" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/11/JS%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%8ENumber-%E9%AB%98%E7%BA%A7%E6%93%8D%E4%BD%9C/">JS字符串与Number-高级操作</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/11/JS%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%8ENumber-%E9%AB%98%E7%BA%A7%E6%93%8D%E4%BD%9C/" class="archive-article-date">
+  	<time datetime="2020-06-11T10:03:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="1-截取操作"><a href="#1-截取操作" class="headerlink" title="1,截取操作"></a>1,截取操作</h4><p>slice(), substring(), substr()。不会改变原字符串</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> name = <span class="string">"Zhoubinbin"</span></span><br><span class="line">  <span class="built_in">console</span>.log(name.slice(<span class="number">1</span>,<span class="number">3</span>))<span class="comment">//ho;起始与结束位置，输入负数则起始位置从后算。</span></span><br><span class="line">  <span class="built_in">console</span>.log(name.slice(<span class="number">-3</span>,<span class="number">-1</span>))<span class="comment">//bi</span></span><br><span class="line">  <span class="built_in">console</span>.log(name.substring(<span class="number">1</span>,<span class="number">3</span>))<span class="comment">//ho；同上，只是不可以使用负数（输入负数当0看待）</span></span><br><span class="line">  <span class="built_in">console</span>.log(name.substr(<span class="number">1</span>,<span class="number">3</span>))<span class="comment">//hou；起始位置可以用负数与截取长度</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-检索操作"><a href="#2-检索操作" class="headerlink" title="2,检索操作"></a>2,检索操作</h4><p>indexOf()，lastIndexOf()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let name &#x3D; &quot;Zhoubinbin&quot;</span><br><span class="line">    console.log(name.indexOf(&quot;i&quot;))&#x2F;&#x2F;5；从头开始，返回字符“i”第一次出现的下标</span><br><span class="line">    console.log(name.indexOf(&quot;i&quot;,6))&#x2F;&#x2F;8；6表示从什么位置开始查找，忽略前面</span><br><span class="line">    console.log(name.includes(&quot;i&quot;))&#x2F;&#x2F;true；返回布尔值</span><br><span class="line">    console.log(name.includes(&quot;i&quot;,9))&#x2F;&#x2F;false</span><br><span class="line">    console.log(name.lastIndexOf(&quot;i&quot;))&#x2F;&#x2F;8;从后开始查找</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-替换操作"><a href="#3-替换操作" class="headerlink" title="3,替换操作"></a>3,替换操作</h4><p><code>stringObject.replace(regexp/substr,replacement)</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> name = <span class="string">"Zhoubinbin"</span></span><br><span class="line">    <span class="built_in">console</span>.log(name.replace(<span class="string">'i'</span>,<span class="string">'o'</span>))<span class="comment">//Zhoubonbin只改了第一个i，如果要全部替换必须使用正则表达式</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="4-拆分和拼接操作"><a href="#4-拆分和拼接操作" class="headerlink" title="4,拆分和拼接操作"></a>4,拆分和拼接操作</h4>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JavaScripe查漏补缺</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/11/JS%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%8ENumber-%E9%AB%98%E7%BA%A7%E6%93%8D%E4%BD%9C/">展开全文 >></a>
         </p>
       
 
@@ -391,7 +420,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/">下一页</a>
+      <a class="extend prev" rel="prev" href="/page/2/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/4/">下一页</a>
     </nav>
   
 
@@ -501,6 +530,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">sort(),reduce()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">find(),findIndex()</a>
               </li>
             
             <div class="clearfix"></div>

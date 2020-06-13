@@ -6,20 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://zhoubb96.github.io">
-  <title>控制结构 | 周斌斌的个人博客</title>
+  <title>移动端适配案例一 | 周斌斌的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="控制结构本身很容易，难点在于灵活使用它们设计解决算法问题条件控制结构有 1，if和else；2，三元表达式；3switch这三种。在js当中switch语句中的case后面是可以加判断语句的 循环控制结构 1，while循环；2，dowhile循环；3，for循环  建议在不确定循环次数的时候使用while循环。  dowhile循环，见名知意do会直接先执行一次，然后才到while的判断里面。">
+  <meta name="description" content="位置获取 clientX：当鼠标事件发生时（不管是onclick，还是omousemove，onmouseover等），鼠标相对于浏览器（这里说的是浏览器的可视区域）x轴的位置； screenX：当鼠标事件发生时，鼠标相对于显示器屏幕x轴的位置； offsetX：当鼠标事件发生时，鼠标相对于事件源x轴的位置，注意判断正负  高度获取 clientHeight：只包括padding高度。   off">
 <meta property="og:type" content="article">
-<meta property="og:title" content="控制结构">
-<meta property="og:url" content="https://zhoubb96.github.io/2020/06/11/%E6%8E%A7%E5%88%B6%E7%BB%93%E6%9E%84/index.html">
+<meta property="og:title" content="移动端适配案例一">
+<meta property="og:url" content="https://zhoubb96.github.io/2020/06/13/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E6%A1%88%E4%BE%8B%E4%B8%80/index.html">
 <meta property="og:site_name" content="周斌斌的个人博客">
-<meta property="og:description" content="控制结构本身很容易，难点在于灵活使用它们设计解决算法问题条件控制结构有 1，if和else；2，三元表达式；3switch这三种。在js当中switch语句中的case后面是可以加判断语句的 循环控制结构 1，while循环；2，dowhile循环；3，for循环  建议在不确定循环次数的时候使用while循环。  dowhile循环，见名知意do会直接先执行一次，然后才到while的判断里面。">
+<meta property="og:description" content="位置获取 clientX：当鼠标事件发生时（不管是onclick，还是omousemove，onmouseover等），鼠标相对于浏览器（这里说的是浏览器的可视区域）x轴的位置； screenX：当鼠标事件发生时，鼠标相对于显示器屏幕x轴的位置； offsetX：当鼠标事件发生时，鼠标相对于事件源x轴的位置，注意判断正负  高度获取 clientHeight：只包括padding高度。   off">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-06-11T06:15:01.000Z">
-<meta property="article:modified_time" content="2020-06-11T06:58:16.312Z">
+<meta property="og:image" content="http://img1.sycdn.imooc.com/58f5b2fa00012ea604110247.jpg">
+<meta property="og:image" content="http://img1.sycdn.imooc.com/58f5b32e0001a2fa04110247.jpg">
+<meta property="article:published_time" content="2020-06-13T02:30:13.000Z">
+<meta property="article:modified_time" content="2020-06-13T01:39:17.297Z">
 <meta property="article:author" content="Zhoubb">
-<meta property="article:tag" content="JavaScripe查漏补缺">
+<meta property="article:tag" content="移动端适配">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://img1.sycdn.imooc.com/58f5b2fa00012ea604110247.jpg">
   
     <link rel="alternative" href="/atom.xml" title="周斌斌的个人博客" type="application/atom+xml">
   
@@ -159,45 +162,41 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-控制结构" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-移动端适配案例一" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      控制结构
+      移动端适配案例一
     </h1>
   
 
         
-        <a href="/2020/06/11/%E6%8E%A7%E5%88%B6%E7%BB%93%E6%9E%84/" class="archive-article-date">
-  	<time datetime="2020-06-11T06:15:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-11</time>
+        <a href="/2020/06/13/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E6%A1%88%E4%BE%8B%E4%B8%80/" class="archive-article-date">
+  	<time datetime="2020-06-13T02:30:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-13</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="控制结构本身很容易，难点在于灵活使用它们设计解决算法问题"><a href="#控制结构本身很容易，难点在于灵活使用它们设计解决算法问题" class="headerlink" title="控制结构本身很容易，难点在于灵活使用它们设计解决算法问题"></a>控制结构本身很容易，难点在于灵活使用它们设计解决算法问题</h2><p>条件控制结构有</p>
-<p>1，if和else；2，三元表达式；3switch这三种。在js当中switch语句中的case后面是可以加判断语句的</p>
-<p>循环控制结构</p>
-<p>1，while循环；2，dowhile循环；3，for循环</p>
-<ul>
-<li><p>建议在不确定循环次数的时候使用while循环。</p>
+        <h4 id="位置获取"><a href="#位置获取" class="headerlink" title="位置获取"></a>位置获取</h4><ul>
+<li>clientX：当鼠标事件发生时（不管是onclick，还是omousemove，onmouseover等），鼠标相对于浏览器（这里说的是浏览器的<strong>可视区域</strong>）x轴的位置；</li>
+<li>screenX：当鼠标事件发生时，鼠标相对于<strong>显示器屏幕</strong>x轴的位置；</li>
+<li>offsetX：当鼠标事件发生时，鼠标相对于<strong>事件源</strong>x轴的位置，注意判断正负</li>
+</ul>
+<h4 id="高度获取"><a href="#高度获取" class="headerlink" title="高度获取"></a>高度获取</h4><ul>
+<li><p>clientHeight：只包括padding高度。</p>
+<p><img src="http://img1.sycdn.imooc.com/58f5b2fa00012ea604110247.jpg" alt=""></p>
 </li>
-<li><p>dowhile循环，见名知意do会直接先执行一次，然后才到while的判断里面。</p>
+<li><p>offsetHeight：包括padding、border、水平滚动条的高度、但不包括margin的元素的高度。</p>
+<p><img src="http://img1.sycdn.imooc.com/58f5b32e0001a2fa04110247.jpg" alt=""></p>
+</li>
+<li><p>scrollHeight：当本元素的子元素比本元素高且overflow=scroll时，本元素会scroll，这时：<br>scrollHeight: 因为子元素比父元素高，父元素不想被子元素撑的一样高就显示出了滚动条，在滚动的过程中本元素有部分被隐藏了，<strong>scrollHeight代表包括当前不可见部分的元素的高度</strong>。而可见部分的高度其实就是clientHeight，也就是scrollHeight&gt;=clientHeight恒成立。在有滚动条时讨论scrollHeight才有意义，在<strong>没有滚动条时scrollHeight==clientHeight恒成立</strong>。</p>
 </li>
 </ul>
-<p>使用循环的时候思考，1，要用几个循环以及每个循环用来干什么？；2，不同层数循环变量之间有没有关系？；3，循环的终止条件</p>
-<p>break-continue与label标签的的使用</p>
-<ul>
-<li>break会退出整个循环</li>
-<li>continue只会跳过循环的本次执行（所以要注意continue的位置）</li>
-<li>label跳转（go to语句）</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//初始化计数器（很多时候都要使用到计数器，注意利用好计数器）</span></span><br><span class="line"><span class="keyword">let</span> count = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">1</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">    <span class="comment">//只取偶数</span></span><br><span class="line">    <span class="keyword">if</span>(i%<span class="number">2</span>)&#123;</span><br><span class="line">        <span class="comment">//只要前三个</span></span><br><span class="line">        <span class="keyword">if</span>(count++==<span class="number">3</span>) <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 
       
 
@@ -242,7 +241,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JavaScripe查漏补缺</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">移动端适配</a>
         		</li>
       		
 		</ul>
@@ -298,7 +297,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://zhoubb96.github.io/2020/06/11/%E6%8E%A7%E5%88%B6%E7%BB%93%E6%9E%84/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://zhoubb96.github.io/2020/06/13/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E6%A1%88%E4%BE%8B%E4%B8%80/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -312,18 +311,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/06/11/for-in%E4%B8%8Efor-of%E7%9A%84%E4%BD%BF%E7%94%A8/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/06/13/JS%E6%95%B0%E7%BB%84%E4%BA%8C/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          for-in与for-of的使用
+          JS数组二
         
       </div>
     </a>
   
   
-    <a href="/2020/06/11/JS%E6%95%B0%E7%BB%84%E4%B8%80/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">JS数组一</div>
+    <a href="/2020/06/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E5%8D%95%E5%90%91%E9%93%BE%E8%A1%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">数据结构与算法-单向链表</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -362,7 +361,7 @@
 <script src="https://www.wenjunjiang.win/js/gitment.js"></script>
 <script>
 var gitment = new Gitment({
-  id: "https://zhoubb96.github.io/2020/06/11/%E6%8E%A7%E5%88%B6%E7%BB%93%E6%9E%84/",
+  id: "https://zhoubb96.github.io/2020/06/13/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E6%A1%88%E4%BE%8B%E4%B8%80/",
   owner: 'zhoubb96',
   repo: 'zhoubb96.github.io',
   oauth: {
@@ -479,6 +478,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">sort(),reduce()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">find(),findIndex()</a>
               </li>
             
             <div class="clearfix"></div>
