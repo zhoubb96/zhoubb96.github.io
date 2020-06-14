@@ -156,28 +156,29 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-数据结构与算法-双向链表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-JS数组六" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8/">数据结构与算法-双向链表</a>
+      <a class="article-title" href="/2020/06/14/JS%E6%95%B0%E7%BB%84%E5%85%AD/">JS数组六</a>
     </h1>
   
 
         
-        <a href="/2020/06/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8/" class="archive-article-date">
-  	<time datetime="2020-06-13T13:47:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-13</time>
+        <a href="/2020/06/14/JS%E6%95%B0%E7%BB%84%E5%85%AD/" class="archive-article-date">
+  	<time datetime="2020-06-14T08:02:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-14</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>单向链表存在一个明显的缺点：返回前一个节点是非常困难的。</p>
-<p>引入双向链表</p>
+        <h4 id="map映射数组与应用类型处理"><a href="#map映射数组与应用类型处理" class="headerlink" title="map映射数组与应用类型处理"></a>map映射数组与应用类型处理</h4><p><code>map(callbacks(value,index,arr))</code>，return的是value。<strong>前面那些函数是返回的布尔值，这个函数直接返回值value</strong>。返回的也是一个新数组。原数组不会改变，需要定义一个变量接受新数组。<strong>引用类型因为传的是地址，如果不写return语句会直接改变原值</strong>；<strong>普通类型由于是传值的形式，不写return语句也不会改变原值</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="string">"zbb"</span>, <span class="string">"ycy"</span>]</span><br><span class="line"><span class="keyword">let</span> arr2 = arr.map(<span class="function">(<span class="params">value, index</span>) =&gt;</span> &#123;</span><br><span class="line">    value = value  + <span class="string">"gkd"</span></span><br><span class="line">    <span class="keyword">return</span> value <span class="comment">//这一句在引用类型与非引用类型会产生不同的结果</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(arr)<span class="comment">// ["zbb", "ycy"]</span></span><br><span class="line"><span class="built_in">console</span>.log(arr2)<span class="comment">//["zbbgkd", "ycygkd"]</span></span><br></pre></td></tr></table></figure>
+
 
       
 
@@ -191,7 +192,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数据结构与算法</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JavaScripe查漏补缺</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">map()</a>
         		</li>
       		
 		</ul>
@@ -201,7 +206,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/06/14/JS%E6%95%B0%E7%BB%84%E5%85%AD/">展开全文 >></a>
         </p>
       
 
@@ -231,33 +236,31 @@
 
 
   
-    <article id="post-JS数组三" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-JS数组五" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/13/JS%E6%95%B0%E7%BB%84%E4%B8%89/">JS数组三</a>
+      <a class="article-title" href="/2020/06/14/JS%E6%95%B0%E7%BB%84%E4%BA%94/">JS数组五</a>
     </h1>
   
 
         
-        <a href="/2020/06/13/JS%E6%95%B0%E7%BB%84%E4%B8%89/" class="archive-article-date">
-  	<time datetime="2020-06-13T09:43:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-13</time>
+        <a href="/2020/06/14/JS%E6%95%B0%E7%BB%84%E4%BA%94/" class="archive-article-date">
+  	<time datetime="2020-06-14T07:39:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-14</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>关于sort()方法</p>
-<ul>
-<li>接受的是一个函数，返回排序后的<strong>数组</strong></li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr=[<span class="number">9</span>,<span class="number">5</span>,<span class="number">2</span>,<span class="number">7</span>]</span><br><span class="line"><span class="keyword">let</span> result = arr.sort(<span class="function"><span class="keyword">function</span> (<span class="params">a,b</span>) </span>&#123;</span><br><span class="line"><span class="comment">//return a-b//返回负数从小到大，[2, 5, 7, 9]</span></span><br><span class="line"><span class="comment">//return b-a//返回正数从大到小，[9, 7, 5, 2]</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(result)</span><br></pre></td></tr></table></figure>
+        <h4 id="过滤函数filter"><a href="#过滤函数filter" class="headerlink" title="过滤函数filter()"></a>过滤函数filter()</h4><p><code>filter(callbacks(value,index,arr))</code></p>
+<p>不难发现这些方法都接受一个回调函数，回调函数返回一个布尔值（判断条件），并且，参数列表都是值value在前面。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr=[<span class="string">"zbb"</span>,<span class="string">"ycy"</span>]</span><br><span class="line"><span class="comment">// 不定义过滤条件，全返回</span></span><br><span class="line">arr.filter(<span class="function">(<span class="params">value,index</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(index,value)<span class="comment">//0 "zbb"  1 "ycy"</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> arr1=arr.filter(<span class="function">(<span class="params">value,index</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> value==<span class="string">"ycy"</span><span class="comment">//条为值为ycy才取出</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(arr1)<span class="comment">//只返会["ycy"]，注意返回的是数组</span></span><br><span class="line"><span class="comment">//上面两个其实只是只用到了value，所以index其实可以不用传入</span></span><br></pre></td></tr></table></figure>
 
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr=[<span class="number">9</span>,<span class="number">5</span>,<span class="number">2</span>,<span class="number">7</span>]</span><br><span class="line"><span class="comment">//定义sort，冒泡实现，动态的（反复调用callback）</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sort</span>(<span class="params">arr,callback</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> n <span class="keyword">in</span> arr) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">const</span> m <span class="keyword">in</span> arr) &#123;</span><br><span class="line">        <span class="comment">//一个很奇怪的排序，单纯看返回值，每次都会调用</span></span><br><span class="line">      <span class="keyword">if</span> (callback(arr[n], arr[m]) &lt; <span class="number">0</span>) &#123;<span class="comment">//接受实参，返回一个数（正或者负）,这个callback会被反复调用，每次都判断</span></span><br><span class="line">        <span class="keyword">let</span> temp = arr[n]</span><br><span class="line">        arr[n] = arr[m]</span><br><span class="line">        arr[m] = temp</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> arr</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//调用sort</span></span><br><span class="line"><span class="keyword">let</span> result = sort(arr,<span class="function"><span class="keyword">function</span> (<span class="params">a,b</span>) </span>&#123;<span class="comment">//两个形参要在调用时接受实参</span></span><br><span class="line"> <span class="keyword">return</span> b-a</span><br><span class="line"> &#125;)</span><br><span class="line"><span class="built_in">console</span>.log(result)</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//自定义filter</span></span><br><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">filter</span>(<span class="params">arr, expect</span>) </span>&#123;<span class="comment">//expect是一个数组，两个数组的互相比较</span></span><br><span class="line">       <span class="comment">//定义新数组返回过滤后的结果</span></span><br><span class="line">       <span class="keyword">let</span> newArray = []</span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">const</span> value <span class="keyword">of</span> arr) &#123;</span><br><span class="line">           <span class="keyword">if</span> (expect.includes(value) === <span class="literal">false</span>) &#123;<span class="comment">//如果expect不包含这个元素</span></span><br><span class="line">               newArray.push(value)</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> newArray<span class="comment">//返回新数组</span></span><br><span class="line">   &#125;</span><br><span class="line">arr=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">   arr2=[<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="built_in">console</span>.log(filter(arr,arr2))<span class="comment">//[1, 4, 5]</span></span><br></pre></td></tr></table></figure>
 
 
       
@@ -276,7 +279,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">sort(),reduce()</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">filter()</a>
         		</li>
       		
 		</ul>
@@ -286,7 +289,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/13/JS%E6%95%B0%E7%BB%84%E4%B8%89/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/06/14/JS%E6%95%B0%E7%BB%84%E4%BA%94/">展开全文 >></a>
         </p>
       
 
@@ -316,38 +319,44 @@
 
 
   
-    <article id="post-JS数组二" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-JS数组四" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/13/JS%E6%95%B0%E7%BB%84%E4%BA%8C/">JS数组二</a>
+      <a class="article-title" href="/2020/06/14/JS%E6%95%B0%E7%BB%84%E5%9B%9B/">JS数组四</a>
     </h1>
   
 
         
-        <a href="/2020/06/13/JS%E6%95%B0%E7%BB%84%E4%BA%8C/" class="archive-article-date">
-  	<time datetime="2020-06-13T09:00:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-13</time>
+        <a href="/2020/06/14/JS%E6%95%B0%E7%BB%84%E5%9B%9B/" class="archive-article-date">
+  	<time datetime="2020-06-14T07:03:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-14</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="旧的查找方法"><a href="#旧的查找方法" class="headerlink" title="旧的查找方法"></a>旧的查找方法</h4><p>indexOf()，lastIndexof()，includes()，这几个方法数组和字符串都有查找操作且接口一样，<strong>但是查找的内容是要严格输入的！</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="string">"6"</span>]</span><br><span class="line"><span class="built_in">console</span>.log(arr.indexOf(<span class="number">2</span>))<span class="comment">//1</span></span><br><span class="line"><span class="built_in">console</span>.log(arr.indexOf(<span class="number">6</span>))<span class="comment">//-1，没有数字6，查找失败</span></span><br><span class="line"><span class="built_in">console</span>.log(arr.indexOf(<span class="string">"6"</span>))<span class="comment">//5，字符串"6”的下标为5</span></span><br></pre></td></tr></table></figure>
+        <h4 id="利用every-与some-进行数组判断"><a href="#利用every-与some-进行数组判断" class="headerlink" title="利用every()与some()进行数组判断"></a>利用every()与some()进行数组判断</h4><p><code>every(callbacks(value,index,arr))</code>，回调函数返回一个布尔值。全部为真才为真</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr=[<span class="string">"zbb"</span>,<span class="string">"ycy"</span>]</span><br><span class="line">arr.every(<span class="function">(<span class="params">value,index</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(index,value)<span class="comment">//0 "zbb"  1 "ycy"，是个数组</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span><span class="comment">//如果不return true就会只执行一次</span></span><br><span class="line">    <span class="comment">//有一个为假就为假，可以用来进行同一判断，也就是return后面放一个表达式</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
-<h4 id="新的查找方法"><a href="#新的查找方法" class="headerlink" title="新的查找方法"></a>新的查找方法</h4><p>find()与findIndex()</p>
+<p><code>some(callbacks(value,index,arr))</code>，回调函数函数返回一个布尔值。任何一个为真就为真</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">arr.some(<span class="function">(<span class="params">value,index</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(index,value)<span class="comment">//如果不加return true就会输出，0 "zbb"  1 "ycy"</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span><span class="comment">//加上return true就只执行一次，和上面反过来的</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>因为不加return语句，默认返回undefined，被转化为false，所以every()第一次执行后便停止，false不再执行；</p>
+<p>而some()遇到false不会停止。</p>
 <ul>
-<li>find()内部参数<strong>是个函数，需要你自定义</strong>，而且<strong><u>返回的是值</u></strong>，<strong>解决引用类型查找</strong>，因为引用类型查找的是地址。</li>
-<li>findIndex()同样<strong>也是接受一个函数</strong>，和find()一致，不同的是<strong><u>它返回的是位置</u></strong></li>
+<li><p><strong>every遇false停止</strong></p>
+</li>
+<li><p><strong>some遇到true停止</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> keywords = [<span class="string">"php"</span>, <span class="string">"js"</span>];</span><br><span class="line">   <span class="keyword">let</span> title = <span class="built_in">document</span>.querySelector(<span class="string">'[name="title"]'</span>);</span><br><span class="line">   title.addEventListener(<span class="string">"keyup"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;<span class="comment">//绑定事件</span></span><br><span class="line">     <span class="keyword">const</span> res = keywords.some(<span class="function"><span class="params">keyword</span> =&gt;</span> &#123;<span class="comment">//遍历取出keyword进行比较</span></span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">this</span>.value.indexOf(keyword) != <span class="number">-1</span>;</span><br><span class="line">       <span class="comment">//检查keyup事件输入的值value中是否有关键字数组keywords中的任何一个关键字keyword</span></span><br><span class="line">     &#125;);</span><br><span class="line">     <span class="built_in">document</span>.querySelector(<span class="string">"span"</span>).innerHTML = res</span><br><span class="line">       ? <span class="string">""</span></span><br><span class="line">       : <span class="string">"必须包含"</span> + keywords.join(<span class="string">","</span>) + <span class="string">"关键词"</span>;</span><br><span class="line">   &#125;);</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
 </ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">arr.find(<span class="function"><span class="keyword">function</span> (<span class="params">item</span>) </span>&#123;</span><br><span class="line"><span class="comment">//console.log(item)//所有值全1 2 3 4 5 6</span></span><br><span class="line"><span class="comment">//return true//1返回第一个</span></span><br><span class="line"><span class="comment">// return item==2//返回值2</span></span><br><span class="line"><span class="comment">// return item==200//undefined，没有200这个值</span></span><br><span class="line">    </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//自己实现一个find，接受一个数组和一个回调函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">find</span>(<span class="params">array,callback</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> value <span class="keyword">of</span> array)&#123;</span><br><span class="line">    <span class="keyword">if</span>(callback(value))&#123;<span class="comment">//接受实参，回调函数返回true，查找成功</span></span><br><span class="line">      <span class="keyword">return</span> value</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">undefined</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//调用</span></span><br><span class="line">result=find(arr,<span class="function"><span class="keyword">function</span>(<span class="params">item</span>)</span>&#123;</span><br><span class="line"><span class="keyword">return</span> item===<span class="number">2</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//打印</span></span><br><span class="line"><span class="built_in">console</span>.log(result)<span class="comment">//2</span></span><br></pre></td></tr></table></figure>
-
 
       
 
@@ -365,7 +374,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">find(),findIndex()</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">every(),some()</a>
         		</li>
       		
 		</ul>
@@ -375,7 +384,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/13/JS%E6%95%B0%E7%BB%84%E4%BA%8C/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/06/14/JS%E6%95%B0%E7%BB%84%E5%9B%9B/">展开全文 >></a>
         </p>
       
 
@@ -407,7 +416,7 @@
   
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
     </nav>
   
 
@@ -525,6 +534,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">find(),findIndex()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">map()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">every(),some()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">filter()</a>
               </li>
             
             <div class="clearfix"></div>

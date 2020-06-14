@@ -6,23 +6,15 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://zhoubb96.github.io">
-  <title>移动端适配案例一 | 周斌斌的个人博客</title>
+  <title>周斌斌的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="位置获取 clientX：当鼠标事件发生时（不管是onclick，还是omousemove，onmouseover等），鼠标相对于浏览器（这里说的是浏览器的可视区域）x轴的位置； screenX：当鼠标事件发生时，鼠标相对于显示器屏幕x轴的位置； offsetX：当鼠标事件发生时，鼠标相对于事件源x轴的位置，注意判断正负  高度获取 clientHeight：只包括padding高度。   off">
-<meta property="og:type" content="article">
-<meta property="og:title" content="移动端适配案例一">
-<meta property="og:url" content="https://zhoubb96.github.io/2020/06/13/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E6%A1%88%E4%BE%8B%E4%B8%80/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="周斌斌的个人博客">
+<meta property="og:url" content="https://zhoubb96.github.io/page/9/index.html">
 <meta property="og:site_name" content="周斌斌的个人博客">
-<meta property="og:description" content="位置获取 clientX：当鼠标事件发生时（不管是onclick，还是omousemove，onmouseover等），鼠标相对于浏览器（这里说的是浏览器的可视区域）x轴的位置； screenX：当鼠标事件发生时，鼠标相对于显示器屏幕x轴的位置； offsetX：当鼠标事件发生时，鼠标相对于事件源x轴的位置，注意判断正负  高度获取 clientHeight：只包括padding高度。   off">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://img1.sycdn.imooc.com/58f5b2fa00012ea604110247.jpg">
-<meta property="og:image" content="http://img1.sycdn.imooc.com/58f5b32e0001a2fa04110247.jpg">
-<meta property="article:published_time" content="2020-06-13T02:30:13.000Z">
-<meta property="article:modified_time" content="2020-06-13T01:39:17.297Z">
 <meta property="article:author" content="Zhoubb">
-<meta property="article:tag" content="移动端适配">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://img1.sycdn.imooc.com/58f5b2fa00012ea604110247.jpg">
   
     <link rel="alternative" href="/atom.xml" title="周斌斌的个人博客" type="application/atom+xml">
   
@@ -162,75 +154,38 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-移动端适配案例一" class="article article-type-post " itemscope itemprop="blogPost">
+            
+  
+    <article id="post-windows下在node环境利用hexo搭载个人博客" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 class="article-title" itemprop="name">
-      移动端适配案例一
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/08/windows%E4%B8%8B%E5%9C%A8node%E7%8E%AF%E5%A2%83%E5%88%A9%E7%94%A8hexo%E6%90%AD%E8%BD%BD%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">windows下在node环境利用hexo搭载个人博客</a>
     </h1>
   
 
         
-        <a href="/2020/06/13/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E6%A1%88%E4%BE%8B%E4%B8%80/" class="archive-article-date">
-  	<time datetime="2020-06-13T02:30:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-13</time>
+        <a href="/2020/06/08/windows%E4%B8%8B%E5%9C%A8node%E7%8E%AF%E5%A2%83%E5%88%A9%E7%94%A8hexo%E6%90%AD%E8%BD%BD%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" class="archive-article-date">
+  	<time datetime="2020-06-08T04:44:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-08</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="位置获取"><a href="#位置获取" class="headerlink" title="位置获取"></a>位置获取</h4><ul>
-<li>clientX：当鼠标事件发生时（不管是onclick，还是omousemove，onmouseover等），鼠标相对于浏览器（这里说的是浏览器的<strong>可视区域</strong>）x轴的位置；</li>
-<li>screenX：当鼠标事件发生时，鼠标相对于<strong>显示器屏幕</strong>x轴的位置；</li>
-<li>offsetX：当鼠标事件发生时，鼠标相对于<strong>事件源</strong>x轴的位置，注意判断正负</li>
-</ul>
-<h4 id="高度获取"><a href="#高度获取" class="headerlink" title="高度获取"></a>高度获取</h4><ul>
-<li><p>clientHeight：只包括padding高度。</p>
-<p><img src="http://img1.sycdn.imooc.com/58f5b2fa00012ea604110247.jpg" alt=""></p>
-</li>
-<li><p>offsetHeight：包括padding、border、水平滚动条的高度、但不包括margin的元素的高度。</p>
-<p><img src="http://img1.sycdn.imooc.com/58f5b32e0001a2fa04110247.jpg" alt=""></p>
-</li>
-<li><p>scrollHeight：当本元素的子元素比本元素高且overflow=scroll时，本元素会scroll，这时：<br>scrollHeight: 因为子元素比父元素高，父元素不想被子元素撑的一样高就显示出了滚动条，在滚动的过程中本元素有部分被隐藏了，<strong>scrollHeight代表包括当前不可见部分的元素的高度</strong>。而可见部分的高度其实就是clientHeight，也就是scrollHeight&gt;=clientHeight恒成立。在有滚动条时讨论scrollHeight才有意义，在<strong>没有滚动条时scrollHeight==clientHeight恒成立</strong>。</p>
-</li>
-</ul>
-
+        <h2 id="一，Git的下载与身份配置"><a href="#一，Git的下载与身份配置" class="headerlink" title="一，Git的下载与身份配置"></a>一，Git的下载与身份配置</h2><ul>
+<li>安装Git，下载地址是：<a href="https://git-scm.com/" target="_blank" rel="noopener">https://git-scm.com/</a> ,可以找速度快的淘宝镜像，下载后安装  </li>
+<li>使用命令 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name&quot;xxx&quot;</span><br></pre></td></tr></table></figure>
+配置用户名</li>
+<li>使用命令 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.email &quot;xxx@xxx.com&quot;</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2020/06/08/windows%E4%B8%8B%E5%9C%A8node%E7%8E%AF%E5%A2%83%E5%88%A9%E7%94%A8hexo%E6%90%AD%E8%BD%BD%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/#more">more >></a>
+        
       
 
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢老板，老板大气<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/img/alipay.jpg">
-                      <span class="reward-type">支付宝</span>
-                    </div>
-                    
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/img/wechatpay.jpg">
-                      <span class="reward-type">微信</span>
-                    </div>
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -241,7 +196,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">移动端适配</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">博客搭载</a>
         		</li>
       		
 		</ul>
@@ -250,84 +205,16 @@
       
 
       
-
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/08/windows%E4%B8%8B%E5%9C%A8node%E7%8E%AF%E5%A2%83%E5%88%A9%E7%94%A8hexo%E6%90%AD%E8%BD%BD%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">展开全文 >></a>
+        </p>
       
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
-        </div>
-      </div>
-    </span>
-  </div>
-</div>
 
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://zhoubb96.github.io/2020/06/13/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E6%A1%88%E4%BE%8B%E4%B8%80/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2020/06/13/JS%E6%95%B0%E7%BB%84%E4%BA%8C/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          JS数组二
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2020/06/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E5%8D%95%E5%90%91%E9%93%BE%E8%A1%A8/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">数据结构与算法-单向链表</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -347,31 +234,14 @@
 
 
 
-  
-  
-  
 
   
-
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/page/8/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span>
+    </nav>
   
 
-  
-  <div id="gitment-ctn"></div> 
-<link rel="stylesheet" href="https://jjeejj.github.io/css/gitment.css">
-<script src="https://www.wenjunjiang.win/js/gitment.js"></script>
-<script>
-var gitment = new Gitment({
-  id: "https://zhoubb96.github.io/2020/06/13/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E6%A1%88%E4%BE%8B%E4%B8%80/",
-  owner: 'zhoubb96',
-  repo: 'zhoubb96.github.io',
-  oauth: {
-    client_id: 'd69a1010836abb7a0ac2',
-    client_secret: '472db00ee1d9e261a120200bf1c491333c8ad974',
-  },
-})
-gitment.render('gitment-ctn')
-</script>
-  
 
 
           </div>
@@ -393,8 +263,8 @@ gitment.render('gitment-ctn')
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: false,
-		isPost: true,
+		isHome: true,
+		isPost: false,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
@@ -486,6 +356,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">find(),findIndex()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">map()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">every(),some()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">filter()</a>
               </li>
             
             <div class="clearfix"></div>
