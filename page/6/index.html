@@ -156,6 +156,177 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-JS-for-in与for-of的使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/11/JS-for-in%E4%B8%8Efor-of%E7%9A%84%E4%BD%BF%E7%94%A8/">JS-for-in与for-of的使用</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/11/JS-for-in%E4%B8%8Efor-of%E7%9A%84%E4%BD%BF%E7%94%A8/" class="archive-article-date">
+  	<time datetime="2020-06-11T06:58:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="1，forEach"><a href="#1，forEach" class="headerlink" title="1，forEach"></a>1，forEach</h4><p>定义两个形参接受<strong>值与键</strong>，同时遍历。<strong>注意，forEach第一个参数是值（value）在前！</strong></p>
+<p><code>forEach((value,index)=&gt;{})</code></p>
+<h4 id="2，for-in（数组与对象都能用）"><a href="#2，for-in（数组与对象都能用）" class="headerlink" title="2，for-in（数组与对象都能用）"></a>2，for-in（数组与对象都能用）</h4><p>数组遍历的是数组下标；对象遍历的是键</p>
+<p><code>for(let index in arr)</code>         <code>for(let key in arr)</code></p>
+<h4 id="3，for-of（原生对象不能使用）"><a href="#3，for-of（原生对象不能使用）" class="headerlink" title="3，for-of（原生对象不能使用）"></a>3，for-of（原生对象不能使用）</h4><p><code>for(let value of arr)</code>         <code>for(let iterator of obj)</code>  也就是<strong>值必须是可迭代</strong>的才能正确使用。</p>
+<p>遍历的是值，且这个值是重新开辟出来的形参（基本类型和引用类型会有不同结果）；原生对象不能使用</p>
+        
+          <a class="article-more-a" href="/2020/06/11/JS-for-in%E4%B8%8Efor-of%E7%9A%84%E4%BD%BF%E7%94%A8/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JavaScripe查漏补缺</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/11/JS-for-in%E4%B8%8Efor-of%E7%9A%84%E4%BD%BF%E7%94%A8/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-JS控制结构" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/11/JS%E6%8E%A7%E5%88%B6%E7%BB%93%E6%9E%84/">JS控制结构</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/11/JS%E6%8E%A7%E5%88%B6%E7%BB%93%E6%9E%84/" class="archive-article-date">
+  	<time datetime="2020-06-11T06:15:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="控制结构本身很容易，难点在于灵活使用它们设计解决算法问题"><a href="#控制结构本身很容易，难点在于灵活使用它们设计解决算法问题" class="headerlink" title="控制结构本身很容易，难点在于灵活使用它们设计解决算法问题"></a>控制结构本身很容易，难点在于灵活使用它们设计解决算法问题</h2><h5 id="1-条件控制结构有"><a href="#1-条件控制结构有" class="headerlink" title="1.条件控制结构有"></a>1.条件控制结构有</h5><p>1，if和else；2，三元表达式；3switch这三种。在js当中switch语句中的case后面是可以加判断语句的</p>
+<h5 id="2-循环控制结构"><a href="#2-循环控制结构" class="headerlink" title="2.循环控制结构"></a>2.循环控制结构</h5><p>1，while循环；2，dowhile循环；3，for循环</p>
+<ul>
+<li><p>建议在不确定循环次数的时候使用while循环。</p>
+</li>
+<li><p>dowhile循环，见名知意do会直接先执行一次，然后才到while的判断里面。</p>
+</li>
+</ul>
+<p>使用循环的时候思考，1，要用几个循环以及每个循环用来干什么？；2，不同层数循环变量之间有没有关系？；3，循环的终止条件</p>
+<p>break-continue与label标签的的使用</p>
+<ul>
+<li>break会退出整个循环</li>
+<li>continue只会跳过循环的本次执行（所以要注意continue的位置）</li>
+<li>label跳转（go to语句）</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//初始化计数器（很多时候都要使用到计数器，注意利用好计数器）</span></span><br><span class="line"><span class="keyword">let</span> count = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">1</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">    <span class="comment">//只取偶数</span></span><br><span class="line">    <span class="keyword">if</span>(i%<span class="number">2</span>)&#123;</span><br><span class="line">        <span class="comment">//只要前三个</span></span><br><span class="line">        <span class="keyword">if</span>(count++==<span class="number">3</span>) <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JavaScripe查漏补缺</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/11/JS%E6%8E%A7%E5%88%B6%E7%BB%93%E6%9E%84/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-JS数组一" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -244,173 +415,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/06/11/JS%E6%95%B0%E7%BB%84%E4%B8%80/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-移动端适配三" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/11/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E4%B8%89/">移动端适配三</a>
-    </h1>
-  
-
-        
-        <a href="/2020/06/11/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E4%B8%89/" class="archive-article-date">
-  	<time datetime="2020-06-11T01:07:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="1，三个触屏列表"><a href="#1，三个触屏列表" class="headerlink" title="1，三个触屏列表"></a>1，三个触屏列表</h4><ul>
-<li><p>changedTouches：触发当前事件的手指列表（变化的），用的最多</p>
-</li>
-<li><p>targetTouches：触发当前事件时<strong>元素</strong>上的手指列表</p>
-</li>
-<li><p>touches：触发事件时，<strong>屏幕</strong>上的手指列表</p>
-</li>
-</ul>
-<h4 id="2，四个常见问题"><a href="#2，四个常见问题" class="headerlink" title="2，四个常见问题"></a>2，四个常见问题</h4><ul>
-<li>禁止电话与邮件的默认行为，<code>&lt;meta name=&quot;format-detection&quot; content=&quot;telephone=no email=no&quot;&gt;</code>；如果要重新开启可以考虑加一个a标签。</li>
-<li>链接高亮，解决方法时添加<code>-webkit-tap-highlight-color:rgba(0,0,0,0)</code>,也就是将高亮背景变为透明色</li>
-<li>解决按钮圆角默认为圆，解决方法设置<code>-webkit-appearance:none</code></li>
-<li>font boosting，浏览器自动放大字体。解决方法是添加最大高度<code>max-height:xxpx</code></li>
-</ul>
-<h4 id="3，关于querySelector与getElementBy…的性能与差异"><a href="#3，关于querySelector与getElementBy…的性能与差异" class="headerlink" title="3，关于querySelector与getElementBy…的性能与差异"></a>3，关于querySelector与getElementBy…的性能与差异</h4><p>getElementBy…的性能好很多，而且返回的是动态列表的；querySelector性能差些，而且返回的是静态列表，但是querySelector用起来方便。最后推荐多用更优秀的getElementBy…养成习惯</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">移动端适配</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/11/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E4%B8%89/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-数据结构与算法-队列" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E9%98%9F%E5%88%97/">数据结构与算法-队列</a>
-    </h1>
-  
-
-        
-        <a href="/2020/06/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E9%98%9F%E5%88%97/" class="archive-article-date">
-  	<time datetime="2020-06-10T14:03:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="1，队列的实现"><a href="#1，队列的实现" class="headerlink" title="1，队列的实现"></a>1，队列的实现</h4><p>因为队列的特点是先进先出，在头front出队尾rear入队进行操作，所以利用数组实现队列就用shift与push，操作头部与尾部数据</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">      <span class="comment">//数组构造队列</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Queue</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">          <span class="keyword">this</span>.items = []</span><br><span class="line">          <span class="comment">//1,入队，后面入队</span></span><br><span class="line">          Queue.prototype.enqueue = <span class="function"><span class="keyword">function</span>(<span class="params">element</span>)</span>&#123;</span><br><span class="line">              <span class="keyword">this</span>.items.push(element)</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="comment">//2，出队，前面出队</span></span><br><span class="line">          Queue.prototype.dequeue = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">              <span class="keyword">return</span> <span class="keyword">this</span>.items.shift()</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="comment">//其他操作和栈一样了</span></span><br><span class="line">          Queue.prototype.size = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">              <span class="keyword">return</span> <span class="keyword">this</span>.items.length</span><br><span class="line">          &#125;</span><br><span class="line">          Queue.prototype.front = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">              <span class="keyword">return</span> <span class="keyword">this</span>.items[<span class="number">0</span>]</span><br><span class="line">      &#125;</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
-
-<p>编程题，利用队列（链表）解决击鼓传花，报数出列或者叫约瑟夫环问题，利用队列的话，边界判断就容易很多。（三种解法，数组（易于理解），循环链表（要构造链表），递归（形式最为简洁））</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//报数变量（1到5）、标记值（5）和累加变量（1—），报数变量在到达标记值的时候重新赋值，再用累加变量对标记值取余数得到队列的下标</span></span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">passgame</span>(<span class="params">nameList,tag</span>)</span>&#123;</span><br><span class="line">            <span class="comment">//1,创建队列</span></span><br><span class="line">            <span class="keyword">var</span> queue = <span class="keyword">new</span> Queue()</span><br><span class="line">            <span class="comment">//2，初始入队</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;nameList.length;i++)&#123;</span><br><span class="line">                queue.enqueue(nameList[i])</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//3,报数开始</span></span><br><span class="line">            <span class="keyword">while</span>(queue.size()&gt;<span class="number">1</span>)&#123;<span class="comment">//不知道具体循环次数时用while</span></span><br><span class="line">                <span class="comment">//此时不是tag，重新加入加入队列</span></span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; tag; i++) &#123;<span class="comment">//报数从1开始，或者用0到tag-1也行。</span></span><br><span class="line">                queue.enqueue(queue.dequeue())<span class="comment">//将取出的元素重新入列</span></span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">//此时是tag时，将其从队列删除 </span></span><br><span class="line">                queue.dequeue()</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">var</span> endName = queue.front()</span><br><span class="line">            alert(endName)</span><br><span class="line">            <span class="keyword">return</span> nameList.indeOf(endName)<span class="comment">//上面的操作没有操作namelist而是操作的queue，最后找到剩下的元素在原先列表的位置</span></span><br><span class="line">        &#125;</span><br><span class="line">		names=[<span class="string">'Lily'</span>,<span class="string">'Lucy'</span>,<span class="string">'Tom'</span>,<span class="string">'Lilei'</span>,<span class="string">'Tomi'</span>]</span><br><span class="line">        passgame(names,<span class="number">3</span>)<span class="comment">//测试用例</span></span><br><span class="line"><span class="comment">//数组方法，如果是数组方法，不想修改原数组的话，要再建立一个数组来进行操作（因为这个操作的数组最后只有一个元素下标必然为0，要利用它的值在原数组里找下标，如果只要返回值那么一个数组就够了）</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//递归方法</span></span><br></pre></td></tr></table></figure>
-
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数据结构与算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E9%98%9F%E5%88%97/">展开全文 >></a>
         </p>
       
 

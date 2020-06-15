@@ -156,6 +156,187 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-JS-Set与WeakSet类型" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/15/JS-Set%E4%B8%8EWeakSet%E7%B1%BB%E5%9E%8B/">JS-Set类型</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/15/JS-Set%E4%B8%8EWeakSet%E7%B1%BB%E5%9E%8B/" class="archive-article-date">
+  	<time datetime="2020-06-15T09:21:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1，Set类型：值不能重复的容器。"><a href="#1，Set类型：值不能重复的容器。" class="headerlink" title="1，Set类型：值不能重复的容器。"></a>1，Set类型：值不能重复的容器。</h3><p><strong>数组传参</strong>，<strong>没有键，只有值，或者说键与值是一样的。</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="keyword">set</span> = new Set([1, 1, 2, 3, 4, 5]);</span><br><span class="line">console.log(<span class="keyword">set</span>)//Set(5)&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;,一个对象，自动把第二个<span class="number">1</span>去掉。</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">set</span> = new Set(["hdcms", "houdunren"]);</span><br><span class="line">    // console.log(<span class="keyword">set</span>.clear());</span><br><span class="line">    // console.log(<span class="keyword">set</span>.delete("hdcms.com"));</span><br><span class="line">    console.log(<span class="keyword">set</span>.size);</span><br><span class="line">    // console.log(<span class="keyword">set</span>.delete("hdcms"));</span><br><span class="line">    // console.log(<span class="keyword">set</span>.size);</span><br><span class="line">    // console.log(<span class="keyword">set</span>.values());</span><br><span class="line">    //add has</span><br><span class="line">    // console.log(<span class="keyword">set</span>.size);</span><br><span class="line">    // console.log(<span class="keyword">set</span>.has("hdcms.com"));</span><br><span class="line">    // let <span class="keyword">set</span> = new Set([..."hdcms"]);</span><br><span class="line">    // console.log(<span class="keyword">set</span>);</span><br></pre></td></tr></table></figure>
+
+<p><strong>对象中的属性名都会被转换成字符串。</strong></p>
+<p>常见的语法</p>
+<p>add()，添加元素</p>
+<p>clear()，清空容器</p>
+<p>size()，获取元素个数</p>
+<p>keys(),entries,values()，返回的都是容器里的各个值；因为set容器没有键，只有值，或者说键与值是一样的</p>
+<p><strong>has()，判断是否有元素。数组中用的是includes()</strong></p>
+<p><strong>与数组类型之间的相互转换！！！</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="keyword">set</span> = new Set(["hdcms", "houdunren"]);</span><br><span class="line">  console.log(Array.from(<span class="keyword">set</span>));//from方法转换数组</span><br><span class="line">  console.log([...<span class="keyword">set</span>]);//三点展开式转换数组</span><br><span class="line">  let hd = new Set("123456789");</span><br><span class="line">  console.log(hd);//<span class="keyword">set</span></span><br><span class="line">  hd = new Set([...hd].filter(item =&gt; item &lt; 5));//转换为数组，使用数组的filter方法，并返回一个数组，并将这数组又转换为<span class="keyword">set</span>类型</span><br><span class="line">  console.log(hd);//<span class="keyword">set</span>类型</span><br><span class="line">    let array = [1, 2, 3, 4, 5, 2, 3, 1];</span><br><span class="line">    array = [...new Set(array)];//去重了</span><br><span class="line">    console.log(array);//去重后的数组</span><br></pre></td></tr></table></figure>
+
+<p>多多利用类型之间的转换。</p>
+<p><strong>常用例子！！并集，交集，差集的实现！</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a=<span class="keyword">new</span>  <span class="built_in">Set</span>([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>])</span><br><span class="line">    <span class="keyword">let</span> b=<span class="keyword">new</span> <span class="built_in">Set</span>([<span class="number">9</span>,<span class="number">5</span>,<span class="number">2</span>,<span class="number">7</span>])</span><br><span class="line">    <span class="comment">//并集</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">new</span> <span class="built_in">Set</span>([...a,...b]))<span class="comment">//将a与b先装为数组合并，在将合并后的数组转为set（自动去重）</span></span><br><span class="line">    <span class="comment">//交集</span></span><br><span class="line">    <span class="built_in">console</span>.log([...a].filter((<span class="function"><span class="params">value</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> [...b].includes(value)<span class="comment">//返回b.has(value)，[2, 5]，返回共有的。</span></span><br><span class="line">    &#125;)))</span><br><span class="line">    <span class="comment">//差集，过滤掉b有的元素</span></span><br><span class="line">    <span class="built_in">console</span>.log([...a].filter((<span class="function"><span class="params">value</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> ![...b].includes(value)<span class="comment">//返回!b.has(value)，[1, 3, 4]，返回不是公有的</span></span><br><span class="line">    &#125;)))</span><br></pre></td></tr></table></figure>
+
+<h3 id="2，WeakSet类型"><a href="#2，WeakSet类型" class="headerlink" title="2，WeakSet类型"></a>2，WeakSet类型</h3><p>与Set类型一样，里面的值是不重复的；但是WeakSet容器中<strong>只能放引用类型</strong>，<strong>以数组传参</strong>！方法和Set类型一致。</p>
+<p><strong>WeakSet的弱引用特性是，WeakSet不会使得应用类型的次数增加。</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">  <span class="keyword">let</span> hd = &#123; <span class="attr">name</span>: <span class="string">"后盾人"</span> &#125;;<span class="comment">//引用次数1</span></span><br><span class="line">   <span class="keyword">let</span> edu = hd;<span class="comment">//引用次数2</span></span><br><span class="line">   <span class="keyword">let</span> <span class="keyword">set</span> = new WeakSet();//依然是2,如果是arr=[hd],会使得引用次数增加为3</span><br><span class="line">   <span class="keyword">set</span>.add(hd);</span><br><span class="line">   hd = null;//1</span><br><span class="line">   edu = null;//0</span><br><span class="line">console.log(<span class="keyword">set</span>)//No properties</span><br></pre></td></tr></table></figure>
+
+<p><strong>Weakset无法使用for-in与for-of循环遍历方法</strong>，也没有<strong>获取数量方法</strong>keys()方法。被屏蔽掉了。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JavaScripe查漏补缺</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/15/JS-Set%E4%B8%8EWeakSet%E7%B1%BB%E5%9E%8B/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-JS-Symbol特性" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/15/JS-Symbol%E7%89%B9%E6%80%A7/">JS-Symbol特性</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/15/JS-Symbol%E7%89%B9%E6%80%A7/" class="archive-article-date">
+  	<time datetime="2020-06-15T08:12:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="Symbol前缀标识"><a href="#Symbol前缀标识" class="headerlink" title="Symbol前缀标识"></a>Symbol前缀标识</h4><p>可以唯一标识一个数据，可以理解为永不重复的字符串</p>
+<p>两种声明方式</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//方式一</span></span><br><span class="line"><span class="keyword">let</span> a=symbol(<span class="string">"woshia"</span>)</span><br><span class="line"><span class="keyword">let</span> b=symbol(<span class="string">"woshib"</span>)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> a)<span class="comment">//symble</span></span><br><span class="line"><span class="comment">//方式二，for方法</span></span><br><span class="line"><span class="keyword">let</span> c = <span class="built_in">Symbol</span>.for(<span class="string">"zbb"</span>);<span class="comment">//for方法，系统会记录下这个Symbol</span></span><br><span class="line"><span class="keyword">let</span> d = <span class="built_in">Symbol</span>.for(<span class="string">"zbb"</span>);<span class="comment">//第二次会查之前是否已经声明过，如果声明过就直接拿过来。反复使用同一个Symbol的情况</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(c==d)<span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(a==b)<span class="comment">//false</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Symbol</span>.keyFor(c))<span class="comment">//zbb</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Symbol</span>.keyFor(a))<span class="comment">//undefined,只有for方法定义的才能使用keyFor方法</span></span><br><span class="line"><span class="built_in">console</span>.log(a)<span class="comment">//symbol(woshia)</span></span><br><span class="line"><span class="built_in">console</span>.log(a.toString())<span class="comment">//symbol(woshia),toString依然是返回symbol本身</span></span><br><span class="line"><span class="built_in">console</span>.log(a.description)<span class="comment">//woshia，只有description才是返回内部的描述。注意，是a.description而不是a.description，也就是说description是一个数据属性，不是方法属性</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="使用实例"><a href="#使用实例" class="headerlink" title="使用实例"></a>使用实例</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">let</span> user1 = &#123;</span><br><span class="line">      name: <span class="string">"李四"</span>,</span><br><span class="line">      key: <span class="built_in">Symbol</span>()</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">let</span> user2 = &#123;</span><br><span class="line">      name: <span class="string">"李四"</span>,</span><br><span class="line">      key: <span class="built_in">Symbol</span>()</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">let</span> grade = &#123;</span><br><span class="line">      [user1.key]: &#123; <span class="attr">js</span>: <span class="number">100</span>, <span class="attr">css</span>: <span class="number">89</span> &#125;,<span class="comment">//由于键也是一个变量所以要用[]先取值</span></span><br><span class="line">      [user2.key]: &#123; <span class="attr">js</span>: <span class="number">35</span>, <span class="attr">css</span>: <span class="number">55</span> &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"><span class="comment">//如果不使用symbol，那么同名情况，会被最后一个覆盖</span></span><br><span class="line">    <span class="built_in">console</span>.log(grade[user2.key]);<span class="comment">//&#123; js: 35, css: 55 &#125;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Symbol属性是私有属性，无法被for-in或者for-of遍历到S"><a href="#Symbol属性是私有属性，无法被for-in或者for-of遍历到S" class="headerlink" title="Symbol属性是私有属性，无法被for-in或者for-of遍历到S"></a>Symbol属性是私有属性，无法被for-in或者for-of遍历到S</h4><p>遍历所有属性的方法；for-in与for-of遍历<strong>普通属性</strong>；getOwnPropertySymbols()遍历<strong>Symbol属性</strong>；Reflect.ownKeys()遍历<strong>所有属性</strong>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> hd = &#123;</span><br><span class="line">      name: <span class="string">"李四"</span>,</span><br><span class="line">      [symbol]: <span class="string">"lisi"</span></span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">const</span> key <span class="keyword">in</span> hd) &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(key);<span class="comment">//只有name</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">const</span> key <span class="keyword">of</span> <span class="built_in">Object</span>.getOwnPropertySymbols(hd)) &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(key);<span class="comment">//只有symbol</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">const</span> key <span class="keyword">of</span> <span class="built_in">Reflect</span>.ownKeys(hd)) &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(key);<span class="comment">//所有属性，name与Symbol</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JavaScripe查漏补缺</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">map()</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/15/JS-Symbol%E7%89%B9%E6%80%A7/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-JS数组六" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -207,184 +388,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/06/14/JS%E6%95%B0%E7%BB%84%E5%85%AD/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-JS数组五" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/14/JS%E6%95%B0%E7%BB%84%E4%BA%94/">JS数组五</a>
-    </h1>
-  
-
-        
-        <a href="/2020/06/14/JS%E6%95%B0%E7%BB%84%E4%BA%94/" class="archive-article-date">
-  	<time datetime="2020-06-14T07:39:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="过滤函数filter"><a href="#过滤函数filter" class="headerlink" title="过滤函数filter()"></a>过滤函数filter()</h4><p><code>filter(callbacks(value,index,arr))</code></p>
-<p>不难发现这些方法都接受一个回调函数，回调函数返回一个布尔值（判断条件），并且，参数列表都是值value在前面。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr=[<span class="string">"zbb"</span>,<span class="string">"ycy"</span>]</span><br><span class="line"><span class="comment">// 不定义过滤条件，全返回</span></span><br><span class="line">arr.filter(<span class="function">(<span class="params">value,index</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(index,value)<span class="comment">//0 "zbb"  1 "ycy"</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> arr1=arr.filter(<span class="function">(<span class="params">value,index</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> value==<span class="string">"ycy"</span><span class="comment">//条为值为ycy才取出</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(arr1)<span class="comment">//只返会["ycy"]，注意返回的是数组</span></span><br><span class="line"><span class="comment">//上面两个其实只是只用到了value，所以index其实可以不用传入</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//自定义filter</span></span><br><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">filter</span>(<span class="params">arr, expect</span>) </span>&#123;<span class="comment">//expect是一个数组，两个数组的互相比较</span></span><br><span class="line">       <span class="comment">//定义新数组返回过滤后的结果</span></span><br><span class="line">       <span class="keyword">let</span> newArray = []</span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">const</span> value <span class="keyword">of</span> arr) &#123;</span><br><span class="line">           <span class="keyword">if</span> (expect.includes(value) === <span class="literal">false</span>) &#123;<span class="comment">//如果expect不包含这个元素</span></span><br><span class="line">               newArray.push(value)</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> newArray<span class="comment">//返回新数组</span></span><br><span class="line">   &#125;</span><br><span class="line">arr=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">   arr2=[<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="built_in">console</span>.log(filter(arr,arr2))<span class="comment">//[1, 4, 5]</span></span><br></pre></td></tr></table></figure>
-
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JavaScripe查漏补缺</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">filter()</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/14/JS%E6%95%B0%E7%BB%84%E4%BA%94/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-JS数组四" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/14/JS%E6%95%B0%E7%BB%84%E5%9B%9B/">JS数组四</a>
-    </h1>
-  
-
-        
-        <a href="/2020/06/14/JS%E6%95%B0%E7%BB%84%E5%9B%9B/" class="archive-article-date">
-  	<time datetime="2020-06-14T07:03:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="利用every-与some-进行数组判断"><a href="#利用every-与some-进行数组判断" class="headerlink" title="利用every()与some()进行数组判断"></a>利用every()与some()进行数组判断</h4><p><code>every(callbacks(value,index,arr))</code>，回调函数返回一个布尔值。全部为真才为真</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr=[<span class="string">"zbb"</span>,<span class="string">"ycy"</span>]</span><br><span class="line">arr.every(<span class="function">(<span class="params">value,index</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(index,value)<span class="comment">//0 "zbb"  1 "ycy"，是个数组</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span><span class="comment">//如果不return true就会只执行一次</span></span><br><span class="line">    <span class="comment">//有一个为假就为假，可以用来进行同一判断，也就是return后面放一个表达式</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p><code>some(callbacks(value,index,arr))</code>，回调函数函数返回一个布尔值。任何一个为真就为真</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">arr.some(<span class="function">(<span class="params">value,index</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(index,value)<span class="comment">//如果不加return true就会输出，0 "zbb"  1 "ycy"</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span><span class="comment">//加上return true就只执行一次，和上面反过来的</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>因为不加return语句，默认返回undefined，被转化为false，所以every()第一次执行后便停止，false不再执行；</p>
-<p>而some()遇到false不会停止。</p>
-<ul>
-<li><p><strong>every遇false停止</strong></p>
-</li>
-<li><p><strong>some遇到true停止</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> keywords = [<span class="string">"php"</span>, <span class="string">"js"</span>];</span><br><span class="line">   <span class="keyword">let</span> title = <span class="built_in">document</span>.querySelector(<span class="string">'[name="title"]'</span>);</span><br><span class="line">   title.addEventListener(<span class="string">"keyup"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;<span class="comment">//绑定事件</span></span><br><span class="line">     <span class="keyword">const</span> res = keywords.some(<span class="function"><span class="params">keyword</span> =&gt;</span> &#123;<span class="comment">//遍历取出keyword进行比较</span></span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">this</span>.value.indexOf(keyword) != <span class="number">-1</span>;</span><br><span class="line">       <span class="comment">//检查keyup事件输入的值value中是否有关键字数组keywords中的任何一个关键字keyword</span></span><br><span class="line">     &#125;);</span><br><span class="line">     <span class="built_in">document</span>.querySelector(<span class="string">"span"</span>).innerHTML = res</span><br><span class="line">       ? <span class="string">""</span></span><br><span class="line">       : <span class="string">"必须包含"</span> + keywords.join(<span class="string">","</span>) + <span class="string">"关键词"</span>;</span><br><span class="line">   &#125;);</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JavaScripe查漏补缺</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">every(),some()</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/14/JS%E6%95%B0%E7%BB%84%E5%9B%9B/">展开全文 >></a>
         </p>
       
 
