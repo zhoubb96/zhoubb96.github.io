@@ -262,94 +262,9 @@
 
 
 <h4 id="2，匿名函数与函数提升"><a href="#2，匿名函数与函数提升" class="headerlink" title="2，匿名函数与函数提升"></a>2，匿名函数与函数提升</h4><p>一般函数会被压入window对象中，成为全局函数，如果定义的函数与window的原有函数重名，那么就会覆盖window自带函数，污染全局。</p>
-<ul>
-<li>可以将匿名函数赋值给let声明的变量（var不行，var有提升，还是会压入全局）</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> fun=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"function"</span>)</span><br><span class="line">&#125;</span><br><span class="line">fun()<span class="comment">//调用成功</span></span><br><span class="line"><span class="built_in">window</span>.fun()<span class="comment">//调用失败，如果用的是var声明，那么会调用成功</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>建议函数不独立存放，以<strong>模块，类的方式管理函数</strong>。</p>
-</li>
-<li><p>直接定义的函数（全局）会有函数提升，但是<strong>赋值给变量的匿名函数不会有提升，不管这个变量是用var声明的还是let声明的</strong>。</p>
-</li>
-</ul>
-<h4 id="3，立即执行函数与块作用域"><a href="#3，立即执行函数与块作用域" class="headerlink" title="3，立即执行函数与块作用域"></a>3，立即执行函数与块作用域</h4><ul>
-<li>立即执行函数</li>
-</ul>
-<p><code>(function(){})()</code>,可以解决命名冲突污染全局作用域的问题。原理是用<strong>函数作用域达到隔离的效果</strong>。<strong>立即执行函数加对象管理，并选择性暴露。</strong>这是早期方式。</p>
-<ul>
-<li><p>let的块级作用域</p>
-<p><strong>块级作用域加对象管理，并选择性暴露。</strong>原理和上面类似，这里是用<strong>块级作用域隔离。</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="keyword">let</span> a=<span class="string">"zbb"</span></span><br><span class="line">    <span class="keyword">var</span> b=<span class="string">"ycy"</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(a)<span class="comment">//失败，let，const有块级作用域</span></span><br><span class="line"><span class="built_in">console</span>.log(b)<span class="comment">//成功，var没有，可以访问到</span></span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<h4 id="4，关于参数"><a href="#4，关于参数" class="headerlink" title="4，关于参数"></a>4，关于参数</h4><p>1，参数列表</p>
-<ul>
-<li>实参数量一般是对应形参数量的，但是实参数量可以大于形参，多的参数会被忽略。</li>
-<li>如果实参数量小于形参数量，那么多的形参就为undefined。</li>
-<li>可以给形参设置默认值。</li>
-</ul>
-<p>2，函数参数与arguments</p>
-<ul>
-<li><p>函数作为参数的时候就是回调函数。</p>
-</li>
-<li><p>在<strong>不确定参数列表长度的时候，arguments会把所有参数收集起来</strong>。arguments是有长度属性的，但是它是一个伪数组，不具备数组的方法，当然，可以把它转换为数组。[…arguments]</p>
-</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">...args</span>)</span>&#123;<span class="comment">//在不确定参数列表长度的时候，接受所有变量</span></span><br><span class="line">    <span class="built_in">console</span>,log(args)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="5，箭头函数"><a href="#5，箭头函数" class="headerlink" title="5，箭头函数"></a>5，箭头函数</h4><p>  可以很好的简化匿名函数的实现。而且摆脱原有this对象带来的麻烦。.箭头函数的this与其定义时所处的对象有关，与调用者无关；如果<strong>外层有函数，则其与外层函数的this对象一致，如果外无函数，直接指向window</strong></p>
-<p><strong>很好的解决了闭包里this的问题</strong></p>
-<ul>
-<li><p>参数传递</p>
-<ul>
-<li>没有参数: <code>() =&gt; console.log(&#39;xxxx&#39;)</code></li>
-<li>一个参数: <code>i =&gt; i+2</code>，()小括号可以省略；i就是参数</li>
-<li>大于一个参数: <code>(i,j) =&gt; i+j</code>，()小括号不可以省略；</li>
-</ul>
-</li>
-<li><p>返回值</p>
-<ul>
-<li><p>函数体只有一条语句的话，函数体不用大括号; 默认<strong>自动返回执行的结果</strong>；（自己return了）</p>
-</li>
-<li><p>函数体如果有多个语句, 需要用{}包围；有大括号的话，<strong>必须使用return返回想返回的结果</strong>（因为<strong>没有return的话默认返回undefined</strong>）</p>
-</li>
-</ul>
-</li>
-</ul>
-<p>  因为箭头函数没有函数名，所以不能解决<strong>递归函数，构造函数，事件处理</strong>的时候不方便使用。</p>
-<h4 id="6，This的不同的情况："><a href="#6，This的不同的情况：" class="headerlink" title="6，This的不同的情况："></a>6，This的不同的情况：</h4><p>除了箭头函数，<strong>this是不会向上查找的</strong>，如果不是方法，那this就是window。</p>
-<ul>
-<li>1.以<strong>普通函数</strong>的形式调用时，<strong>this是window</strong> </li>
-<li>2.以<strong>工厂函数调用，this是undefind</strong></li>
-<li>3.以构造函数的形式调用时，<strong>this就是新创建的对象   这个方法必须通过new调用</strong>（构造函数必须以new调用），因为构造函数也是函数<strong>，如果普通调用，this还是会指向window</strong></li>
-<li>4.以<strong>方法</strong>的形式调用时，<strong>this就是调用方法的对象</strong></li>
-<li>5.使用call和apply调用时，<strong>this是指定的那个对象</strong></li>
-<li>6.在全局作用域中this代表window</li>
-<li>7.<strong>react组件中自定义方法函数的this为null</strong></li>
-<li>8.箭头函数的this与其定义时所处的对象有关，与调用者无关；如果<strong>外层有函数，则其与外层函数的this对象一致，如果外无函数，直接指向window</strong></li>
-</ul>
-<h4 id="7，使用call，apply与bind改变this"><a href="#7，使用call，apply与bind改变this" class="headerlink" title="7，使用call，apply与bind改变this"></a>7，使用call，apply与bind改变this</h4><p>1，call与apply都会立即调用函数</p>
-<ul>
-<li><p><code>call(obj,a,b,c)</code></p>
-</li>
-<li><p><code>apply(obj,[a,b,c])</code></p>
-<p><strong>如果不想改变对象，那么第一个参数传入<code>null</code></strong></p>
-</li>
-</ul>
-<p>不传参数时候二者是一样的，传参数时区别在于call是一个一个的传入，而apply是用数组来传入参数。</p>
-<p>2，bind，不会立刻调用函数。</p>
-<ul>
-<li><p><code>bind(obj,a,b,c)</code></p>
-<p>1，参数可以在绑定时传递；2，也可以在调用时传递，<strong>一般在调用时传递</strong>；因为不立即执行，bind绑定只是为了修改this对象。</p>
-</li>
-</ul>
-
+        
+          <a class="article-more-a" href="/2020/06/16/JS%E5%87%BD%E6%95%B0%E4%B8%8E%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/#more">more >></a>
+        
       
 
       
@@ -592,47 +507,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">map()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">sort(),reduce()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">find(),findIndex()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">filter()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">every(),some()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">移动端适配</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">博客搭载</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Map类型</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深浅拷贝</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">访问控制器set，get</a>
+                <a href="javascript:void(0)" class="js-tag color1">Set类型</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -644,7 +523,43 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Set类型</a>
+                <a href="javascript:void(0)" class="js-tag color5">深浅拷贝</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">访问控制器set，get</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">find(),findIndex()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">sort(),reduce()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">filter()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">map()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">every(),some()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">博客搭载</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">移动端适配</a>
               </li>
             
             <div class="clearfix"></div>

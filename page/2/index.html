@@ -255,8 +255,9 @@
       
         <p>Token的访问控制器设置</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//设置token令牌对象</span></span><br><span class="line"><span class="keyword">let</span> Request=&#123;</span><br><span class="line">    <span class="comment">//没有在对象中，因为数据存在了本地</span></span><br><span class="line">    <span class="keyword">set</span> token(content)&#123;</span><br><span class="line">        localStorage.setItem(<span class="string">'token'</span>,content)<span class="comment">//在本地缓存设置一个token</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="keyword">get</span> token()&#123;</span><br><span class="line">      <span class="keyword">let</span> token=localStorage.getItem(<span class="string">'token'</span>)<span class="comment">//获取</span></span><br><span class="line">        <span class="keyword">if</span>(!token)&#123;</span><br><span class="line">            alertr(<span class="string">'请登录'</span>)<span class="comment">//没有token</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> token</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br><span class="line">Request.token=<span class="string">'123'</span></span><br><span class="line"><span class="built_in">console</span>.log(Request.token)</span><br></pre></td></tr></table></figure>
-
-
+        
+          <a class="article-more-a" href="/2020/06/18/JS-Token%E7%9A%84%E8%AF%BB%E5%86%99%E5%A4%84%E7%90%86/#more">more >></a>
+        
       
 
       
@@ -331,14 +332,9 @@
       
         <p><strong>访问器属性的优先级高于普通的属性操作方式</strong>！</p>
 <h4 id="使用访问控制器保护对象数据"><a href="#使用访问控制器保护对象数据" class="headerlink" title="使用访问控制器保护对象数据"></a>使用访问控制器保护对象数据</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> user=&#123;</span><br><span class="line">    data:&#123;<span class="attr">name</span>: <span class="string">"zbb"</span>,<span class="attr">age</span>: <span class="number">24</span>&#125;,<span class="comment">//对象中的对象；封装起来保护数据</span></span><br><span class="line">    <span class="keyword">set</span> age(value)&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">typeof</span> value!=<span class="string">'number'</span>||value&lt;<span class="number">0</span>||value&gt;<span class="number">100</span>)&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'年龄格式错误'</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">this</span>.data.age=value</span><br><span class="line">    &#125;,<span class="comment">//函数成员，没有键？只有通过访问器才能修改数据</span></span><br><span class="line">    <span class="keyword">get</span> age()&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.data.age<span class="comment">//如果是this.age就会循环找访问器属性，死循环，应该是data中的age</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">user.age=<span class="number">77</span><span class="comment">//调用方法保持一致</span></span><br><span class="line"><span class="built_in">console</span>.log(user.age)<span class="comment">//77</span></span><br><span class="line"><span class="comment">//用set与get两个关键字修饰两个age同名了，但是不冲突，因为一个要传参数，一个不穿参数，根据参数的有无自动调用，可以用对象点方法的形式直接调用，保证了调用形式的一致性</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="使用访问控制器伪造对象属性"><a href="#使用访问控制器伪造对象属性" class="headerlink" title="使用访问控制器伪造对象属性"></a>使用访问控制器伪造对象属性</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> lessons = &#123;</span><br><span class="line">    lists: [</span><br><span class="line">      &#123; <span class="attr">name</span>: <span class="string">"js"</span>, <span class="attr">price</span>: <span class="number">100</span> &#125;,</span><br><span class="line">      &#123; <span class="attr">name</span>: <span class="string">"mysql"</span>, <span class="attr">price</span>: <span class="number">212</span> &#125;,</span><br><span class="line">      &#123; <span class="attr">name</span>: <span class="string">"vue.js"</span>, <span class="attr">price</span>: <span class="number">98</span> &#125;</span><br><span class="line">    ],</span><br><span class="line">    <span class="keyword">get</span> total()&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.lists.reduce(<span class="function">(<span class="params">pre,cur</span>)=&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> pre+cur.price</span><br><span class="line">      &#125;,<span class="number">0</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">console</span>.log(lessons.total)<span class="comment">//410，伪造了total这个属性</span></span><br><span class="line">  lessons.total=<span class="number">8388</span><span class="comment">//报错，无此属性无法设置。因为我们没有定义set</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="构造函数与访问控制器的联合使用"><a href="#构造函数与访问控制器的联合使用" class="headerlink" title="构造函数与访问控制器的联合使用"></a>构造函数与访问控制器的联合使用</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">User</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> data = &#123; name, age &#125;</span><br><span class="line">  <span class="comment">//封装数据</span></span><br><span class="line">  <span class="built_in">Object</span>.defineProperties(<span class="keyword">this</span>, &#123;</span><br><span class="line">    name: &#123;</span><br><span class="line">      <span class="keyword">get</span>() &#123;</span><br><span class="line">        <span class="keyword">return</span> data.name</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="keyword">set</span>(value) &#123;</span><br><span class="line">        <span class="keyword">if</span> (value.trim() === <span class="string">""</span> || value.length &gt; <span class="number">20</span>) &#123;</span><br><span class="line">          <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'用户名不合法'</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        data.name = value</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    age: &#123;</span><br><span class="line">      <span class="keyword">get</span>() &#123;</span><br><span class="line">        <span class="keyword">return</span> data.age</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="keyword">set</span>(value) &#123;</span><br><span class="line">        data.age = value</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="comment">//访问控制器设置数据</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> user = <span class="keyword">new</span> User(<span class="string">"zbb"</span>, <span class="number">24</span>)</span><br><span class="line"><span class="built_in">console</span>.log(user)<span class="comment">//User&#123;&#125;</span></span><br><span class="line">user.name=<span class="string">"zhou"</span></span><br><span class="line"><span class="built_in">console</span>.log(user.name)<span class="comment">//zhou</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="类与访问控制器的联合使用"><a href="#类与访问控制器的联合使用" class="headerlink" title="类与访问控制器的联合使用"></a>类与访问控制器的联合使用</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(name, age) &#123;</span><br><span class="line">    <span class="keyword">this</span>.data = [name, age]</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//name的访问控制器</span></span><br><span class="line">  <span class="keyword">get</span> name() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.data.name</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">set</span> name(value) &#123;</span><br><span class="line">    <span class="keyword">if</span> (value.trim() === <span class="string">""</span> || value.length &gt; <span class="number">20</span>) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'用户名不合法'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.data.name = value</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//age的访问控制器</span></span><br><span class="line">  <span class="keyword">get</span> age() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.data.age</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">set</span> age(value) &#123;</span><br><span class="line">    <span class="keyword">this</span>.data.age = value</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> user = <span class="keyword">new</span> User(<span class="string">"zbb"</span>, <span class="number">24</span>)</span><br><span class="line"><span class="built_in">console</span>.log(user)<span class="comment">//User&#123;&#125;</span></span><br><span class="line">user.name=<span class="string">"zhou"</span></span><br><span class="line"><span class="built_in">console</span>.log(user.name)<span class="comment">//zhou</span></span><br></pre></td></tr></table></figure>
-
-
+        
+          <a class="article-more-a" href="/2020/06/18/JS%E5%AF%B9%E8%B1%A1%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E5%99%A8/#more">more >></a>
+        
       
 
       
@@ -498,47 +494,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">map()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">sort(),reduce()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">find(),findIndex()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">filter()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">every(),some()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">移动端适配</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">博客搭载</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Map类型</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深浅拷贝</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">访问控制器set，get</a>
+                <a href="javascript:void(0)" class="js-tag color1">Set类型</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -550,7 +510,43 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Set类型</a>
+                <a href="javascript:void(0)" class="js-tag color5">深浅拷贝</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">访问控制器set，get</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">find(),findIndex()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">sort(),reduce()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">filter()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">map()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">every(),some()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">博客搭载</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">移动端适配</a>
               </li>
             
             <div class="clearfix"></div>

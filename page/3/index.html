@@ -180,17 +180,10 @@
 
 <h4 id="2，工厂函数-没有用关键字new"><a href="#2，工厂函数-没有用关键字new" class="headerlink" title="2，工厂函数(没有用关键字new)"></a>2，工厂函数(没有用关键字new)</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">user</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;name,<span class="attr">show</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="keyword">this</span>.name)&#125;&#125;<span class="comment">//返回对象</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> obj = user(<span class="string">"zbb"</span>)</span><br></pre></td></tr></table></figure>
 
-<h4 id="3，构造函数-使用关键字new"><a href="#3，构造函数-使用关键字new" class="headerlink" title="3，构造函数(使用关键字new)"></a>3，构造函数(使用关键字new)</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">User</span> (<span class="params">name</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name=name</span><br><span class="line">  <span class="keyword">this</span>.show=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="comment">//键值对给个匿名函数只在对象里才行</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">  &#125;</span><br><span class="line">   <span class="keyword">return</span> <span class="keyword">this</span><span class="comment">//this是设置完的对象</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> zbb=<span class="keyword">new</span> User(<span class="string">"zbb"</span>)</span><br><span class="line">zbb.show()<span class="comment">//zbb</span></span><br><span class="line"><span class="keyword">let</span> fun=zbb.show<span class="comment">//将方法赋值给变量后，fun变成普通函数</span></span><br><span class="line">fun()<span class="comment">//undefined；因为此时就不再是方法调用，而是普通函数，this变成了window</span></span><br></pre></td></tr></table></figure>
-
-<p>new共经过了4几个阶段</p>
-<ul>
-<li>1、创建一个空对象</li>
-<li>2、设置原型链</li>
-<li>3、让构造函数的this指向obj，并执行构造函数的函数体。</li>
-<li>4、判断的构造函数返回值类型，并返回对象：（为值得话，返回对象；如果是引用就是返回引用类型对象）</li>
-</ul>
-<p>注意：这种方法的创建对象，那么<strong>方法在每个对象里都有一份，有点浪费空间。</strong></p>
-<h4 id="4，构造函数-原型"><a href="#4，构造函数-原型" class="headerlink" title="4，构造函数+原型"></a>4，构造函数+原型</h4>
+<h4 id="3，构造函数-使用关键字new"><a href="#3，构造函数-使用关键字new" class="headerlink" title="3，构造函数(使用关键字new)"></a>3，构造函数(使用关键字new)</h4>
+        
+          <a class="article-more-a" href="/2020/06/18/JS%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%9B%E5%BB%BA%E6%96%B9%E5%BC%8F/#more">more >></a>
+        
       
 
       
@@ -275,27 +268,12 @@
 <li>动态计算属性名，reduce方法</li>
 </ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> lessons = [</span><br><span class="line">      &#123;<span class="attr">title</span>: <span class="string">"媒体查询响应式布局"</span>,<span class="attr">click</span>: <span class="number">89</span>,<span class="attr">price</span>: <span class="number">12</span>&#125;,</span><br><span class="line">      &#123;<span class="attr">title</span>: <span class="string">"FLEX 弹性盒模型"</span>,<span class="attr">click</span>: <span class="number">45</span>,<span class="attr">price</span>: <span class="number">120</span>&#125;,</span><br><span class="line">      &#123;<span class="attr">title</span>: <span class="string">"GRID 栅格系统"</span>,<span class="attr">click</span>: <span class="number">19</span>,<span class="attr">price</span>: <span class="number">67</span>&#125;,</span><br><span class="line">      &#123;<span class="attr">title</span>: <span class="string">"盒子模型详解"</span>,<span class="attr">click</span>: <span class="number">29</span>, <span class="attr">price</span>: <span class="number">300</span>&#125;</span><br><span class="line">    ];</span><br><span class="line">    obj=lessons.reduce(<span class="function">(<span class="params">pre,cur,index</span>)=&gt;</span>&#123;</span><br><span class="line">      pre[<span class="string">`<span class="subst">$&#123;cur[<span class="string">'title'</span>]&#125;</span>-<span class="subst">$&#123;index&#125;</span>`</span>]=cur<span class="comment">//每次都添加新的键值对</span></span><br><span class="line">      <span class="keyword">return</span> pre</span><br><span class="line">    &#125;,&#123;&#125;)</span><br><span class="line">    <span class="built_in">console</span>.log(obj)<span class="comment">//&#123;媒体查询响应式布局-0: &#123;…&#125;, FLEX 弹性盒模型-1: &#123;…&#125;, GRID 栅格系统-2: &#123;…&#125;, 盒子模型详解-3: &#123;…&#125;&#125;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>属性的获取<code>Object.keys(obj)</code>，获取对象obj的所有属性名，以数组返回，或者使用for-in</p>
-</li>
-<li><p>属性的复制<code>Object.assign(obj1,obj2)</code>，将obj2的属性复制给obj1；也可以用循环与展开语法。</p>
-</li>
-<li><p>属性的定制</p>
-<ul>
-<li>属性的可读写性等<code>Object.defineProperty(obj,key,{key,writable:true,enumerable:true,configurable:true})</code></li>
-<li>禁止外部添加属性<code>Object.preventExtensions(obj)</code></li>
-<li>对象的封闭<code>Object.seal(obj)</code>不能对对象的属性进行操作</li>
-<li>对象的冻结<code>Object.freeze(obj)</code>不能对对象进行修改，可以使用。</li>
-</ul>
+
 </li>
 </ul>
-<h5 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h5><p>将普通函数封装为对象方法的好处在于可以避免函数冲突，而且封装过后调用简单。对象是引用变量，所以通常情况下是传地址，而且是浅拷贝。注意对象中的对象的传递。</p>
-<h4 id="深拷贝，一层一层的处理"><a href="#深拷贝，一层一层的处理" class="headerlink" title="深拷贝，一层一层的处理"></a>深拷贝，一层一层的处理</h4><p>处理对象中的对象的赋值，判断递归</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//浅拷贝，object[key]可能也为一个对象</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">copy</span>(<span class="params">object</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> res=&#123;&#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">const</span> key <span class="keyword">in</span> object)&#123;</span><br><span class="line">        res[key]=object[key]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//深拷贝，递归函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deepcopy</span>(<span class="params">obj</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> res=obj istacneof <span class="built_in">Array</span>?[]:&#123;&#125;<span class="comment">//因为递归进行下去时，最里面的数据可能是数组，因此是数组的情况下应该返回数组</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">const</span>[key,value] <span class="keyword">in</span> <span class="built_in">Object</span>.entries(obj))&#123;<span class="comment">//考虑数组的情况，统一键值对，统一数组与对象的处理方法</span></span><br><span class="line">        res[key]=<span class="keyword">typeof</span> value===<span class="string">'object'</span>?deepcopy(value):value<span class="comment">//是对象就继续递归，不是对象直接赋值</span></span><br><span class="line">    &#125;</span><br><span class="line">     <span class="keyword">return</span> res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
+        
+          <a class="article-more-a" href="/2020/06/18/JS%E5%AF%B9%E8%B1%A1/#more">more >></a>
+        
       
 
       
@@ -373,16 +351,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h4 id="动画抖动与加速"><a href="#动画抖动与加速" class="headerlink" title="动画抖动与加速"></a>动画抖动与加速</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span>&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"UTF-8"</span> /&gt;</span><br><span class="line">    &lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width, initial-scale=1.0"</span> /&gt;</span><br><span class="line">    &lt;meta http-equiv=<span class="string">"X-UA-Compatible"</span> content=<span class="string">"ie=edge"</span> /&gt;</span><br><span class="line">    &lt;title&gt;后盾人&lt;<span class="regexp">/title&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">      button &#123;</span><br><span class="line">        position: absolute;<span class="comment">/*必须加上这个style标签，不然动不了*/</span></span><br><span class="line">      &#125;</span><br><span class="line">    &lt;<span class="regexp">/style&gt;</span></span><br><span class="line"><span class="regexp">        &lt;button message="按钮"&gt;按钮&lt;/</span>button&gt;</span><br><span class="line">  &lt;<span class="regexp">/body&gt;</span></span><br><span class="line"><span class="regexp">  &lt;script&gt;</span></span><br><span class="line"><span class="regexp">  let btns = document.querySelectorAll("button")</span></span><br><span class="line"><span class="regexp">  btns.forEach((items) =&gt; &#123;</span></span><br><span class="line"><span class="regexp">      /</span><span class="regexp">/let left=1/</span><span class="regexp">/位置2</span></span><br><span class="line"><span class="regexp">    items.addEventlistener("click", function () &#123;</span></span><br><span class="line"><span class="regexp">      /</span><span class="regexp">/let left=1/</span><span class="regexp">/位置1</span></span><br><span class="line"><span class="regexp">     setInterval(function()&#123;</span></span><br><span class="line"><span class="regexp">        items.style.left=left++ +"px"</span></span><br><span class="line"><span class="regexp">      &#125;,100)</span></span><br><span class="line"><span class="regexp">    &#125;)</span></span><br><span class="line"><span class="regexp">  &#125;)</span></span><br><span class="line"><span class="regexp">  &lt;/</span>script&gt;</span><br><span class="line">&lt;<span class="regexp">/html&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>函数的本意是点击按钮使得按钮移动</p>
-<p>1，如果left=1放在位置1，会在第二次点击后<strong>产生动画抖动</strong>，因为每点击一次，left都会回到1，重新计算。</p>
-<p>2，如果left=1放在位置2，那么因为因为left被修改了（this方式），外部环境没有消亡会保存left信息，因此不会抖动，但是会<strong>出现动画加速问题</strong>，因为会<strong>多个定时器叠加</strong>，解决方法是在外部先对定时器进行判断，如果无定时器才开启定时器，有的话就不开启了，<strong>就保证只有一个定时器</strong>。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> btns = <span class="built_in">document</span>.querySelectorAll(<span class="string">"button"</span>)</span><br><span class="line">  btns.forEach(<span class="function">(<span class="params">items</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">let</span> left=<span class="number">1</span></span><br><span class="line">      <span class="keyword">let</span> interval=<span class="literal">false</span></span><br><span class="line">    items.addEventlistener(<span class="string">"click"</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(interval===<span class="literal">false</span>)&#123;</span><br><span class="line">        interval=<span class="literal">true</span></span><br><span class="line">        setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        items.style.left=left++ +<span class="string">"px"</span></span><br><span class="line">      &#125;,<span class="number">100</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
-
-<p><strong>注意内外部环境与定时器的累加问题</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//但是把变量放在外部可能污染变量</span></span><br><span class="line"><span class="keyword">let</span> btns = <span class="built_in">document</span>.querySelectorAll(<span class="string">"button"</span>)</span><br><span class="line">    btns.forEach(<span class="function">(<span class="params">items</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">let</span> bind=<span class="literal">false</span></span><br><span class="line">      items.addEventListener(<span class="string">"click"</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!bind)&#123;</span><br><span class="line">          bind=<span class="literal">true</span></span><br><span class="line">          <span class="keyword">let</span> left=<span class="number">1</span></span><br><span class="line">          setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            items.style.left=left++ +<span class="string">"px"</span></span><br><span class="line">          &#125;,<span class="number">100</span>)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line"><span class="comment">//原理是只产生一个定时器，即解决抖动又解决加速。空环境中没有数据。</span></span><br></pre></td></tr></table></figure>
-
-
+        
+          <a class="article-more-a" href="/2020/06/18/JS%E6%8A%96%E5%8A%A8%E4%B8%8E%E5%8A%A0%E9%80%9F/#more">more >></a>
+        
       
 
       
@@ -538,47 +509,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">map()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">sort(),reduce()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">find(),findIndex()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">filter()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">every(),some()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">移动端适配</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">博客搭载</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Map类型</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深浅拷贝</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">访问控制器set，get</a>
+                <a href="javascript:void(0)" class="js-tag color1">Set类型</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -590,7 +525,43 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Set类型</a>
+                <a href="javascript:void(0)" class="js-tag color5">深浅拷贝</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">访问控制器set，get</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">find(),findIndex()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">sort(),reduce()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">filter()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">map()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">every(),some()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">博客搭载</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">移动端适配</a>
               </li>
             
             <div class="clearfix"></div>

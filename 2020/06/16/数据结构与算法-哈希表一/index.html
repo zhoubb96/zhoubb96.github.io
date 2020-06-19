@@ -16,7 +16,7 @@
 <meta property="og:description" content="哈希表搞懂哈希表到底如何实现的。理论知识较多，实现并不难。哈希表是基于数组实现的，但是相对与数组有以下优势 优势  可以提供快速的插入，删除，查找操作。 无论数据量为多少，插入与删除的时间复杂度都接近o(1) 速度比树还要快，可以很快的查找。 编码难度比树简单  不足之处  由于内部是无序数据，所以无法以一种固定方式遍历元素。 哈希表的key值不允许重复  哈希函数哈希表对下标值会做一种变换，这个">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-06-16T12:06:12.000Z">
-<meta property="article:modified_time" content="2020-06-19T03:11:58.296Z">
+<meta property="article:modified_time" content="2020-06-19T03:24:13.725Z">
 <meta property="article:author" content="Zhoubb">
 <meta property="article:tag" content="数据结构与算法">
 <meta name="twitter:card" content="summary">
@@ -205,6 +205,8 @@
 <li>输出均匀（减小探测步长与次数）</li>
 </ul>
 <p><strong>多项式计算，再利用秦九韶算法。</strong>使用质数当作底数，</p>
+<a id="more"></a>
+
 <p>哈希化：是把任意长度的输入通过<strong>散列算法（哈希函数）</strong>变换成固定长度的输出，该输出就是<strong>散列值（哈希值）</strong>。这种转换是一种<strong>压缩映射</strong>，也就是，散列值的空间通常远小于输入的空间，不同的输入可能会散列成相同的输出，所以不可能从散列值来确定唯一的输入值。简单的说就是一种<strong>将任意长度的消息压缩到某一固定长度的消息摘要的函数。</strong></p>
 <p>哈希化后的下标依然可能重复，所以要处理冲突。</p>
 <p><strong>实现一个hash函数</strong></p>
@@ -514,47 +516,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">map()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">sort(),reduce()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">find(),findIndex()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">filter()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">every(),some()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">移动端适配</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">博客搭载</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Map类型</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深浅拷贝</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">访问控制器set，get</a>
+                <a href="javascript:void(0)" class="js-tag color1">Set类型</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -566,7 +532,43 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Set类型</a>
+                <a href="javascript:void(0)" class="js-tag color5">深浅拷贝</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">访问控制器set，get</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">find(),findIndex()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">sort(),reduce()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">filter()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">map()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">every(),some()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">博客搭载</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">移动端适配</a>
               </li>
             
             <div class="clearfix"></div>

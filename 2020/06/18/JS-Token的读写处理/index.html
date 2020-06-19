@@ -16,7 +16,7 @@
 <meta property="og:description" content="Token的访问控制器设置 12345678910111213141516&#x2F;&#x2F;设置token令牌对象let Request&#x3D;&amp;#123;    &#x2F;&#x2F;没有在对象中，因为数据存在了本地    set token(content)&amp;#123;        localStorage.setItem(&#39;token&#39;,content)&#x2F;&#x2F;在本地缓存设置一个token    &amp;#125;,    get to">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-06-18T09:21:48.000Z">
-<meta property="article:modified_time" content="2020-06-18T09:30:32.859Z">
+<meta property="article:modified_time" content="2020-06-19T03:25:53.628Z">
 <meta property="article:author" content="Zhoubb">
 <meta property="article:tag" content="JavaScripe查漏补缺">
 <meta name="twitter:card" content="summary">
@@ -182,7 +182,7 @@
         <p>Token的访问控制器设置</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//设置token令牌对象</span></span><br><span class="line"><span class="keyword">let</span> Request=&#123;</span><br><span class="line">    <span class="comment">//没有在对象中，因为数据存在了本地</span></span><br><span class="line">    <span class="keyword">set</span> token(content)&#123;</span><br><span class="line">        localStorage.setItem(<span class="string">'token'</span>,content)<span class="comment">//在本地缓存设置一个token</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="keyword">get</span> token()&#123;</span><br><span class="line">      <span class="keyword">let</span> token=localStorage.getItem(<span class="string">'token'</span>)<span class="comment">//获取</span></span><br><span class="line">        <span class="keyword">if</span>(!token)&#123;</span><br><span class="line">            alertr(<span class="string">'请登录'</span>)<span class="comment">//没有token</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> token</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br><span class="line">Request.token=<span class="string">'123'</span></span><br><span class="line"><span class="built_in">console</span>.log(Request.token)</span><br></pre></td></tr></table></figure>
 
-
+<a id="more"></a>
       
 
       
@@ -454,47 +454,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">map()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">sort(),reduce()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">find(),findIndex()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">filter()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">every(),some()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">移动端适配</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">博客搭载</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Map类型</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深浅拷贝</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">访问控制器set，get</a>
+                <a href="javascript:void(0)" class="js-tag color1">Set类型</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -506,7 +470,43 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Set类型</a>
+                <a href="javascript:void(0)" class="js-tag color5">深浅拷贝</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">访问控制器set，get</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">find(),findIndex()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">sort(),reduce()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">filter()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">map()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">every(),some()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">博客搭载</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">移动端适配</a>
               </li>
             
             <div class="clearfix"></div>

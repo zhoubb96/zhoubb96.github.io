@@ -16,7 +16,7 @@
 <meta property="og:description" content="1，JS的数组结构，可以直接调用API（编程题考察的一般都是数组，所以JS基础最重要，数组的操作需要进行十分熟练） 数组的插入和删除是比较麻烦，原因是需要不断的移动数据。但是，数组通过下标查询以及修改元素的时候，效率是很高的。 除了数组，其他的结构都是自己构造出来的，一般是利用对象加指针进行实现。（比如树就是递归出来的） 2，栈结构（是要自己实现的？） 因为栈的特点是先进后出，且进出都在一个位置操">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-06-10T08:20:09.000Z">
-<meta property="article:modified_time" content="2020-06-11T13:29:13.440Z">
+<meta property="article:modified_time" content="2020-06-19T03:24:44.388Z">
 <meta property="article:author" content="Zhoubb">
 <meta property="article:tag" content="数据结构与算法">
 <meta name="twitter:card" content="summary">
@@ -184,6 +184,8 @@
 <p>除了数组，其他的结构都是自己构造出来的，一般是利用对象加指针进行实现。（比如树就是递归出来的）</p>
 <p>2，栈结构（是要自己实现的？）</p>
 <p>因为栈的特点是先进后出，且进出都在一个位置操作，那么基于数组实现就是只操作数组尾部数据，也就是push与pop（那么队列就是unshift与pop或者shift与push）</p>
+<a id="more"></a>
+
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//基于数组实现栈，外部是栈，内部是数组</span></span><br><span class="line">&lt;script&gt;</span><br><span class="line">        <span class="comment">//栈的封装实现,利用数组的push和pop，始终都在数组尾部进行操作（就符合了栈的特性）</span></span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">Stack</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="comment">//属性</span></span><br><span class="line">            <span class="keyword">this</span>.items = []</span><br><span class="line">            <span class="comment">//操作</span></span><br><span class="line">            <span class="comment">//1，压栈，尾部添加</span></span><br><span class="line">            Stack.prototype.push = <span class="function"><span class="keyword">function</span>(<span class="params">element</span>)</span>&#123;<span class="comment">//需要传参，下面的不用</span></span><br><span class="line">                <span class="keyword">this</span>.items.push(element)</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//2，弹栈，尾部删除</span></span><br><span class="line">            Stack.prototype.pop = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">this</span>.items.pop()</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//3，查看栈顶，用下标查询最后一个元素</span></span><br><span class="line">            Stack.prototype.peak = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">this</span>.items[<span class="keyword">this</span>.items.length<span class="number">-1</span>]</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//4,判断是否为空，利用数组长度进行判断</span></span><br><span class="line">            Stack.prototype.isEmpty = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">this</span>.items.length==<span class="number">0</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//5，获取栈的长度，也就是数组的长度</span></span><br><span class="line">            Stack.prototype.size = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">this</span>.items.length</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//6，转换为字符串，遍历+拼串</span></span><br><span class="line">            Stack.prototype.toString = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                <span class="keyword">var</span> resultString = <span class="string">' '</span><span class="comment">//设置一个初始空字符串</span></span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">let</span> i =<span class="number">0</span>;i&lt;<span class="keyword">this</span>.items.length;i++)&#123;</span><br><span class="line">                    resultString += <span class="keyword">this</span>.items[i] + <span class="string">' '</span><span class="comment">//拼串1 2 3 4以空格分开了</span></span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> resultString</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">var</span> s = <span class="keyword">new</span> Stack()</span><br><span class="line">        s.push(<span class="number">1</span>)</span><br><span class="line">        s.push(<span class="number">2</span>)</span><br><span class="line">        s.push(<span class="number">3</span>)</span><br><span class="line">        s.push(<span class="number">4</span>)</span><br><span class="line">        s.pop()</span><br><span class="line">        <span class="built_in">console</span>.log(s)</span><br><span class="line">        <span class="built_in">console</span>.log(s.isEmpty())</span><br><span class="line">        <span class="built_in">console</span>.log(s.peak())</span><br><span class="line">        <span class="built_in">console</span>.log(s.toString())</span><br><span class="line">    &lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/基于链表实现（二级考试题中出现过的）</span></span><br></pre></td></tr></table></figure>
 
 <p>利用栈可以进制的转换。(依次相除将所得结果依次压栈，最后出栈后就是结果)，当然利用数组也可以，只是输出的时候要手动调整顺序</p>
@@ -463,47 +465,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">map()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">sort(),reduce()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">find(),findIndex()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">filter()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">every(),some()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">移动端适配</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">博客搭载</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Map类型</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深浅拷贝</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">访问控制器set，get</a>
+                <a href="javascript:void(0)" class="js-tag color1">Set类型</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -515,7 +481,43 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Set类型</a>
+                <a href="javascript:void(0)" class="js-tag color5">深浅拷贝</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">访问控制器set，get</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">find(),findIndex()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">sort(),reduce()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">filter()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">map()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">every(),some()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">博客搭载</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">移动端适配</a>
               </li>
             
             <div class="clearfix"></div>

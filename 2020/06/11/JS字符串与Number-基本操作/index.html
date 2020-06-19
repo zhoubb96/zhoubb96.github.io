@@ -16,7 +16,7 @@
 <meta property="og:description" content="字符串的常见操作有 length，长度  toUpperCase(), toLowerCase(),大小写转换  trim()，去除所有空格  字符串拼串  可以直接用+号（如果不做类型转换+默认是拼串，所以要做数学运算的的话要转换类型1，乘一个1就自动转换；2，Number（str）方法）  contact方法。（join是数组的方法）,     123456789	let name &#x3D; &quot; Z">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-06-11T09:30:46.000Z">
-<meta property="article:modified_time" content="2020-06-12T10:46:41.573Z">
+<meta property="article:modified_time" content="2020-06-19T03:29:40.326Z">
 <meta property="article:author" content="Zhoubb">
 <meta property="article:tag" content="JavaScripe查漏补缺">
 <meta name="twitter:card" content="summary">
@@ -199,8 +199,10 @@
 
 <ul>
 <li><p>字符串的拆分</p>
+<a id="more"></a>
+
 <p><code>split(&quot;str&quot;)</code>  用字符串中的某个符号str拆分一个字符串，将拆分结果放入一个数组，返回这个数组。如果不传str，仅仅是<code>split(&quot;&quot;)</code>那就是逐个字符拆开。<strong>返回的是一个数组</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> name = <span class="string">"Zhoubinbin,yangchengyu"</span></span><br><span class="line"><span class="built_in">console</span>.log(name.split(<span class="string">""</span>))<span class="comment">// ["Z", "h", "o", "u", "b", "i", "n", "b", "i", "n", ",", "y", "a", "n", "g", "c", "h", "e", "n", "g", "y", "u"]不传参全部单个拆分</span></span><br><span class="line"><span class="built_in">console</span>.log(name.split(<span class="string">","</span>))<span class="comment">//["Zhoubinbin", "yangchengyu"]按逗号拆分为两个</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  <span class="keyword">let</span> name = <span class="string">"Zhoubinbin,yangchengyu"</span></span><br><span class="line">  <span class="built_in">console</span>.log(name.split(<span class="string">""</span>))<span class="comment">// ["Z", "h", "o", "u", "b", "i", "n", "b", "i", "n", ",", "y", "a", "n", "g", "c", "h", "e", "n", "g", "y", "u"]不传参全部单个拆分</span></span><br><span class="line"><span class="built_in">console</span>.log(name.split(<span class="string">","</span>))<span class="comment">//["Zhoubinbin", "yangchengyu"]按逗号拆分为两个</span></span><br></pre></td></tr></table></figure>
 
 
 
@@ -480,47 +482,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">map()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">sort(),reduce()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">find(),findIndex()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">filter()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">every(),some()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">移动端适配</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">博客搭载</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Map类型</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深浅拷贝</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">访问控制器set，get</a>
+                <a href="javascript:void(0)" class="js-tag color1">Set类型</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -532,7 +498,43 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Set类型</a>
+                <a href="javascript:void(0)" class="js-tag color5">深浅拷贝</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">访问控制器set，get</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">find(),findIndex()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">sort(),reduce()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">filter()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">map()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">every(),some()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">博客搭载</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">移动端适配</a>
               </li>
             
             <div class="clearfix"></div>

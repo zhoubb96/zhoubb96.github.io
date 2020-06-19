@@ -267,17 +267,9 @@
 
 <p>因为不加return语句，默认返回undefined，被转化为false，所以every()第一次执行后便停止，false不再执行；</p>
 <p>而some()遇到false不会停止。</p>
-<ul>
-<li><p><strong>every遇false停止</strong></p>
-</li>
-<li><p><strong>some遇到true停止</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> keywords = [<span class="string">"php"</span>, <span class="string">"js"</span>];</span><br><span class="line">   <span class="keyword">let</span> title = <span class="built_in">document</span>.querySelector(<span class="string">'[name="title"]'</span>);</span><br><span class="line">   title.addEventListener(<span class="string">"keyup"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;<span class="comment">//绑定事件</span></span><br><span class="line">     <span class="keyword">const</span> res = keywords.some(<span class="function"><span class="params">keyword</span> =&gt;</span> &#123;<span class="comment">//遍历取出keyword进行比较</span></span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">this</span>.value.indexOf(keyword) != <span class="number">-1</span>;</span><br><span class="line">       <span class="comment">//检查keyup事件输入的值value中是否有关键字数组keywords中的任何一个关键字keyword</span></span><br><span class="line">     &#125;);</span><br><span class="line">     <span class="built_in">document</span>.querySelector(<span class="string">"span"</span>).innerHTML = res</span><br><span class="line">       ? <span class="string">""</span></span><br><span class="line">       : <span class="string">"必须包含"</span> + keywords.join(<span class="string">","</span>) + <span class="string">"关键词"</span>;</span><br><span class="line">   &#125;);</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-
+        
+          <a class="article-more-a" href="/2020/06/14/JS%E6%95%B0%E7%BB%84%E5%9B%9B/#more">more >></a>
+        
       
 
       
@@ -514,47 +506,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">map()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">sort(),reduce()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">find(),findIndex()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">filter()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">every(),some()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">移动端适配</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">博客搭载</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Map类型</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深浅拷贝</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">访问控制器set，get</a>
+                <a href="javascript:void(0)" class="js-tag color1">Set类型</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -566,7 +522,43 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Set类型</a>
+                <a href="javascript:void(0)" class="js-tag color5">深浅拷贝</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">访问控制器set，get</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">find(),findIndex()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">sort(),reduce()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">filter()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">map()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">every(),some()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">博客搭载</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">移动端适配</a>
               </li>
             
             <div class="clearfix"></div>

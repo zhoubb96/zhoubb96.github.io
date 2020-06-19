@@ -16,7 +16,7 @@
 <meta property="og:description" content="面向对象三大特性：封装、继承、多态属性 属性的检测  对象属性检测obj.hasOwnProperty(&quot;key&quot;),仅查看自身属性 原型链属性检测&quot;key&quot; in obj，自身与原型的属性都进行检测   属性的计算  动态计算属性名，reduce方法  1234567891011let lessons &#x3D; [      &amp;#123;title: &quot;媒体查询">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-06-18T03:04:04.000Z">
-<meta property="article:modified_time" content="2020-06-18T08:51:54.327Z">
+<meta property="article:modified_time" content="2020-06-19T03:26:25.194Z">
 <meta property="article:author" content="Zhoubb">
 <meta property="article:tag" content="JavaScripe查漏补缺">
 <meta property="article:tag" content="深浅拷贝">
@@ -192,7 +192,12 @@
 <li>动态计算属性名，reduce方法</li>
 </ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> lessons = [</span><br><span class="line">      &#123;<span class="attr">title</span>: <span class="string">"媒体查询响应式布局"</span>,<span class="attr">click</span>: <span class="number">89</span>,<span class="attr">price</span>: <span class="number">12</span>&#125;,</span><br><span class="line">      &#123;<span class="attr">title</span>: <span class="string">"FLEX 弹性盒模型"</span>,<span class="attr">click</span>: <span class="number">45</span>,<span class="attr">price</span>: <span class="number">120</span>&#125;,</span><br><span class="line">      &#123;<span class="attr">title</span>: <span class="string">"GRID 栅格系统"</span>,<span class="attr">click</span>: <span class="number">19</span>,<span class="attr">price</span>: <span class="number">67</span>&#125;,</span><br><span class="line">      &#123;<span class="attr">title</span>: <span class="string">"盒子模型详解"</span>,<span class="attr">click</span>: <span class="number">29</span>, <span class="attr">price</span>: <span class="number">300</span>&#125;</span><br><span class="line">    ];</span><br><span class="line">    obj=lessons.reduce(<span class="function">(<span class="params">pre,cur,index</span>)=&gt;</span>&#123;</span><br><span class="line">      pre[<span class="string">`<span class="subst">$&#123;cur[<span class="string">'title'</span>]&#125;</span>-<span class="subst">$&#123;index&#125;</span>`</span>]=cur<span class="comment">//每次都添加新的键值对</span></span><br><span class="line">      <span class="keyword">return</span> pre</span><br><span class="line">    &#125;,&#123;&#125;)</span><br><span class="line">    <span class="built_in">console</span>.log(obj)<span class="comment">//&#123;媒体查询响应式布局-0: &#123;…&#125;, FLEX 弹性盒模型-1: &#123;…&#125;, GRID 栅格系统-2: &#123;…&#125;, 盒子模型详解-3: &#123;…&#125;&#125;</span></span><br></pre></td></tr></table></figure>
+
 </li>
+</ul>
+<a id="more"></a>
+
+<ul>
 <li><p>属性的获取<code>Object.keys(obj)</code>，获取对象obj的所有属性名，以数组返回，或者使用for-in</p>
 </li>
 <li><p>属性的复制<code>Object.assign(obj1,obj2)</code>，将obj2的属性复制给obj1；也可以用循环与展开语法。</p>
@@ -488,47 +493,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">map()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">sort(),reduce()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">find(),findIndex()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">filter()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">every(),some()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">移动端适配</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">博客搭载</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Map类型</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深浅拷贝</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">访问控制器set，get</a>
+                <a href="javascript:void(0)" class="js-tag color1">Set类型</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -540,7 +509,43 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Set类型</a>
+                <a href="javascript:void(0)" class="js-tag color5">深浅拷贝</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">访问控制器set，get</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">find(),findIndex()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">sort(),reduce()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">filter()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">map()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">every(),some()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">博客搭载</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">移动端适配</a>
               </li>
             
             <div class="clearfix"></div>

@@ -16,7 +16,7 @@
 <meta property="og:description" content="链表1，与链表相比数组的缺点：  必须申请连续的储存空间 在开头以及中间插入数据要进行大量的位移  链表可以很好的解决这两个问题。链表可以充分利用计算机储存空间，并且在插入和删除数据的时候要方便一些，不用移动元素（寻找插入位置时要费劲些，但是比移动元素开销少）时间复杂度可以达到o(1) 2，链表也有它的缺点:  访问查询时总得从头开始访问  无法通过下标直接访问元素，要遍历判断循环找。  链表有带">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-06-12T12:37:31.000Z">
-<meta property="article:modified_time" content="2020-06-13T13:46:44.504Z">
+<meta property="article:modified_time" content="2020-06-19T03:23:52.681Z">
 <meta property="article:author" content="Zhoubb">
 <meta property="article:tag" content="数据结构与算法">
 <meta name="twitter:card" content="summary">
@@ -192,6 +192,8 @@
 <li><p>无法通过下标直接访问元素，要遍历判断循环找。</p>
 </li>
 <li><p>链表有带头结点与不带头指针两种。今后自己统以用带头指针的</p>
+<a id="more"></a>
+
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">LinkedList</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">Node</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.data = data</span><br><span class="line">    <span class="keyword">this</span>.next = <span class="literal">null</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//属性：头指针，当前指针，长度</span></span><br><span class="line">  <span class="keyword">this</span>.header = <span class="literal">null</span></span><br><span class="line">  <span class="keyword">this</span>.length = <span class="number">0</span><span class="comment">//注意实时更新</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">//1,append追加方法，在尾部添加元素</span></span><br><span class="line">  LinkedList.prototype.append = <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> newNode = <span class="keyword">new</span> Node(data)</span><br><span class="line">    <span class="comment">//是第一个元素，直接修改头指针</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.length===<span class="number">0</span>) &#123;<span class="comment">//if (this.header===null)</span></span><br><span class="line">      <span class="keyword">this</span>.header = newNode</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">let</span> current = <span class="keyword">this</span>.header</span><br><span class="line">      <span class="comment">//不是第一个元素，循环找到最后一个节点</span></span><br><span class="line">      <span class="keyword">while</span> (current.next)&#123;<span class="comment">//直到他的next为空，就是最后一个</span></span><br><span class="line">        current = current.next</span><br><span class="line">      &#125;</span><br><span class="line">      current.next = newNode</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//更新长度</span></span><br><span class="line">    <span class="keyword">this</span>.length++</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//2,insert在指定位置添加元素</span></span><br><span class="line">  LinkedList.prototype.insert = <span class="function"><span class="keyword">function</span>(<span class="params">position,data</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//边界判断</span></span><br><span class="line">    <span class="keyword">if</span>(position&lt;<span class="number">0</span>||position&gt;<span class="keyword">this</span>.length)&#123;<span class="comment">//可以等于</span></span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> newNode = <span class="keyword">new</span> Node(data)</span><br><span class="line">    <span class="keyword">let</span> current = <span class="keyword">this</span>.header</span><br><span class="line">    <span class="comment">//在头部添加</span></span><br><span class="line">    <span class="keyword">if</span>(position===<span class="number">0</span>)&#123;</span><br><span class="line">      newNode.next=<span class="keyword">this</span>.header</span><br><span class="line">      <span class="keyword">this</span>.header=newNode</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">//不是在头部,所以i从1开始</span></span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">let</span> i=<span class="number">1</span>;i&lt;position;i++)&#123;</span><br><span class="line">        current = current.next</span><br><span class="line">      &#125;</span><br><span class="line">      newNode.next = current.next</span><br><span class="line">      current.next = newNode </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.length++<span class="comment">//更新长度</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//3，将链表转换为字符串返回</span></span><br><span class="line">  LinkedList.prototype.toString = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> current = <span class="keyword">this</span>.header</span><br><span class="line">    <span class="keyword">let</span> listString = <span class="string">""</span></span><br><span class="line">    <span class="comment">//循环获取节点</span></span><br><span class="line">    <span class="keyword">while</span> (current)&#123;</span><br><span class="line">      listString+=current.data+<span class="string">" "</span></span><br><span class="line">      current=current.next</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> listString</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">  <span class="comment">//4，获取指定下标的元素</span></span><br><span class="line">  LinkedList.prototype.get = <span class="function"><span class="keyword">function</span>(<span class="params">index</span>)</span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(index&lt;<span class="number">0</span>||index&gt;=<span class="keyword">this</span>.length)&#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">let</span> current = <span class="keyword">this</span>.header</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;index;i++)&#123;</span><br><span class="line">          current=current.next</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> current.data</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//5，获取元素的索引</span></span><br><span class="line">  LinkedList.prototype.indexOf = <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> current = <span class="keyword">this</span>.header</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> index=<span class="number">0</span>;index&lt;<span class="keyword">this</span>.length;index++)&#123;</span><br><span class="line">      <span class="keyword">if</span>(current.data===data)&#123;</span><br><span class="line">        <span class="keyword">return</span> index</span><br><span class="line">      &#125;</span><br><span class="line">      current=current.next</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//6，删除指定位置的元素</span></span><br><span class="line">  LinkedList.prototype.removeAt = <span class="function"><span class="keyword">function</span>(<span class="params">position</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//越界判断多次会用到，可以抽离出来成一个函数</span></span><br><span class="line">    <span class="keyword">if</span>(position&lt;<span class="number">0</span>||position&gt;=<span class="keyword">this</span>.length)&#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">      &#125;</span><br><span class="line">    <span class="keyword">let</span> current = <span class="keyword">this</span>.header</span><br><span class="line">    <span class="keyword">let</span> previous = <span class="literal">null</span></span><br><span class="line">    <span class="keyword">if</span>(position===<span class="number">0</span>)&#123;</span><br><span class="line">      <span class="keyword">this</span>.header=current.next</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;position;i++)&#123;</span><br><span class="line">        previous = current</span><br><span class="line">        current=current.next</span><br><span class="line">      &#125;</span><br><span class="line">      previous.next=current.next</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.length--</span><br><span class="line">    <span class="keyword">return</span> current.data</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line">  </span><br><span class="line"><span class="comment">//测试</span></span><br><span class="line"><span class="keyword">let</span> list=<span class="keyword">new</span> LinkedList()</span><br><span class="line">list.append(<span class="string">'abc'</span>)</span><br><span class="line">list.append(<span class="string">'cba'</span>)</span><br><span class="line">list.append(<span class="string">'nba'</span>)</span><br><span class="line">list.insert(<span class="number">3</span>,<span class="string">'swk'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(list)</span><br><span class="line"><span class="built_in">console</span>.log(list.toString())<span class="comment">//abc cba nba swk</span></span><br><span class="line"><span class="built_in">console</span>.log(list.get(<span class="number">3</span>))<span class="comment">//swk</span></span><br><span class="line"><span class="built_in">console</span>.log(list.indexOf(<span class="string">'swk'</span>))<span class="comment">//3</span></span><br><span class="line">list.removeAt(<span class="number">2</span>)</span><br><span class="line"><span class="built_in">console</span>.log(list.toString())<span class="comment">//abc cba swk</span></span><br></pre></td></tr></table></figure>
 
 </li>
@@ -468,47 +470,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">map()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">sort(),reduce()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">find(),findIndex()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">filter()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">every(),some()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">移动端适配</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">博客搭载</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Map类型</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深浅拷贝</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">访问控制器set，get</a>
+                <a href="javascript:void(0)" class="js-tag color1">Set类型</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -520,7 +486,43 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Set类型</a>
+                <a href="javascript:void(0)" class="js-tag color5">深浅拷贝</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">访问控制器set，get</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">find(),findIndex()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">sort(),reduce()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">filter()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">map()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">every(),some()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">博客搭载</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">移动端适配</a>
               </li>
             
             <div class="clearfix"></div>

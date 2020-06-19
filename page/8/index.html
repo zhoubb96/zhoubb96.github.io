@@ -182,15 +182,9 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr=[<span class="number">9</span>,<span class="number">5</span>,<span class="number">2</span>,<span class="number">7</span>]</span><br><span class="line"><span class="keyword">let</span> result = arr.sort(<span class="function"><span class="keyword">function</span> (<span class="params">a,b</span>) </span>&#123;</span><br><span class="line"><span class="comment">//return a-b//返回负数从小到大，[2, 5, 7, 9]</span></span><br><span class="line"><span class="comment">//return b-a//返回正数从大到小，[9, 7, 5, 2]</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(result)</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr=[<span class="number">9</span>,<span class="number">5</span>,<span class="number">2</span>,<span class="number">7</span>]</span><br><span class="line"><span class="comment">//定义sort，冒泡实现，动态的（反复调用callback）</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sort</span>(<span class="params">arr,callback</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> n <span class="keyword">in</span> arr) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">const</span> m <span class="keyword">in</span> arr) &#123;</span><br><span class="line">        <span class="comment">//一个很奇怪的排序，单纯看返回值，每次都会调用</span></span><br><span class="line">      <span class="keyword">if</span> (callback(arr[n], arr[m]) &lt; <span class="number">0</span>) &#123;<span class="comment">//接受实参，返回一个数（正或者负）,这个callback会被反复调用，每次都判断</span></span><br><span class="line">        <span class="keyword">let</span> temp = arr[n]</span><br><span class="line">        arr[n] = arr[m]</span><br><span class="line">        arr[m] = temp</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> arr</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//调用sort</span></span><br><span class="line"><span class="keyword">let</span> result = sort(arr,<span class="function"><span class="keyword">function</span> (<span class="params">a,b</span>) </span>&#123;<span class="comment">//两个形参要在调用时接受实参</span></span><br><span class="line"> <span class="keyword">return</span> b-a</span><br><span class="line"> &#125;)</span><br><span class="line"><span class="built_in">console</span>.log(result)</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="关于reduce-方法"><a href="#关于reduce-方法" class="headerlink" title="关于reduce()方法"></a>关于reduce()方法</h4><p><code>reduce(callbacks(pre,cur,index,arr),init)</code>，它会存储上一次运行的结果作为下一次运行的第一个参数。pre一开始是第一个值，后面就是上次函数运行的结果，cur从第二个值开始。<strong>最终返回所有元素运行后的结果。</strong>可用作统计用途（统计器，累加器，最大值等等，<strong>利用其保存上一次运行结果的特点</strong>）</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">	<span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line">    <span class="keyword">let</span> res = arr.reduce(<span class="function">(<span class="params">pre, cur</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(pre)<span class="comment">//1,3,6,10,15,21</span></span><br><span class="line">        <span class="built_in">console</span>.log(cur)<span class="comment">//2,3,4,5,6</span></span><br><span class="line">        <span class="keyword">return</span> pre + cur</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="built_in">console</span>.log(res)<span class="comment">//21</span></span><br><span class="line">    <span class="keyword">let</span> res2=arr.reduce(<span class="function">(<span class="params">pre, cur</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(pre)<span class="comment">//0,1,3,6,10,15,21，pre有初始值后，pre和cur的位置都会前移</span></span><br><span class="line">        <span class="built_in">console</span>.log(cur)<span class="comment">//1,2,3,4,5,6</span></span><br><span class="line">        <span class="keyword">return</span> pre + cur</span><br><span class="line">    &#125;,<span class="number">0</span>)<span class="comment">//0是prev的初始值，如果这里是1，那么最后结果会变成22</span></span><br><span class="line">    <span class="built_in">console</span>.log(res2)<span class="comment">//21</span></span><br><span class="line">    </span><br><span class="line"> <span class="comment">//获取价格超过1万元商品的名称，当然filter更加方便。</span></span><br><span class="line"><span class="keyword">let</span> cart = [</span><br><span class="line">      &#123; <span class="attr">name</span>: <span class="string">"iphone"</span>, <span class="attr">price</span>: <span class="number">12000</span> &#125;,</span><br><span class="line">      &#123; <span class="attr">name</span>: <span class="string">"imac"</span>, <span class="attr">price</span>: <span class="number">25000</span> &#125;,</span><br><span class="line">      &#123; <span class="attr">name</span>: <span class="string">"ipad"</span>, <span class="attr">price</span>: <span class="number">3600</span> &#125;</span><br><span class="line">    ];</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">getNameByPrice</span>(<span class="params">goods, price</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> goods</span><br><span class="line">        .reduce(<span class="function"><span class="keyword">function</span>(<span class="params">arr, cur</span>) </span>&#123;</span><br><span class="line">          <span class="keyword">if</span> (cur.price &gt; price) arr.push(cur);</span><br><span class="line">          <span class="keyword">return</span> arr;</span><br><span class="line">        &#125;, [])<span class="comment">//令arr的初值为一个数组，初值的类型可以有很多种。</span></span><br><span class="line">        .map(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>) </span>&#123;</span><br><span class="line">          <span class="keyword">return</span> item.name;</span><br><span class="line">        &#125;);<span class="comment">//链式调用</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.table(getNameByPrice(cart, <span class="number">10000</span>));</span><br></pre></td></tr></table></figure>
-
-<p><strong>reduce非常好用，要多用!!!!!!!!!!!</strong></p>
-<p><strong>includes与reduce联合使用在去重的时候很常用。</strong></p>
-
+        
+          <a class="article-more-a" href="/2020/06/13/JS%E6%95%B0%E7%BB%84%E4%B8%89/#more">more >></a>
+        
       
 
       
@@ -275,11 +269,9 @@
 <li><code>find(callback(value))</code>,find()内部参数<strong>是个回调函数，需要你自定义</strong>，而且<strong><u>返回的是值</u></strong>，<strong>解决引用类型查找</strong>，因为引用类型查找的是地址。</li>
 <li><code>findIndex(callback(value))</code>,findIndex()同样<strong>也是接受一个函数</strong>，和find()一致，不同的是<strong><u>它返回的是位置</u></strong></li>
 </ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">arr.find(<span class="function"><span class="keyword">function</span> (<span class="params">item</span>) </span>&#123;</span><br><span class="line"><span class="comment">//console.log(item)//所有值全1 2 3 4 5 6</span></span><br><span class="line"><span class="comment">//return true//1返回第一个</span></span><br><span class="line"><span class="comment">// return item==2//返回值2</span></span><br><span class="line"><span class="comment">// return item==200//undefined，没有200这个值</span></span><br><span class="line">    </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//自己实现一个find，接受一个数组和一个回调函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">find</span>(<span class="params">array,callback</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> value <span class="keyword">of</span> array)&#123;</span><br><span class="line">    <span class="keyword">if</span>(callback(value))&#123;<span class="comment">//接受实参，回调函数返回true，查找成功</span></span><br><span class="line">      <span class="keyword">return</span> value</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">undefined</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//调用</span></span><br><span class="line">result=find(arr,<span class="function"><span class="keyword">function</span>(<span class="params">item</span>)</span>&#123;</span><br><span class="line"><span class="keyword">return</span> item===<span class="number">2</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//打印</span></span><br><span class="line"><span class="built_in">console</span>.log(result)<span class="comment">//2</span></span><br></pre></td></tr></table></figure>
-
-
+        
+          <a class="article-more-a" href="/2020/06/13/JS%E6%95%B0%E7%BB%84%E4%BA%8C/#more">more >></a>
+        
       
 
       
@@ -364,26 +356,9 @@
 <h4 id="高度获取"><a href="#高度获取" class="headerlink" title="高度获取"></a>高度获取</h4><ul>
 <li><p>clientHeight：只包括padding高度。</p>
 <p><img src="http://img1.sycdn.imooc.com/58f5b2fa00012ea604110247.jpg" alt=""></p>
-</li>
-<li><p>offsetHeight：包括padding、border、水平滚动条的高度、但不包括margin的元素的高度。</p>
-<p><img src="http://img1.sycdn.imooc.com/58f5b32e0001a2fa04110247.jpg" alt=""></p>
-</li>
-<li><p>scrollHeight：当本元素的子元素比本元素高且overflow=scroll时，本元素会scroll，这时：<br>scrollHeight: 因为子元素比父元素高，父元素不想被子元素撑的一样高就显示出了滚动条，在滚动的过程中本元素有部分被隐藏了，<strong>scrollHeight代表包括当前不可见部分的元素的高度</strong>。而可见部分的高度其实就是clientHeight，也就是scrollHeight&gt;=clientHeight恒成立。在有滚动条时讨论scrollHeight才有意义，在<strong>没有滚动条时scrollHeight==clientHeight恒成立</strong>。</p>
-</li>
-</ul>
-<h4 id="关于移动端的定位"><a href="#关于移动端的定位" class="headerlink" title="关于移动端的定位"></a>关于移动端的定位</h4><p>  移动端要少用固定定位，因为固定定位是相对于是扣的，而移动端有三个视口，较为复杂。使用绝对定位模拟固定定位。</p>
-<ul>
-<li><p>1，禁止系统滚动条s</p>
-</li>
-<li><p>2，让应用的滚动条出现在顶层元素，顶层不会影响初始滑块的位置</p>
-</li>
-<li><p>C:\Users\zhoub\AppData\Roaming\npm\lessc</p>
-</li>
-<li><p>$FileParentDir(less)$\less$FileDirPathFromParent(less)$$FileName$</p>
-<p>C:\Atguigu\尚硅谷无视频版本\8.前端学科–项目实战\尚硅谷前端项目【谷粒音乐】教程\code\QQ音乐\css\lesss</p>
-</li>
-</ul>
-
+        
+          <a class="article-more-a" href="/2020/06/13/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E5%9B%9B/#more">more >></a>
+        
       
 
       
@@ -539,47 +514,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">map()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">sort(),reduce()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">find(),findIndex()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">filter()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">every(),some()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">移动端适配</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">博客搭载</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Map类型</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深浅拷贝</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">访问控制器set，get</a>
+                <a href="javascript:void(0)" class="js-tag color1">Set类型</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -591,7 +530,43 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Set类型</a>
+                <a href="javascript:void(0)" class="js-tag color5">深浅拷贝</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">访问控制器set，get</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">find(),findIndex()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">sort(),reduce()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">filter()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">map()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">every(),some()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">博客搭载</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">移动端适配</a>
               </li>
             
             <div class="clearfix"></div>

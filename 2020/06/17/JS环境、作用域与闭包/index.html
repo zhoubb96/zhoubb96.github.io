@@ -16,7 +16,7 @@
 <meta property="og:description" content="作用域定义：一块静态的代码区域，在编码时确定，并不会再改变 类型：全局作用域，函数作用域，块作用域（for循环括号里变量，在此之前使用立即执行函数的函数作用域模拟块作用域，）。 环境上下文对象定义：一个管理相应作用域中数据的对象；有全局上下文对象，函数上下文对象  全局上下文对象是window，不会被回收，除非关闭标签  函数上下文对象是运行时动态创立的，运行结束时回收；执行几次创建几次，每次创建">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-06-17T06:38:27.000Z">
-<meta property="article:modified_time" content="2020-06-18T03:01:52.333Z">
+<meta property="article:modified_time" content="2020-06-19T03:26:56.741Z">
 <meta property="article:author" content="Zhoubb">
 <meta property="article:tag" content="JavaScripe查漏补缺">
 <meta name="twitter:card" content="summary">
@@ -189,6 +189,8 @@
 </li>
 </ul>
 <p>作用域涵盖了上下文对象，上下文对象在作用域里活动。</p>
+<a id="more"></a>
+
 <h4 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h4><p><strong>声明：</strong>嵌套函数，内部函数<strong>引用</strong>外部函数变量（内部更新数据后返回给外部）。</p>
 <p><strong>原理：</strong>每次外部函数执行的时，外部函数都会创建一个新的环境，这个环境的引用地址是不同，都会重新创建一个新的地址，里面的数据也是全新的。但是如果当前外部环境中有<strong>被内部函数引用的数据</strong>，那么这个时候，外部环境不会被回收；这个数据不删除，会被保留一根指针给内部活动对象。</p>
 <p>​        简单说内部改变数据并返回给外部函数，让外部函数保存这个数据，并且外部环境不被回收。(利用了垃圾回收的引用规则)</p>
@@ -478,47 +480,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">map()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">sort(),reduce()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">find(),findIndex()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">filter()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">every(),some()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">移动端适配</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">博客搭载</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Map类型</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深浅拷贝</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">访问控制器set，get</a>
+                <a href="javascript:void(0)" class="js-tag color1">Set类型</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -530,7 +496,43 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Set类型</a>
+                <a href="javascript:void(0)" class="js-tag color5">深浅拷贝</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">访问控制器set，get</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">find(),findIndex()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">sort(),reduce()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">filter()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">map()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">every(),some()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">博客搭载</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">移动端适配</a>
               </li>
             
             <div class="clearfix"></div>

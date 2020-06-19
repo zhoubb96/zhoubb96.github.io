@@ -16,7 +16,7 @@
 <meta property="og:description" content="1,截取操作substring(beg,end), 起始位置与结束位置，不支持负数 slice(beg,end),起始位置与结束位置，支持负数 substr(beg,len),起始位置与截取长度。 这三个都不会改变原字符串 12345let name &#x3D; &quot;Zhoubinbin&quot;  console.log(name.slice(1,3))&#x2F;&#x2F;ho;起始与结束位置，输入负数则起始位置从后算。  co">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-06-11T10:03:52.000Z">
-<meta property="article:modified_time" content="2020-06-18T11:46:06.331Z">
+<meta property="article:modified_time" content="2020-06-19T03:29:25.906Z">
 <meta property="article:author" content="Zhoubb">
 <meta property="article:tag" content="JavaScripe查漏补缺">
 <meta property="article:tag" content="substring(),slice(),substr()">
@@ -187,6 +187,8 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> name = <span class="string">"Zhoubinbin"</span></span><br><span class="line">  <span class="built_in">console</span>.log(name.slice(<span class="number">1</span>,<span class="number">3</span>))<span class="comment">//ho;起始与结束位置，输入负数则起始位置从后算。</span></span><br><span class="line">  <span class="built_in">console</span>.log(name.slice(<span class="number">-3</span>,<span class="number">-1</span>))<span class="comment">//bi</span></span><br><span class="line">  <span class="built_in">console</span>.log(name.substring(<span class="number">1</span>,<span class="number">3</span>))<span class="comment">//ho；同上，只是不可以使用负数（输入负数当0看待）</span></span><br><span class="line">  <span class="built_in">console</span>.log(name.substr(<span class="number">1</span>,<span class="number">3</span>))<span class="comment">//hou；起始位置可以用负数与截取长度</span></span><br></pre></td></tr></table></figure>
 
 <h4 id="2-检索操作"><a href="#2-检索操作" class="headerlink" title="2,检索操作"></a>2,检索操作</h4><p>indexOf()，lastIndexOf()</p>
+<a id="more"></a>
+
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let name &#x3D; &quot;Zhoubinbin&quot;</span><br><span class="line">    console.log(name.indexOf(&quot;i&quot;))&#x2F;&#x2F;5；从头开始，返回字符“i”第一次出现的下标</span><br><span class="line">    console.log(name.indexOf(&quot;i&quot;,6))&#x2F;&#x2F;8；6表示从什么位置开始查找，忽略前面</span><br><span class="line">    console.log(name.includes(&quot;i&quot;))&#x2F;&#x2F;true；返回布尔值</span><br><span class="line">    console.log(name.includes(&quot;i&quot;,9))&#x2F;&#x2F;false</span><br><span class="line">    console.log(name.lastIndexOf(&quot;i&quot;))&#x2F;&#x2F;8;从后开始查找</span><br></pre></td></tr></table></figure>
 
 <h4 id="3-替换操作"><a href="#3-替换操作" class="headerlink" title="3,替换操作"></a>3,替换操作</h4><p><code>stringObject.replace(regexp/substr,replacement)</code></p>
@@ -468,47 +470,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">map()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">sort(),reduce()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">find(),findIndex()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">filter()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">every(),some()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">移动端适配</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">博客搭载</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Map类型</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深浅拷贝</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">访问控制器set，get</a>
+                <a href="javascript:void(0)" class="js-tag color1">Set类型</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -520,7 +486,43 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Set类型</a>
+                <a href="javascript:void(0)" class="js-tag color5">深浅拷贝</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">访问控制器set，get</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">find(),findIndex()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">sort(),reduce()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">filter()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">map()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">every(),some()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">博客搭载</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">移动端适配</a>
               </li>
             
             <div class="clearfix"></div>

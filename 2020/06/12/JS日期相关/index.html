@@ -16,7 +16,7 @@
 <meta property="og:description" content="1，时间与时间戳获取1234567891011121314151617let date &#x3D; new  Date()&#x2F;&#x2F;可传参，不传参就是当前时间    console.log(date);&#x2F;&#x2F;date为对象	console.log(date.getFullYearh())    console.log(date.getMonth()+1)	console.log(date.getDate())	c">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-06-12T09:08:14.000Z">
-<meta property="article:modified_time" content="2020-06-13T07:44:23.858Z">
+<meta property="article:modified_time" content="2020-06-19T03:27:17.394Z">
 <meta property="article:author" content="Zhoubb">
 <meta property="article:tag" content="JavaScripe查漏补缺">
 <meta name="twitter:card" content="summary">
@@ -180,6 +180,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h4 id="1，时间与时间戳获取"><a href="#1，时间与时间戳获取" class="headerlink" title="1，时间与时间戳获取"></a>1，时间与时间戳获取</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> date = <span class="keyword">new</span>  <span class="built_in">Date</span>()<span class="comment">//可传参，不传参就是当前时间</span></span><br><span class="line">    <span class="built_in">console</span>.log(date);<span class="comment">//date为对象</span></span><br><span class="line">	<span class="built_in">console</span>.log(date.getFullYearh())</span><br><span class="line">    <span class="built_in">console</span>.log(date.getMonth()+<span class="number">1</span>)</span><br><span class="line">	<span class="built_in">console</span>.log(date.getDate())</span><br><span class="line">	<span class="built_in">console</span>.log(date.getHours())</span><br><span class="line">	<span class="built_in">console</span>.log(date.getMinutes())</span><br><span class="line">	<span class="built_in">console</span>.log(date.getSeconds())</span><br><span class="line">	<span class="built_in">console</span>.log(date*<span class="number">1</span>)<span class="comment">//返回时间戳，可以用来计算运行时间</span></span><br><span class="line"><span class="comment">//可以封装一个函数使用模板字符串输出格式化的日期</span></span><br><span class="line"><span class="keyword">let</span>  date2 = <span class="built_in">Date</span>()</span><br><span class="line">    <span class="built_in">console</span>.log(date2);<span class="comment">//date2为字符串</span></span><br><span class="line">    <span class="built_in">console</span>.log(date2*<span class="number">1</span>)<span class="comment">//返回NaN</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//标签配合使用</span></span><br><span class="line"><span class="built_in">console</span>.time(<span class="string">"for"</span>)</span><br><span class="line"><span class="built_in">console</span>.timeEnd(<span class="string">"for"</span>)</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
 
 <h4 id="2，时间与时间戳的相互转换"><a href="#2，时间与时间戳的相互转换" class="headerlink" title="2，时间与时间戳的相互转换"></a>2，时间与时间戳的相互转换</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//时间-&gt;时间戳</span></span><br><span class="line"><span class="built_in">console</span>.log(date.valueOf())</span><br><span class="line"><span class="built_in">console</span>.log(date*<span class="number">1</span>)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Number</span>(date))</span><br><span class="line"><span class="built_in">console</span>.log(date.getTime())</span><br><span class="line"></span><br><span class="line">timestamp = date*<span class="number">1</span></span><br><span class="line"><span class="comment">//时间戳-&gt;时间</span></span><br><span class="line">date3 = <span class="keyword">new</span> <span class="built_in">Date</span>(timestamp)</span><br></pre></td></tr></table></figure>
 
@@ -455,47 +457,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">map()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">sort(),reduce()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">find(),findIndex()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">filter()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">every(),some()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">移动端适配</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">博客搭载</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Map类型</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深浅拷贝</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">访问控制器set，get</a>
+                <a href="javascript:void(0)" class="js-tag color1">Set类型</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -507,7 +473,43 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Set类型</a>
+                <a href="javascript:void(0)" class="js-tag color5">深浅拷贝</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">访问控制器set，get</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">find(),findIndex()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">sort(),reduce()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">filter()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">map()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">every(),some()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">博客搭载</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">移动端适配</a>
               </li>
             
             <div class="clearfix"></div>
