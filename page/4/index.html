@@ -156,43 +156,271 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-数据结构与算法-单向链表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-JS环境、作用域与闭包" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E5%8D%95%E5%90%91%E9%93%BE%E8%A1%A8/">数据结构与算法-单向链表</a>
+      <a class="article-title" href="/2020/06/17/JS%E7%8E%AF%E5%A2%83%E3%80%81%E4%BD%9C%E7%94%A8%E5%9F%9F%E4%B8%8E%E9%97%AD%E5%8C%85/">JS环境、作用域与闭包</a>
     </h1>
   
 
         
-        <a href="/2020/06/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E5%8D%95%E5%90%91%E9%93%BE%E8%A1%A8/" class="archive-article-date">
-  	<time datetime="2020-06-12T12:37:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-12</time>
+        <a href="/2020/06/17/JS%E7%8E%AF%E5%A2%83%E3%80%81%E4%BD%9C%E7%94%A8%E5%9F%9F%E4%B8%8E%E9%97%AD%E5%8C%85/" class="archive-article-date">
+  	<time datetime="2020-06-17T06:38:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-17</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h4><p><strong>1，与链表相比数组的缺点：</strong></p>
+        <h4 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h4><p>定义：一块静态的代码区域，在编码时确定，并不会再改变</p>
+<p>类型：全局作用域，函数作用域，块作用域（for循环括号里变量，在此之前使用立即执行函数的函数作用域模拟块作用域，）。</p>
+<h4 id="环境上下文对象"><a href="#环境上下文对象" class="headerlink" title="环境上下文对象"></a>环境上下文对象</h4><p>定义：一个管理相应作用域中数据的对象；有全局上下文对象，函数上下文对象</p>
 <ul>
-<li>必须申请连续的储存空间</li>
-<li>在开头以及中间插入数据要进行大量的位移</li>
+<li><p>全局上下文对象是window，不会被回收，除非关闭标签</p>
+</li>
+<li><p>函数上下文对象是运行时动态创立的，运行结束时回收；执行几次创建几次，每次创建数据都是新的，产生多个内存地址，每个内存地址里都有一份数据。</p>
+</li>
 </ul>
-<p>链表可以很好的解决这两个问题。链表可以充分利用计算机储存空间，并且在插入和删除数据的时候要方便一些，不用移动元素（寻找插入位置时要费劲些，但是比移动元素开销少）时间复杂度可以达到o(1)</p>
-<p><strong>2，链表也有它的缺点:</strong></p>
-<ul>
-<li><p>访问查询时总得从头开始访问</p>
-</li>
-<li><p>无法通过下标直接访问元素，要遍历判断循环找。</p>
-</li>
-<li><p>链表有带头结点与不带头指针两种。今后自己统以用带头指针的</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">LinkedList</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">Node</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.data = data</span><br><span class="line">    <span class="keyword">this</span>.next = <span class="literal">null</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//属性：头指针，当前指针，长度</span></span><br><span class="line">  <span class="keyword">this</span>.header = <span class="literal">null</span></span><br><span class="line">  <span class="keyword">this</span>.length = <span class="number">0</span><span class="comment">//注意实时更新</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">//1,append追加方法，在尾部添加元素</span></span><br><span class="line">  LinkedList.prototype.append = <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> newNode = <span class="keyword">new</span> Node(data)</span><br><span class="line">    <span class="comment">//是第一个元素，直接修改头指针</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.length===<span class="number">0</span>) &#123;<span class="comment">//if (this.header===null)</span></span><br><span class="line">      <span class="keyword">this</span>.header = newNode</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">let</span> current = <span class="keyword">this</span>.header</span><br><span class="line">      <span class="comment">//不是第一个元素，循环找到最后一个节点</span></span><br><span class="line">      <span class="keyword">while</span> (current.next)&#123;<span class="comment">//直到他的next为空，就是最后一个</span></span><br><span class="line">        current = current.next</span><br><span class="line">      &#125;</span><br><span class="line">      current.next = newNode</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//更新长度</span></span><br><span class="line">    <span class="keyword">this</span>.length++</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//2,insert在指定位置添加元素</span></span><br><span class="line">  LinkedList.prototype.insert = <span class="function"><span class="keyword">function</span>(<span class="params">position,data</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//边界判断</span></span><br><span class="line">    <span class="keyword">if</span>(position&lt;<span class="number">0</span>||position&gt;<span class="keyword">this</span>.length)&#123;<span class="comment">//可以等于</span></span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> newNode = <span class="keyword">new</span> Node(data)</span><br><span class="line">    <span class="keyword">let</span> current = <span class="keyword">this</span>.header</span><br><span class="line">    <span class="comment">//在头部添加</span></span><br><span class="line">    <span class="keyword">if</span>(position===<span class="number">0</span>)&#123;</span><br><span class="line">      newNode.next=<span class="keyword">this</span>.header</span><br><span class="line">      <span class="keyword">this</span>.header=newNode</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">//不是在头部,所以i从1开始</span></span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">let</span> i=<span class="number">1</span>;i&lt;position;i++)&#123;</span><br><span class="line">        current = current.next</span><br><span class="line">      &#125;</span><br><span class="line">      newNode.next = current.next</span><br><span class="line">      current.next = newNode </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.length++<span class="comment">//更新长度</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//3，将链表转换为字符串返回</span></span><br><span class="line">  LinkedList.prototype.toString = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> current = <span class="keyword">this</span>.header</span><br><span class="line">    <span class="keyword">let</span> listString = <span class="string">""</span></span><br><span class="line">    <span class="comment">//循环获取节点</span></span><br><span class="line">    <span class="keyword">while</span> (current)&#123;</span><br><span class="line">      listString+=current.data+<span class="string">" "</span></span><br><span class="line">      current=current.next</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> listString</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">  <span class="comment">//4，获取指定下标的元素</span></span><br><span class="line">  LinkedList.prototype.get = <span class="function"><span class="keyword">function</span>(<span class="params">index</span>)</span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(index&lt;<span class="number">0</span>||index&gt;=<span class="keyword">this</span>.length)&#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">let</span> current = <span class="keyword">this</span>.header</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;index;i++)&#123;</span><br><span class="line">          current=current.next</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> current.data</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//5，获取元素的索引</span></span><br><span class="line">  LinkedList.prototype.indexOf = <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> current = <span class="keyword">this</span>.header</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> index=<span class="number">0</span>;index&lt;<span class="keyword">this</span>.length;index++)&#123;</span><br><span class="line">      <span class="keyword">if</span>(current.data===data)&#123;</span><br><span class="line">        <span class="keyword">return</span> index</span><br><span class="line">      &#125;</span><br><span class="line">      current=current.next</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//6，删除指定位置的元素</span></span><br><span class="line">  LinkedList.prototype.removeAt = <span class="function"><span class="keyword">function</span>(<span class="params">position</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//越界判断多次会用到，可以抽离出来成一个函数</span></span><br><span class="line">    <span class="keyword">if</span>(position&lt;<span class="number">0</span>||position&gt;=<span class="keyword">this</span>.length)&#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">      &#125;</span><br><span class="line">    <span class="keyword">let</span> current = <span class="keyword">this</span>.header</span><br><span class="line">    <span class="keyword">let</span> previous = <span class="literal">null</span></span><br><span class="line">    <span class="keyword">if</span>(position===<span class="number">0</span>)&#123;</span><br><span class="line">      <span class="keyword">this</span>.header=current.next</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;position;i++)&#123;</span><br><span class="line">        previous = current</span><br><span class="line">        current=current.next</span><br><span class="line">      &#125;</span><br><span class="line">      previous.next=current.next</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.length--</span><br><span class="line">    <span class="keyword">return</span> current.data</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line">  </span><br><span class="line"><span class="comment">//测试</span></span><br><span class="line"><span class="keyword">let</span> list=<span class="keyword">new</span> LinkedList()</span><br><span class="line">list.append(<span class="string">'abc'</span>)</span><br><span class="line">list.append(<span class="string">'cba'</span>)</span><br><span class="line">list.append(<span class="string">'nba'</span>)</span><br><span class="line">list.insert(<span class="number">3</span>,<span class="string">'swk'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(list)</span><br><span class="line"><span class="built_in">console</span>.log(list.toString())<span class="comment">//abc cba nba swk</span></span><br><span class="line"><span class="built_in">console</span>.log(list.get(<span class="number">3</span>))<span class="comment">//swk</span></span><br><span class="line"><span class="built_in">console</span>.log(list.indexOf(<span class="string">'swk'</span>))<span class="comment">//3</span></span><br><span class="line">list.removeAt(<span class="number">2</span>)</span><br><span class="line"><span class="built_in">console</span>.log(list.toString())<span class="comment">//abc cba swk</span></span><br></pre></td></tr></table></figure>
+<p>作用域涵盖了上下文对象，上下文对象在作用域里活动。</p>
+<h4 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h4><p><strong>声明：</strong>嵌套函数，内部函数<strong>引用</strong>外部函数变量（内部更新数据后返回给外部）。</p>
+<p><strong>原理：</strong>每次外部函数执行的时，外部函数都会创建一个新的环境，这个环境的引用地址是不同，都会重新创建一个新的地址，里面的数据也是全新的。但是如果当前外部环境中有<strong>被内部函数引用的数据</strong>，那么这个时候，外部环境不会被回收；这个数据不删除，会被保留一根指针给内部活动对象。</p>
+<p>​        简单说内部改变数据并返回给外部函数，让外部函数保存这个数据，并且外部环境不被回收。(利用了垃圾回收的引用规则)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> n=<span class="number">1</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(++n)<span class="comment">//因为外面没有更新这个++n</span></span><br><span class="line">    &#125;</span><br><span class="line">    sum()</span><br><span class="line">&#125;</span><br><span class="line">f1()<span class="comment">//2</span></span><br><span class="line">f1()<span class="comment">//2</span></span><br><span class="line">f1()<span class="comment">//2</span></span><br><span class="line"><span class="comment">//每次调用f1，创建一个性的上下文对象数据都是新的，n总是1.</span></span><br></pre></td></tr></table></figure>
 
+<p>那么如何延长函数上下文的生存周期呢？</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f2</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> n=<span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params"></span>)</span>&#123;<span class="comment">//1，这个return就把里面的数据传递了出去，更新了外部的++n，引用类型会更新数据。2，除此之外也可以用this来建立这个引用关系。this.sum=function()&#123;console.log(++n)&#125;,也行，这称为构造函数的闭包</span></span><br><span class="line">        <span class="built_in">console</span>.log(++n)</span><br><span class="line">    &#125;</span><br><span class="line">    sum()<span class="comment">//这句这里有没有都不影响</span></span><br><span class="line">&#125;</span><br><span class="line">f2()<span class="comment">//无输出，因为还没到sum()调用，sum就被返回了</span></span><br><span class="line"></span><br><span class="line">f2()()<span class="comment">//2</span></span><br><span class="line">f2()()<span class="comment">//2</span></span><br><span class="line">f2()()<span class="comment">//2//相当于每次都开了一个新环境，这种方法没有利用到闭包</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> a=f2()<span class="comment">//不让外部函数每次都重新建立，这部是关键</span></span><br><span class="line">a()<span class="comment">//2</span></span><br><span class="line">a()<span class="comment">//3</span></span><br><span class="line">a()<span class="comment">//4//因为a这个环境是一开始创好的不会每次都创建新的，利用到了闭包</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>关键就是外部环境中的变量被引用（更新），从而使得让外部环境保留</strong></p>
+<p>1，这个return就把里面的数据传递了出去，更新了外部的++n，引用类型会更新数据。返回了这个函数，而这个函数还在使用这个外部变量，所以外部环境不会被删除。常驻内存了。</p>
+<p>2，除此之外也可以用this来建立这个引用关系。this.sum=function(){console.log(++n)},也行，这是构造函数的闭包</p>
+<p>闭包的小应用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr=[<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">9</span>,<span class="number">10</span>,<span class="number">25</span>,<span class="number">56</span>]</span><br><span class="line"><span class="keyword">let</span> arr2=arr.filter(<span class="function">(<span class="params">value</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> value&gt;<span class="number">3</span>&amp;&amp;value&lt;<span class="number">56</span><span class="comment">//那我们每次如果要修改区间还要改这个数字，抽离函数封装起来</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(arr2)<span class="comment">//[5, 7, 9, 10, 25]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//封装函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">between</span>(<span class="params">a,b</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">v</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> v&gt;a&amp;&amp;v&lt;b</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//return (v)=&gt; v&gt;a&amp;&amp;v&lt;b这是简写，不方便理解闭包 </span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//filter调用，filter会自动把value传给参数v</span></span><br><span class="line"><span class="keyword">let</span> arr3=arr.filter(between(<span class="number">3</span>,<span class="number">25</span>))</span><br><span class="line"><span class="built_in">console</span>.log(arr3)<span class="comment">////[5, 7, 9, 10, 25]</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> lessons = [</span><br><span class="line">      &#123;<span class="attr">title</span>: <span class="string">"媒体查询响应式布局"</span>,<span class="attr">click</span>: <span class="number">89</span>,<span class="attr">price</span>: <span class="number">12</span>&#125;,</span><br><span class="line">      &#123;<span class="attr">title</span>: <span class="string">"FLEX 弹性盒模型"</span>,<span class="attr">click</span>: <span class="number">45</span>,<span class="attr">price</span>: <span class="number">120</span>&#125;,</span><br><span class="line">      &#123;<span class="attr">title</span>: <span class="string">"GRID 栅格系统"</span>,<span class="attr">click</span>: <span class="number">19</span>,<span class="attr">price</span>: <span class="number">67</span>&#125;,</span><br><span class="line">      &#123;<span class="attr">title</span>: <span class="string">"盒子模型详解"</span>,<span class="attr">click</span>: <span class="number">29</span>, <span class="attr">price</span>: <span class="number">300</span>&#125;</span><br><span class="line">    ];</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">order</span>(<span class="params">field</span>)</span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a[field]&gt;b[field]?<span class="number">1</span>:<span class="number">-1</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.table(lessons.sort(order(<span class="string">"click"</span>)))<span class="comment">//属性名是字符串。</span></span><br><span class="line">    <span class="built_in">console</span>.table(lessons.sort(order(<span class="string">"price"</span>)))</span><br><span class="line"><span class="comment">//自定义函数抽离与sort，filter等函数联合使用。</span></span><br><span class="line"><span class="comment">//抽离，然后sort调用</span></span><br></pre></td></tr></table></figure>
+
+<p>函数利用到其他函数的数据。</p>
+<h5 id="闭包的问题：内存泄露，优化手段就是定义新的变量来只保留想要信息，获取完后及时去掉不需要的变量内存。"><a href="#闭包的问题：内存泄露，优化手段就是定义新的变量来只保留想要信息，获取完后及时去掉不需要的变量内存。" class="headerlink" title="闭包的问题：内存泄露，优化手段就是定义新的变量来只保留想要信息，获取完后及时去掉不需要的变量内存。"></a>闭包的问题：内存泄露，优化手段就是定义新的变量来只保留想要信息，获取完后及时去掉不需要的变量内存。</h5><h5 id="在闭包里要非常关注this的指向，因为闭包可以向上获取信息，但是一般this是不会向上寻找的。所以闭包里最好用箭头函数。"><a href="#在闭包里要非常关注this的指向，因为闭包可以向上获取信息，但是一般this是不会向上寻找的。所以闭包里最好用箭头函数。" class="headerlink" title="在闭包里要非常关注this的指向，因为闭包可以向上获取信息，但是一般this是不会向上寻找的。所以闭包里最好用箭头函数。"></a>在闭包里要非常关注this的指向，因为闭包可以向上获取信息，但是一般this是不会向上寻找的。所以闭包里最好用箭头函数。</h5>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JavaScripe查漏补缺</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/17/JS%E7%8E%AF%E5%A2%83%E3%80%81%E4%BD%9C%E7%94%A8%E5%9F%9F%E4%B8%8E%E9%97%AD%E5%8C%85/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-JS递归与循环" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/17/JS%E9%80%92%E5%BD%92%E4%B8%8E%E5%BE%AA%E7%8E%AF/">JS递归与循环</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/17/JS%E9%80%92%E5%BD%92%E4%B8%8E%E5%BE%AA%E7%8E%AF/" class="archive-article-date">
+  	<time datetime="2020-06-17T04:03:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h4><p><strong>重复做一件事，在合适的时候返回即可</strong>。<strong>递归的关键在于终止条件的判断</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//递归实现阶乘，形式和判断很简单但是运行效率慢</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">jiechen1</span>(<span class="params">num</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(num===<span class="number">0</span>) <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span>(num===<span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="comment">//return num*jiechen(num--)//此处num--会导致报错，因为num--的话取得还是num，没有进入下一步</span></span><br><span class="line">    <span class="keyword">return</span> num*jiechen1(num<span class="number">-1</span>)<span class="comment">//必须是n-1，或者--n</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//循环实现阶乘,形式和判断要复杂些但是运行效率快</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">jiechen2</span>(<span class="params">num</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(num===<span class="number">0</span>) <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span>(num===<span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">let</span> result=<span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">2</span>;i&lt;=num;i++)&#123;</span><br><span class="line">        result=result*i</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(jiechen1(<span class="number">4</span>))<span class="comment">//24</span></span><br><span class="line"><span class="built_in">console</span>.log(jiechen2(<span class="number">5</span>))<span class="comment">//120</span></span><br></pre></td></tr></table></figure>
+
+<p>递归函数内顺序</p>
+<p>1，停止条件</p>
+<p>2，执行体代码</p>
+<p>3，递归调用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//以打印倒三角为例子</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">star</span>(<span class="params">num</span>)</span>&#123;</span><br><span class="line">	<span class="comment">//1，停止条件</span></span><br><span class="line">    <span class="keyword">if</span>(num===<span class="number">0</span>) <span class="keyword">return</span> <span class="string">" "</span></span><br><span class="line">	<span class="comment">//2，执行体代码</span></span><br><span class="line">    <span class="built_in">document</span>.write(<span class="string">"*"</span>.repeat(num)+<span class="string">"&lt;br/&gt;"</span>)<span class="comment">//html换行标签&lt;br/&gt;</span></span><br><span class="line">	<span class="comment">//3，递归调用</span></span><br><span class="line">    star(--num) </span><br><span class="line">&#125;</span><br><span class="line">star(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JavaScripe查漏补缺</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/17/JS%E9%80%92%E5%BD%92%E4%B8%8E%E5%BE%AA%E7%8E%AF/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-数据结构与算法-哈希表一" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/16/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E5%93%88%E5%B8%8C%E8%A1%A8%E4%B8%80/">数据结构与算法-哈希表一</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/16/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E5%93%88%E5%B8%8C%E8%A1%A8%E4%B8%80/" class="archive-article-date">
+  	<time datetime="2020-06-16T12:06:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h4><p>搞懂哈希表到底如何实现的。理论知识较多，实现并不难。哈希表是基于数组实现的，但是相对与数组有以下优势</p>
+<p>优势</p>
+<ul>
+<li>可以提供快速的<strong>插入，删除，查找</strong>操作。</li>
+<li>无论数据量为多少，<strong>插入与删除</strong>的时间复杂度都接近o(1)</li>
+<li>速度比树还要快，<strong>可以很快的查找</strong>。</li>
+<li>编码难度比树简单</li>
+</ul>
+<p>不足之处</p>
+<ul>
+<li>由于内部是无序数据，所以<strong>无法以一种固定方式遍历元素。</strong></li>
+<li>哈希表的<strong>key值不允许重复</strong></li>
+</ul>
+<h4 id="哈希函数"><a href="#哈希函数" class="headerlink" title="哈希函数"></a>哈希函数</h4><p>哈希表对下标值会做一种变换，这个变换规则称之为哈希函数，通过哈希函数获取到哈希码，HashCode，一一对应。</p>
+<p>第一次看hash表的时候没有深入了解这个东西。</p>
+<p>目标：1，<strong>将字符串转为大的数字hashcode</strong>；2，<strong>将大的数字hashcode压缩到数组范围内index</strong></p>
+<ul>
+<li>直接相加，不能保证数字的唯一性。</li>
+<li>幂的连乘，基本可以保证数字的唯一性，但是产生的下标会过大，导致数组过大，元素分布不均匀。</li>
+</ul>
+<p>优秀的哈希函数应当由以下优点</p>
+<ul>
+<li>计算简单（尽量避免乘除法，提高计算速度）</li>
+<li>输出均匀（减小探测步长与次数）</li>
+</ul>
+<p><strong>多项式计算，再利用秦九韶算法。</strong>使用质数当作底数，</p>
+<p>哈希化：是把任意长度的输入通过<strong>散列算法（哈希函数）</strong>变换成固定长度的输出，该输出就是<strong>散列值（哈希值）</strong>。这种转换是一种<strong>压缩映射</strong>，也就是，散列值的空间通常远小于输入的空间，不同的输入可能会散列成相同的输出，所以不可能从散列值来确定唯一的输入值。简单的说就是一种<strong>将任意长度的消息压缩到某一固定长度的消息摘要的函数。</strong></p>
+<p>哈希化后的下标依然可能重复，所以要处理冲突。</p>
+<p><strong>实现一个hash函数</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//哈希函数1，将字符串转为较大的数字；2，将大的数字压缩到数组范围内</span></span><br><span class="line">   <span class="function"><span class="keyword">function</span> <span class="title">hashFunc</span>(<span class="params">str,size</span>)</span>&#123;</span><br><span class="line">       <span class="comment">//1,定义hashcode变量</span></span><br><span class="line">       <span class="keyword">let</span> hashcode=<span class="number">0</span></span><br><span class="line">       <span class="comment">//2，秦九韶算法计算hashcode</span></span><br><span class="line">       <span class="comment">//cats-unicodeb编码</span></span><br><span class="line">       <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;str.length;i++)&#123;</span><br><span class="line">           hashcode=hashcode*<span class="number">37</span>+str.charCodeAt(i)</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="comment">//3,取余操作</span></span><br><span class="line">       <span class="keyword">let</span> index=hashcode%size</span><br><span class="line">       <span class="keyword">return</span> index</span><br><span class="line">       </span><br><span class="line">   &#125;</span><br><span class="line">   <span class="built_in">console</span>.log(hashFunc(<span class="string">'abc'</span>,<span class="number">7</span>))<span class="comment">//4</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="冲突的处理方法"><a href="#冲突的处理方法" class="headerlink" title="冲突的处理方法"></a>冲突的处理方法</h4><ul>
+<li><p><strong>1，链地址法</strong></p>
+</li>
+<li><p>在数组的下标位置放一个链表，每个数组单元不再放单个数据，而是一个链条（或者数组）。先通过下标取到位置，再通过位置<strong>遍历</strong>链表。</p>
+</li>
+<li><p><strong>2，开放地址法</strong></p>
+<ul>
+<li><p>寻找空白的单元格添加重复数据，寻找方法又有线性探测、二次探测法和再哈希法。<strong>如何确定探测步长。</strong></p>
+<ul>
+<li><p>线性探测法步长为1，线性探测法存在的问题是在表里还没有任何数据的时候，插入连续的元素会<strong>造成聚集</strong>，这会影响性能。</p>
+</li>
+<li><p>二次探测法可以解决聚集的问题，优化探测步长，一次性探测较长的步长就避开了聚集问题。</p>
+</li>
+<li><p>再哈希法，产生依赖于关键字的探测方法，多次使用哈希函数，第二次的哈希数作为步长。第二次哈希函数不能与第一次哈希函数相同，且输出结果不能为零。stepsize=const-(key%const),const是一个小于数组容量的质数。</p>
 </li>
 </ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="哈希化的效率"><a href="#哈希化的效率" class="headerlink" title="哈希化的效率"></a>哈希化的效率</h4><p>1，没有冲突的时候，效率是最高的</p>
+<p>2，如果发生冲突，那么与效率依赖于探测长度</p>
+<p>3，探测长度和平均存储事件又取决于填充因子。</p>
+<p>填充因子的概念：已有数据量/哈希表长度</p>
+<p>开发地址法的填充因子最大为1；而链地址法的填充因子可以远超过1。</p>
+<p>填充因子越大、空间利用率越高、查询效率越低。</p>
+<p><strong>链地址法的时间复杂度与填充因子是线性的，而开放地址法的时间复杂度与填充因子是指数关系的。所以使用链地址法多一些。</strong></p>
+<p><strong>封装哈希表(链地址法实现)</strong>，<strong>二维数组，无扩容版本</strong>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">HashTable</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//数组里放桶，桶里放数据，数组也以数组描述，0放key，1放value</span></span><br><span class="line">    <span class="comment">//this.storage-bucket-data</span></span><br><span class="line">    <span class="comment">//1,属性</span></span><br><span class="line">    <span class="keyword">this</span>.storage=[]<span class="comment">//数组存放数据</span></span><br><span class="line">    <span class="keyword">this</span>.count=<span class="number">0</span><span class="comment">//已存数据量</span></span><br><span class="line">    <span class="keyword">this</span>.limit=<span class="number">7</span><span class="comment">//当前数组长度，设置初始长度为7</span></span><br><span class="line">    <span class="comment">//2，哈希函数</span></span><br><span class="line">    HashTable.prototype.hashFunc=<span class="function"><span class="keyword">function</span> (<span class="params">str,size</span>)</span>&#123;</span><br><span class="line">        <span class="comment">//1,定义hashcode变量</span></span><br><span class="line">        <span class="keyword">let</span> hashcode=<span class="number">0</span></span><br><span class="line">        <span class="comment">//2，秦九韶算法计算hashcode</span></span><br><span class="line">        <span class="comment">//cats-unicodeb编码</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;str.length;i++)&#123;</span><br><span class="line">            hashcode=hashcode*<span class="number">37</span>+str.charCodeAt(i)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//3,取余操作</span></span><br><span class="line">        <span class="keyword">let</span> index=hashcode%size</span><br><span class="line">        <span class="keyword">return</span> index</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//方法</span></span><br><span class="line">    <span class="comment">//1，插入与修改操作;第一步：根据key获取index；第二步：根据index获取位置里的数组(链表),如果该数组不存在就创建该数组。第三步：判断是新增还是修改，如果key存在就进行修改；key不存在就进行添加。</span></span><br><span class="line">    HashTable.prototype.put=<span class="function"><span class="keyword">function</span>(<span class="params">key,value</span>)</span>&#123;</span><br><span class="line">        <span class="comment">//获取index</span></span><br><span class="line">        <span class="keyword">let</span> index = <span class="keyword">this</span>.hashFunc(key,<span class="keyword">this</span>.limit)</span><br><span class="line">        <span class="comment">//取出bucket</span></span><br><span class="line">        <span class="keyword">let</span> bucket=<span class="keyword">this</span>.storage[index]</span><br><span class="line">        <span class="comment">//判断bucket是否存在</span></span><br><span class="line">        <span class="keyword">if</span>(!bucket)&#123;<span class="comment">//类型之间的判断用双等号if(bucket==null),用三等号这里报错</span></span><br><span class="line">            bucket=[]<span class="comment">//创建数组</span></span><br><span class="line">            <span class="keyword">this</span>.storage[index]=bucket<span class="comment">//将创建的空数组放入原数组</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//判断添加还是修改</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;bucket.length;i++)&#123;<span class="comment">//遍历数组里的元素进行比较，进行修改</span></span><br><span class="line">            <span class="keyword">let</span> data=bucket[i]</span><br><span class="line">            <span class="keyword">if</span>(data[<span class="number">0</span>]===key)&#123;<span class="comment">//每个元素又有两个部分</span></span><br><span class="line">                data[<span class="number">1</span>]=value</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//循环结束无符合条件，进行添加,修改的话数据量不变，添加数据量加1</span></span><br><span class="line">       bucket.push([key,value])<span class="comment">//存放格式</span></span><br><span class="line">       <span class="keyword">this</span>.count++</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//2，获取方法</span></span><br><span class="line">    HashTable.prototype.get=<span class="function"><span class="keyword">function</span>(<span class="params">key</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">let</span> index=<span class="keyword">this</span>.hashFunc(key,<span class="keyword">this</span>.limit)</span><br><span class="line">        <span class="keyword">let</span> bucket=<span class="keyword">this</span>.storage[index]<span class="comment">//获取bucket</span></span><br><span class="line">        <span class="keyword">if</span>(!bucket) <span class="keyword">return</span> <span class="literal">null</span><span class="comment">//bucket为空，值不存在</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;bucket.length;i++)&#123;</span><br><span class="line">            <span class="keyword">let</span> data=bucket[i]</span><br><span class="line">            <span class="keyword">if</span>(data[<span class="number">0</span>]===key) <span class="keyword">return</span> data[<span class="number">1</span>]<span class="comment">//返回值</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//3，删除操作，调用数组删除操作splice()</span></span><br><span class="line">    HashTable.prototype.remove=<span class="function"><span class="keyword">function</span>(<span class="params">key</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">let</span> index=<span class="keyword">this</span>.hashFunc(key,<span class="keyword">this</span>.limit)</span><br><span class="line">        <span class="keyword">let</span> bucket=<span class="keyword">this</span>.storage[index]<span class="comment">//获取bucket</span></span><br><span class="line">        <span class="keyword">if</span>(!bucket) <span class="keyword">return</span> <span class="literal">null</span><span class="comment">//bucket为空，值不存在</span></span><br><span class="line">        <span class="comment">//判断删除</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;bucket.length;i++)&#123;</span><br><span class="line">            <span class="keyword">let</span> data=bucket[i]</span><br><span class="line">            <span class="keyword">if</span>(data[<span class="number">0</span>]===key) &#123;</span><br><span class="line">                bucket.splice(i,<span class="number">1</span>)<span class="comment">//从i开始删除1个</span></span><br><span class="line">                <span class="keyword">this</span>.count--</span><br><span class="line">                <span class="keyword">return</span> data[<span class="number">1</span>]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//遍历结束没有找到</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//4，判断是否为空</span></span><br><span class="line">    HashTable.prototype.isEmpty=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.count===<span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//5,获取个数</span></span><br><span class="line">    HashTable.prototype.size=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.count</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//测试</span></span><br><span class="line"><span class="keyword">let</span> hash1=<span class="keyword">new</span> HashTable()</span><br><span class="line"><span class="comment">//添加</span></span><br><span class="line">hash1.put(<span class="string">"abc"</span>,<span class="number">1</span>)</span><br><span class="line">hash1.put(<span class="string">"cba"</span>,<span class="number">2</span>)</span><br><span class="line">hash1.put(<span class="string">"nba"</span>,<span class="number">3</span>)</span><br><span class="line"><span class="comment">//获取</span></span><br><span class="line"><span class="built_in">console</span>.log(hash1.get(<span class="string">"abc"</span>))<span class="comment">//1</span></span><br><span class="line"><span class="comment">//修改</span></span><br><span class="line">hash1.put(<span class="string">"abc"</span>,<span class="number">111</span>)</span><br><span class="line"><span class="built_in">console</span>.log(hash1.get(<span class="string">"abc"</span>))<span class="comment">//111</span></span><br><span class="line"><span class="comment">//删除</span></span><br><span class="line">hash1.remove(<span class="string">"abc"</span>)</span><br><span class="line"><span class="built_in">console</span>.log(hash1.get(<span class="string">"abc"</span>))<span class="comment">//undefined</span></span><br><span class="line"><span class="built_in">console</span>.log(hash1.size())<span class="comment">//2</span></span><br></pre></td></tr></table></figure>
+
 
       
 
@@ -216,182 +444,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E5%8D%95%E5%90%91%E9%93%BE%E8%A1%A8/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-JS日期相关" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/12/JS%E6%97%A5%E6%9C%9F%E7%9B%B8%E5%85%B3/">JS日期相关</a>
-    </h1>
-  
-
-        
-        <a href="/2020/06/12/JS%E6%97%A5%E6%9C%9F%E7%9B%B8%E5%85%B3/" class="archive-article-date">
-  	<time datetime="2020-06-12T09:08:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="1，时间与时间戳获取"><a href="#1，时间与时间戳获取" class="headerlink" title="1，时间与时间戳获取"></a>1，时间与时间戳获取</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> date = <span class="keyword">new</span>  <span class="built_in">Date</span>()<span class="comment">//可传参，不传参就是当前时间</span></span><br><span class="line">    <span class="built_in">console</span>.log(date);<span class="comment">//date为对象</span></span><br><span class="line">	<span class="built_in">console</span>.log(date.getFullYearh())</span><br><span class="line">    <span class="built_in">console</span>.log(date.getMonth()+<span class="number">1</span>)</span><br><span class="line">	<span class="built_in">console</span>.log(date.getDate())</span><br><span class="line">	<span class="built_in">console</span>.log(date.getHours())</span><br><span class="line">	<span class="built_in">console</span>.log(date.getMinutes())</span><br><span class="line">	<span class="built_in">console</span>.log(date.getSeconds())</span><br><span class="line">	<span class="built_in">console</span>.log(date*<span class="number">1</span>)<span class="comment">//返回时间戳，可以用来计算运行时间</span></span><br><span class="line"><span class="comment">//可以封装一个函数使用模板字符串输出格式化的日期</span></span><br><span class="line"><span class="keyword">let</span>  date2 = <span class="built_in">Date</span>()</span><br><span class="line">    <span class="built_in">console</span>.log(date2);<span class="comment">//date2为字符串</span></span><br><span class="line">    <span class="built_in">console</span>.log(date2*<span class="number">1</span>)<span class="comment">//返回NaN</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//标签配合使用</span></span><br><span class="line"><span class="built_in">console</span>.time(<span class="string">"for"</span>)</span><br><span class="line"><span class="built_in">console</span>.timeEnd(<span class="string">"for"</span>)</span><br></pre></td></tr></table></figure>
-
-<h4 id="2，时间与时间戳的相互转换"><a href="#2，时间与时间戳的相互转换" class="headerlink" title="2，时间与时间戳的相互转换"></a>2，时间与时间戳的相互转换</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//时间-&gt;时间戳</span></span><br><span class="line"><span class="built_in">console</span>.log(date.valueOf())</span><br><span class="line"><span class="built_in">console</span>.log(date*<span class="number">1</span>)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Number</span>(date))</span><br><span class="line"><span class="built_in">console</span>.log(date.getTime())</span><br><span class="line"></span><br><span class="line">timestamp = date*<span class="number">1</span></span><br><span class="line"><span class="comment">//时间戳-&gt;时间</span></span><br><span class="line">date3 = <span class="keyword">new</span> <span class="built_in">Date</span>(timestamp)</span><br></pre></td></tr></table></figure>
-
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JavaScripe查漏补缺</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/12/JS%E6%97%A5%E6%9C%9F%E7%9B%B8%E5%85%B3/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-JS基本类型的类型转换" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/12/JS%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E7%9A%84%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/">JS基本类型的类型转换</a>
-    </h1>
-  
-
-        
-        <a href="/2020/06/12/JS%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E7%9A%84%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" class="archive-article-date">
-  	<time datetime="2020-06-12T08:16:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="1，数值类型基本转换"><a href="#1，数值类型基本转换" class="headerlink" title="1，数值类型基本转换"></a>1，数值类型基本转换</h4><ul>
-<li><p>NaN指不是一个数字，NaN不能互相比较（NaN==NaN无结果）</p>
-<ul>
-<li>使用<code>Number.isNaN()</code>判断</li>
-<li>使用<code>Object.is(2/&quot;1&quot;, NaN)</code>判断</li>
-</ul>
-</li>
-<li><p><code>toString()</code></p>
-</li>
-<li><p><code>Number()</code>，一般从键盘获取的都是字符串要先转换。或者用parseInteresting()</p>
-</li>
-</ul>
-<h4 id="2，布尔值隐式转换"><a href="#2，布尔值隐式转换" class="headerlink" title="2，布尔值隐式转换"></a>2，布尔值隐式转换</h4><ul>
-<li><p>数值类型除了0，都为真</p>
-</li>
-<li><p>字符串类型除了空串，都为真</p>
-</li>
-<li><p>引用类型永远为真（不管对象或者数组是不是空）</p>
-</li>
-</ul>
-<h4 id="3-数学方法"><a href="#3-数学方法" class="headerlink" title="3, 数学方法"></a>3, 数学方法</h4><p>Math.max/min/ceil/floor/round/random</p>
-<p>最大，最小，向上取整，取整，四舍五入，随机数区间为（0，1）。</p>
-<p><strong>初见apply数组传参的优点</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">grade &#x3D; [119,64,69,138]</span><br><span class="line">console.log(Math.max(grade))&#x2F;&#x2F;报错，因为Math.max()只支持多参数传参，不支持数组</span><br><span class="line">console.log(Math.max.apply(null,grade))&#x2F;&#x2F;apply可以以数组传参数</span><br></pre></td></tr></table></figure>
-
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JavaScripe查漏补缺</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/12/JS%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E7%9A%84%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/06/16/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E5%93%88%E5%B8%8C%E8%A1%A8%E4%B8%80/">展开全文 >></a>
         </p>
       
 
@@ -423,7 +476,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/3/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/5/">下一页</a>
+      <a class="extend prev" rel="prev" href="/page/3/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/5/">下一页</a>
     </nav>
   
 
@@ -553,6 +606,30 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">博客搭载</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Map类型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">深浅拷贝</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">访问控制器set，get</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Symbol类型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">substring(),slice(),substr()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Set类型</a>
               </li>
             
             <div class="clearfix"></div>

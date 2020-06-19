@@ -156,41 +156,41 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-JS数组三" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-JS对象的创建方式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/13/JS%E6%95%B0%E7%BB%84%E4%B8%89/">JS数组三</a>
+      <a class="article-title" href="/2020/06/18/JS%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%9B%E5%BB%BA%E6%96%B9%E5%BC%8F/">对象的创建方式</a>
     </h1>
   
 
         
-        <a href="/2020/06/13/JS%E6%95%B0%E7%BB%84%E4%B8%89/" class="archive-article-date">
-  	<time datetime="2020-06-13T09:43:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-13</time>
+        <a href="/2020/06/18/JS%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%9B%E5%BB%BA%E6%96%B9%E5%BC%8F/" class="archive-article-date">
+  	<time datetime="2020-06-18T07:15:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-18</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="关于sort-方法"><a href="#关于sort-方法" class="headerlink" title="关于sort()方法"></a>关于sort()方法</h4><ul>
-<li>接受的是一个函数，返回排序后的<strong>数组</strong></li>
+        <h3 id="对象的创建方式"><a href="#对象的创建方式" class="headerlink" title="对象的创建方式"></a>对象的创建方式</h3><h4 id="1，字面量模式"><a href="#1，字面量模式" class="headerlink" title="1，字面量模式"></a>1，字面量模式</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj=&#123;<span class="attr">name</span>:<span class="string">"zbb"</span>,<span class="attr">show</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="keyword">this</span>.name)&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2，工厂函数-没有用关键字new"><a href="#2，工厂函数-没有用关键字new" class="headerlink" title="2，工厂函数(没有用关键字new)"></a>2，工厂函数(没有用关键字new)</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">user</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;name,<span class="attr">show</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="keyword">this</span>.name)&#125;&#125;<span class="comment">//返回对象</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> obj = user(<span class="string">"zbb"</span>)</span><br></pre></td></tr></table></figure>
+
+<h4 id="3，构造函数-使用关键字new"><a href="#3，构造函数-使用关键字new" class="headerlink" title="3，构造函数(使用关键字new)"></a>3，构造函数(使用关键字new)</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">User</span> (<span class="params">name</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name=name</span><br><span class="line">  <span class="keyword">this</span>.show=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="comment">//键值对给个匿名函数只在对象里才行</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">  &#125;</span><br><span class="line">   <span class="keyword">return</span> <span class="keyword">this</span><span class="comment">//this是设置完的对象</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> zbb=<span class="keyword">new</span> User(<span class="string">"zbb"</span>)</span><br><span class="line">zbb.show()<span class="comment">//zbb</span></span><br><span class="line"><span class="keyword">let</span> fun=zbb.show<span class="comment">//将方法赋值给变量后，fun变成普通函数</span></span><br><span class="line">fun()<span class="comment">//undefined；因为此时就不再是方法调用，而是普通函数，this变成了window</span></span><br></pre></td></tr></table></figure>
+
+<p>new共经过了4几个阶段</p>
+<ul>
+<li>1、创建一个空对象</li>
+<li>2、设置原型链</li>
+<li>3、让构造函数的this指向obj，并执行构造函数的函数体。</li>
+<li>4、判断的构造函数返回值类型，并返回对象：（为值得话，返回对象；如果是引用就是返回引用类型对象）</li>
 </ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr=[<span class="number">9</span>,<span class="number">5</span>,<span class="number">2</span>,<span class="number">7</span>]</span><br><span class="line"><span class="keyword">let</span> result = arr.sort(<span class="function"><span class="keyword">function</span> (<span class="params">a,b</span>) </span>&#123;</span><br><span class="line"><span class="comment">//return a-b//返回负数从小到大，[2, 5, 7, 9]</span></span><br><span class="line"><span class="comment">//return b-a//返回正数从大到小，[9, 7, 5, 2]</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(result)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr=[<span class="number">9</span>,<span class="number">5</span>,<span class="number">2</span>,<span class="number">7</span>]</span><br><span class="line"><span class="comment">//定义sort，冒泡实现，动态的（反复调用callback）</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sort</span>(<span class="params">arr,callback</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> n <span class="keyword">in</span> arr) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">const</span> m <span class="keyword">in</span> arr) &#123;</span><br><span class="line">        <span class="comment">//一个很奇怪的排序，单纯看返回值，每次都会调用</span></span><br><span class="line">      <span class="keyword">if</span> (callback(arr[n], arr[m]) &lt; <span class="number">0</span>) &#123;<span class="comment">//接受实参，返回一个数（正或者负）,这个callback会被反复调用，每次都判断</span></span><br><span class="line">        <span class="keyword">let</span> temp = arr[n]</span><br><span class="line">        arr[n] = arr[m]</span><br><span class="line">        arr[m] = temp</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> arr</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//调用sort</span></span><br><span class="line"><span class="keyword">let</span> result = sort(arr,<span class="function"><span class="keyword">function</span> (<span class="params">a,b</span>) </span>&#123;<span class="comment">//两个形参要在调用时接受实参</span></span><br><span class="line"> <span class="keyword">return</span> b-a</span><br><span class="line"> &#125;)</span><br><span class="line"><span class="built_in">console</span>.log(result)</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="关于reduce-方法"><a href="#关于reduce-方法" class="headerlink" title="关于reduce()方法"></a>关于reduce()方法</h4><p><code>reduce(callbacks(pre,cur,index,arr),init)</code>，它会存储上一次运行的结果作为下一次运行的第一个参数。pre一开始是第一个值，后面就是上次函数运行的结果，cur从第二个值开始。<strong>最终返回所有元素运行后的结果。</strong>可用作统计用途（统计器，累加器，最大值等等，<strong>利用其保存上一次运行结果的特点</strong>）</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">	<span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line">    <span class="keyword">let</span> res = arr.reduce(<span class="function">(<span class="params">pre, cur</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(pre)<span class="comment">//1,3,6,10,15,21</span></span><br><span class="line">        <span class="built_in">console</span>.log(cur)<span class="comment">//2,3,4,5,6</span></span><br><span class="line">        <span class="keyword">return</span> pre + cur</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="built_in">console</span>.log(res)<span class="comment">//21</span></span><br><span class="line">    <span class="keyword">let</span> res2=arr.reduce(<span class="function">(<span class="params">pre, cur</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(pre)<span class="comment">//0,1,3,6,10,15,21，pre有初始值后，pre和cur的位置都会前移</span></span><br><span class="line">        <span class="built_in">console</span>.log(cur)<span class="comment">//1,2,3,4,5,6</span></span><br><span class="line">        <span class="keyword">return</span> pre + cur</span><br><span class="line">    &#125;,<span class="number">0</span>)<span class="comment">//0是prev的初始值，如果这里是1，那么最后结果会变成22</span></span><br><span class="line">    <span class="built_in">console</span>.log(res2)<span class="comment">//21</span></span><br><span class="line">    </span><br><span class="line"> <span class="comment">//获取价格超过1万元商品的名称，当然filter更加方便。</span></span><br><span class="line"><span class="keyword">let</span> cart = [</span><br><span class="line">      &#123; <span class="attr">name</span>: <span class="string">"iphone"</span>, <span class="attr">price</span>: <span class="number">12000</span> &#125;,</span><br><span class="line">      &#123; <span class="attr">name</span>: <span class="string">"imac"</span>, <span class="attr">price</span>: <span class="number">25000</span> &#125;,</span><br><span class="line">      &#123; <span class="attr">name</span>: <span class="string">"ipad"</span>, <span class="attr">price</span>: <span class="number">3600</span> &#125;</span><br><span class="line">    ];</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">getNameByPrice</span>(<span class="params">goods, price</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> goods</span><br><span class="line">        .reduce(<span class="function"><span class="keyword">function</span>(<span class="params">arr, cur</span>) </span>&#123;</span><br><span class="line">          <span class="keyword">if</span> (cur.price &gt; price) arr.push(cur);</span><br><span class="line">          <span class="keyword">return</span> arr;</span><br><span class="line">        &#125;, [])<span class="comment">//令arr的初值为一个数组，初值的类型可以有很多种。</span></span><br><span class="line">        .map(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>) </span>&#123;</span><br><span class="line">          <span class="keyword">return</span> item.name;</span><br><span class="line">        &#125;);<span class="comment">//链式调用</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.table(getNameByPrice(cart, <span class="number">10000</span>));</span><br></pre></td></tr></table></figure>
-
-<p><strong>reduce非常好用，要多用!!!!!!!!!!!</strong></p>
-<p><strong>includes与reduce联合使用在去重的时候很常用。</strong></p>
-
+<p>注意：这种方法的创建对象，那么<strong>方法在每个对象里都有一份，有点浪费空间。</strong></p>
+<h4 id="4，构造函数-原型"><a href="#4，构造函数-原型" class="headerlink" title="4，构造函数+原型"></a>4，构造函数+原型</h4>
       
 
       
@@ -205,10 +205,6 @@
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JavaScripe查漏补缺</a>
         		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">sort(),reduce()</a>
-        		</li>
       		
 		</ul>
 	</div>
@@ -217,7 +213,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/13/JS%E6%95%B0%E7%BB%84%E4%B8%89/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/06/18/JS%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%9B%E5%BB%BA%E6%96%B9%E5%BC%8F/">展开全文 >></a>
         </p>
       
 
@@ -247,37 +243,57 @@
 
 
   
-    <article id="post-JS数组二" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-JS对象" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/13/JS%E6%95%B0%E7%BB%84%E4%BA%8C/">JS数组二</a>
+      <a class="article-title" href="/2020/06/18/JS%E5%AF%B9%E8%B1%A1/">JS对象</a>
     </h1>
   
 
         
-        <a href="/2020/06/13/JS%E6%95%B0%E7%BB%84%E4%BA%8C/" class="archive-article-date">
-  	<time datetime="2020-06-13T09:00:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-13</time>
+        <a href="/2020/06/18/JS%E5%AF%B9%E8%B1%A1/" class="archive-article-date">
+  	<time datetime="2020-06-18T03:04:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-18</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="旧的查找方法"><a href="#旧的查找方法" class="headerlink" title="旧的查找方法"></a>旧的查找方法</h4><p>indexOf()，lastIndexof()，includes()，这几个方法数组和字符串都有查找操作且接口一样，<strong>但是查找的内容是要严格输入的！</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="string">"6"</span>]</span><br><span class="line"><span class="built_in">console</span>.log(arr.indexOf(<span class="number">2</span>))<span class="comment">//1</span></span><br><span class="line"><span class="built_in">console</span>.log(arr.indexOf(<span class="number">6</span>))<span class="comment">//-1，没有数字6，查找失败</span></span><br><span class="line"><span class="built_in">console</span>.log(arr.indexOf(<span class="string">"6"</span>))<span class="comment">//5，字符串"6”的下标为5</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="新的查找方法"><a href="#新的查找方法" class="headerlink" title="新的查找方法"></a>新的查找方法</h4><p>find()与findIndex()</p>
+        <h4 id="面向对象三大特性：封装、继承、多态"><a href="#面向对象三大特性：封装、继承、多态" class="headerlink" title="面向对象三大特性：封装、继承、多态"></a>面向对象三大特性：封装、继承、多态</h4><h5 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h5><ul>
+<li><p>属性的检测</p>
 <ul>
-<li><code>find(callback(value))</code>,find()内部参数<strong>是个回调函数，需要你自定义</strong>，而且<strong><u>返回的是值</u></strong>，<strong>解决引用类型查找</strong>，因为引用类型查找的是地址。</li>
-<li><code>findIndex(callback(value))</code>,findIndex()同样<strong>也是接受一个函数</strong>，和find()一致，不同的是<strong><u>它返回的是位置</u></strong></li>
+<li>对象属性检测<code>obj.hasOwnProperty(&quot;key&quot;)</code>,仅查看自身属性</li>
+<li>原型链属性检测<code>&quot;key&quot; in obj</code>，自身与原型的属性都进行检测</li>
 </ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">arr.find(<span class="function"><span class="keyword">function</span> (<span class="params">item</span>) </span>&#123;</span><br><span class="line"><span class="comment">//console.log(item)//所有值全1 2 3 4 5 6</span></span><br><span class="line"><span class="comment">//return true//1返回第一个</span></span><br><span class="line"><span class="comment">// return item==2//返回值2</span></span><br><span class="line"><span class="comment">// return item==200//undefined，没有200这个值</span></span><br><span class="line">    </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>属性的计算</p>
+<ul>
+<li>动态计算属性名，reduce方法</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> lessons = [</span><br><span class="line">      &#123;<span class="attr">title</span>: <span class="string">"媒体查询响应式布局"</span>,<span class="attr">click</span>: <span class="number">89</span>,<span class="attr">price</span>: <span class="number">12</span>&#125;,</span><br><span class="line">      &#123;<span class="attr">title</span>: <span class="string">"FLEX 弹性盒模型"</span>,<span class="attr">click</span>: <span class="number">45</span>,<span class="attr">price</span>: <span class="number">120</span>&#125;,</span><br><span class="line">      &#123;<span class="attr">title</span>: <span class="string">"GRID 栅格系统"</span>,<span class="attr">click</span>: <span class="number">19</span>,<span class="attr">price</span>: <span class="number">67</span>&#125;,</span><br><span class="line">      &#123;<span class="attr">title</span>: <span class="string">"盒子模型详解"</span>,<span class="attr">click</span>: <span class="number">29</span>, <span class="attr">price</span>: <span class="number">300</span>&#125;</span><br><span class="line">    ];</span><br><span class="line">    obj=lessons.reduce(<span class="function">(<span class="params">pre,cur,index</span>)=&gt;</span>&#123;</span><br><span class="line">      pre[<span class="string">`<span class="subst">$&#123;cur[<span class="string">'title'</span>]&#125;</span>-<span class="subst">$&#123;index&#125;</span>`</span>]=cur<span class="comment">//每次都添加新的键值对</span></span><br><span class="line">      <span class="keyword">return</span> pre</span><br><span class="line">    &#125;,&#123;&#125;)</span><br><span class="line">    <span class="built_in">console</span>.log(obj)<span class="comment">//&#123;媒体查询响应式布局-0: &#123;…&#125;, FLEX 弹性盒模型-1: &#123;…&#125;, GRID 栅格系统-2: &#123;…&#125;, 盒子模型详解-3: &#123;…&#125;&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>属性的获取<code>Object.keys(obj)</code>，获取对象obj的所有属性名，以数组返回，或者使用for-in</p>
+</li>
+<li><p>属性的复制<code>Object.assign(obj1,obj2)</code>，将obj2的属性复制给obj1；也可以用循环与展开语法。</p>
+</li>
+<li><p>属性的定制</p>
+<ul>
+<li>属性的可读写性等<code>Object.defineProperty(obj,key,{key,writable:true,enumerable:true,configurable:true})</code></li>
+<li>禁止外部添加属性<code>Object.preventExtensions(obj)</code></li>
+<li>对象的封闭<code>Object.seal(obj)</code>不能对对象的属性进行操作</li>
+<li>对象的冻结<code>Object.freeze(obj)</code>不能对对象进行修改，可以使用。</li>
+</ul>
+</li>
+</ul>
+<h5 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h5><p>将普通函数封装为对象方法的好处在于可以避免函数冲突，而且封装过后调用简单。对象是引用变量，所以通常情况下是传地址，而且是浅拷贝。注意对象中的对象的传递。</p>
+<h4 id="深拷贝，一层一层的处理"><a href="#深拷贝，一层一层的处理" class="headerlink" title="深拷贝，一层一层的处理"></a>深拷贝，一层一层的处理</h4><p>处理对象中的对象的赋值，判断递归</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//浅拷贝，object[key]可能也为一个对象</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">copy</span>(<span class="params">object</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> res=&#123;&#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">const</span> key <span class="keyword">in</span> object)&#123;</span><br><span class="line">        res[key]=object[key]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//深拷贝，递归函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deepcopy</span>(<span class="params">obj</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> res=obj istacneof <span class="built_in">Array</span>?[]:&#123;&#125;<span class="comment">//因为递归进行下去时，最里面的数据可能是数组，因此是数组的情况下应该返回数组</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">const</span>[key,value] <span class="keyword">in</span> <span class="built_in">Object</span>.entries(obj))&#123;<span class="comment">//考虑数组的情况，统一键值对，统一数组与对象的处理方法</span></span><br><span class="line">        res[key]=<span class="keyword">typeof</span> value===<span class="string">'object'</span>?deepcopy(value):value<span class="comment">//是对象就继续递归，不是对象直接赋值</span></span><br><span class="line">    &#125;</span><br><span class="line">     <span class="keyword">return</span> res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//自己实现一个find，接受一个数组和一个回调函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">find</span>(<span class="params">array,callback</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> value <span class="keyword">of</span> array)&#123;</span><br><span class="line">    <span class="keyword">if</span>(callback(value))&#123;<span class="comment">//接受实参，回调函数返回true，查找成功</span></span><br><span class="line">      <span class="keyword">return</span> value</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">undefined</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//调用</span></span><br><span class="line">result=find(arr,<span class="function"><span class="keyword">function</span>(<span class="params">item</span>)</span>&#123;</span><br><span class="line"><span class="keyword">return</span> item===<span class="number">2</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//打印</span></span><br><span class="line"><span class="built_in">console</span>.log(result)<span class="comment">//2</span></span><br></pre></td></tr></table></figure>
+
 
 
       
@@ -296,7 +312,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">find(),findIndex()</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深浅拷贝</a>
         		</li>
       		
 		</ul>
@@ -306,7 +322,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/13/JS%E6%95%B0%E7%BB%84%E4%BA%8C/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/06/18/JS%E5%AF%B9%E8%B1%A1/">展开全文 >></a>
         </p>
       
 
@@ -336,53 +352,36 @@
 
 
   
-    <article id="post-移动端适配四" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-JS抖动与加速" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/13/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E5%9B%9B/">移动端适配四</a>
+      <a class="article-title" href="/2020/06/18/JS%E6%8A%96%E5%8A%A8%E4%B8%8E%E5%8A%A0%E9%80%9F/">JS抖动与加速</a>
     </h1>
   
 
         
-        <a href="/2020/06/13/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E5%9B%9B/" class="archive-article-date">
-  	<time datetime="2020-06-13T02:30:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-13</time>
+        <a href="/2020/06/18/JS%E6%8A%96%E5%8A%A8%E4%B8%8E%E5%8A%A0%E9%80%9F/" class="archive-article-date">
+  	<time datetime="2020-06-18T01:23:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-18</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="位置获取"><a href="#位置获取" class="headerlink" title="位置获取"></a>位置获取</h4><ul>
-<li>clientX：当鼠标事件发生时（不管是onclick，还是omousemove，onmouseover等），鼠标相对于浏览器（这里说的是浏览器的<strong>可视区域</strong>）x轴的位置；</li>
-<li>screenX：当鼠标事件发生时，鼠标相对于<strong>显示器屏幕</strong>x轴的位置；</li>
-<li>offsetX：当鼠标事件发生时，鼠标相对于<strong>事件源</strong>x轴的位置，注意判断正负</li>
-</ul>
-<h4 id="高度获取"><a href="#高度获取" class="headerlink" title="高度获取"></a>高度获取</h4><ul>
-<li><p>clientHeight：只包括padding高度。</p>
-<p><img src="http://img1.sycdn.imooc.com/58f5b2fa00012ea604110247.jpg" alt=""></p>
-</li>
-<li><p>offsetHeight：包括padding、border、水平滚动条的高度、但不包括margin的元素的高度。</p>
-<p><img src="http://img1.sycdn.imooc.com/58f5b32e0001a2fa04110247.jpg" alt=""></p>
-</li>
-<li><p>scrollHeight：当本元素的子元素比本元素高且overflow=scroll时，本元素会scroll，这时：<br>scrollHeight: 因为子元素比父元素高，父元素不想被子元素撑的一样高就显示出了滚动条，在滚动的过程中本元素有部分被隐藏了，<strong>scrollHeight代表包括当前不可见部分的元素的高度</strong>。而可见部分的高度其实就是clientHeight，也就是scrollHeight&gt;=clientHeight恒成立。在有滚动条时讨论scrollHeight才有意义，在<strong>没有滚动条时scrollHeight==clientHeight恒成立</strong>。</p>
-</li>
-</ul>
-<h4 id="关于移动端的定位"><a href="#关于移动端的定位" class="headerlink" title="关于移动端的定位"></a>关于移动端的定位</h4><p>  移动端要少用固定定位，因为固定定位是相对于是扣的，而移动端有三个视口，较为复杂。使用绝对定位模拟固定定位。</p>
-<ul>
-<li><p>1，禁止系统滚动条s</p>
-</li>
-<li><p>2，让应用的滚动条出现在顶层元素，顶层不会影响初始滑块的位置</p>
-</li>
-<li><p>C:\Users\zhoub\AppData\Roaming\npm\lessc</p>
-</li>
-<li><p>$FileParentDir(less)$\less$FileDirPathFromParent(less)$$FileName$</p>
-<p>C:\Atguigu\尚硅谷无视频版本\8.前端学科–项目实战\尚硅谷前端项目【谷粒音乐】教程\code\QQ音乐\css\lesss</p>
-</li>
-</ul>
+        <h4 id="动画抖动与加速"><a href="#动画抖动与加速" class="headerlink" title="动画抖动与加速"></a>动画抖动与加速</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span>&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"UTF-8"</span> /&gt;</span><br><span class="line">    &lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width, initial-scale=1.0"</span> /&gt;</span><br><span class="line">    &lt;meta http-equiv=<span class="string">"X-UA-Compatible"</span> content=<span class="string">"ie=edge"</span> /&gt;</span><br><span class="line">    &lt;title&gt;后盾人&lt;<span class="regexp">/title&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">      button &#123;</span><br><span class="line">        position: absolute;<span class="comment">/*必须加上这个style标签，不然动不了*/</span></span><br><span class="line">      &#125;</span><br><span class="line">    &lt;<span class="regexp">/style&gt;</span></span><br><span class="line"><span class="regexp">        &lt;button message="按钮"&gt;按钮&lt;/</span>button&gt;</span><br><span class="line">  &lt;<span class="regexp">/body&gt;</span></span><br><span class="line"><span class="regexp">  &lt;script&gt;</span></span><br><span class="line"><span class="regexp">  let btns = document.querySelectorAll("button")</span></span><br><span class="line"><span class="regexp">  btns.forEach((items) =&gt; &#123;</span></span><br><span class="line"><span class="regexp">      /</span><span class="regexp">/let left=1/</span><span class="regexp">/位置2</span></span><br><span class="line"><span class="regexp">    items.addEventlistener("click", function () &#123;</span></span><br><span class="line"><span class="regexp">      /</span><span class="regexp">/let left=1/</span><span class="regexp">/位置1</span></span><br><span class="line"><span class="regexp">     setInterval(function()&#123;</span></span><br><span class="line"><span class="regexp">        items.style.left=left++ +"px"</span></span><br><span class="line"><span class="regexp">      &#125;,100)</span></span><br><span class="line"><span class="regexp">    &#125;)</span></span><br><span class="line"><span class="regexp">  &#125;)</span></span><br><span class="line"><span class="regexp">  &lt;/</span>script&gt;</span><br><span class="line">&lt;<span class="regexp">/html&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>函数的本意是点击按钮使得按钮移动</p>
+<p>1，如果left=1放在位置1，会在第二次点击后<strong>产生动画抖动</strong>，因为每点击一次，left都会回到1，重新计算。</p>
+<p>2，如果left=1放在位置2，那么因为因为left被修改了（this方式），外部环境没有消亡会保存left信息，因此不会抖动，但是会<strong>出现动画加速问题</strong>，因为会<strong>多个定时器叠加</strong>，解决方法是在外部先对定时器进行判断，如果无定时器才开启定时器，有的话就不开启了，<strong>就保证只有一个定时器</strong>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> btns = <span class="built_in">document</span>.querySelectorAll(<span class="string">"button"</span>)</span><br><span class="line">  btns.forEach(<span class="function">(<span class="params">items</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">let</span> left=<span class="number">1</span></span><br><span class="line">      <span class="keyword">let</span> interval=<span class="literal">false</span></span><br><span class="line">    items.addEventlistener(<span class="string">"click"</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(interval===<span class="literal">false</span>)&#123;</span><br><span class="line">        interval=<span class="literal">true</span></span><br><span class="line">        setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        items.style.left=left++ +<span class="string">"px"</span></span><br><span class="line">      &#125;,<span class="number">100</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意内外部环境与定时器的累加问题</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//但是把变量放在外部可能污染变量</span></span><br><span class="line"><span class="keyword">let</span> btns = <span class="built_in">document</span>.querySelectorAll(<span class="string">"button"</span>)</span><br><span class="line">    btns.forEach(<span class="function">(<span class="params">items</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">let</span> bind=<span class="literal">false</span></span><br><span class="line">      items.addEventListener(<span class="string">"click"</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!bind)&#123;</span><br><span class="line">          bind=<span class="literal">true</span></span><br><span class="line">          <span class="keyword">let</span> left=<span class="number">1</span></span><br><span class="line">          setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            items.style.left=left++ +<span class="string">"px"</span></span><br><span class="line">          &#125;,<span class="number">100</span>)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line"><span class="comment">//原理是只产生一个定时器，即解决抖动又解决加速。空环境中没有数据。</span></span><br></pre></td></tr></table></figure>
+
 
       
 
@@ -396,7 +395,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">移动端适配</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JavaScripe查漏补缺</a>
         		</li>
       		
 		</ul>
@@ -406,7 +405,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/13/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E5%9B%9B/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/06/18/JS%E6%8A%96%E5%8A%A8%E4%B8%8E%E5%8A%A0%E9%80%9F/">展开全文 >></a>
         </p>
       
 
@@ -438,7 +437,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/4/">下一页</a>
+      <a class="extend prev" rel="prev" href="/page/2/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/4/">下一页</a>
     </nav>
   
 
@@ -568,6 +567,30 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">博客搭载</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Map类型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">深浅拷贝</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">访问控制器set，get</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Symbol类型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">substring(),slice(),substr()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Set类型</a>
               </li>
             
             <div class="clearfix"></div>
