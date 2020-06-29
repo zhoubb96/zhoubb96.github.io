@@ -16,7 +16,7 @@
 <meta property="og:description" content="旧的查找方法indexOf()，lastIndexof()，includes()，这几个方法数组和字符串都有查找操作且接口一样，但是查找的内容是要严格输入的！ 1234let arr&#x3D;[1,2,3,4,5,&quot;6&quot;]console.log(arr.indexOf(2))&#x2F;&#x2F;1console.log(arr.indexOf(6))&#x2F;&#x2F;-1，没有数字6，查找失败console.log(arr.index">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-06-13T09:00:45.000Z">
-<meta property="article:modified_time" content="2020-06-19T03:27:39.331Z">
+<meta property="article:modified_time" content="2020-06-28T08:24:23.179Z">
 <meta property="article:author" content="Zhoubb">
 <meta property="article:tag" content="JavaScripe查漏补缺">
 <meta property="article:tag" content="find(),findIndex()">
@@ -193,6 +193,10 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">arr.find(<span class="function"><span class="keyword">function</span> (<span class="params">item</span>) </span>&#123;</span><br><span class="line"><span class="comment">//console.log(item)//所有值全1 2 3 4 5 6</span></span><br><span class="line"><span class="comment">//return true//1返回第一个</span></span><br><span class="line"><span class="comment">// return item==2//返回值2</span></span><br><span class="line"><span class="comment">// return item==200//undefined，没有200这个值</span></span><br><span class="line">    </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//自己实现一个find，接受一个数组和一个回调函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">find</span>(<span class="params">array,callback</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> value <span class="keyword">of</span> array)&#123;</span><br><span class="line">    <span class="keyword">if</span>(callback(value))&#123;<span class="comment">//接受实参，回调函数返回true，查找成功</span></span><br><span class="line">      <span class="keyword">return</span> value</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">undefined</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//调用</span></span><br><span class="line">result=find(arr,<span class="function"><span class="keyword">function</span>(<span class="params">item</span>)</span>&#123;</span><br><span class="line"><span class="keyword">return</span> item===<span class="number">2</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//打印</span></span><br><span class="line"><span class="built_in">console</span>.log(result)<span class="comment">//2</span></span><br></pre></td></tr></table></figure>
+
+
+
+
 
 
       
@@ -470,10 +474,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Map类型</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Set类型</a>
               </li>
              
@@ -487,10 +487,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">深浅拷贝</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">访问控制器set，get</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -523,6 +519,58 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">移动端适配</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Map字典类型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">JSON</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Proxy代理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">访问控制器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">正则表达式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">断言匹配</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">模块化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">super关键字</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">class类的属性继承形式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">class类的方法继承形式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">静态属性</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mixin</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">红黑树</a>
               </li>
             
             <div class="clearfix"></div>

@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="https://zhoubb96.github.io">
   <title>数据结构与算法-单向链表 | 周斌斌的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="链表1，与链表相比数组的缺点：  必须申请连续的储存空间 在开头以及中间插入数据要进行大量的位移  链表可以很好的解决这两个问题。链表可以充分利用计算机储存空间，并且在插入和删除数据的时候要方便一些，不用移动元素（寻找插入位置时要费劲些，但是比移动元素开销少）时间复杂度可以达到o(1) 2，链表也有它的缺点:  访问查询时总得从头开始访问  无法通过下标直接访问元素，要遍历判断循环找。  链表有带">
+  <meta name="description" content="链表1，数组的缺点：  必须申请连续的储存空间 在开头以及中间插入数据要进行大量的元素移动  链表可以很好的解决这两个问题。链表可以充分利用计算机储存空间，并且在插入和删除数据的时候要方便一些，不用移动元素（寻找插入位置时要费劲些，但是比移动元素开销少）时间复杂度可以达到o(1) 2，链表也有它的缺点:  访问查询时总得从头开始访问  无法通过下标直接访问元素，要遍历判断循环找。  链表有带头结点">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据结构与算法-单向链表">
 <meta property="og:url" content="https://zhoubb96.github.io/2020/06/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E5%8D%95%E5%90%91%E9%93%BE%E8%A1%A8/index.html">
 <meta property="og:site_name" content="周斌斌的个人博客">
-<meta property="og:description" content="链表1，与链表相比数组的缺点：  必须申请连续的储存空间 在开头以及中间插入数据要进行大量的位移  链表可以很好的解决这两个问题。链表可以充分利用计算机储存空间，并且在插入和删除数据的时候要方便一些，不用移动元素（寻找插入位置时要费劲些，但是比移动元素开销少）时间复杂度可以达到o(1) 2，链表也有它的缺点:  访问查询时总得从头开始访问  无法通过下标直接访问元素，要遍历判断循环找。  链表有带">
+<meta property="og:description" content="链表1，数组的缺点：  必须申请连续的储存空间 在开头以及中间插入数据要进行大量的元素移动  链表可以很好的解决这两个问题。链表可以充分利用计算机储存空间，并且在插入和删除数据的时候要方便一些，不用移动元素（寻找插入位置时要费劲些，但是比移动元素开销少）时间复杂度可以达到o(1) 2，链表也有它的缺点:  访问查询时总得从头开始访问  无法通过下标直接访问元素，要遍历判断循环找。  链表有带头结点">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-06-12T12:37:31.000Z">
-<meta property="article:modified_time" content="2020-06-19T03:23:52.681Z">
+<meta property="article:modified_time" content="2020-06-19T03:45:43.292Z">
 <meta property="article:author" content="Zhoubb">
 <meta property="article:tag" content="数据结构与算法">
 <meta name="twitter:card" content="summary">
@@ -179,17 +179,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h4><p><strong>1，与链表相比数组的缺点：</strong></p>
+        <h4 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h4><p><strong>1，数组的缺点：</strong></p>
 <ul>
-<li>必须申请连续的储存空间</li>
-<li>在开头以及中间插入数据要进行大量的位移</li>
+<li><strong>必须申请连续的储存空间</strong></li>
+<li>在开头以及中间插入数据要<strong>进行大量的元素移动</strong></li>
 </ul>
 <p>链表可以很好的解决这两个问题。链表可以充分利用计算机储存空间，并且在插入和删除数据的时候要方便一些，不用移动元素（寻找插入位置时要费劲些，但是比移动元素开销少）时间复杂度可以达到o(1)</p>
 <p><strong>2，链表也有它的缺点:</strong></p>
 <ul>
 <li><p>访问查询时总得从头开始访问</p>
 </li>
-<li><p>无法通过下标直接访问元素，要遍历判断循环找。</p>
+<li><p><strong>无法通过下标直接访问元素，要遍历判断循环找。</strong></p>
 </li>
 <li><p>链表有带头结点与不带头指针两种。今后自己统以用带头指针的</p>
 <a id="more"></a>
@@ -470,10 +470,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Map类型</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Set类型</a>
               </li>
              
@@ -487,10 +483,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">深浅拷贝</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">访问控制器set，get</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -523,6 +515,58 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">移动端适配</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Map字典类型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">JSON</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Proxy代理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">访问控制器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">正则表达式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">断言匹配</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">模块化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">super关键字</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">class类的属性继承形式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">class类的方法继承形式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">静态属性</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mixin</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">红黑树</a>
               </li>
             
             <div class="clearfix"></div>

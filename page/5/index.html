@@ -156,197 +156,42 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-数据结构与算法-集合" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-JS的多继承问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/16/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E9%9B%86%E5%90%88/">数据结构与算法-集合</a>
+      <a class="article-title" href="/2020/06/22/JS%E7%9A%84%E5%A4%9A%E7%BB%A7%E6%89%BF%E9%97%AE%E9%A2%98/">JS的多继承问题</a>
     </h1>
   
 
         
-        <a href="/2020/06/16/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E9%9B%86%E5%90%88/" class="archive-article-date">
-  	<time datetime="2020-06-16T07:09:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-16</time>
+        <a href="/2020/06/22/JS%E7%9A%84%E5%A4%9A%E7%BB%A7%E6%89%BF%E9%97%AE%E9%A2%98/" class="archive-article-date">
+  	<time datetime="2020-06-22T12:24:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-22</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="集合Set"><a href="#集合Set" class="headerlink" title="集合Set"></a>集合Set</h4><p><strong>一般常用哈希表实现</strong>，但是这里先自己使用object类封装一个集合类。Set类在ES6中已经原生支持了。</p>
-<p>集合Set的元素是<strong>无序的（不能用下标的方法访问），且值不能重复</strong>。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//集合</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Set</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="comment">//属性</span></span><br><span class="line">  <span class="keyword">this</span>.items=&#123;&#125;<span class="comment">//用对象存储封装，对象值的覆盖</span></span><br><span class="line">  <span class="comment">//方法</span></span><br><span class="line">  <span class="comment">//1,添加</span></span><br><span class="line">  <span class="built_in">Set</span>.prototype.add=<span class="function"><span class="keyword">function</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">this</span>.has(value))&#123;<span class="comment">//如果有值返回失败，其实如果不判断，不影响唯一性。</span></span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.items[value]=value<span class="comment">//键值合一，也保证了元素的唯一性。因为一样的值会进行覆盖</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//2，判断</span></span><br><span class="line">  <span class="built_in">Set</span>.prototype.has=<span class="function"><span class="keyword">function</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.items.hasOwnProperty(value)<span class="comment">//这是对象判断属性的方法，hasOwnProperty()</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//3，remove</span></span><br><span class="line">  <span class="built_in">Set</span>.prototype.remove=<span class="function"><span class="keyword">function</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!<span class="keyword">this</span>.has(value)) <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    <span class="keyword">delete</span> <span class="keyword">this</span>.items[value]<span class="comment">//这是对象删除属性的方法，delete</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//4，clear</span></span><br><span class="line">  <span class="built_in">Set</span>.prototype.clear=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.items=&#123;&#125;<span class="comment">//重新赋值，原对象因为失去引用而被回收</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//5，size</span></span><br><span class="line">  <span class="built_in">Set</span>.prototype.size=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Object</span>.keys(<span class="keyword">this</span>.items).length<span class="comment">//这是对象获取属性数量的语句，keys()</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//6，values</span></span><br><span class="line">  <span class="built_in">Set</span>.prototype.values=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Object</span>.values(<span class="keyword">this</span>.items)<span class="comment">//或者Object.keys(this.items)，因为键值合一</span></span><br><span class="line">  &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> <span class="keyword">set</span> = new Set()</span><br><span class="line">console.log(<span class="keyword">set</span>.add("abc"))//true</span><br><span class="line">console.log(<span class="keyword">set</span>.add("abc"))//false</span><br><span class="line"><span class="keyword">set</span>.add("cba")</span><br><span class="line"><span class="keyword">set</span>.add("nba")</span><br><span class="line"><span class="keyword">set</span>.add("swk")</span><br><span class="line">console.log(<span class="keyword">set</span>.size())//4</span><br><span class="line">console.log(<span class="keyword">set</span>.remove("nba"))//true</span><br><span class="line">console.log(<span class="keyword">set</span>.remove("nba"))//false</span><br><span class="line">console.log(<span class="keyword">set</span>.values())//(3) ["abc", "cba", "swk"],数组形式返回</span><br><span class="line"><span class="keyword">set</span>.clear()</span><br><span class="line">console.log(<span class="keyword">set</span>.values())//[]</span><br><span class="line"></span><br><span class="line">let set1 = new</span><br></pre></td></tr></table></figure>
-
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数据结构与算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/16/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E9%9B%86%E5%90%88/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
+        <h4 id="多继承问题"><a href="#多继承问题" class="headerlink" title="多继承问题"></a>多继承问题</h4><p>因为原型链的出入度为1，不能指向多个原型，所以原型链是不支持多继承的。要获得多继承同样的效果只能靠<strong>延长原型链的长度。</strong>但是这样可能会把<strong>本来没有关系大两个原型加上关系</strong>，有的时候就需要避免这个问题。</p>
+<h4 id="1，使用延长原型链实现多继承的效果"><a href="#1，使用延长原型链实现多继承的效果" class="headerlink" title="1，使用延长原型链实现多继承的效果"></a>1，使用延长原型链实现多继承的效果</h4><p>但是在继承的时候还要<strong>特别注意继承语句的位置</strong>，<strong>防止顶掉了之前设置的方法。</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">extend</span>(<span class="params">sub, sup</span>) </span>&#123;</span><br><span class="line">    sub.prototype = <span class="built_in">Object</span>.create(sup.prototype);</span><br><span class="line">    <span class="built_in">Object</span>.defineProperty(sub.prototype, <span class="string">"constructor"</span>, &#123;</span><br><span class="line">        value: sub,</span><br><span class="line">        enumerable: <span class="literal">false</span></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Credit</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">extend(Request,Credit)<span class="comment">//继承一定要在给原型加方法之前</span></span><br><span class="line">Credit.prototype.total=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"积分"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Request</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">Request.prototype.ajax=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"请求"</span>)</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">User</span>(<span class="params">name,age</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name=name</span><br><span class="line">    <span class="keyword">this</span>.age=age</span><br><span class="line">&#125;;</span><br><span class="line">extend(User,Request)<span class="comment">//这句继承语句一定要放在加这个show方法前面，不然后面的就用不了show方法，因为如果继承语句在这个后面，那么User的prototype会被Request的顶掉，导致设置失效。所以设置原型链切记，先设置好继承关系，再往原型上加方法，以防止原型被顶替导致，设置失效。</span></span><br><span class="line">User.prototype.show=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name,<span class="keyword">this</span>.age)</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Admin</span>(<span class="params">name,age</span>)</span>&#123;</span><br><span class="line">    User.call(<span class="keyword">this</span>,name,age)</span><br><span class="line">&#125;;</span><br><span class="line">extend(Admin,User)</span><br><span class="line"><span class="keyword">let</span> zbb=<span class="keyword">new</span> Admin(<span class="string">"zbb"</span>,<span class="number">24</span>)</span><br><span class="line">zbb.show()<span class="comment">//zbb 24</span></span><br><span class="line">zbb.ajax()<span class="comment">//请求</span></span><br><span class="line">zbb.total()<span class="comment">//积分</span></span><br></pre></td></tr></table></figure>
 
 
 
-
-  
-    <article id="post-JS函数与箭头函数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/16/JS%E5%87%BD%E6%95%B0%E4%B8%8E%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/">JS函数与箭头函数</a>
-    </h1>
-  
-
-        
-        <a href="/2020/06/16/JS%E5%87%BD%E6%95%B0%E4%B8%8E%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/" class="archive-article-date">
-  	<time datetime="2020-06-16T06:56:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="1，函数声明的几种形式"><a href="#1，函数声明的几种形式" class="headerlink" title="1，函数声明的几种形式"></a>1，函数声明的几种形式</h4><p>1,使用对象的方式来定义函数</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> func=<span class="keyword">new</span> <span class="built_in">Function</span>(<span class="string">'title'</span>,<span class="string">'console.log(title)'</span>)</span><br><span class="line"><span class="comment">//func是函数名，title是参数，console.log(title)是函数体</span></span><br><span class="line">func(<span class="string">"zbb"</span>)</span><br></pre></td></tr></table></figure>
-
-<p>2,字面量方式定义函数</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func1</span>(<span class="params">title</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(title)</span><br><span class="line">&#125;;</span><br><span class="line">func1(<span class="string">"zbb"</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="2，使用mixin实现多继承的效果"><a href="#2，使用mixin实现多继承的效果" class="headerlink" title="2，使用mixin实现多继承的效果"></a>2，使用mixin实现多继承的效果</h4><p>混合功能。将对象压入原型，没有设置原型链，只是把对象添加到原型；一次性压入多个包含方法的对象到原型，达到多继承的效果；<code>Admin.prototype=Object.assign(Admin.prototype,Credit,Address)</code>。<strong>assign方法！</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Credit = &#123;</span><br><span class="line">    total() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"积分"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> Address = &#123;</span><br><span class="line">    getAddress() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"地址"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">User</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name</span><br><span class="line">    <span class="keyword">this</span>.age = age</span><br><span class="line">&#125;;</span><br><span class="line">User.prototype.show = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name, <span class="keyword">this</span>.age)</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Admin</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">    User.call(<span class="keyword">this</span>, name, age)</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//Admin.prototype.total=Credit.total</span></span><br><span class="line"><span class="comment">//Admin.prototype.getAddress=Address.getAddress</span></span><br><span class="line"><span class="comment">//像上面一个一个压入，太麻烦了</span></span><br><span class="line">Admin.prototype=<span class="built_in">Object</span>.assign(Admin.prototype,Credit,Address)<span class="comment">//直接把整个对象压入！！！！！！！！！！</span></span><br><span class="line"><span class="keyword">let</span> zbb = <span class="keyword">new</span> Admin(<span class="string">"zbb"</span>, <span class="number">24</span>)</span><br><span class="line"><span class="built_in">console</span>.log(zbb.name,zbb.age)<span class="comment">//zbb 24</span></span><br><span class="line">zbb.total()<span class="comment">//积分</span></span><br><span class="line">zbb.getAddress()<span class="comment">//地址</span></span><br></pre></td></tr></table></figure>
 
 
 
-<h4 id="2，匿名函数与函数提升"><a href="#2，匿名函数与函数提升" class="headerlink" title="2，匿名函数与函数提升"></a>2，匿名函数与函数提升</h4><p>一般函数会被压入window对象中，成为全局函数，如果定义的函数与window的原有函数重名，那么就会覆盖window自带函数，污染全局。</p>
-        
-          <a class="article-more-a" href="/2020/06/16/JS%E5%87%BD%E6%95%B0%E4%B8%8E%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/#more">more >></a>
-        
-      
+<h4 id="mixin内部继承的Super关键字。"><a href="#mixin内部继承的Super关键字。" class="headerlink" title="mixin内部继承的Super关键字。"></a>mixin内部继承的Super关键字。</h4><p>原型（是压入对象的原型），而不是被压入的那个原型。是Credit或者Address的原型，而不是Admin的原型。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Credit = &#123;</span><br><span class="line">    total() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"积分"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> Address = &#123;</span><br><span class="line">    __proto__: Credit,<span class="comment">//内部继承</span></span><br><span class="line">    getAddress() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">super</span>.total()+ <span class="string">"地址"</span>)<span class="comment">//super！=this.__proto__</span></span><br><span class="line">        <span class="comment">//视频里能成功是因为它还是把Credit压入了原型，但是如果还是压入Credit的话，没必要搞内部继承了。</span></span><br><span class="line">        <span class="comment">//在只压入Address的情况下，这里只能写super</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">User</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name</span><br><span class="line">    <span class="keyword">this</span>.age = age</span><br><span class="line">&#125;;</span><br><span class="line">User.prototype.show = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name, <span class="keyword">this</span>.age)</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Admin</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">    User.call(<span class="keyword">this</span>, name, age)</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//Admin.prototype.total=Credit.total</span></span><br><span class="line"><span class="comment">//Admin.prototype.getAddress=Address.getAddress</span></span><br><span class="line"><span class="comment">//像上面一个一个压入，太麻烦了</span></span><br><span class="line">Admin.prototype=<span class="built_in">Object</span>.assign(Admin.prototype,Address)<span class="comment">//只传入了Address</span></span><br><span class="line"><span class="keyword">let</span> zbb = <span class="keyword">new</span> Admin(<span class="string">"zbb"</span>, <span class="number">24</span>)</span><br><span class="line"><span class="built_in">console</span>.log(zbb.name,zbb.age)<span class="comment">//zbb 24</span></span><br><span class="line">zbb.getAddress()<span class="comment">//积分地址，但是依然获取到了积分。这就是super的作用</span></span><br></pre></td></tr></table></figure>
 
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JavaScripe查漏补缺</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/16/JS%E5%87%BD%E6%95%B0%E4%B8%8E%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-JS-Map与Weakmap类型" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/16/JS-Map%E4%B8%8EWeakmap%E7%B1%BB%E5%9E%8B/">JS-Map与Weakmap类型</a>
-    </h1>
-  
-
-        
-        <a href="/2020/06/16/JS-Map%E4%B8%8EWeakmap%E7%B1%BB%E5%9E%8B/" class="archive-article-date">
-  	<time datetime="2020-06-16T01:15:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="Map类型"><a href="#Map类型" class="headerlink" title="Map类型"></a>Map类型</h4><p>以往的对象类型是以字符串作为键名；而Map类型的<strong>键名可以为任意类型的变量。</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//传统对象</span></span><br><span class="line">  <span class="keyword">let</span> obj = &#123;</span><br><span class="line">     name: <span class="string">"name"</span></span><br><span class="line">     &#125;;</span><br><span class="line">     <span class="keyword">let</span> hd = &#123;</span><br><span class="line">       [obj]: <span class="string">"姓名"</span><span class="comment">//如过不加中括号，那么这个obj是个字符串该字符串就为“obj”与上面的对象类型的obj没有任何关系，加了中括号，就会把上面的对象类型的obj转化为字符串。[object Object]</span></span><br><span class="line">     &#125;;</span><br><span class="line">     <span class="built_in">console</span>.log(hd[obj.toString()]);<span class="comment">//中括号取值</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">//Map类型</span></span><br><span class="line"> <span class="keyword">let</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line">     map.set(<span class="string">"name"</span>, <span class="string">"姓名"</span>);<span class="comment">//&#123;"name" =&gt; "姓名"&#125;</span></span><br><span class="line">     map.set(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;, <span class="string">"cms"</span>);<span class="comment">//&#123;function() &#123;&#125; =&gt; "cms"&#125;</span></span><br><span class="line">     map.set(&#123;&#125;, <span class="string">"houdunren"</span>);<span class="comment">//&#123;Object =&gt; "houdunren"&#125;</span></span><br><span class="line">     map.set(<span class="number">1</span>, <span class="string">"sina.com.cn"</span>);<span class="comment">//&#123;1 =&gt; "sina.com.cn"&#125;</span></span><br><span class="line">     <span class="built_in">console</span>.log(map);</span><br><span class="line"></span><br><span class="line"> <span class="keyword">let</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>([[<span class="string">"cms"</span>, <span class="string">"开源系统"</span>], [<span class="string">"JS, "</span>在线教程<span class="string">"]]);</span></span><br><span class="line"><span class="string">//&#123;"</span>cms<span class="string">" =&gt; "</span>开源系统<span class="string">"&#125;&#123;"</span>JS<span class="string">" =&gt; "</span>在线教程<span class="string">"&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p>增删改查，set，delete，has</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">let</span> obj = &#123;</span><br><span class="line">      name: <span class="string">"姓名"</span></span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">let</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line">    map.set(obj, <span class="string">"sina.com"</span>);</span><br><span class="line">	<span class="built_in">console</span>.log(map.get(obj))<span class="comment">//sina.com</span></span><br><span class="line">	<span class="built_in">console</span>.log(map.delete(obj))<span class="comment">//true</span></span><br><span class="line">	<span class="comment">// map.clear();清空</span></span><br><span class="line">    <span class="comment">// console.log(map.has("site"));false，查询的是键名。</span></span><br><span class="line">	<span class="comment">// console.log(map.keys())//复数，获取所有键，以对象形式返回。</span></span><br><span class="line">	<span class="comment">// console.log(map.values())//复数，获取所有值。以对象形式返回。</span></span><br><span class="line">	<span class="comment">// console.log(map.entries())//复数，所有键值对，以对象形式返回。用forEach也行</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//Map转换为数组，这里外层的中括号表示把展开的元素放入数组里</span></span><br><span class="line"><span class="comment">// console.log([...map.keys()])</span></span><br><span class="line"><span class="comment">// console.log([...map.values()])</span></span><br><span class="line"><span class="comment">// console.log([...map.entries()])</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="WeakMap类型"><a href="#WeakMap类型" class="headerlink" title="WeakMap类型"></a>WeakMap类型</h4><p>WeakMap类型中的<strong>键只能为对象</strong>。</p>
-<p><strong>屏蔽了循环迭代，size，keys与values等方法。</strong></p>
+<p>应用：选项卡类的效果改变。</p>
+<p>定义一个组件类，再定义一个效果类。选项卡类继承效果类的效果设置方法，使用call传递参数，就可以实现一个选项卡管理类。参数定制问题，可使用对象传参，取参数时用对象的键值对取。</p>
 
       
 
@@ -364,7 +209,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Map类型</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mixin</a>
         		</li>
       		
 		</ul>
@@ -374,7 +219,223 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/16/JS-Map%E4%B8%8EWeakmap%E7%B1%BB%E5%9E%8B/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/06/22/JS%E7%9A%84%E5%A4%9A%E7%BB%A7%E6%89%BF%E9%97%AE%E9%A2%98/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-数据结构与算法-二叉平衡树之红黑树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/22/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E4%BA%8C%E5%8F%89%E5%B9%B3%E8%A1%A1%E6%A0%91%E4%B9%8B%E7%BA%A2%E9%BB%91%E6%A0%91/">数据结构与算法-二叉平衡树之红黑树</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/22/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E4%BA%8C%E5%8F%89%E5%B9%B3%E8%A1%A1%E6%A0%91%E4%B9%8B%E7%BA%A2%E9%BB%91%E6%A0%91/" class="archive-article-date">
+  	<time datetime="2020-06-22T09:03:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="如何解决二叉搜索树高度不稳定的问题？"><a href="#如何解决二叉搜索树高度不稳定的问题？" class="headerlink" title="如何解决二叉搜索树高度不稳定的问题？"></a>如何解决二叉搜索树高度不稳定的问题？</h3><p>比较好的二叉树应该是左右分布均匀。二叉搜索树插入有序数据后，<strong>分布是不均匀的，这种树称为非平衡树。</strong>对于一颗非平衡树而言（等于是一个链表），查找等效率为<strong>o(N)</strong>；而对于一棵平衡树而言，查找等效率可以提高到<strong>o(logN)</strong>。</p>
+<h4 id="常见的平衡树："><a href="#常见的平衡树：" class="headerlink" title="常见的平衡树："></a>常见的平衡树：</h4><p>1，AVL树是最早的一种平衡树，有一个额外数据来保持平衡。</p>
+<p>2，红黑树是AVL树后面的一种平衡树，整体效ho率高于AVL树高。</p>
+<h4 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h4><h5 id="一，规则："><a href="#一，规则：" class="headerlink" title="一，规则："></a><strong>一，规则：</strong></h5><ul>
+<li>1，节点是红色或者黑色，<strong>红色节点必定有数据，黑色节点不一定有数据。</strong></li>
+<li>2，根节点是黑色的。</li>
+<li>3，每个叶子节点都是<strong>黑色</strong>的<strong>空节点</strong>，也就是说<strong>叶子节点不存放数据</strong>。</li>
+<li>4，每个<strong>红色节点的父节点与子节点只能是黑色的</strong>。（从叶节点到根节点不可能出现两个连续的红节点）</li>
+<li>5，从任一节点到其每个叶子的所有路径都<strong>包含相同数目的黑色节点</strong>。</li>
+</ul>
+<p>这五个规则的约束，可以保证红黑树的<strong>关键特性</strong></p>
+<p><strong>关键特性</strong>：<strong>从根节点到叶子的最长可能路径不会超过最短可能路径的两倍</strong>，这就使得这个树基本是平衡的，虽然<strong>不是绝对平衡</strong>，但是在连续插入时依然是高效的。</p>
+<p><strong>原因：</strong></p>
+<p><strong>规则4决定路径上没有两个相连的红色节点。最短的可能路径都是黑色的，最长的可能路径是红色黑色交替的。</strong>（红小于等于黑）</p>
+<p><strong>规则5指出路径的黑色节点数相同，所以没有多余路径可以比其他路径长两倍（因为红黑节点是交替出现的，所以红节点数量永远小于等于黑色节点数量）</strong>，<u>所以红+黑&lt;2*黑</u></p>
+<h5 id="二，平衡方法"><a href="#二，平衡方法" class="headerlink" title="二，平衡方法"></a>二，平衡方法</h5><p>插入一个新节点时，会使得树不在平衡；需要通过一定方式进行变换来使得其保持平衡。有变色、左旋转、右旋转这三种方法。</p>
+<ul>
+<li><p><strong>1，变色</strong></p>
+<p>一般插入的节点颜色默认为红，以减少可能的操作。<strong>因为插入红色节点不会影响规则5，如果默认是黑色，那么插入路径上的黑色节点数量发生改变，那么规则5必会受影响。</strong>当然，插入任何颜色，都可能需要调整，但是插入红色的话，可以减少调整的可能。</p>
+</li>
+<li><p>2，<strong>左旋转</strong></p>
+<p><strong>逆时针旋转</strong>红黑树的两个节点，父节点被右孩子取代，原父节点成为原右孩子的左孩子。如下图，Y取代了X的位置，X成了Y的左子节点。b向左平移，子树不会受影响。</p>
+<p><img src="C:%5CUsers%5Czhoub%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200623113249735.png" alt="image-20200623113249735"></p>
+</li>
+<li><p>3，<strong>右旋转</strong></p>
+<p><strong>顺时针旋转</strong>红黑树的两个节点，父节点被左孩子取代，原父节点成为原左孩子的右孩子。如图所示，Y取代了X的位置，X成了Y的右孩子。c向右平移，子树不会受影响。</p>
+<p><img src="C:%5CUsers%5Czhoub%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200623113319935.png" alt="image-20200623113319935"></p>
+</li>
+</ul>
+<h5 id="三，问题：上面三种方法在什么时候使用呢？"><a href="#三，问题：上面三种方法在什么时候使用呢？" class="headerlink" title="三，问题：上面三种方法在什么时候使用呢？"></a>三，问题：上面三种方法在什么时候使用呢？</h5><p>先讨论插入的情况。</p>
+<p><strong>要插入节点为N(红)，其父节点为P，父节点的兄弟节点为U，其祖父节点为G。</strong></p>
+<ul>
+<li><p>情况一：<strong>没有父节点P，新插入节点N(红)位于树的根节点</strong>，没有父节点；这种情况直接插入，再将节点颜色变为黑色，<strong>因为根节点必须为黑色</strong>。</p>
+</li>
+<li><p>情况二：<strong>有父节点P，且父节点P是黑色节点，不考虑叔叔节点U</strong>；直接插入，然后给其加两个黑的空子节点。</p>
+</li>
+<li><p>情况三：<strong>有父节点P，但父节点P是红色，同时叔叔节点U也是红色节点</strong>；将P父节点和叔叔U节点以及祖父G都换色，除N以外，（<strong>PGU三个都换色</strong>）。（PU同红）</p>
+<p><img src="C:%5CUsers%5Czhoub%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200623153447510.png" alt=" "></p>
+</li>
+</ul>
+<p>  <strong>可能出现的问题：</strong>如果原祖父节点的父节点也是红色呢？换色后又出现红红相连的问题。那就需要递归的调整颜色，但是如果递归到了根节点，那就需要进行旋转了。</p>
+<ul>
+<li><p>情况四：<strong>有父节点P，但父节点P是红色，而且叔叔节点U节点是黑色</strong>，同时新插入节点<strong>N是父节点P的左孩子</strong>；<strong>父节点P变黑节点，祖父节点G变红（<u>PG两个变色</u>），以祖父节点G为根进行右旋转。</strong></p>
+<p><img src="C:%5CUsers%5Czhoub%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200623154429827.png" alt="image-20200623154429827"></p>
+</li>
+</ul>
+<ul>
+<li>情况五：<strong>有父节点P，但父节点P是红色，而且叔叔节点U节点是黑色</strong>，但是新插入节点<strong>N是父节P点的右孩子</strong>；<strong>先以父节点P为根进行左旋转</strong>，转化为情况四，接下来按照情况四处理。也就是自己N变为黑色，祖父节点G变为红色，以<strong>祖父结点G为根进行右旋转。</strong></li>
+</ul>
+<p><img src="C:%5CUsers%5Czhoub%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200623154946482.png" alt="image-20200623154946482"></p>
+<p>五种情况的逻辑顺序是。1，先看父节点存不存在（插入节点是不是根节点），不存在进入<strong>情况一</strong>；2，如果父节点存在，父节点是不是黑色，如果<strong>父节点是黑色</strong>，<strong>进入情况二</strong>；3，<strong>如果父节点是红色</strong>，看叔叔节点是不是红色，如果<strong>叔叔节点也是红色</strong>，进入<strong>情况三</strong>；4，如果<strong>叔叔节点不是红色</strong>，看插入节点是其父节点的<strong>左孩子还是右孩子</strong>，是左孩子进入<strong>情况四</strong>，是右孩子进入<strong>情况五</strong>。</p>
+<p><strong>判断父节点的存在性</strong>——<strong>判断父节点的颜色</strong>——<strong>判断叔叔节点的颜色</strong>——<strong>判断插入节点在左还是右。</strong>一，二，三，四五。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RedBlackTree</span> <span class="keyword">extends</span> <span class="title">BinaryS</span></span></span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数据结构与算法</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">红黑树</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/22/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E4%BA%8C%E5%8F%89%E5%B9%B3%E8%A1%A1%E6%A0%91%E4%B9%8B%E7%BA%A2%E9%BB%91%E6%A0%91/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-JS的几种继承方式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/21/JS%E7%9A%84%E5%87%A0%E7%A7%8D%E7%BB%A7%E6%89%BF%E6%96%B9%E5%BC%8F/">JS的几种继承方式</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/21/JS%E7%9A%84%E5%87%A0%E7%A7%8D%E7%BB%A7%E6%89%BF%E6%96%B9%E5%BC%8F/" class="archive-article-date">
+  	<time datetime="2020-06-21T06:39:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="几乎不直接设置类与类之间的关系，类与类之间通过实例来间接联系。"><a href="#几乎不直接设置类与类之间的关系，类与类之间通过实例来间接联系。" class="headerlink" title="几乎不直接设置类与类之间的关系，类与类之间通过实例来间接联系。"></a>几乎不直接设置类与类之间的关系，类与类之间通过实例来间接联系。</h3><h4 id="1，原型链继承Son-prototype-new-Parent"><a href="#1，原型链继承Son-prototype-new-Parent" class="headerlink" title="1，原型链继承Son.prototype=new Parent()"></a>1，原型链继承<code>Son.prototype=new Parent()</code></h4><p>将父类的一个实例作为子类的原型;本质是重写原型对象（<strong>不使用子类的默认原型，而是将父类的一个实例作为子类的原型</strong>），原来父类中的所有属性和方法也存在于子类当中，给子类子类添加方法就是在父类方法的基础上又添加一个方法。<strong>很明显，Javascript的原型是没有多继承的</strong>！只能指一个！！<strong>只能通过延长原型链的方法获取等同于多继承的效果。</strong></p>
+<p><strong>son——Son——(父类实例初始化调用1次)parent——Parent</strong></p>
+<p><code>Son.prototype=new Parent()</code></p>
+<p>特点：覆盖原型链</p>
+<ul>
+<li>1，<u><strong>实例即是子类的实例又是父类的实例，因为将子类的原型指向了父类实例，通过父类实例联系上了父类原型，所以父类和子类都在实例对象的原型链上。</strong></u></li>
+<li>2，这个<strong>时候子类的constructor指针指向的是父类，因为子类的原型被重写覆盖指向了父类的实例，通过父类实例又指向了父类原型。</strong>（如果要改回来得自己写一条defineProperty语句）</li>
+<li>3，<strong>无法多继承</strong>，原型链的出入度只为1.</li>
+<li>4，<strong>设置了子类实例到子类的原型关系，又因为子类的原型指向了父类的实例，所以子类实例可以通过父类的实例联系到父类的原型。所以子类原型和父类原型都在子类实例的原型链上，原型链检测都为true。</strong></li>
+</ul>
+        
+          <a class="article-more-a" href="/2020/06/21/JS%E7%9A%84%E5%87%A0%E7%A7%8D%E7%BB%A7%E6%89%BF%E6%96%B9%E5%BC%8F/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JavaScripe查漏补缺</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/21/JS%E7%9A%84%E5%87%A0%E7%A7%8D%E7%BB%A7%E6%89%BF%E6%96%B9%E5%BC%8F/">展开全文 >></a>
         </p>
       
 
@@ -406,7 +467,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/4/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/6/">下一页</a>
+      <a class="extend prev" rel="prev" href="/page/4/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/6/">下一页</a>
     </nav>
   
 
@@ -507,10 +568,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Map类型</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Set类型</a>
               </li>
              
@@ -524,10 +581,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">深浅拷贝</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">访问控制器set，get</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -560,6 +613,58 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">移动端适配</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Map字典类型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">JSON</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Proxy代理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">访问控制器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">正则表达式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">断言匹配</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">模块化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">super关键字</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">class类的属性继承形式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">class类的方法继承形式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">静态属性</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mixin</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">红黑树</a>
               </li>
             
             <div class="clearfix"></div>

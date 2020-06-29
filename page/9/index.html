@@ -156,41 +156,30 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-数据结构与算法-单向链表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-JS对象访问控制器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E5%8D%95%E5%90%91%E9%93%BE%E8%A1%A8/">数据结构与算法-单向链表</a>
+      <a class="article-title" href="/2020/06/18/JS%E5%AF%B9%E8%B1%A1%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E5%99%A8/">JS对象访问控制器</a>
     </h1>
   
 
         
-        <a href="/2020/06/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E5%8D%95%E5%90%91%E9%93%BE%E8%A1%A8/" class="archive-article-date">
-  	<time datetime="2020-06-12T12:37:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-12</time>
+        <a href="/2020/06/18/JS%E5%AF%B9%E8%B1%A1%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E5%99%A8/" class="archive-article-date">
+  	<time datetime="2020-06-18T08:51:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-18</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h4><p><strong>1，与链表相比数组的缺点：</strong></p>
-<ul>
-<li>必须申请连续的储存空间</li>
-<li>在开头以及中间插入数据要进行大量的位移</li>
-</ul>
-<p>链表可以很好的解决这两个问题。链表可以充分利用计算机储存空间，并且在插入和删除数据的时候要方便一些，不用移动元素（寻找插入位置时要费劲些，但是比移动元素开销少）时间复杂度可以达到o(1)</p>
-<p><strong>2，链表也有它的缺点:</strong></p>
-<ul>
-<li><p>访问查询时总得从头开始访问</p>
-</li>
-<li><p>无法通过下标直接访问元素，要遍历判断循环找。</p>
-</li>
-<li><p>链表有带头结点与不带头指针两种。今后自己统以用带头指针的</p>
+        <p><strong>访问器属性的优先级高于普通的属性操作方式</strong>！</p>
+<h4 id="使用访问控制器保护对象数据"><a href="#使用访问控制器保护对象数据" class="headerlink" title="使用访问控制器保护对象数据"></a>使用访问控制器保护对象数据</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> user=&#123;</span><br><span class="line">    data:&#123;<span class="attr">name</span>: <span class="string">"zbb"</span>,<span class="attr">age</span>: <span class="number">24</span>&#125;,<span class="comment">//对象中的对象；封装起来保护数据</span></span><br><span class="line">    <span class="keyword">set</span> age(value)&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">typeof</span> value!=<span class="string">'number'</span>||value&lt;<span class="number">0</span>||value&gt;<span class="number">100</span>)&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'年龄格式错误'</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">this</span>.data.age=value</span><br><span class="line">    &#125;,<span class="comment">//函数成员，没有键？只有通过访问器才能修改数据</span></span><br><span class="line">    <span class="keyword">get</span> age()&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.data.age<span class="comment">//如果是this.age就会循环找访问器属性，死循环，应该是data中的age</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">user.age=<span class="number">77</span><span class="comment">//调用方法保持一致</span></span><br><span class="line"><span class="built_in">console</span>.log(user.age)<span class="comment">//77</span></span><br><span class="line"><span class="comment">//用set与get两个关键字修饰两个age同名了，但是不冲突，因为一个要传参数，一个不穿参数，根据参数的有无自动调用，可以用对象点方法的形式直接调用，保证了调用形式的一致性</span></span><br></pre></td></tr></table></figure>
         
-          <a class="article-more-a" href="/2020/06/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E5%8D%95%E5%90%91%E9%93%BE%E8%A1%A8/#more">more >></a>
+          <a class="article-more-a" href="/2020/06/18/JS%E5%AF%B9%E8%B1%A1%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E5%99%A8/#more">more >></a>
         
       
 
@@ -204,7 +193,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数据结构与算法</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JavaScripe查漏补缺</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">访问控制器</a>
         		</li>
       		
 		</ul>
@@ -214,7 +207,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E5%8D%95%E5%90%91%E9%93%BE%E8%A1%A8/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/06/18/JS%E5%AF%B9%E8%B1%A1%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E5%99%A8/">展开全文 >></a>
         </p>
       
 
@@ -244,29 +237,33 @@
 
 
   
-    <article id="post-JS日期相关" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-JS对象的创建方式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/12/JS%E6%97%A5%E6%9C%9F%E7%9B%B8%E5%85%B3/">JS日期相关</a>
+      <a class="article-title" href="/2020/06/18/JS%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%9B%E5%BB%BA%E6%96%B9%E5%BC%8F/">对象的创建方式</a>
     </h1>
   
 
         
-        <a href="/2020/06/12/JS%E6%97%A5%E6%9C%9F%E7%9B%B8%E5%85%B3/" class="archive-article-date">
-  	<time datetime="2020-06-12T09:08:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-12</time>
+        <a href="/2020/06/18/JS%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%9B%E5%BB%BA%E6%96%B9%E5%BC%8F/" class="archive-article-date">
+  	<time datetime="2020-06-18T07:15:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-18</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="1，时间与时间戳获取"><a href="#1，时间与时间戳获取" class="headerlink" title="1，时间与时间戳获取"></a>1，时间与时间戳获取</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> date = <span class="keyword">new</span>  <span class="built_in">Date</span>()<span class="comment">//可传参，不传参就是当前时间</span></span><br><span class="line">    <span class="built_in">console</span>.log(date);<span class="comment">//date为对象</span></span><br><span class="line">	<span class="built_in">console</span>.log(date.getFullYearh())</span><br><span class="line">    <span class="built_in">console</span>.log(date.getMonth()+<span class="number">1</span>)</span><br><span class="line">	<span class="built_in">console</span>.log(date.getDate())</span><br><span class="line">	<span class="built_in">console</span>.log(date.getHours())</span><br><span class="line">	<span class="built_in">console</span>.log(date.getMinutes())</span><br><span class="line">	<span class="built_in">console</span>.log(date.getSeconds())</span><br><span class="line">	<span class="built_in">console</span>.log(date*<span class="number">1</span>)<span class="comment">//返回时间戳，可以用来计算运行时间</span></span><br><span class="line"><span class="comment">//可以封装一个函数使用模板字符串输出格式化的日期</span></span><br><span class="line"><span class="keyword">let</span>  date2 = <span class="built_in">Date</span>()</span><br><span class="line">    <span class="built_in">console</span>.log(date2);<span class="comment">//date2为字符串</span></span><br><span class="line">    <span class="built_in">console</span>.log(date2*<span class="number">1</span>)<span class="comment">//返回NaN</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//标签配合使用</span></span><br><span class="line"><span class="built_in">console</span>.time(<span class="string">"for"</span>)</span><br><span class="line"><span class="built_in">console</span>.timeEnd(<span class="string">"for"</span>)</span><br></pre></td></tr></table></figure>
+        <h3 id="对象的创建方式"><a href="#对象的创建方式" class="headerlink" title="对象的创建方式"></a>对象的创建方式</h3><h4 id="1，字面量模式"><a href="#1，字面量模式" class="headerlink" title="1，字面量模式"></a>1，字面量模式</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj=&#123;<span class="attr">name</span>:<span class="string">"zbb"</span>,<span class="attr">show</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="keyword">this</span>.name)&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2，工厂函数-没有用关键字new"><a href="#2，工厂函数-没有用关键字new" class="headerlink" title="2，工厂函数(没有用关键字new)"></a>2，工厂函数(没有用关键字new)</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">user</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;name,<span class="attr">show</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="keyword">this</span>.name)&#125;&#125;<span class="comment">//返回对象</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> obj = user(<span class="string">"zbb"</span>)</span><br></pre></td></tr></table></figure>
+
+<h4 id="3，构造函数-使用关键字new"><a href="#3，构造函数-使用关键字new" class="headerlink" title="3，构造函数(使用关键字new)"></a>3，构造函数(使用关键字new)</h4>
         
-          <a class="article-more-a" href="/2020/06/12/JS%E6%97%A5%E6%9C%9F%E7%9B%B8%E5%85%B3/#more">more >></a>
+          <a class="article-more-a" href="/2020/06/18/JS%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%9B%E5%BB%BA%E6%96%B9%E5%BC%8F/#more">more >></a>
         
       
 
@@ -290,7 +287,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/12/JS%E6%97%A5%E6%9C%9F%E7%9B%B8%E5%85%B3/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/06/18/JS%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%9B%E5%BB%BA%E6%96%B9%E5%BC%8F/">展开全文 >></a>
         </p>
       
 
@@ -320,46 +317,43 @@
 
 
   
-    <article id="post-JS基本类型的类型转换" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-JS对象" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/12/JS%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E7%9A%84%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/">JS基本类型的类型转换</a>
+      <a class="article-title" href="/2020/06/18/JS%E5%AF%B9%E8%B1%A1/">JS对象</a>
     </h1>
   
 
         
-        <a href="/2020/06/12/JS%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E7%9A%84%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" class="archive-article-date">
-  	<time datetime="2020-06-12T08:16:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-12</time>
+        <a href="/2020/06/18/JS%E5%AF%B9%E8%B1%A1/" class="archive-article-date">
+  	<time datetime="2020-06-18T03:04:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-18</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="1，数值类型基本转换"><a href="#1，数值类型基本转换" class="headerlink" title="1，数值类型基本转换"></a>1，数值类型基本转换</h4><ul>
-<li><p>NaN指不是一个数字，NaN不能互相比较（NaN==NaN无结果）</p>
+        <h5 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h5><ul>
+<li><p>属性的检测</p>
 <ul>
-<li>使用<code>Number.isNaN()</code>判断</li>
-<li>使用<code>Object.is(2/&quot;1&quot;, NaN)</code>判断</li>
+<li>对象属性检测<code>obj.hasOwnProperty(&quot;key&quot;)</code>,仅查看自身属性</li>
+<li>原型链属性检测<code>&quot;key&quot; in obj</code>，自身与原型的属性都进行检测</li>
 </ul>
 </li>
-<li><p><code>toString()</code></p>
-</li>
-<li><p><code>Number()</code>，一般从键盘获取的都是字符串要先转换。或者用parseInteresting()</p>
+<li><p>属性的计算</p>
+<ul>
+<li>动态计算属性名，reduce方法</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> lessons = [</span><br><span class="line">      &#123;<span class="attr">title</span>: <span class="string">"媒体查询响应式布局"</span>,<span class="attr">click</span>: <span class="number">89</span>,<span class="attr">price</span>: <span class="number">12</span>&#125;,</span><br><span class="line">      &#123;<span class="attr">title</span>: <span class="string">"FLEX 弹性盒模型"</span>,<span class="attr">click</span>: <span class="number">45</span>,<span class="attr">price</span>: <span class="number">120</span>&#125;,</span><br><span class="line">      &#123;<span class="attr">title</span>: <span class="string">"GRID 栅格系统"</span>,<span class="attr">click</span>: <span class="number">19</span>,<span class="attr">price</span>: <span class="number">67</span>&#125;,</span><br><span class="line">      &#123;<span class="attr">title</span>: <span class="string">"盒子模型详解"</span>,<span class="attr">click</span>: <span class="number">29</span>, <span class="attr">price</span>: <span class="number">300</span>&#125;</span><br><span class="line">    ];</span><br><span class="line">    obj=lessons.reduce(<span class="function">(<span class="params">pre,cur,index</span>)=&gt;</span>&#123;</span><br><span class="line">      pre[<span class="string">`<span class="subst">$&#123;cur[<span class="string">'title'</span>]&#125;</span>-<span class="subst">$&#123;index&#125;</span>`</span>]=cur<span class="comment">//每次都添加新的键值对</span></span><br><span class="line">      <span class="keyword">return</span> pre</span><br><span class="line">    &#125;,&#123;&#125;)</span><br><span class="line">    <span class="built_in">console</span>.log(obj)<span class="comment">//&#123;媒体查询响应式布局-0: &#123;…&#125;, FLEX 弹性盒模型-1: &#123;…&#125;, GRID 栅格系统-2: &#123;…&#125;, 盒子模型详解-3: &#123;…&#125;&#125;</span></span><br></pre></td></tr></table></figure>
+
 </li>
 </ul>
-<h4 id="2，布尔值隐式转换"><a href="#2，布尔值隐式转换" class="headerlink" title="2，布尔值隐式转换"></a>2，布尔值隐式转换</h4><ul>
-<li><p>数值类型除了0，都为真</p>
-</li>
-<li><p>字符串类型除了空串，都为真</p>
-</li>
-<li><p>引用类型永远为真（不管对象或者数组是不是空）</p>
         
-          <a class="article-more-a" href="/2020/06/12/JS%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E7%9A%84%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/#more">more >></a>
+          <a class="article-more-a" href="/2020/06/18/JS%E5%AF%B9%E8%B1%A1/#more">more >></a>
         
       
 
@@ -375,6 +369,10 @@
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JavaScripe查漏补缺</a>
         		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深浅拷贝</a>
+        		</li>
       		
 		</ul>
 	</div>
@@ -383,7 +381,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/12/JS%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E7%9A%84%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/06/18/JS%E5%AF%B9%E8%B1%A1/">展开全文 >></a>
         </p>
       
 
@@ -415,7 +413,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/8/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/10/">下一页</a>
+      <a class="extend prev" rel="prev" href="/page/8/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/10/">下一页</a>
     </nav>
   
 
@@ -516,10 +514,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Map类型</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Set类型</a>
               </li>
              
@@ -533,10 +527,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">深浅拷贝</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">访问控制器set，get</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -569,6 +559,58 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">移动端适配</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Map字典类型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">JSON</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Proxy代理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">访问控制器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">正则表达式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">断言匹配</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">模块化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">super关键字</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">class类的属性继承形式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">class类的方法继承形式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">静态属性</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mixin</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">红黑树</a>
               </li>
             
             <div class="clearfix"></div>

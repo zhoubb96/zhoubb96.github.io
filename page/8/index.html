@@ -156,35 +156,31 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-JS数组三" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-JS对象Proxy代理实现双向绑定" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/13/JS%E6%95%B0%E7%BB%84%E4%B8%89/">JS数组三</a>
+      <a class="article-title" href="/2020/06/18/JS%E5%AF%B9%E8%B1%A1Proxy%E4%BB%A3%E7%90%86%E5%AE%9E%E7%8E%B0%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A/">JS对象Proxy代理实现双向绑定</a>
     </h1>
   
 
         
-        <a href="/2020/06/13/JS%E6%95%B0%E7%BB%84%E4%B8%89/" class="archive-article-date">
-  	<time datetime="2020-06-13T09:43:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-13</time>
+        <a href="/2020/06/18/JS%E5%AF%B9%E8%B1%A1Proxy%E4%BB%A3%E7%90%86%E5%AE%9E%E7%8E%B0%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A/" class="archive-article-date">
+  	<time datetime="2020-06-18T12:11:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-18</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="关于sort-方法"><a href="#关于sort-方法" class="headerlink" title="关于sort()方法"></a>关于sort()方法</h4><ul>
-<li>接受的是一个函数，返回排序后的<strong>数组</strong></li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr=[<span class="number">9</span>,<span class="number">5</span>,<span class="number">2</span>,<span class="number">7</span>]</span><br><span class="line"><span class="keyword">let</span> result = arr.sort(<span class="function"><span class="keyword">function</span> (<span class="params">a,b</span>) </span>&#123;</span><br><span class="line"><span class="comment">//return a-b//返回负数从小到大，[2, 5, 7, 9]</span></span><br><span class="line"><span class="comment">//return b-a//返回正数从大到小，[9, 7, 5, 2]</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(result)</span><br></pre></td></tr></table></figure>
+        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span>&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"UTF-8"</span> /&gt;</span><br><span class="line">    &lt;title&gt;&lt;<span class="regexp">/title&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;input type=<span class="string">"text"</span> v-model=<span class="string">"title"</span> /&gt;</span><br><span class="line">    &lt;input type=<span class="string">"text"</span> v-model=<span class="string">"title"</span> /&gt;</span><br><span class="line">    &lt;h4 v-bind=<span class="string">"title"</span>&gt;这里也会发生更新&lt;<span class="regexp">/h4&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>body&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">View</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="comment">//1，step1:代理一个匿名空对象</span></span><br><span class="line">        <span class="keyword">let</span> proxy = <span class="keyword">new</span> <span class="built_in">Proxy</span>(</span><br><span class="line">            &#123;&#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">set</span>(obj, key, value) &#123;<span class="comment">//step3:代理执行</span></span><br><span class="line">                    <span class="comment">//console.log(value)//此时value已经传入</span></span><br><span class="line">                    <span class="comment">//把proxy收到的属性同步给输入框2</span></span><br><span class="line">                    <span class="built_in">document</span>.querySelectorAll(<span class="string">`[v-model="<span class="subst">$&#123;key&#125;</span>"]`</span>).forEach(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">                        item.value = value</span><br><span class="line">                    &#125;)</span><br><span class="line">                    </span><br><span class="line">                    <span class="comment">//把proxy收到的属性同步给h4</span></span><br><span class="line">                    <span class="built_in">document</span>.querySelectorAll(<span class="string">`[v-bind="<span class="subst">$&#123;key&#125;</span>"]`</span>).forEach(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">                        item.innerHTML = value<span class="comment">//就算只有一个元素也用All，因为forEach是数组方法</span></span><br><span class="line">                    &#125;)</span><br><span class="line">                &#125;,</span><br><span class="line">                <span class="keyword">get</span>(obj, key) &#123;</span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        );<span class="comment">//代理了一个空对象</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//2，绑定事件</span></span><br><span class="line">        <span class="keyword">this</span>.init = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="comment">//获取触发事件的对象</span></span><br><span class="line">            <span class="keyword">const</span> els = <span class="built_in">document</span>.querySelectorAll(<span class="string">"[v-model]"</span>)<span class="comment">//属性选择器</span></span><br><span class="line">            <span class="comment">//添加事件</span></span><br><span class="line">            els.forEach(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span><br><span class="line">                item.addEventListener(<span class="string">'keyup'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                    <span class="comment">//step2:触发代理对象的的set函数</span></span><br><span class="line">                    proxy[<span class="keyword">this</span>.getAttribute(<span class="string">'v-model'</span>)] = <span class="keyword">this</span>.value<span class="comment">//往空对象里压入输入框1的属性</span></span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">new</span> View().init()</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;/</span>html&gt;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr=[<span class="number">9</span>,<span class="number">5</span>,<span class="number">2</span>,<span class="number">7</span>]</span><br><span class="line"><span class="comment">//定义sort，冒泡实现，动态的（反复调用callback）</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sort</span>(<span class="params">arr,callback</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> n <span class="keyword">in</span> arr) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">const</span> m <span class="keyword">in</span> arr) &#123;</span><br><span class="line">        <span class="comment">//一个很奇怪的排序，单纯看返回值，每次都会调用</span></span><br><span class="line">      <span class="keyword">if</span> (callback(arr[n], arr[m]) &lt; <span class="number">0</span>) &#123;<span class="comment">//接受实参，返回一个数（正或者负）,这个callback会被反复调用，每次都判断</span></span><br><span class="line">        <span class="keyword">let</span> temp = arr[n]</span><br><span class="line">        arr[n] = arr[m]</span><br><span class="line">        arr[m] = temp</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> arr</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//调用sort</span></span><br><span class="line"><span class="keyword">let</span> result = sort(arr,<span class="function"><span class="keyword">function</span> (<span class="params">a,b</span>) </span>&#123;<span class="comment">//两个形参要在调用时接受实参</span></span><br><span class="line"> <span class="keyword">return</span> b-a</span><br><span class="line"> &#125;)</span><br><span class="line"><span class="built_in">console</span>.log(result)</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2020/06/13/JS%E6%95%B0%E7%BB%84%E4%B8%89/#more">more >></a>
-        
+<p>所谓代理（proxy），就是一个表示接口的对象，对它的操作不一定作用在代理对象本身。举个例子，<strong>设置代理对象的一个属性，实际上可能会在另一个对象上调用一个函数。</strong>代理是一种非常有用的抽象机制，能够通过 API只公开部分信息，同时还能对数据源进 行全面控制。 简单来说，Proxy就像一个代理商，拦截就是在中间添加判断与操作。</p>
+<p>上面这个例子就是，<strong>代理一个匿名空对象</strong>接受属性，<strong>触发代理对象机制时</strong>，在set函数里<strong>操纵选定、不同的dom对象</strong>。</p>
+
       
 
       
@@ -201,7 +197,11 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">sort(),reduce()</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Proxy代理</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">访问控制器</a>
         		</li>
       		
 		</ul>
@@ -211,7 +211,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/13/JS%E6%95%B0%E7%BB%84%E4%B8%89/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/06/18/JS%E5%AF%B9%E8%B1%A1Proxy%E4%BB%A3%E7%90%86%E5%AE%9E%E7%8E%B0%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A/">展开全文 >></a>
         </p>
       
 
@@ -241,37 +241,31 @@
 
 
   
-    <article id="post-JS数组二" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-JS对象Proxy代理拦截" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/13/JS%E6%95%B0%E7%BB%84%E4%BA%8C/">JS数组二</a>
+      <a class="article-title" href="/2020/06/18/JS%E5%AF%B9%E8%B1%A1Proxy%E4%BB%A3%E7%90%86%E6%8B%A6%E6%88%AA/">JS对象Proxy代理拦截</a>
     </h1>
   
 
         
-        <a href="/2020/06/13/JS%E6%95%B0%E7%BB%84%E4%BA%8C/" class="archive-article-date">
-  	<time datetime="2020-06-13T09:00:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-13</time>
+        <a href="/2020/06/18/JS%E5%AF%B9%E8%B1%A1Proxy%E4%BB%A3%E7%90%86%E6%8B%A6%E6%88%AA/" class="archive-article-date">
+  	<time datetime="2020-06-18T10:26:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-18</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="旧的查找方法"><a href="#旧的查找方法" class="headerlink" title="旧的查找方法"></a>旧的查找方法</h4><p>indexOf()，lastIndexof()，includes()，这几个方法数组和字符串都有查找操作且接口一样，<strong>但是查找的内容是要严格输入的！</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="string">"6"</span>]</span><br><span class="line"><span class="built_in">console</span>.log(arr.indexOf(<span class="number">2</span>))<span class="comment">//1</span></span><br><span class="line"><span class="built_in">console</span>.log(arr.indexOf(<span class="number">6</span>))<span class="comment">//-1，没有数字6，查找失败</span></span><br><span class="line"><span class="built_in">console</span>.log(arr.indexOf(<span class="string">"6"</span>))<span class="comment">//5，字符串"6”的下标为5</span></span><br></pre></td></tr></table></figure>
+        <p>所谓代理（proxy），就是一个表示接口的对象，对它的操作不一定作用在代理对象本身。举个例子，<strong>设置代理对象的一个属性，实际上可能会在另一个对象上调用一个函数。</strong>代理是一种非常有用的抽象机制，能够通过 API只公开部分信息，同时还能对数据源进 行全面控制。 简单来说，Proxy就像一个代理商，拦截就是在中间添加判断与操作。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//对象代理拦截</span></span><br><span class="line"><span class="keyword">const</span> obj = &#123; <span class="attr">name</span>: <span class="string">"zbb"</span>, <span class="attr">age</span>: <span class="number">24</span> &#125;</span><br><span class="line"><span class="keyword">const</span> proxy = <span class="keyword">new</span> <span class="built_in">Proxy</span>(obj, &#123;</span><br><span class="line">    <span class="keyword">get</span>(obj, property) &#123;<span class="comment">//obj接受obj</span></span><br><span class="line">      <span class="keyword">return</span> obj[property]</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="keyword">set</span>(obj, property, value) &#123;</span><br><span class="line">      obj[property] = value</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="built_in">console</span>.log(proxy.name) <span class="comment">//zbb</span></span><br><span class="line">  proxy.name=<span class="string">"zhou"</span></span><br><span class="line">  <span class="built_in">console</span>.log(proxy.name) <span class="comment">//zhou</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//函数代理拦截</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">jiechen</span>(<span class="params">num</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(num===<span class="number">0</span>) <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span>(num===<span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> num*jiechen(--num)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(jiechen(<span class="number">4</span>))<span class="comment">//24</span></span><br><span class="line"><span class="keyword">let</span> proxy = <span class="keyword">new</span> <span class="built_in">Proxy</span>(jiechen,&#123;</span><br><span class="line">  apply(func,obj,args)&#123;<span class="comment">//func接受jiechen，obj接受对象，args接受参数</span></span><br><span class="line">    <span class="built_in">console</span>.time(<span class="string">'run'</span>)</span><br><span class="line">    func.apply(<span class="keyword">this</span>,args)</span><br><span class="line">    <span class="built_in">console</span>.timeEnd(<span class="string">'run'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">proxy.apply(<span class="keyword">this</span>,[<span class="number">4</span>])<span class="comment">//一个时间，其实这里obj随便传什么。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//对数组代理拦截</span></span><br><span class="line"><span class="keyword">const</span> lessons = [</span><br><span class="line">      &#123;<span class="attr">title</span>: <span class="string">"媒体查询响应式布局"</span>,<span class="attr">category</span>: <span class="string">"css"</span>&#125;,</span><br><span class="line">      &#123;<span class="attr">title</span>: <span class="string">"FLEX模型"</span>, <span class="attr">category</span>: <span class="string">"css"</span>&#125;,</span><br><span class="line">      &#123; <span class="attr">title</span>: <span class="string">"MYSQL多表查询随意操作"</span>,<span class="attr">category</span>: <span class="string">"mysql"</span>&#125;</span><br><span class="line">    ];</span><br><span class="line"><span class="keyword">let</span> proxy=<span class="keyword">new</span> <span class="built_in">Proxy</span>(lessons,&#123;</span><br><span class="line">    <span class="keyword">get</span>(array,key)&#123;<span class="comment">//array就是proxy中的，自动接收。</span></span><br><span class="line">        <span class="keyword">const</span> title=array[key].title</span><br><span class="line">        <span class="keyword">const</span> len=<span class="number">5</span></span><br><span class="line">        <span class="keyword">return</span> title.length&gt;<span class="number">5</span>?title.substr(<span class="number">0</span>,len)+<span class="string">'.'</span>.repeat(<span class="number">3</span>):title</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(proxy[<span class="number">0</span>])<span class="comment">//媒体查询响...</span></span><br><span class="line"><span class="built_in">console</span>.log(proxy[<span class="number">1</span>])<span class="comment">//FLEX模...</span></span><br><span class="line"><span class="built_in">console</span>.log(proxy[<span class="number">2</span>])<span class="comment">//MYSQL...</span></span><br></pre></td></tr></table></figure>
 
-<h4 id="新的查找方法"><a href="#新的查找方法" class="headerlink" title="新的查找方法"></a>新的查找方法</h4><p>find()与findIndex()</p>
-<ul>
-<li><code>find(callback(value))</code>,find()内部参数<strong>是个回调函数，需要你自定义</strong>，而且<strong><u>返回的是值</u></strong>，<strong>解决引用类型查找</strong>，因为引用类型查找的是地址。</li>
-<li><code>findIndex(callback(value))</code>,findIndex()同样<strong>也是接受一个函数</strong>，和find()一致，不同的是<strong><u>它返回的是位置</u></strong></li>
-</ul>
-        
-          <a class="article-more-a" href="/2020/06/13/JS%E6%95%B0%E7%BB%84%E4%BA%8C/#more">more >></a>
-        
+<p>上面几个例子，第一个参数不用手动传递。也就是obj，func，array，就是接受自身代理的那个东西。后面几个参数必须手动传入。</p>
+
       
 
       
@@ -288,7 +282,11 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">find(),findIndex()</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Proxy代理</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">访问控制器</a>
         		</li>
       		
 		</ul>
@@ -298,7 +296,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/13/JS%E6%95%B0%E7%BB%84%E4%BA%8C/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/06/18/JS%E5%AF%B9%E8%B1%A1Proxy%E4%BB%A3%E7%90%86%E6%8B%A6%E6%88%AA/">展开全文 >></a>
         </p>
       
 
@@ -328,36 +326,30 @@
 
 
   
-    <article id="post-移动端适配四" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-JS-Token的读写处理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/13/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E5%9B%9B/">移动端适配四</a>
+      <a class="article-title" href="/2020/06/18/JS-Token%E7%9A%84%E8%AF%BB%E5%86%99%E5%A4%84%E7%90%86/">JS-Token的读写处理</a>
     </h1>
   
 
         
-        <a href="/2020/06/13/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E5%9B%9B/" class="archive-article-date">
-  	<time datetime="2020-06-13T02:30:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-13</time>
+        <a href="/2020/06/18/JS-Token%E7%9A%84%E8%AF%BB%E5%86%99%E5%A4%84%E7%90%86/" class="archive-article-date">
+  	<time datetime="2020-06-18T09:21:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-18</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="位置获取"><a href="#位置获取" class="headerlink" title="位置获取"></a>位置获取</h4><ul>
-<li>clientX：当鼠标事件发生时（不管是onclick，还是omousemove，onmouseover等），鼠标相对于浏览器（这里说的是浏览器的<strong>可视区域</strong>）x轴的位置；</li>
-<li>screenX：当鼠标事件发生时，鼠标相对于<strong>显示器屏幕</strong>x轴的位置；</li>
-<li>offsetX：当鼠标事件发生时，鼠标相对于<strong>事件源</strong>x轴的位置，注意判断正负</li>
-</ul>
-<h4 id="高度获取"><a href="#高度获取" class="headerlink" title="高度获取"></a>高度获取</h4><ul>
-<li><p>clientHeight：只包括padding高度。</p>
-<p><img src="http://img1.sycdn.imooc.com/58f5b2fa00012ea604110247.jpg" alt=""></p>
+        <p>Token的访问控制器设置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//设置token令牌对象</span></span><br><span class="line"><span class="keyword">let</span> Request=&#123;</span><br><span class="line">    <span class="comment">//没有在对象中，因为数据存在了本地</span></span><br><span class="line">    <span class="keyword">set</span> token(content)&#123;</span><br><span class="line">        localStorage.setItem(<span class="string">'token'</span>,content)<span class="comment">//在本地缓存设置一个token</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="keyword">get</span> token()&#123;</span><br><span class="line">      <span class="keyword">let</span> token=localStorage.getItem(<span class="string">'token'</span>)<span class="comment">//获取</span></span><br><span class="line">        <span class="keyword">if</span>(!token)&#123;</span><br><span class="line">            alertr(<span class="string">'请登录'</span>)<span class="comment">//没有token</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> token</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br><span class="line">Request.token=<span class="string">'123'</span></span><br><span class="line"><span class="built_in">console</span>.log(Request.token)</span><br></pre></td></tr></table></figure>
         
-          <a class="article-more-a" href="/2020/06/13/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E5%9B%9B/#more">more >></a>
+          <a class="article-more-a" href="/2020/06/18/JS-Token%E7%9A%84%E8%AF%BB%E5%86%99%E5%A4%84%E7%90%86/#more">more >></a>
         
       
 
@@ -371,7 +363,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">移动端适配</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JavaScripe查漏补缺</a>
         		</li>
       		
 		</ul>
@@ -381,7 +373,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/13/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E5%9B%9B/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/06/18/JS-Token%E7%9A%84%E8%AF%BB%E5%86%99%E5%A4%84%E7%90%86/">展开全文 >></a>
         </p>
       
 
@@ -413,7 +405,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/7/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/9/">下一页</a>
+      <a class="extend prev" rel="prev" href="/page/7/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/9/">下一页</a>
     </nav>
   
 
@@ -514,10 +506,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Map类型</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Set类型</a>
               </li>
              
@@ -531,10 +519,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">深浅拷贝</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">访问控制器set，get</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -567,6 +551,58 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">移动端适配</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Map字典类型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">JSON</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Proxy代理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">访问控制器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">正则表达式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">断言匹配</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">模块化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">super关键字</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">class类的属性继承形式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">class类的方法继承形式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">静态属性</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mixin</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">红黑树</a>
               </li>
             
             <div class="clearfix"></div>

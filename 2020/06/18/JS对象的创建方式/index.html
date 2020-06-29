@@ -16,7 +16,7 @@
 <meta property="og:description" content="对象的创建方式1，字面量模式1let obj&#x3D;&amp;#123;name:&quot;zbb&quot;,show:function()&amp;#123;console.log(this.name)&amp;#125;&amp;#125;  2，工厂函数(没有用关键字new)1234function user(name)&amp;#123;    return &amp;#123;name,show:function()&amp;#123;console.log(th">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-06-18T07:15:33.000Z">
-<meta property="article:modified_time" content="2020-06-19T03:26:32.253Z">
+<meta property="article:modified_time" content="2020-06-20T14:18:46.543Z">
 <meta property="article:author" content="Zhoubb">
 <meta property="article:tag" content="JavaScripe查漏补缺">
 <meta name="twitter:card" content="summary">
@@ -185,7 +185,7 @@
 
 <h4 id="3，构造函数-使用关键字new"><a href="#3，构造函数-使用关键字new" class="headerlink" title="3，构造函数(使用关键字new)"></a>3，构造函数(使用关键字new)</h4><a id="more"></a>
 
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">User</span> (<span class="params">name</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name=name</span><br><span class="line">  <span class="keyword">this</span>.show=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="comment">//键值对给个匿名函数只在对象里才行</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">  &#125;</span><br><span class="line">   <span class="keyword">return</span> <span class="keyword">this</span><span class="comment">//this是设置完的对象</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> zbb=<span class="keyword">new</span> User(<span class="string">"zbb"</span>)</span><br><span class="line">zbb.show()<span class="comment">//zbb</span></span><br><span class="line"><span class="keyword">let</span> fun=zbb.show<span class="comment">//将方法赋值给变量后，fun变成普通函数</span></span><br><span class="line">fun()<span class="comment">//undefined；因为此时就不再是方法调用，而是普通函数，this变成了window</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">User</span> (<span class="params">name</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name=name</span><br><span class="line">  <span class="keyword">this</span>.show=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="comment">//键值对给个匿名函数只在对象里才行</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">  &#125;</span><br><span class="line">   <span class="keyword">return</span> <span class="keyword">this</span><span class="comment">//this是设置完的对象</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> zbb=<span class="keyword">new</span> User(<span class="string">"zbb"</span>)</span><br><span class="line"><span class="keyword">let</span> ycy=<span class="keyword">new</span> User(<span class="string">"ycy"</span>)</span><br><span class="line">zbb.show()<span class="comment">//zbb</span></span><br><span class="line"><span class="keyword">let</span> fun=zbb.show<span class="comment">//将方法赋值给变量后，fun变成普通函数</span></span><br><span class="line">fun()<span class="comment">//undefined；因为此时就不再是方法调用，而是普通函数，this变成了window</span></span><br><span class="line"><span class="built_in">console</span>.log(zbb)<span class="comment">//可以看到zbb里面有一个name属性和一个show方法</span></span><br><span class="line"><span class="built_in">console</span>.log(ycy)<span class="comment">//ycy里面也有一个name属性和一个show方法</span></span><br><span class="line"><span class="comment">//这个方法可以放到原型里，而不必放到每个实例对象里，这样可以节省空间</span></span><br></pre></td></tr></table></figure>
 
 <p>new共经过了4几个阶段</p>
 <ul>
@@ -195,7 +195,10 @@
 <li>4、判断的构造函数返回值类型，并返回对象：（为值得话，返回对象；如果是引用就是返回引用类型对象）</li>
 </ul>
 <p>注意：这种方法的创建对象，那么<strong>方法在每个对象里都有一份，有点浪费空间。</strong></p>
-<h4 id="4，构造函数-原型"><a href="#4，构造函数-原型" class="headerlink" title="4，构造函数+原型"></a>4，构造函数+原型</h4>
+<h4 id="4，构造函数-原型"><a href="#4，构造函数-原型" class="headerlink" title="4，构造函数+原型"></a>4，构造函数+原型</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">User</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span><span class="comment">//this是设置完的对象</span></span><br><span class="line">&#125;</span><br><span class="line">User.prototype.show = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;<span class="comment">//键值对给个匿名函数只在对象里才行</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> zbb=<span class="keyword">new</span> User(<span class="string">"zbb"</span>)<span class="comment">//User &#123;name: "zbb"&#125;,里面没有show方法</span></span><br><span class="line"><span class="built_in">console</span>.log(zbb)<span class="comment">//zbb，依然可以成功调用，调用原型</span></span><br><span class="line">zbb.show()</span><br></pre></td></tr></table></figure>
+
+<p>节省空间。</p>
+
       
 
       
@@ -467,10 +470,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Map类型</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Set类型</a>
               </li>
              
@@ -484,10 +483,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">深浅拷贝</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">访问控制器set，get</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -520,6 +515,58 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">移动端适配</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Map字典类型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">JSON</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Proxy代理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">访问控制器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">正则表达式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">断言匹配</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">模块化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">super关键字</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">class类的属性继承形式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">class类的方法继承形式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">静态属性</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mixin</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">红黑树</a>
               </li>
             
             <div class="clearfix"></div>

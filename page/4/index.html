@@ -156,39 +156,55 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-JS环境、作用域与闭包" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-JS的class类以及静态属性" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/17/JS%E7%8E%AF%E5%A2%83%E3%80%81%E4%BD%9C%E7%94%A8%E5%9F%9F%E4%B8%8E%E9%97%AD%E5%8C%85/">JS环境、作用域与闭包</a>
+      <a class="article-title" href="/2020/06/24/JS%E7%9A%84class%E7%B1%BB%E4%BB%A5%E5%8F%8A%E9%9D%99%E6%80%81%E5%B1%9E%E6%80%A7/">JS的class类以及静态属性</a>
     </h1>
   
 
         
-        <a href="/2020/06/17/JS%E7%8E%AF%E5%A2%83%E3%80%81%E4%BD%9C%E7%94%A8%E5%9F%9F%E4%B8%8E%E9%97%AD%E5%8C%85/" class="archive-article-date">
-  	<time datetime="2020-06-17T06:38:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-17</time>
+        <a href="/2020/06/24/JS%E7%9A%84class%E7%B1%BB%E4%BB%A5%E5%8F%8A%E9%9D%99%E6%80%81%E5%B1%9E%E6%80%A7/" class="archive-article-date">
+  	<time datetime="2020-06-24T01:50:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-24</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h4><p>定义：一块静态的代码区域，在编码时确定，并不会再改变</p>
-<p>类型：全局作用域，函数作用域，块作用域（for循环括号里变量，在此之前使用立即执行函数的函数作用域模拟块作用域，）。</p>
-<h4 id="环境上下文对象"><a href="#环境上下文对象" class="headerlink" title="环境上下文对象"></a>环境上下文对象</h4><p>定义：一个管理相应作用域中数据的对象；有全局上下文对象，函数上下文对象</p>
+        <h4 id="学习完原型和继承之后，引入类的概念。"><a href="#学习完原型和继承之后，引入类的概念。" class="headerlink" title="学习完原型和继承之后，引入类的概念。"></a>学习完原型和继承之后，引入类的概念。</h4><p>类可以让面向对象变得更简单，<strong>依然采用原型机制</strong>，是一个语法糖。</p>
+<p><strong>1，之前的函数关键字定义</strong></p>
 <ul>
-<li><p>全局上下文对象是window，不会被回收，除非关闭标签</p>
-</li>
-<li><p>函数上下文对象是运行时动态创立的，运行结束时回收；执行几次创建几次，每次创建数据都是新的，产生多个内存地址，每个内存地址里都有一份数据。</p>
-</li>
+<li>使用函数关键字function定义</li>
+<li>往原型上加方法时要也要用函数关键字function</li>
+<li><strong>原型方法</strong>可以被遍历到（<strong>emumerable默认为true</strong>）</li>
 </ul>
-<p>作用域涵盖了上下文对象，上下文对象在作用域里活动。</p>
-        
-          <a class="article-more-a" href="/2020/06/17/JS%E7%8E%AF%E5%A2%83%E3%80%81%E4%BD%9C%E7%94%A8%E5%9F%9F%E4%B8%8E%E9%97%AD%E5%8C%85/#more">more >></a>
-        
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">      <span class="function"><span class="keyword">function</span> <span class="title">User</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">          <span class="comment">//实例属性</span></span><br><span class="line">          <span class="keyword">this</span>.name = name</span><br><span class="line">          <span class="keyword">this</span>.age = age</span><br><span class="line">          <span class="keyword">this</span>.get = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="comment">//实例方法，每个函数都带一份，会重复占用空间</span></span><br><span class="line">              <span class="built_in">console</span>.log(<span class="string">"wow"</span>)</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="comment">//原型方法</span></span><br><span class="line">          User.prototype.show = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">              <span class="built_in">console</span>.log(<span class="keyword">this</span>.name, <span class="keyword">this</span>.age)</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">let</span> zbb = <span class="keyword">new</span> User(<span class="string">'zbb'</span>, <span class="number">24</span>)</span><br><span class="line">      zbb.show()<span class="comment">//zbb 24</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> key <span class="keyword">in</span> zbb) &#123;</span><br><span class="line">          <span class="comment">//in方法会遍历到原型。要么hasOwnProperty,要么是class关键字声明的类的对象才可以不去遍历原型</span></span><br><span class="line">          <span class="built_in">console</span>.log(key)<span class="comment">//不仅遍历实例的属性和方法name,age,get还遍历原型的方法show</span></span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>2</strong>，<strong>使用类关键字定义</strong></p>
+<ul>
+<li>使用类关键字class定义（但本质上还是函数）</li>
+<li>添加方法时可以省略函数关键字function，但也是放到原型里了。</li>
+<li><strong>原型方法</strong>不可以被遍历到（<strong>emumerable默认为false</strong>）</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;<span class="comment">//class关键字声明</span></span><br><span class="line">          <span class="keyword">constructor</span>(name, age) &#123;<span class="comment">//自动执行的初始化函数</span></span><br><span class="line">              <span class="keyword">this</span>.name=name</span><br><span class="line">              <span class="keyword">this</span>.age=age</span><br><span class="line">              <span class="keyword">this</span>.get = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="comment">//实例方法，每个函数都带一份，会重复占用空间</span></span><br><span class="line">              	<span class="built_in">console</span>.log(<span class="string">"wow"</span>)</span><br><span class="line">          	&#125; </span><br><span class="line">          &#125;</span><br><span class="line">          <span class="comment">//类里面往原型加方法还可以省略function关键字，直接写</span></span><br><span class="line">          show() &#123; </span><br><span class="line">              <span class="built_in">console</span>.log(<span class="keyword">this</span>.name,<span class="keyword">this</span>.age)</span><br><span class="line">          &#125;<span class="comment">//类里面函数之间不用加逗号因为虽然定义的形式看起来像对象但class本质是个函数，不是个对象。</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">let</span> Hd = <span class="class"><span class="keyword">class</span> </span>&#123; &#125;<span class="comment">//看起来像对象</span></span><br><span class="line">      <span class="built_in">console</span>.log(<span class="keyword">typeof</span> User)<span class="comment">//function</span></span><br><span class="line">      <span class="built_in">console</span>.log(<span class="keyword">typeof</span> Hd)<span class="comment">//function</span></span><br><span class="line">      <span class="keyword">let</span> zbb = <span class="keyword">new</span> User(<span class="string">'zbb'</span>, <span class="number">24</span>)</span><br><span class="line">      zbb.show()<span class="comment">//zbb 24</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> key <span class="keyword">in</span> zbb) &#123;<span class="comment">//in方法会遍历到原型</span></span><br><span class="line">          <span class="built_in">console</span>.log(key)<span class="comment">//虽然in到了原型，但只遍历到实例的属性和方法name,age,get。因为原型方法的可遍历性被自动修改了</span></span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="关于静态属性"><a href="#关于静态属性" class="headerlink" title="关于静态属性"></a>关于静态属性</h4><p><strong>类(函数)作为一个对象时拥有的属性</strong></p>
+<p>User.description，User.——proto——.description，static description。三种设置方式</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;<span class="comment">//class关键字声明</span></span><br><span class="line">     <span class="keyword">constructor</span>(name, age) &#123;<span class="comment">//自动执行的初始化函数，设置实例的属性与方法</span></span><br><span class="line">         <span class="keyword">this</span>.name=name;<span class="keyword">this</span>.age=age</span><br><span class="line">         <span class="keyword">this</span>.get = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">         	<span class="built_in">console</span>.log(<span class="string">"wow"</span>)</span><br><span class="line">     	&#125; </span><br><span class="line">     &#125;</span><br><span class="line">     <span class="comment">//原型方法</span></span><br><span class="line">     show() &#123; </span><br><span class="line">         <span class="built_in">console</span>.log(<span class="keyword">this</span>.name,<span class="keyword">this</span>.age)</span><br><span class="line">     &#125;</span><br><span class="line">    </span><br><span class="line">     <span class="comment">//静态属性，类作为对象时自身的属性与方法,可以给所有对象使用，但是设置只能通过类User自身来设置与读取。</span></span><br><span class="line">     <span class="comment">//只保存一份，在类User当中</span></span><br><span class="line">     <span class="keyword">static</span> decription = <span class="string">"静态属性"</span><span class="comment">//当然，也可以这样设置。User.description="静态属性"，</span></span><br><span class="line">     <span class="comment">//或者，User.__proto__.description="静态属性"。三种方法</span></span><br><span class="line"></span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">let</span> zbb = <span class="keyword">new</span> User(<span class="string">'zbb'</span>,<span class="number">24</span>)</span><br><span class="line"> <span class="built_in">console</span>.log(zbb)<span class="comment">//User &#123;name: "zbb", age: 24, get: ƒ&#125;,没有description</span></span><br><span class="line"> <span class="built_in">console</span>.dir(User)<span class="comment">//可以看到静态属性</span></span><br><span class="line"> <span class="built_in">console</span>.log(User.decription)<span class="comment">//静态属性；通过User自身来读取</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="静态属性批量处理对象"><a href="#静态属性批量处理对象" class="headerlink" title="静态属性批量处理对象"></a>静态属性批量处理对象</h4><p>直接使用new的话一次只能产生一个对象，可以使用静态方法，在类的内部自动帮我们批量产生对象。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">     <span class="keyword">const</span> data = [</span><br><span class="line">         &#123; <span class="attr">name</span>: <span class="string">"js"</span>, <span class="attr">price</span>: <span class="number">100</span> &#125;,</span><br><span class="line">         &#123; <span class="attr">name</span>: <span class="string">"mysql"</span>, <span class="attr">price</span>: <span class="number">212</span> &#125;,</span><br><span class="line">         &#123; <span class="attr">name</span>: <span class="string">"vue.js"</span>, <span class="attr">price</span>: <span class="number">98</span> &#125;</span><br><span class="line">     ]</span><br><span class="line"></span><br><span class="line">     <span class="class"><span class="keyword">class</span> <span class="title">Lesson</span> </span>&#123;</span><br><span class="line">         <span class="keyword">constructor</span>(data) &#123;</span><br><span class="line">             <span class="keyword">this</span>.model = data</span><br><span class="line">         &#125;</span><br><span class="line"><span class="comment">//静态方法</span></span><br><span class="line">         <span class="keyword">static</span> creatLessons(data) &#123;</span><br><span class="line">             <span class="keyword">return</span> data.map(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">                 <span class="keyword">return</span> <span class="keyword">new</span> Lesson(item)</span><br><span class="line">             &#125;)</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="comment">//obj1=new Lesson(data[0]),重复三次</span></span><br><span class="line">     <span class="keyword">let</span> lessons = Lesson.creatLessons(data)<span class="comment">//静态方法调用通过类自身调用，传入一次就行</span></span><br><span class="line">     <span class="built_in">console</span>.log(lessons)<span class="comment">//[Lesson, Lesson, Lesson]</span></span><br></pre></td></tr></table></figure>
+
+
       
 
       
@@ -203,6 +219,10 @@
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JavaScripe查漏补缺</a>
         		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">静态属性</a>
+        		</li>
       		
 		</ul>
 	</div>
@@ -211,7 +231,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/17/JS%E7%8E%AF%E5%A2%83%E3%80%81%E4%BD%9C%E7%94%A8%E5%9F%9F%E4%B8%8E%E9%97%AD%E5%8C%85/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/06/24/JS%E7%9A%84class%E7%B1%BB%E4%BB%A5%E5%8F%8A%E9%9D%99%E6%80%81%E5%B1%9E%E6%80%A7/">展开全文 >></a>
         </p>
       
 
@@ -241,132 +261,31 @@
 
 
   
-    <article id="post-JS递归与循环" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-数据结构与算法-字典" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/17/JS%E9%80%92%E5%BD%92%E4%B8%8E%E5%BE%AA%E7%8E%AF/">JS递归与循环</a>
+      <a class="article-title" href="/2020/06/23/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E5%AD%97%E5%85%B8/">数据结构与算法-字典</a>
     </h1>
   
 
         
-        <a href="/2020/06/17/JS%E9%80%92%E5%BD%92%E4%B8%8E%E5%BE%AA%E7%8E%AF/" class="archive-article-date">
-  	<time datetime="2020-06-17T04:03:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-17</time>
+        <a href="/2020/06/23/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E5%AD%97%E5%85%B8/" class="archive-article-date">
+  	<time datetime="2020-06-23T11:19:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-23</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h4><p><strong>重复做一件事，在合适的时候返回即可</strong>。<strong>递归的关键在于终止条件的判断</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//递归实现阶乘，形式和判断很简单但是运行效率慢</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">jiechen1</span>(<span class="params">num</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(num===<span class="number">0</span>) <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span>(num===<span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="comment">//return num*jiechen(num--)//此处num--会导致报错，因为num--的话取得还是num，没有进入下一步</span></span><br><span class="line">    <span class="keyword">return</span> num*jiechen1(num<span class="number">-1</span>)<span class="comment">//必须是n-1，或者--n</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//循环实现阶乘,形式和判断要复杂些但是运行效率快</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">jiechen2</span>(<span class="params">num</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(num===<span class="number">0</span>) <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span>(num===<span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">let</span> result=<span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">2</span>;i&lt;=num;i++)&#123;</span><br><span class="line">        result=result*i</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(jiechen1(<span class="number">4</span>))<span class="comment">//24</span></span><br><span class="line"><span class="built_in">console</span>.log(jiechen2(<span class="number">5</span>))<span class="comment">//120</span></span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2020/06/17/JS%E9%80%92%E5%BD%92%E4%B8%8E%E5%BE%AA%E7%8E%AF/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JavaScripe查漏补缺</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/17/JS%E9%80%92%E5%BD%92%E4%B8%8E%E5%BE%AA%E7%8E%AF/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
+        <h4 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h4><p>用Object类来封装一个字典。ES6已经提供原生字典类Map。</p>
+<p>字典和集合很相似，只是集合用的是【值，值】储存方式，而字典Map依然使用【键，值】的储存方式。此外，<strong>集合是值不能重复</strong>；<strong>字典是只要求键不能重复</strong>，对值没有要求。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Dictionary</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.items=&#123;&#125;</span><br><span class="line">    <span class="comment">//1,set方法添加键值对</span></span><br><span class="line">    Dictionary.prototype.set=<span class="function"><span class="keyword">function</span>(<span class="params">key,value</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.items[key]=value</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//2，has方法判断某个键是否存在</span></span><br><span class="line">    Dictionary.prototype.has=<span class="function"><span class="keyword">function</span>(<span class="params">key</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.items.hasOwnProperty(key)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//3，remove方法移除</span></span><br><span class="line">    Dictionary.prototype.remove=<span class="function"><span class="keyword">function</span>(<span class="params">key</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">this</span>.has(key)==<span class="literal">false</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> flase</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">delete</span> <span class="keyword">this</span>.items[key]<span class="comment">//对象删除属性用关键字delete</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//4，get获取方法，通过key返回value</span></span><br><span class="line">    Dictionary.prototype.get=<span class="function"><span class="keyword">function</span>(<span class="params">key</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.items[key]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//5，values方法获取所有value</span></span><br><span class="line">    Dictionary.prototype.values=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Object</span>.values(<span class="keyword">this</span>.items)<span class="comment">//一个数组</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//6，keys方法获取所有的key</span></span><br><span class="line">    Dictionary.prototype.keys=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Object</span>.keys(<span class="keyword">this</span>.items)<span class="comment">//一个数组</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//7，size方法获取对象键值对的数量</span></span><br><span class="line">    Dictionary.prototype.size=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.keys().length<span class="comment">//return this.values().length,利用键的数量或者值的数量</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//8，clear方法清空数组。</span></span><br><span class="line">    Dictionary.prototype.clear=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.items=&#123;&#125;<span class="comment">//空对象覆盖</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//测试</span></span><br><span class="line">        <span class="keyword">var</span> dict = <span class="keyword">new</span> Dictionary()</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 在字典中添加元素</span></span><br><span class="line">        dict.set(<span class="string">"age"</span>, <span class="number">18</span>)</span><br><span class="line">        dict.set(<span class="string">"name"</span>, <span class="string">"zbb"</span>)</span><br><span class="line">        dict.set(<span class="string">"height"</span>, <span class="number">1.88</span>)</span><br><span class="line">        dict.set(<span class="string">"address"</span>, <span class="string">"广州市"</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 获取字典的信息</span></span><br><span class="line">        alert(dict.keys()) <span class="comment">// age,name,height,address</span></span><br><span class="line">        alert(dict.values()) <span class="comment">// 18,zbb,1.88,广州市</span></span><br><span class="line">        alert(dict.size()) <span class="comment">// 4</span></span><br><span class="line">        alert(dict.get(<span class="string">"name"</span>)) <span class="comment">// zbb</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 字典的删除方法</span></span><br><span class="line">        dict.remove(<span class="string">"height"</span>)</span><br><span class="line">        alert(dict.keys())<span class="comment">// age,name,address</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 清空字典</span></span><br><span class="line">        dict.clear()</span><br><span class="line">        <span class="built_in">console</span>.log(dict)<span class="comment">//&#123;&#125;</span></span><br></pre></td></tr></table></figure>
 
 
-
-
-  
-    <article id="post-数据结构与算法-哈希表一" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/16/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E5%93%88%E5%B8%8C%E8%A1%A8%E4%B8%80/">数据结构与算法-哈希表一</a>
-    </h1>
-  
-
-        
-        <a href="/2020/06/16/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E5%93%88%E5%B8%8C%E8%A1%A8%E4%B8%80/" class="archive-article-date">
-  	<time datetime="2020-06-16T12:06:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h4><p>搞懂哈希表到底如何实现的。理论知识较多，实现并不难。哈希表是基于数组实现的，但是相对与数组有以下优势</p>
-<p>优势</p>
-<ul>
-<li>可以提供快速的<strong>插入，删除，查找</strong>操作。</li>
-<li>无论数据量为多少，<strong>插入与删除</strong>的时间复杂度都接近o(1)</li>
-<li>速度比树还要快，<strong>可以很快的查找</strong>。</li>
-<li>编码难度比树简单</li>
-</ul>
-<p>不足之处</p>
-<ul>
-<li>由于内部是无序数据，所以<strong>无法以一种固定方式遍历元素。</strong></li>
-<li>哈希表的<strong>key值不允许重复</strong></li>
-</ul>
-<h4 id="哈希函数"><a href="#哈希函数" class="headerlink" title="哈希函数"></a>哈希函数</h4><p>哈希表对下标值会做一种变换，这个变换规则称之为哈希函数，通过哈希函数获取到哈希码，HashCode，一一对应。</p>
-<p>第一次看hash表的时候没有深入了解这个东西。</p>
-<p>目标：1，<strong>将字符串转为大的数字hashcode</strong>；2，<strong>将大的数字hashcode压缩到数组范围内index</strong></p>
-<ul>
-<li>直接相加，不能保证数字的唯一性。</li>
-<li>幂的连乘，基本可以保证数字的唯一性，但是产生的下标会过大，导致数组过大，元素分布不均匀。</li>
-</ul>
-<p>优秀的哈希函数应当由以下优点</p>
-<ul>
-<li>计算简单（尽量避免乘除法，提高计算速度）</li>
-<li>输出均匀（减小探测步长与次数）</li>
-</ul>
-<p><strong>多项式计算，再利用秦九韶算法。</strong>使用质数当作底数，</p>
-        
-          <a class="article-more-a" href="/2020/06/16/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E5%93%88%E5%B8%8C%E8%A1%A8%E4%B8%80/#more">more >></a>
-        
       
 
       
@@ -389,7 +308,133 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/16/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E5%93%88%E5%B8%8C%E8%A1%A8%E4%B8%80/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/06/23/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E5%AD%97%E5%85%B8/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-数据结构与算法-图" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/23/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E5%9B%BE/">数据结构与算法-图</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/23/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E5%9B%BE/" class="archive-article-date">
+  	<time datetime="2020-06-23T09:12:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="图结构"><a href="#图结构" class="headerlink" title="图结构"></a>图结构</h3><p>数学上，树其实是图的一种。关键概念是Vertex顶点与Edge边。</p>
+<p>概念：</p>
+<ul>
+<li><p>Vertex：图中的一个节点</p>
+</li>
+<li><p>Edge：顶点之间的连线，可以是有向的也可以是无向边。</p>
+</li>
+<li><p>相邻顶点：由一条边连接在一起的两个顶点</p>
+</li>
+<li><p>度：一个顶点相邻顶点的数量</p>
+</li>
+<li><p>路径：从一个顶点到另一个顶点的经过的顶点序列。如果没有重复的顶点，那就是简单路径。</p>
+</li>
+<li><p>回路：首尾相同。</p>
+</li>
+<li><p>有向图：边为有向边的图</p>
+</li>
+<li><p>有权图：边有权值的图</p>
+</li>
+</ul>
+<p>图结构的特点</p>
+<p>有一组顶点：用V表示顶点的集合</p>
+<p>有一组边：用E表示边的集合</p>
+<h4 id="图的表示"><a href="#图的表示" class="headerlink" title="图的表示"></a>图的表示</h4><p>顶点容易表示（数组，set都可以），关键是边的表示。</p>
+<p>1，邻接矩阵(二维数组)来表示边</p>
+<ul>
+<li>如果是对称矩阵那就是无向图，如果不是对称矩阵，那便是有向图。</li>
+<li>稀疏图空间利用率不高。</li>
+</ul>
+<p><img src="C:%5CUsers%5Czhoub%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200623183656708.png" alt="image-20200623183656708"></p>
+<p>2，邻接链表来表示边</p>
+<ul>
+<li>图用顶点和其相邻的顶点列表组成（AB，AC，AD）</li>
+<li>这个列表可以用数组、链表、哈希表等方式表示</li>
+<li>邻接表计算出度是很简单的，如果要计算入度那么需要再构造一个逆邻接表。</li>
+</ul>
+<p><img src="C:%5CUsers%5Czhoub%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200623184000977.png" alt="image-20200623184000977"></p>
+<h4 id="图的遍历"><a href="#图的遍历" class="headerlink" title="图的遍历"></a>图的遍历</h4><p>使用三种颜色记录状态</p>
+<p>白色：该顶点还没被访问。访问，头节点入队，初始节点的的邻接节点是下一次访问的头节点。</p>
+<p>灰色：被访问过，但是未被探索过。探索，邻接节点是否入队。没入，灰色。</p>
+<p>黑色：被访问且被完全探索过。已入，黑色。</p>
+<p><strong>其实两个颜色就够了。在判断是否入队的时刻。</strong></p>
+<p>​       是不是白色，就完事了。</p>
+<ul>
+<li><p>广度优先搜索（BFS，Breadth-First Search）</p>
+<p>基于队列，入队列的顶点先被探索，层序遍历遍历。</p>
+</li>
+<li><p>深度优先搜索（DFS，Depth-First Search）</p>
+<p>基于栈，基于栈或者递归(递归就是函数栈)，沿着路径探索的，存在新的顶点就去访问。类似于先序遍历</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=<span class="string">"dict.js"</span>&gt;<span class="comment">//自定义字典&lt;/script&gt;</span></span><br><span class="line">    &lt;script src=<span class="string">"queue.js"</span>&gt;<span class="comment">//自定义队列&lt;/script&gt;</span></span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">Graph</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="comment">//属性</span></span><br><span class="line">            <span class="keyword">this</span>.vertexes = []<span class="comment">//顶点集合</span></span><br><span class="line">            <span class="keyword">this</span>.edges = <span class="keyword">new</span> Dictionary()<span class="comment">//边集合</span></span><br><span class="line">            <span class="comment">//方法</span></span><br><span class="line">            <span class="comment">//1，添加顶点</span></span><br><span class="line">            Graph.prototype.addVertex = <span class="function"><span class="keyword">function</span> (<span class="params">v</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">this</span>.vertexes.push(v)</span><br><span class="line">                <span class="keyword">this</span>.edges.set(v, [])</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//2，添加边,无向图</span></span><br><span class="line">            Graph.prototype.addEdge = <span class="function"><span class="keyword">function</span> (<span class="params">v1, v2</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">this</span>.edges.get(v1).push(v2)</span><br><span class="line">                <span class="keyword">this</span>.edges.get(v2).push(v1)</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//3，输出</span></span><br><span class="line">            Graph.prototype.toString = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="keyword">let</span> resultString = <span class="string">""</span></span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.vertexes.length; i++) &#123;</span><br><span class="line">                    resultString += <span class="keyword">this</span>.vertexes[i] + <span class="string">'-&gt;'</span></span><br><span class="line">                    <span class="keyword">let</span> egdes = <span class="keyword">this</span>.edges.get(<span class="keyword">this</span>.vertexes[i])</span><br><span class="line">                    <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; egdes.length; j++) &#123;</span><br><span class="line">                        resultString += egdes[j] + <span class="string">' '</span><span class="comment">//空格隔开</span></span><br><span class="line">                    &#125;</span><br><span class="line">                    resultString += <span class="string">'\n'</span><span class="comment">//换行符号‘\n’</span></span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> resultString</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//4,颜色初始化</span></span><br><span class="line">            Graph.prototype.initializeColor = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="keyword">let</span> colors = []</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.vertexes.length; i++) &#123;</span><br><span class="line">                    colors[<span class="keyword">this</span>.vertexes[i]] = <span class="string">"white"</span><span class="comment">//数组的键可以是字符，会把字符转换为数字！！</span></span><br><span class="line">                    <span class="comment">//color是一个稀疏数组。有点哈希表的意思。默认编码</span></span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> colors</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//5，广度优先遍历</span></span><br><span class="line">            Graph.prototype.bfs = <span class="function"><span class="keyword">function</span> (<span class="params">initV, handler</span>) </span>&#123;<span class="comment">//初始化顶点，处理函数</span></span><br><span class="line">                <span class="comment">//1，初始化颜色列表</span></span><br><span class="line">                <span class="keyword">let</span> colors = <span class="keyword">this</span>.initializeColor()</span><br><span class="line">                <span class="comment">//2，新建队列</span></span><br><span class="line">                <span class="keyword">let</span> queue = <span class="keyword">new</span> Queue()</span><br><span class="line">                <span class="comment">//3，压入初始化顶点</span></span><br><span class="line">                queue.enqueue(initV)</span><br><span class="line">                <span class="comment">//4，循环取队列元素</span></span><br><span class="line">                <span class="keyword">while</span> (!queue.isEmpty()) &#123;<span class="comment">//队列不为空就进队列，队列为空表示遍历结束</span></span><br><span class="line">                    <span class="comment">//4.1取出一个顶点v</span></span><br><span class="line">                    <span class="keyword">let</span> v = queue.dequeue()<span class="comment">//不断的出队列，并获取出队类的元素，在下面根据它继续入队列</span></span><br><span class="line">                    <span class="comment">//4.2获取v的相邻顶点表（边邻接表）</span></span><br><span class="line">                    <span class="keyword">let</span> Vlist = <span class="keyword">this</span>.edges.get(v)</span><br><span class="line">                    <span class="comment">//4.3取出后，v被访问，修改颜色为灰</span></span><br><span class="line">                    colors[v] = <span class="string">"gray"</span></span><br><span class="line">                    <span class="comment">//4.4将相邻顶点压入队列</span></span><br><span class="line">                    <span class="comment">//console.log(Vlist.length)</span></span><br><span class="line">                    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; Vlist.length; i++) &#123;</span><br><span class="line">                        <span class="keyword">let</span> e = Vlist[i]</span><br><span class="line">                        <span class="keyword">if</span> (colors[e] == <span class="string">"white"</span>) &#123;</span><br><span class="line">                            colors[e] = <span class="string">"gray"</span></span><br><span class="line">                            queue.enqueue(e)</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="comment">//处理v</span></span><br><span class="line">                    handler(v)</span><br><span class="line">                    <span class="comment">//v已被探测，即其邻接节点也全部入队，修改v颜色为黑。只改初始节点。</span></span><br><span class="line">                    colors[v] = <span class="string">"black"</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//6，深度优先遍历</span></span><br><span class="line">            Graph.prototype.dfs = <span class="function"><span class="keyword">function</span> (<span class="params">initV, handler</span>) </span>&#123;</span><br><span class="line">                <span class="comment">//1,初始化颜色列表</span></span><br><span class="line">                <span class="keyword">let</span> colors = <span class="keyword">this</span>.initializeColor()</span><br><span class="line">                <span class="comment">//2，定义递归函数</span></span><br><span class="line">                <span class="comment">// function dfsVisite(v, colors, handler) &#123;</span></span><br><span class="line">                <span class="comment">//     //1,设置为灰</span></span><br><span class="line">                <span class="comment">//     colors[v] = "gray"</span></span><br><span class="line">                <span class="comment">//     //2,处理</span></span><br><span class="line">                <span class="comment">//     handler(v)</span></span><br><span class="line">                <span class="comment">//     //3,获取v的邻接表，并循环调用递归</span></span><br><span class="line">                <span class="comment">//     console.log(v)</span></span><br><span class="line">                <span class="comment">//     console.log(this)//Window</span></span><br><span class="line">                <span class="comment">//     let Vlist = this.edges.get(v)//因为这是普通函数，所以在这里是weidow，所以一般工具函数也要设置在原型</span></span><br><span class="line">                <span class="comment">//     //然后将工具方法以对象的形式调用，不然如果出现要访问，对象属性的时候，内部调用，this容易出问题。</span></span><br><span class="line">                <span class="comment">//     console.log(Vlist)</span></span><br><span class="line">                <span class="comment">//     for (let i = 0; i &lt; Vlist.length; i++) &#123;</span></span><br><span class="line">                <span class="comment">//         let e = Vlist[i]</span></span><br><span class="line">                <span class="comment">//         if (colors[e] == "white") &#123;</span></span><br><span class="line">                <span class="comment">//             this.dfsVisite(e, colors, handler)</span></span><br><span class="line">                <span class="comment">//         &#125;</span></span><br><span class="line">                <span class="comment">//     &#125;</span></span><br><span class="line">                <span class="comment">//     //4,设置为黑色</span></span><br><span class="line">                <span class="comment">//     colors[v] = "black"</span></span><br><span class="line">                <span class="comment">// &#125;</span></span><br><span class="line">                <span class="comment">//根据第一个节点初始化调用</span></span><br><span class="line">                <span class="keyword">this</span>.dfsVisite(initV, colors, handler)<span class="comment">//凡是内部看到this思考是谁调用。</span></span><br><span class="line">            &#125;</span><br><span class="line">            Graph.prototype.dfsVisite = <span class="function"><span class="keyword">function</span> (<span class="params">v, colors, handler</span>) </span>&#123;<span class="comment">//定义成原型</span></span><br><span class="line">                <span class="comment">//1,设置为灰</span></span><br><span class="line">                colors[v] = <span class="string">"gray"</span></span><br><span class="line">                <span class="comment">//2,处理</span></span><br><span class="line">                handler(v)</span><br><span class="line">                <span class="comment">//3,获取v的邻接表，并循环调用递归</span></span><br><span class="line">                <span class="keyword">let</span> Vlist = <span class="keyword">this</span>.edges.get(v)</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; Vlist.length; i++) &#123;</span><br><span class="line">                    <span class="keyword">let</span> e = Vlist[i]</span><br><span class="line">                    <span class="keyword">if</span> (colors[e] == <span class="string">"white"</span>) &#123;<span class="comment">//但是在所有颜色都被标记完之后，没有能访问的时候，还是会自动返回。</span></span><br><span class="line">                        <span class="keyword">this</span>.dfsVisite(e, colors, handler)<span class="comment">//虽然没有主动定义返回条件</span></span><br><span class="line">                    &#125;<span class="comment">//递归加循环。</span></span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">//4,设置为黑色</span></span><br><span class="line">                colors[v] = <span class="string">"black"</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">let</span> g = <span class="keyword">new</span> Graph()</span><br><span class="line">        <span class="keyword">let</span> vertexes1 = [<span class="string">"A"</span>, <span class="string">"B"</span>, <span class="string">"C"</span>, <span class="string">"D"</span>, <span class="string">"E"</span>, <span class="string">"F"</span>, <span class="string">"G"</span>, <span class="string">"H"</span>, <span class="string">"I"</span>]</span><br><span class="line">        <span class="comment">//添加顶点</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; vertexes1.length; i++) &#123;</span><br><span class="line">            g.addVertex(vertexes1[i])</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//添加边</span></span><br><span class="line">        g.addEdge(<span class="string">'A'</span>, <span class="string">'B'</span>);</span><br><span class="line">        g.addEdge(<span class="string">'A'</span>, <span class="string">'C'</span>);</span><br><span class="line">        g.addEdge(<span class="string">'A'</span>, <span class="string">'D'</span>);</span><br><span class="line">        g.addEdge(<span class="string">'C'</span>, <span class="string">'D'</span>);</span><br><span class="line">        g.addEdge(<span class="string">'C'</span>, <span class="string">'G'</span>);</span><br><span class="line">        g.addEdge(<span class="string">'D'</span>, <span class="string">'G'</span>);</span><br><span class="line">        g.addEdge(<span class="string">'D'</span>, <span class="string">'H'</span>);</span><br><span class="line">        g.addEdge(<span class="string">'B'</span>, <span class="string">'E'</span>);</span><br><span class="line">        g.addEdge(<span class="string">'B'</span>, <span class="string">'F'</span>);</span><br><span class="line">        g.addEdge(<span class="string">'E'</span>, <span class="string">'I'</span>);</span><br><span class="line">        <span class="built_in">console</span>.log(g.toString())</span><br><span class="line">        <span class="comment">//测试bfs</span></span><br><span class="line">        <span class="keyword">var</span> result = <span class="string">''</span></span><br><span class="line">        g.bfs(g.vertexes[<span class="number">0</span>], <span class="function"><span class="keyword">function</span> (<span class="params">v</span>) </span>&#123;</span><br><span class="line">            result += v + <span class="string">' '</span></span><br><span class="line">        &#125;)</span><br><span class="line">        <span class="built_in">console</span>.log(result)<span class="comment">//A B C D E F G H I ,层次遍历。</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">var</span> result1 = <span class="string">''</span></span><br><span class="line">        g.dfs(g.vertexes[<span class="number">0</span>], <span class="function"><span class="keyword">function</span> (<span class="params">v</span>) </span>&#123;</span><br><span class="line">            result1 += v + <span class="string">' '</span></span><br><span class="line">        &#125;)</span><br><span class="line">        <span class="built_in">console</span>.log(result1)<span class="comment">//A B E I F C D G H</span></span><br><span class="line">    &lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数据结构与算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/23/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E5%9B%BE/">展开全文 >></a>
         </p>
       
 
@@ -421,7 +466,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/3/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/5/">下一页</a>
+      <a class="extend prev" rel="prev" href="/page/3/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/5/">下一页</a>
     </nav>
   
 
@@ -522,10 +567,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Map类型</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Set类型</a>
               </li>
              
@@ -539,10 +580,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">深浅拷贝</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">访问控制器set，get</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -575,6 +612,58 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">移动端适配</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Map字典类型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">JSON</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Proxy代理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">访问控制器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">正则表达式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">断言匹配</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">模块化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">super关键字</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">class类的属性继承形式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">class类的方法继承形式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">静态属性</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mixin</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">红黑树</a>
               </li>
             
             <div class="clearfix"></div>

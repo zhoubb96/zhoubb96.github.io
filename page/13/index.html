@@ -156,34 +156,199 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-JS变量回顾" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-JS数组六" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/10/JS%E5%8F%98%E9%87%8F%E5%9B%9E%E9%A1%BE/">JS变量回顾</a>
+      <a class="article-title" href="/2020/06/14/JS%E6%95%B0%E7%BB%84%E5%85%AD/">JS数组六</a>
     </h1>
   
 
         
-        <a href="/2020/06/10/JS%E5%8F%98%E9%87%8F%E5%9B%9E%E9%A1%BE/" class="archive-article-date">
-  	<time datetime="2020-06-10T01:30:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-10</time>
+        <a href="/2020/06/14/JS%E6%95%B0%E7%BB%84%E5%85%AD/" class="archive-article-date">
+  	<time datetime="2020-06-14T08:02:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-14</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="编程语言的工作"><a href="#编程语言的工作" class="headerlink" title="编程语言的工作"></a>编程语言的工作</h3><p>1，合适的数据结构存储数据</p>
-<p>2，合适的算法管理数据</p>
-<p>也就是经典的等式：程序=数据结构+算法</p>
-<h3 id="变量的声明与赋值"><a href="#变量的声明与赋值" class="headerlink" title="变量的声明与赋值"></a>变量的声明与赋值</h3><p>1，声明开辟空间（一般会有个初始值），<strong>同一作用域</strong>一般只声明一次（var例外，会覆盖）；<strong>不同的作用域可以声明同名变量，不受影响</strong></p>
-<p>2，赋值放入指定内容（支持连续等号赋值）</p>
-<p>Js弱类型，变量的类型由值决定</p>
+        <h4 id="map映射数组与应用类型处理"><a href="#map映射数组与应用类型处理" class="headerlink" title="map映射数组与应用类型处理"></a>map映射数组与应用类型处理</h4><p><code>map(callbacks(value,index,arr))</code>，return的是value。<strong>前面那些函数是返回的布尔值，这个函数直接返回值value</strong>。返回的也是一个新数组。原数组不会改变，需要定义一个变量接受新数组。<strong>引用类型因为传的是地址，如果不写return语句会直接改变原值</strong>；<strong>普通类型由于是传值的形式，不写return语句也不会改变原值</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="string">"zbb"</span>, <span class="string">"ycy"</span>]</span><br><span class="line"><span class="keyword">let</span> arr2 = arr.map(<span class="function">(<span class="params">value, index</span>) =&gt;</span> &#123;</span><br><span class="line">    value = value  + <span class="string">"gkd"</span></span><br><span class="line">    <span class="keyword">return</span> value <span class="comment">//这一句在引用类型与非引用类型会产生不同的结果</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(arr)<span class="comment">// ["zbb", "ycy"]</span></span><br><span class="line"><span class="built_in">console</span>.log(arr2)<span class="comment">//["zbbgkd", "ycygkd"]</span></span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JavaScripe查漏补缺</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">map()</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/14/JS%E6%95%B0%E7%BB%84%E5%85%AD/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
         
-          <a class="article-more-a" href="/2020/06/10/JS%E5%8F%98%E9%87%8F%E5%9B%9E%E9%A1%BE/#more">more >></a>
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-JS数组五" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/14/JS%E6%95%B0%E7%BB%84%E4%BA%94/">JS数组五</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/14/JS%E6%95%B0%E7%BB%84%E4%BA%94/" class="archive-article-date">
+  	<time datetime="2020-06-14T07:39:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="过滤函数filter"><a href="#过滤函数filter" class="headerlink" title="过滤函数filter()"></a>过滤函数filter()</h4><p><code>filter(callbacks(value,index,arr))</code></p>
+<p>不难发现这些方法都接受一个回调函数，回调函数返回一个布尔值（判断条件），并且，参数列表都是值value在前面。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr=[<span class="string">"zbb"</span>,<span class="string">"ycy"</span>]</span><br><span class="line"><span class="comment">// 不定义过滤条件，全返回</span></span><br><span class="line">arr.filter(<span class="function">(<span class="params">value,index</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(index,value)<span class="comment">//0 "zbb"  1 "ycy"</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> arr1=arr.filter(<span class="function">(<span class="params">value,index</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> value==<span class="string">"ycy"</span><span class="comment">//条为值为ycy才取出</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(arr1)<span class="comment">//只返会["ycy"]，注意返回的是数组</span></span><br><span class="line"><span class="comment">//上面两个其实只是只用到了value，所以index其实可以不用传入</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//自定义filter</span></span><br><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">filter</span>(<span class="params">arr, expect</span>) </span>&#123;<span class="comment">//expect是一个数组，两个数组的互相比较</span></span><br><span class="line">       <span class="comment">//定义新数组返回过滤后的结果</span></span><br><span class="line">       <span class="keyword">let</span> newArray = []</span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">const</span> value <span class="keyword">of</span> arr) &#123;</span><br><span class="line">           <span class="keyword">if</span> (expect.includes(value) === <span class="literal">false</span>) &#123;<span class="comment">//如果expect不包含这个元素</span></span><br><span class="line">               newArray.push(value)</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> newArray<span class="comment">//返回新数组</span></span><br><span class="line">   &#125;</span><br><span class="line">arr=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">   arr2=[<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="built_in">console</span>.log(filter(arr,arr2))<span class="comment">//[1, 4, 5]</span></span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JavaScripe查漏补缺</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">filter()</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/14/JS%E6%95%B0%E7%BB%84%E4%BA%94/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-JS数组四" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/14/JS%E6%95%B0%E7%BB%84%E5%9B%9B/">JS数组四</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/14/JS%E6%95%B0%E7%BB%84%E5%9B%9B/" class="archive-article-date">
+  	<time datetime="2020-06-14T07:03:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="利用every-与some-进行数组判断"><a href="#利用every-与some-进行数组判断" class="headerlink" title="利用every()与some()进行数组判断"></a>利用every()与some()进行数组判断</h4><p><code>every(callbacks(value,index,arr))</code>，回调函数返回一个布尔值。全部为真才为真</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr=[<span class="string">"zbb"</span>,<span class="string">"ycy"</span>]</span><br><span class="line">arr.every(<span class="function">(<span class="params">value,index</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(index,value)<span class="comment">//0 "zbb"  1 "ycy"，是个数组</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span><span class="comment">//如果不return true就会只执行一次</span></span><br><span class="line">    <span class="comment">//有一个为假就为假，可以用来进行同一判断，也就是return后面放一个表达式</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><code>some(callbacks(value,index,arr))</code>，回调函数函数返回一个布尔值。任何一个为真就为真</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">arr.some(<span class="function">(<span class="params">value,index</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(index,value)<span class="comment">//如果不加return true就会输出，0 "zbb"  1 "ycy"</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span><span class="comment">//加上return true就只执行一次，和上面反过来的</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>因为不加return语句，默认返回undefined，被转化为false，所以every()第一次执行后便停止，false不再执行；</p>
+<p>而some()遇到false不会停止。</p>
+        
+          <a class="article-more-a" href="/2020/06/14/JS%E6%95%B0%E7%BB%84%E5%9B%9B/#more">more >></a>
         
       
 
@@ -199,82 +364,9 @@
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JavaScripe查漏补缺</a>
         		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/10/JS%E5%8F%98%E9%87%8F%E5%9B%9E%E9%A1%BE/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-移动端适配二" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/09/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E4%BA%8C/">移动端适配二</a>
-    </h1>
-  
-
-        
-        <a href="/2020/06/09/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E4%BA%8C/" class="archive-article-date">
-  	<time datetime="2020-06-09T01:19:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1，一物理像素问题"><a href="#1，一物理像素问题" class="headerlink" title="1，一物理像素问题"></a>1，一物理像素问题</h3><h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p><strong>让1个px单位始终只占据1个物理像素。</strong>（通过尺缩比抵消像素比的放大，做到始终1比1）</p>
-<h4 id="实现一，整体的rem适配（适合项目比较大情况，一劳永逸）"><a href="#实现一，整体的rem适配（适合项目比较大情况，一劳永逸）" class="headerlink" title="实现一，整体的rem适配（适合项目比较大情况，一劳永逸）"></a>实现一，整体的rem适配（适合项目比较大情况，一劳永逸）</h4><p><strong>就是在rem适配（只管rem单位）下，依然保持px单位的显示效果</strong>；（主体）响应式布局rem（放大再缩小）+（px）变换缩放（缩小）</p>
-        
-          <a class="article-more-a" href="/2020/06/09/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E4%BA%8C/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
+      		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">移动端适配</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">every(),some()</a>
         		</li>
       		
 		</ul>
@@ -284,85 +376,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/09/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E4%BA%8C/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-移动端适配一" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/09/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E4%B8%80/">移动端适配一</a>
-    </h1>
-  
-
-        
-        <a href="/2020/06/09/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E4%B8%80/" class="archive-article-date">
-  	<time datetime="2020-06-09T01:09:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="适配的意义"><a href="#适配的意义" class="headerlink" title="适配的意义"></a>适配的意义</h2><p>在不同设备上实现等比例显示 </p>
-<h2 id="相对单位"><a href="#相对单位" class="headerlink" title="相对单位"></a>相对单位</h2><p>em是相对字体大小来计算的，谷歌下1fontsize一般是16像素，所以此时1em=16px<br>rem相对于根元素的字体大小来计算的，根元素是html，计算方法同上<br>vw 相对于视口宽度进行计算的，100vw=一个视口宽度。 1vw=视口宽度/100<br>Vh 相对于视口高度进行计算，计算方法同上</p>
-<h2 id="适配方法"><a href="#适配方法" class="headerlink" title="适配方法"></a>适配方法</h2>
-        
-          <a class="article-more-a" href="/2020/06/09/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E4%B8%80/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">移动端适配</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/09/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E4%B8%80/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/06/14/JS%E6%95%B0%E7%BB%84%E5%9B%9B/">展开全文 >></a>
         </p>
       
 
@@ -394,7 +408,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/12/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/14/">下一页</a>
+      <a class="extend prev" rel="prev" href="/page/12/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/14/">下一页</a>
     </nav>
   
 
@@ -495,10 +509,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Map类型</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Set类型</a>
               </li>
              
@@ -512,10 +522,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">深浅拷贝</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">访问控制器set，get</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -548,6 +554,58 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">移动端适配</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Map字典类型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">JSON</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Proxy代理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">访问控制器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">正则表达式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">断言匹配</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">模块化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">super关键字</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">class类的属性继承形式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">class类的方法继承形式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">静态属性</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mixin</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">红黑树</a>
               </li>
             
             <div class="clearfix"></div>

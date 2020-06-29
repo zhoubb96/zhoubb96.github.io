@@ -156,30 +156,41 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-JS对象Proxy代理拦截" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-数据结构与算法-二分查找" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/18/JS%E5%AF%B9%E8%B1%A1Proxy%E4%BB%A3%E7%90%86%E6%8B%A6%E6%88%AA/">JS对象Proxy代理拦截</a>
+      <a class="article-title" href="/2020/06/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/">数据结构与算法-二分查找</a>
     </h1>
   
 
         
-        <a href="/2020/06/18/JS%E5%AF%B9%E8%B1%A1Proxy%E4%BB%A3%E7%90%86%E6%8B%A6%E6%88%AA/" class="archive-article-date">
-  	<time datetime="2020-06-18T10:26:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-18</time>
+        <a href="/2020/06/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" class="archive-article-date">
+  	<time datetime="2020-06-28T09:36:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-28</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>所谓代理（proxy），就是一个表示接口的对象，对它的操作不一定作用在代理对象本身。举个例子，<strong>设置代理对象的一个属性，实际上可能会在另一个对象上调用一个函数。</strong>代理是一种非常有用的抽象机制，能够通过 API只公开部分信息，同时还能对数据源进 行全面控制。 简单来说，Proxy就像一个代理商，拦截就是在中间添加判断与操作。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//对象代理拦截</span></span><br><span class="line"><span class="keyword">const</span> obj = &#123; <span class="attr">name</span>: <span class="string">"zbb"</span>, <span class="attr">age</span>: <span class="number">24</span> &#125;</span><br><span class="line"><span class="keyword">const</span> proxy = <span class="keyword">new</span> <span class="built_in">Proxy</span>(obj, &#123;</span><br><span class="line">    <span class="keyword">get</span>(obj, property) &#123;<span class="comment">//obj接受obj</span></span><br><span class="line">      <span class="keyword">return</span> obj[property]</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="keyword">set</span>(obj, property, value) &#123;</span><br><span class="line">      obj[property] = value</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="built_in">console</span>.log(proxy.name) <span class="comment">//zbb</span></span><br><span class="line">  proxy.name=<span class="string">"zhou"</span></span><br><span class="line">  <span class="built_in">console</span>.log(proxy.name) <span class="comment">//zhou</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//函数代理拦截</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">jiechen</span>(<span class="params">num</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(num===<span class="number">0</span>) <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span>(num===<span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> num*jiechen(--num)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(jiechen(<span class="number">4</span>))<span class="comment">//24</span></span><br><span class="line"><span class="keyword">let</span> proxy = <span class="keyword">new</span> <span class="built_in">Proxy</span>(jiechen,&#123;</span><br><span class="line">  apply(func,obj,args)&#123;<span class="comment">//func接受jiechen，obj接受对象，args接受参数</span></span><br><span class="line">    <span class="built_in">console</span>.time(<span class="string">'run'</span>)</span><br><span class="line">    func.apply(<span class="keyword">this</span>,args)</span><br><span class="line">    <span class="built_in">console</span>.timeEnd(<span class="string">'run'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">proxy.apply(<span class="keyword">this</span>,[<span class="number">4</span>])<span class="comment">//一个时间，其实这里obj随便传什么。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//对数组代理拦截</span></span><br><span class="line"><span class="keyword">const</span> lessons = [</span><br><span class="line">      &#123;<span class="attr">title</span>: <span class="string">"媒体查询响应式布局"</span>,<span class="attr">category</span>: <span class="string">"css"</span>&#125;,</span><br><span class="line">      &#123;<span class="attr">title</span>: <span class="string">"FLEX模型"</span>, <span class="attr">category</span>: <span class="string">"css"</span>&#125;,</span><br><span class="line">      &#123; <span class="attr">title</span>: <span class="string">"MYSQL多表查询随意操作"</span>,<span class="attr">category</span>: <span class="string">"mysql"</span>&#125;</span><br><span class="line">    ];</span><br><span class="line"><span class="keyword">let</span> proxy=<span class="keyword">new</span> <span class="built_in">Proxy</span>(lessons,&#123;</span><br><span class="line">    <span class="keyword">get</span>(array,key)&#123;<span class="comment">//array就是proxy中的，自动接收。</span></span><br><span class="line">        <span class="keyword">const</span> title=array[key].title</span><br><span class="line">        <span class="keyword">const</span> len=<span class="number">5</span></span><br><span class="line">        <span class="keyword">return</span> title.length&gt;<span class="number">5</span>?title.substr(<span class="number">0</span>,len)+<span class="string">'.'</span>.repeat(<span class="number">3</span>):title</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(proxy[<span class="number">0</span>])<span class="comment">//媒体查询响...</span></span><br><span class="line"><span class="built_in">console</span>.log(proxy[<span class="number">1</span>])<span class="comment">//FLEX模...</span></span><br><span class="line"><span class="built_in">console</span>.log(proxy[<span class="number">2</span>])<span class="comment">//MYSQL...</span></span><br></pre></td></tr></table></figure>
+        <h4 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h4><ul>
+<li><p>数组可以通过下标来查找，这样最快；但是不是所有数据结构都有下标，那么就需要循环遍历查找，<strong>那么是否需要逐个排查呢？</strong></p>
+</li>
+<li><p>对于<strong>无序数据</strong>，因为没有规律，故<strong>只能逐个排查</strong>。</p>
+</li>
+<li><p>对于<strong>有序数据</strong>，那么规律是已知的，可以<strong>利用规律来查找</strong>，所以有序数据是我们所需要的，在查找之前我们最好用排序来保证数据的有序性。<strong>二分查找就是有序数据的一种查找方法</strong></p>
+</li>
+</ul>
+<p>1000个数，如果循环遍历，需要1000次；如果是二分查找，只需要10次，2^10=1024。二叉搜索树其实就用到二分查找的思想。<strong>每次对半查找区间。</strong></p>
+<p>二分查找，查找时间复杂度为<strong>o(logn)</strong>，准确来说是以2为底的对数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Bserach</span>(<span class="params">arr, value</span>) </span>&#123;</span><br><span class="line">            <span class="comment">//初始值</span></span><br><span class="line">            <span class="keyword">let</span> left = <span class="number">0</span></span><br><span class="line">            <span class="keyword">let</span> right = arr.length - <span class="number">1</span></span><br><span class="line">            <span class="keyword">let</span> center<span class="comment">//声明</span></span><br><span class="line">            <span class="comment">//开始查找</span></span><br><span class="line">            <span class="keyword">while</span> (left &lt;= right) &#123;</span><br><span class="line">                center = <span class="built_in">Math</span>.floor((left + right) / <span class="number">2</span>)</span><br><span class="line">                <span class="keyword">if</span> (value == arr[center]) <span class="keyword">return</span> center<span class="comment">//第一次比较</span></span><br><span class="line">                <span class="keyword">if</span> (value &lt; arr[center]) &#123;</span><br><span class="line">                    right = center - <span class="number">1</span><span class="comment">//如果值比中间值小更新右边界,不是center因为已经比过了</span></span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    left = center + <span class="number">1</span><span class="comment">//如果值比中间值大更新左边界</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//查询完毕没有返回下标，没查到</span></span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">        &#125;</span><br><span class="line">        arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]</span><br><span class="line">        <span class="built_in">console</span>.log(Bserach(arr, <span class="number">9</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">//递归实现</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Bsearch1</span>(<span class="params">arr,value,left=<span class="number">0</span>,right=arr.length<span class="number">-1</span></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> center=<span class="built_in">Math</span>.floor((left+right)/<span class="number">2</span>)</span><br><span class="line">    <span class="comment">//终止条件</span></span><br><span class="line">    <span class="keyword">if</span>(left&gt;right) <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">    <span class="keyword">if</span>(value==arr[center]) <span class="keyword">return</span> center</span><br><span class="line">    <span class="comment">//递归调用</span></span><br><span class="line">    <span class="keyword">if</span>(value&lt;arr[center])&#123;</span><br><span class="line">        <span class="keyword">return</span> Bsearch1(arr,value,left,center<span class="number">-1</span>)</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Bsearch1(arr,value,center+<span class="number">1</span>,right)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//简化写法 return value&lt;arr[center]?Bsearch1(arr,value,left,center-1):Bsearch1(arr,value,center+1,right)</span></span><br><span class="line">        </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>上面几个例子，第一个参数不用手动传递。也就是obj，func，array，就是接受自身代理的那个东西。后面几个参数必须手动传入。</p>
+
+
+<p>在查找插入时可以用此方法优化。</p>
 
       
 
@@ -193,7 +204,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JavaScripe查漏补缺</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数据结构与算法</a>
         		</li>
       		
 		</ul>
@@ -203,7 +214,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/18/JS%E5%AF%B9%E8%B1%A1Proxy%E4%BB%A3%E7%90%86%E6%8B%A6%E6%88%AA/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/06/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/">展开全文 >></a>
         </p>
       
 
@@ -233,30 +244,26 @@
 
 
   
-    <article id="post-JS-Token的读写处理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-数据结构与算法-递归与穷举" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/18/JS-Token%E7%9A%84%E8%AF%BB%E5%86%99%E5%A4%84%E7%90%86/">JS-Token的读写处理</a>
+      <a class="article-title" href="/2020/06/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E9%80%92%E5%BD%92%E4%B8%8E%E7%A9%B7%E4%B8%BE/">数据结构与算法-递归与穷举</a>
     </h1>
   
 
         
-        <a href="/2020/06/18/JS-Token%E7%9A%84%E8%AF%BB%E5%86%99%E5%A4%84%E7%90%86/" class="archive-article-date">
-  	<time datetime="2020-06-18T09:21:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-18</time>
+        <a href="/2020/06/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E9%80%92%E5%BD%92%E4%B8%8E%E7%A9%B7%E4%B8%BE/" class="archive-article-date">
+  	<time datetime="2020-06-28T09:31:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-28</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Token的访问控制器设置</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//设置token令牌对象</span></span><br><span class="line"><span class="keyword">let</span> Request=&#123;</span><br><span class="line">    <span class="comment">//没有在对象中，因为数据存在了本地</span></span><br><span class="line">    <span class="keyword">set</span> token(content)&#123;</span><br><span class="line">        localStorage.setItem(<span class="string">'token'</span>,content)<span class="comment">//在本地缓存设置一个token</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="keyword">get</span> token()&#123;</span><br><span class="line">      <span class="keyword">let</span> token=localStorage.getItem(<span class="string">'token'</span>)<span class="comment">//获取</span></span><br><span class="line">        <span class="keyword">if</span>(!token)&#123;</span><br><span class="line">            alertr(<span class="string">'请登录'</span>)<span class="comment">//没有token</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> token</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br><span class="line">Request.token=<span class="string">'123'</span></span><br><span class="line"><span class="built_in">console</span>.log(Request.token)</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2020/06/18/JS-Token%E7%9A%84%E8%AF%BB%E5%86%99%E5%A4%84%E7%90%86/#more">more >></a>
         
       
 
@@ -265,22 +272,11 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JavaScripe查漏补缺</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/18/JS-Token%E7%9A%84%E8%AF%BB%E5%86%99%E5%A4%84%E7%90%86/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/06/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E9%80%92%E5%BD%92%E4%B8%8E%E7%A9%B7%E4%B8%BE/">展开全文 >></a>
         </p>
       
 
@@ -310,31 +306,88 @@
 
 
   
-    <article id="post-JS对象访问控制器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-JS正则表达式一" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/18/JS%E5%AF%B9%E8%B1%A1%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E5%99%A8/">JS对象访问控制器</a>
+      <a class="article-title" href="/2020/06/27/JS%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%80/">JS正则表达式一</a>
     </h1>
   
 
         
-        <a href="/2020/06/18/JS%E5%AF%B9%E8%B1%A1%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E5%99%A8/" class="archive-article-date">
-  	<time datetime="2020-06-18T08:51:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-18</time>
+        <a href="/2020/06/27/JS%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%80/" class="archive-article-date">
+  	<time datetime="2020-06-27T04:06:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-27</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>访问器属性的优先级高于普通的属性操作方式</strong>！</p>
-<h4 id="使用访问控制器保护对象数据"><a href="#使用访问控制器保护对象数据" class="headerlink" title="使用访问控制器保护对象数据"></a>使用访问控制器保护对象数据</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> user=&#123;</span><br><span class="line">    data:&#123;<span class="attr">name</span>: <span class="string">"zbb"</span>,<span class="attr">age</span>: <span class="number">24</span>&#125;,<span class="comment">//对象中的对象；封装起来保护数据</span></span><br><span class="line">    <span class="keyword">set</span> age(value)&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">typeof</span> value!=<span class="string">'number'</span>||value&lt;<span class="number">0</span>||value&gt;<span class="number">100</span>)&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'年龄格式错误'</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">this</span>.data.age=value</span><br><span class="line">    &#125;,<span class="comment">//函数成员，没有键？只有通过访问器才能修改数据</span></span><br><span class="line">    <span class="keyword">get</span> age()&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.data.age<span class="comment">//如果是this.age就会循环找访问器属性，死循环，应该是data中的age</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">user.age=<span class="number">77</span><span class="comment">//调用方法保持一致</span></span><br><span class="line"><span class="built_in">console</span>.log(user.age)<span class="comment">//77</span></span><br><span class="line"><span class="comment">//用set与get两个关键字修饰两个age同名了，但是不冲突，因为一个要传参数，一个不穿参数，根据参数的有无自动调用，可以用对象点方法的形式直接调用，保证了调用形式的一致性</span></span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2020/06/18/JS%E5%AF%B9%E8%B1%A1%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E5%99%A8/#more">more >></a>
-        
+        <h4 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h4><p>对字符串进行增删改查，比字符串提供的原生条件更加灵活。</p>
+<p>正则表达式初体验</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> hd = <span class="string">"z19960415bb"</span></span><br><span class="line">      <span class="comment">//方法1，filter方法</span></span><br><span class="line">      <span class="built_in">console</span>.log([...hd].filter(<span class="function">(<span class="params">value</span>)=&gt;</span>&#123;</span><br><span class="line">          <span class="keyword">let</span> value1=<span class="built_in">parseInt</span>(value)</span><br><span class="line">          <span class="built_in">console</span>.log(value1)</span><br><span class="line">          <span class="built_in">console</span>.log(<span class="keyword">typeof</span> value1)<span class="comment">//NaN也是number类型，只是不是一个数字，因此用typeof无法区分</span></span><br><span class="line">          <span class="keyword">return</span> <span class="built_in">Number</span>.isNaN(<span class="built_in">parseInt</span>(value))<span class="comment">//返回不是数字哪些选项</span></span><br><span class="line">      &#125;))<span class="comment">//["z", "b", "b"]</span></span><br><span class="line"><span class="comment">//方法2，正则表达式</span></span><br><span class="line">      <span class="built_in">console</span>.log(hd.match(<span class="regexp">/\d/g</span>))<span class="comment">//返回数字["1", "9", "9", "6", "0", "4", "1", "5"]</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="创建正则表达式的方法"><a href="#创建正则表达式的方法" class="headerlink" title="创建正则表达式的方法"></a>创建正则表达式的方法</h4><p>1，字面量形式；用两个斜杠包裹正则表达式语句</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> hd = <span class="string">"z19960415bb"</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="regexp">/a/</span>.test(hd))<span class="comment">//false，hd里面没有字符a</span></span><br></pre></td></tr></table></figure>
+
+<p>2，对象创建形式</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> hd = <span class="string">"z19960415bb"</span></span><br><span class="line">      <span class="keyword">let</span> reg=<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"u"</span>,<span class="string">"g"</span>)</span><br><span class="line">      <span class="built_in">console</span>.log(reg.test(hd))<span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+
+<p>练习常见规则</p>
+<ul>
+<li><p>字符限制</p>
+<p><strong>\d</strong>表示数字；<strong>\w</strong>表示数字字符下划线；<strong>.</strong>表示除了换行符以外的所有；<strong>\s</strong>表示空格。<strong>如果单独只要字母[a-z]</strong></p>
+</li>
+<li><p>数量修饰</p>
+<ul>
+<li><strong>+</strong>表示一个或者多个[1,n]；</li>
+<li>*****表示0个或者多个[0,n]；</li>
+<li><strong>?</strong>表示有或者没有[0,1]；</li>
+<li><strong>{a,b}</strong>，注意是逗号，a到b个。</li>
+</ul>
+<p><strong>数量默认是贪婪的，会尽量取大的数字；如果想取小的数字，可以在数量修饰后面加一个问好？</strong></p>
+<p><strong>例如；{2,},此时会有多少取多少；{2,}?，此时至多取2.</strong></p>
+</li>
+<li><p>模式修饰</p>
+<ul>
+<li><strong>i</strong>表示不区分大小写；</li>
+<li><strong>g</strong>表示全局匹配可以不连续满足条件；</li>
+<li><strong>m</strong>表示多行修正；</li>
+<li><strong>y</strong>表示全局但是必须连续满足条件；</li>
+<li><strong>s</strong>忽略换行符。</li>
+</ul>
+</li>
+</ul>
+<p><strong>原子组，在只有一个元素得情况下原子组会占数组长度；如果有多个元素那就不占数组长度。</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line">		<span class="keyword">let</span> hd = <span class="string">"010-9999999"</span></span><br><span class="line">        <span class="comment">//console.log(/(010|020)\-\d&#123;7,8&#125;/.test(hd))//true</span></span><br><span class="line">        <span class="comment">//原子表[]，里面放正则表达式就是出现什么要什么。[-\d:,],-数字：，都要就是全或。满足就拿出来</span></span><br><span class="line">        <span class="comment">//[^-\d:,]相反，除了-数组:,其他都要，也就是^在原子表里表示除了。</span></span><br><span class="line">        <span class="keyword">let</span> date=<span class="string">"2020/06-27"</span></span><br><span class="line">        <span class="built_in">console</span>.log(date.match(<span class="regexp">/^\d&#123;4&#125;[-\/]\d&#123;2&#125;[-\/]\d&#123;2&#125;/</span>))<span class="comment">//2020/06-27,时刻关注转义。</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//原子组（），放外面才是原子组，放里面只是括号。</span></span><br><span class="line">        <span class="keyword">let</span> reg1 = <span class="regexp">/(12|34)/</span><span class="comment">//里面是一个整体，12或者34</span></span><br><span class="line">        <span class="keyword">let</span> price1 = <span class="number">23.34</span></span><br><span class="line">        <span class="comment">//console.log(/\d+\.+\d/.test(price))//true,+表示一个或多个。\d+,表示一个或多个数字。</span></span><br><span class="line">        <span class="comment">//.需要转义，.默认表示除换行外任意字符。</span></span><br><span class="line">        <span class="comment">//在对象方式里要多一个转义。还是字面量方式好。</span></span><br><span class="line">        <span class="comment">//原子组，在只有一个元素得情况下原子组会占长度</span></span><br><span class="line">		<span class="keyword">let</span> hd = <span class="string">`&lt;h1&gt;houdunren&lt;/h1&gt;</span></span><br><span class="line"><span class="string">    	&lt;h2&gt;hdcms&lt;/h2&gt;</span></span><br><span class="line"><span class="string">    	`</span></span><br><span class="line">        <span class="keyword">let</span> reg = <span class="regexp">/&lt;(h[1-6])&gt;[\s\S]*&lt;\/\1&gt;/ig</span><span class="comment">//\1表示取第一个原子组也就是(h[1-6])</span></span><br><span class="line">        <span class="built_in">console</span>.log(hd.match(reg))</span><br><span class="line"></span><br><span class="line">		<span class="keyword">let</span> hd1 = <span class="string">`</span></span><br><span class="line"><span class="string">      &lt;h1&gt;houdun&lt;/h1&gt;</span></span><br><span class="line"><span class="string">      &lt;span&gt;后盾&lt;/span&gt;</span></span><br><span class="line"><span class="string">      &lt;h2&gt;hdcms&lt;/h2&gt;</span></span><br><span class="line"><span class="string">    `</span>;</span><br><span class="line">  		<span class="keyword">let</span> reg = <span class="regexp">/&lt;(h[1-6])&gt;([\s\S]+)&lt;\/\1&gt;/gi</span>;<span class="comment">//用([\s\S])报下内部所有</span></span><br><span class="line">  		<span class="comment">// console.log(hd1.replace(reg, `&lt;p&gt;$2&lt;/p&gt;`));//$2表示第二个原子组，也就是表示$2留下了，只让外部变成了p标签。</span></span><br><span class="line">  		<span class="keyword">let</span> res = hd1.replace(reg, (p0, p1, p2) =&gt; <span class="string">`&lt;p&gt;<span class="subst">$&#123;p2&#125;</span>&lt;/p&gt;`</span>);<span class="comment">//p1,p2分别是原子表</span></span><br><span class="line">  		<span class="built_in">console</span>.log(res);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> url = <span class="string">"https://www.baidu.com"</span></span><br><span class="line">        <span class="comment">//\w表示字母、数字、下划线</span></span><br><span class="line">        <span class="comment">//console.log(/https?:\/\/\w+\.\w+\.+\w/.test(url))//?表示0或者多个。s是可选的，所以在s后面有个问号？表示有或者没有</span></span><br><span class="line">        <span class="comment">// /需要转义，因为正则表达式是用/包裹的。默认情况它为分界线。</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> s = <span class="string">"z19960415b"</span></span><br><span class="line">        <span class="comment">//console.log(/^\d/.test(s))//false,^是开头限定，这里是限定数字开头。</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> a = <span class="string">"zbb"</span></span><br><span class="line">        <span class="comment">//console.log(a.match(/^[a-z]&#123;3,6&#125;$/))//["zbb", index: 0, input: "zbb", groups: undefined]</span></span><br><span class="line">        <span class="comment">//如果不加^与$,那么长度超过6位的时候也会成功，但是不想要超过六位的就必须加上$截断。</span></span><br><span class="line">        <span class="comment">//test是检查是否含有，match是匹配并选出</span></span><br><span class="line">        <span class="comment">// console.log(s.match(/\d+/g))//["19960415"],g表示全局匹配，加在正则表达式外面</span></span><br><span class="line">        <span class="number">8</span></span><br><span class="line">        <span class="comment">//小写\d为数字，大写\D为除了数字。</span></span><br><span class="line">        <span class="keyword">let</span> tele = <span class="string">`lisi:010-11111111`</span></span><br><span class="line">        <span class="comment">// console.log(tele.match(/\d+\-\d+/))//"010-11111111",匹配所有数字</span></span><br><span class="line">        <span class="comment">//console.log(tele.match(/\D+/))//"lisi:",如果没有加号+，那就只会返回一个，所以一定带上数量限制。</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//\s表示空白，\S除了空白</span></span><br><span class="line">        <span class="comment">//\w表示字母、数字、下划线,\W除了字母数字下划线。</span></span><br><span class="line">        <span class="keyword">let</span> email = <span class="string">"abc00001@qq.com"</span></span><br><span class="line">        <span class="comment">//console.log(email.match(/^\w+@\w+\.\w+$/g))</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//\d,\w,.分别为数字，字母数字下划线，除了换行符的所有输入。</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//如何匹配所有字符？使用原子表[\s\S]这样就是所有字符，方然[\d\D]也可以。</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//模式修正符，i不区分大小写，g全局，m是多行修正</span></span><br><span class="line">        <span class="keyword">let</span> name1 = <span class="string">"zbbB"</span></span><br><span class="line">        <span class="comment">// console.log(name.match(/b+/))//bb</span></span><br><span class="line">        <span class="comment">// console.log(name.match(/B/))//B</span></span><br><span class="line">        <span class="comment">// console.log(name.match(/b+/i))//bbB,不区分大小写</span></span><br><span class="line">        <span class="comment">// console.log(name.replace(/b/,'@'))//z@bB</span></span><br><span class="line">        <span class="comment">// console.log(name.replace(/b+/,'@'))//z@B</span></span><br><span class="line">        <span class="comment">// console.log(name.replace(/b+/i,'@'))//z@,+会把他们当作一个整体替换掉了，不能实现g全局的的效果</span></span><br><span class="line">        <span class="comment">// console.log(name.replace(/b/g,'@'))//z@@B</span></span><br><span class="line">        <span class="comment">// console.log(name.replace(/b/gi,'@'))//z@@@，g会把每个元素当作一个独立的个体</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//多行匹配</span></span><br><span class="line">        <span class="keyword">let</span> ml = <span class="string">`</span></span><br><span class="line"><span class="string">    #1 js,200元 #</span></span><br><span class="line"><span class="string">    #2 php,300元 #</span></span><br><span class="line"><span class="string">    #9 houdunren.com # 后盾人</span></span><br><span class="line"><span class="string">    #3 node.js,180元 #</span></span><br><span class="line"><span class="string">  `</span></span><br><span class="line">        <span class="built_in">console</span>.log(ml.match(<span class="regexp">/^\s*#\d+\s+.+\s+#$/gm</span>))<span class="comment">//不写m，会当作一行从而匹配为null。以空格开头以井号结尾</span></span><br><span class="line">        <span class="keyword">let</span> kechen = ml.match(<span class="regexp">/^\s*#\d+\s+.+\s+#$/gm</span>).map(<span class="function"><span class="params">v</span> =&gt;</span> &#123;</span><br><span class="line">            v = v.replace(<span class="regexp">/\s*#\d+\s*/</span>, <span class="string">''</span>).replace(<span class="regexp">/\s*#/</span>, <span class="string">''</span>)<span class="comment">//去掉前面的空格星号井号和数字，再去掉后面的空格和井号</span></span><br><span class="line">            <span class="built_in">console</span>.log(v)<span class="comment">//查看格式</span></span><br><span class="line">            <span class="keyword">let</span> [name, price] = v.split(<span class="string">','</span>)<span class="comment">//结构赋值要先写let声明</span></span><br><span class="line">            <span class="keyword">return</span> &#123; name, price &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">        <span class="built_in">console</span>.log(kechen)</span><br><span class="line"><span class="comment">// 0: &#123;name: "js", price: "200元"&#125;</span></span><br><span class="line"><span class="comment">// 1: &#123;name: "php", price: "300元"&#125;</span></span><br><span class="line"><span class="comment">// 2: &#123;name: "node.js", price: "180元"&#125;	</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//自定义matchAll方法</span></span><br><span class="line">		<span class="built_in">String</span>.prototype.matchAll = <span class="function"><span class="keyword">function</span> (<span class="params">reg</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">let</span> res = <span class="keyword">this</span>.match(reg)</span><br><span class="line">            <span class="keyword">if</span> (res) &#123;<span class="comment">//递归停止条件</span></span><br><span class="line">                <span class="comment">//递归函数体</span></span><br><span class="line">                <span class="keyword">let</span> str = <span class="keyword">this</span>.replace(res[<span class="number">0</span>], <span class="string">"^"</span>.repeat(res[<span class="number">0</span>].length))<span class="comment">//替换第一个</span></span><br><span class="line">                <span class="keyword">let</span> match = str.matchAll(reg) || []<span class="comment">//递归调用，最后无结果是，边设置为空数组</span></span><br><span class="line">                <span class="keyword">return</span> [res, ...match]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> zbb2 = <span class="string">"zbb1996"</span></span><br><span class="line">        <span class="built_in">console</span>.log(zbb2.matchAll(<span class="regexp">/b/i</span>))</span><br><span class="line">        <span class="comment">// 0: ["b", index: 1, input: "zbb1996", groups: undefined]</span></span><br><span class="line">        <span class="comment">// 1: ["b", index: 2, input: "z^b1996", groups: undefined</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="多个正则作用在一个字符串"><a href="#多个正则作用在一个字符串" class="headerlink" title="多个正则作用在一个字符串"></a>多个正则作用在一个字符串</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> password = <span class="string">"abC211"</span></span><br><span class="line">      <span class="keyword">let</span> reg1 = <span class="regexp">/^[a-z0-9]&#123;5,10&#125;$/i</span> <span class="comment">//以字母或者数字开头结尾，不区分大小写，整体长度为5到10位</span></span><br><span class="line">      <span class="keyword">let</span> reg2 = <span class="regexp">/[A-Z]/</span> <span class="comment">//必须包含大写字母</span></span><br><span class="line">      <span class="keyword">let</span> reg3 = <span class="regexp">/\d/</span> <span class="comment">//必须包含数字</span></span><br><span class="line">      reg = [reg1, reg2, reg3]<span class="comment">//或者直接reg=[/^[a-z0-9]&#123;5,10&#125;$/i,/[A-Z]/,/\d]</span></span><br><span class="line">      <span class="keyword">let</span> state = reg.every(<span class="function">(<span class="params">value</span>) =&gt;</span> value.test(password))</span><br><span class="line">      <span class="comment">//一条语句尽量不要加花括号，因为加了花括号，就算只有一条语句也要加个return</span></span><br><span class="line">      <span class="built_in">console</span>.log(state)</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="使用正则表达式方法exec来完成全局匹配"><a href="#使用正则表达式方法exec来完成全局匹配" class="headerlink" title="使用正则表达式方法exec来完成全局匹配"></a>使用正则表达式方法exec来完成全局匹配</h5><p><strong>exce(返回对象数组)，test(返回真或假)，lastIndex(返回下一次开始下标)等是正则表达式的方法</strong></p>
+<p>match是字符串的方法<code>str.match(teg)</code>，exec是正则表达式的方法<code>reg.exec(str)</code>。</p>
+<p>exec是步进的，每次运行会使得lastIndex属性发生变化，exec返回一个<strong>对象</strong>，如果查找失败返回<strong>null空对象</strong>。<strong>lastIndex属性是控制正则表达式开始搜索的位置，</strong>lastIndex从0开始，搜索后值加1。<strong>必须在全局模式g下使用，不然一直是0</strong>！！！<strong>匹配失败是也是归零！</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> zbb = <span class="string">"zbbandbrando"</span></span><br><span class="line">        <span class="keyword">let</span> reg = <span class="regexp">/b/g</span></span><br><span class="line">        <span class="built_in">console</span>.log(reg.exec(zbb))<span class="comment">//b，下标为1</span></span><br><span class="line">        <span class="built_in">console</span>.log(reg.lastIndex)<span class="comment">//2,比下标大一</span></span><br><span class="line">        <span class="built_in">console</span>.log(reg.exec(zbb))<span class="comment">//b，下标为2</span></span><br><span class="line">        <span class="built_in">console</span>.log(reg.lastIndex)<span class="comment">//3</span></span><br><span class="line">        <span class="built_in">console</span>.log(reg.exec(zbb))<span class="comment">//b下标为6</span></span><br><span class="line">        <span class="built_in">console</span>.log(reg.lastIndex)<span class="comment">//7</span></span><br><span class="line">        <span class="built_in">console</span>.log(reg.exec(zbb))<span class="comment">//null,找不到</span></span><br><span class="line">        <span class="built_in">console</span>.log(reg.lastIndex)<span class="comment">//0</span></span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">search</span>(<span class="params">str, reg</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">let</span> result = []</span><br><span class="line">            <span class="keyword">while</span> ((res = reg.exec(str))) &#123;<span class="comment">//把查找值付给res，在res部位空时进入</span></span><br><span class="line">                result.push(res)</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> result</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">console</span>.log(search(zbb, reg))</span><br><span class="line">        <span class="comment">// 0: ["b", index: 1, input: "zbbandbrando", groups: undefined]</span></span><br><span class="line">        <span class="comment">// 1: ["b", index: 2, input: "zbbandbrando", groups: undefined]</span></span><br><span class="line">        <span class="comment">// 2: ["b", index: 6, input: "zbbandbrando", groups:</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>search，replace，match，matchAll等是字符串方法</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1，search返回搜索内容的索引，找不到返回-1</span></span><br><span class="line"><span class="keyword">let</span> str = <span class="string">"zbb"</span></span><br><span class="line">        <span class="built_in">console</span>.log(str.search(<span class="string">'b'</span>))<span class="comment">//1</span></span><br><span class="line">        <span class="keyword">let</span> site = <span class="string">`</span></span><br><span class="line"><span class="string">    https://hdcms.com  </span></span><br><span class="line"><span class="string">    http://www.sina.com.cn</span></span><br><span class="line"><span class="string">    https://www.houdunren.com</span></span><br><span class="line"><span class="string">`</span><span class="comment">//有的是http有的是https，有的有www.有的没有，有的有多个点如新浪这个</span></span><br><span class="line">        <span class="keyword">let</span> reg = <span class="regexp">/https?:\/\/(\w+\.)?(\w+\.)+(com|cn|org)/ig</span></span><br><span class="line">        </span><br><span class="line"><span class="comment">//2，match方法返回匹配到的内容</span></span><br><span class="line">        <span class="built_in">console</span>.log(site.match(reg))<span class="comment">//["https://hdcms.com", "http://www.sina.com.cn", "https://www.houdunren.com"]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//3，matchAll返回一个可迭代对象</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">const</span> iterator <span class="keyword">of</span> site.matchAll(reg)) &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(iterator)</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="在替换中的使用"><a href="#在替换中的使用" class="headerlink" title="$在替换中的使用"></a>$在替换中的使用</h5><p>分组思想，整体替换！！</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> tel = <span class="string">"(010)99999999 (020)8888888"</span>;</span><br><span class="line">        <span class="keyword">let</span> reg=<span class="regexp">/\((\d&#123;3,4&#125;)\)(\d&#123;7,8&#125;)/g</span></span><br><span class="line">        <span class="built_in">console</span>.log(tel.match(reg))<span class="comment">//$1是010，$2是99999999,会被自动记录下来，分组思想。保留整体</span></span><br><span class="line">        <span class="comment">//010 - 99999,也就是用-连接，那么就原对象变成$1-$2</span></span><br><span class="line">        <span class="built_in">console</span>.log(tel.replace(reg,<span class="string">"$1-$2"</span>))<span class="comment">//010-99999999 020-8888888</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//$`表示组元素的左边   $'表示组元素的右边   $&amp;9就是匹配的元素加9，$&amp;才表示自己  $不可以单独使用。</span></span><br><span class="line">        <span class="keyword">let</span> zbb=<span class="string">"frontzbbafter"</span></span><br><span class="line">        <span class="comment">//console.log(zbb.replace(/zbb/,"$&amp;9"))//frontzbb9after，把zbb替换成zbb9</span></span><br><span class="line">        <span class="built_in">console</span>.log(zbb.replace(<span class="regexp">/zbb/</span>,<span class="string">"$`"</span>))<span class="comment">//frontfrontafter,把zbb替换成它前面的front</span></span><br></pre></td></tr></table></figure>
+
+
       
 
       
@@ -351,7 +404,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">访问控制器set，get</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">正则表达式</a>
         		</li>
       		
 		</ul>
@@ -361,7 +414,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/18/JS%E5%AF%B9%E8%B1%A1%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E5%99%A8/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/06/27/JS%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%80/">展开全文 >></a>
         </p>
       
 
@@ -393,7 +446,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/3/">下一页</a>
+      <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/3/">下一页</a>
     </nav>
   
 
@@ -494,10 +547,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Map类型</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Set类型</a>
               </li>
              
@@ -511,10 +560,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">深浅拷贝</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">访问控制器set，get</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -547,6 +592,58 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">移动端适配</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Map字典类型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">JSON</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Proxy代理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">访问控制器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">正则表达式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">断言匹配</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">模块化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">super关键字</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">class类的属性继承形式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">class类的方法继承形式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">静态属性</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mixin</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">红黑树</a>
               </li>
             
             <div class="clearfix"></div>

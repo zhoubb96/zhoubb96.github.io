@@ -156,124 +156,56 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-JS对象的创建方式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-JS模块化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/18/JS%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%9B%E5%BB%BA%E6%96%B9%E5%BC%8F/">对象的创建方式</a>
+      <a class="article-title" href="/2020/06/27/JS%E6%A8%A1%E5%9D%97%E5%8C%96/">JS模块化</a>
     </h1>
   
 
         
-        <a href="/2020/06/18/JS%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%9B%E5%BB%BA%E6%96%B9%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2020-06-18T07:15:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-18</time>
+        <a href="/2020/06/27/JS%E6%A8%A1%E5%9D%97%E5%8C%96/" class="archive-article-date">
+  	<time datetime="2020-06-27T01:40:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-27</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="对象的创建方式"><a href="#对象的创建方式" class="headerlink" title="对象的创建方式"></a>对象的创建方式</h3><h4 id="1，字面量模式"><a href="#1，字面量模式" class="headerlink" title="1，字面量模式"></a>1，字面量模式</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj=&#123;<span class="attr">name</span>:<span class="string">"zbb"</span>,<span class="attr">show</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="keyword">this</span>.name)&#125;&#125;</span><br></pre></td></tr></table></figure>
+        <h4 id="一点历史"><a href="#一点历史" class="headerlink" title="一点历史"></a>一点历史</h4><p>在JS提供模块管理方式之前；模块管理工具主要有。AMD的require.js，CMD的sea.js，以及服务于nodejs的common.js。</p>
+<p>模块管理要处理模块依赖，添加模块等关系。</p>
+<p>自定义模块分析模块管理原理。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//模块管理引擎</span></span><br><span class="line">      <span class="keyword">let</span> <span class="built_in">module</span> = (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">          <span class="comment">//属性</span></span><br><span class="line">          <span class="keyword">const</span> moduleList = &#123;&#125;<span class="comment">//定义模块列表对象储存所有模块</span></span><br><span class="line"></span><br><span class="line">          <span class="comment">//方法</span></span><br><span class="line">          <span class="function"><span class="keyword">function</span> <span class="title">define</span>(<span class="params">name, relymodules, action</span>) </span>&#123;<span class="comment">//模块定义函数</span></span><br><span class="line">              <span class="comment">//name为模块名，relymodules是依赖模块的字符串数组，action是模块具体要执行的动作</span></span><br><span class="line"></span><br><span class="line">              <span class="comment">//1，模块的依赖处理，取出新模块要依赖的模块</span></span><br><span class="line">              relymodules.map(<span class="function">(<span class="params"><span class="built_in">module</span>, index</span>) =&gt;</span> &#123;<span class="comment">//传进来的只是一个字符串数组</span></span><br><span class="line">                  relymodules[index] = moduleList[<span class="built_in">module</span>]<span class="comment">//从模块列表根据字符串取出依赖的模块</span></span><br><span class="line">              &#125;)</span><br><span class="line"></span><br><span class="line">              <span class="comment">//2，将新模块添加到模块列表，并将依赖模块传入新添加模块供其使用</span></span><br><span class="line">              moduleList[name] = action.apply(<span class="literal">null</span>, relymodules)<span class="comment">//取出依赖模块后，将依赖模块传入新添加模块</span></span><br><span class="line">              <span class="comment">//console.log(moduleList)</span></span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">return</span> &#123; define &#125;<span class="comment">//返回一个包含定义函数的对象，这个函数供外部以对象方法的形式调用</span></span><br><span class="line">      &#125;)()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      <span class="comment">//测试引擎，自定义不依赖于其他模块的一个独立的工具模块</span></span><br><span class="line">      <span class="built_in">module</span>.define(<span class="string">'tools'</span>, [], <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;<span class="comment">//新添加tools模块，且没有依赖</span></span><br><span class="line">          <span class="comment">//返回一个包含方法的对象,return称为导出！让外部使用功能，以对象方法形式调用</span></span><br><span class="line">          <span class="keyword">return</span> &#123;</span><br><span class="line">              first(arr) &#123;</span><br><span class="line">                  <span class="keyword">return</span> arr[<span class="number">0</span>]<span class="comment">//第一个元素</span></span><br><span class="line">              &#125;,</span><br><span class="line">              max(arr,key) &#123;</span><br><span class="line">                  <span class="keyword">return</span> arr.sort(<span class="function">(<span class="params">a, b</span>) =&gt;</span> b[key] - a[key])[<span class="number">0</span>]<span class="comment">//最大值，降序的第一个</span></span><br><span class="line">              &#125;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;)</span><br><span class="line"></span><br><span class="line">      <span class="comment">//定义一个数据模块依赖于管理模块测试管理模块</span></span><br><span class="line">      <span class="comment">//那么如何使用这个tools？这个lesson模块不对外提供功能，只是为了让它依赖tools模块，使用tools返回的方法。lesson依赖于tools，将tools传入lesson(action)</span></span><br><span class="line">      <span class="built_in">module</span>.define(<span class="string">'lesson'</span>, [<span class="string">'tools'</span>], <span class="function"><span class="keyword">function</span> (<span class="params">tools</span>) </span>&#123;<span class="comment">//把tools模块传入到了lesson</span></span><br><span class="line">          <span class="comment">//模块的依赖</span></span><br><span class="line">          <span class="comment">//console.log(tools)</span></span><br><span class="line">          <span class="keyword">let</span> data = [</span><br><span class="line">              &#123; <span class="attr">name</span>: <span class="string">"js"</span>, <span class="attr">price</span>: <span class="number">199</span> &#125;,</span><br><span class="line">              &#123; <span class="attr">name</span>: <span class="string">"mysql"</span>, <span class="attr">price</span>: <span class="number">78</span> &#125;</span><br><span class="line">          ]</span><br><span class="line">          <span class="built_in">console</span>.log(tools.max(data,<span class="string">'price'</span>))<span class="comment">//lesson内部可直接使用tools了</span></span><br><span class="line">      &#125;)</span><br></pre></td></tr></table></figure>
 
-<h4 id="2，工厂函数-没有用关键字new"><a href="#2，工厂函数-没有用关键字new" class="headerlink" title="2，工厂函数(没有用关键字new)"></a>2，工厂函数(没有用关键字new)</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">user</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;name,<span class="attr">show</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="keyword">this</span>.name)&#125;&#125;<span class="comment">//返回对象</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> obj = user(<span class="string">"zbb"</span>)</span><br></pre></td></tr></table></figure>
+<h4 id=""><a href="#" class="headerlink" title=""></a></h4><h4 id="JS提供的模块使用"><a href="#JS提供的模块使用" class="headerlink" title="JS提供的模块使用"></a>JS提供的模块使用</h4><p>1，zbb.js模块</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> name=<span class="string">"zbb"</span></span><br><span class="line"><span class="keyword">let</span> age=<span class="number">24</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(name)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span>&#123;name,age,show&#125;<span class="comment">//批量导出，模块是个私有空间，如果不导出接口就无法使用</span></span><br><span class="line"><span class="comment">//默认导出只导出一个！！！</span></span><br><span class="line"><span class="comment">//接受默认导出的时候也可以不用花括号，而且可以用任意名称接受。</span></span><br></pre></td></tr></table></figure>
 
-<h4 id="3，构造函数-使用关键字new"><a href="#3，构造函数-使用关键字new" class="headerlink" title="3，构造函数(使用关键字new)"></a>3，构造函数(使用关键字new)</h4>
-        
-          <a class="article-more-a" href="/2020/06/18/JS%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%9B%E5%BB%BA%E6%96%B9%E5%BC%8F/#more">more >></a>
-        
-      
+<p>2，使用zbb.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"module"</span>&gt;<span class="comment">//必须加上类型才能使用模块功能，因为早期script标签没那么多属性</span></span><br><span class="line">    <span class="keyword">import</span>&#123;name,gae,show&#125; <span class="keyword">from</span> <span class="string">'./zbb.js'</span><span class="comment">//想用什么导入什么;具名导入</span></span><br><span class="line">	<span class="comment">//import * as api from './zbb.js'//*表示全部导入，使用时用api这个统一接口,as后面就是别名。设置了别名，就只可以通过别名导入和使用。</span></span><br><span class="line">	consolo.log(name)</span><br><span class="line">	<span class="comment">//consolo.log(api.name)</span></span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
 
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JavaScripe查漏补缺</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/18/JS%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%9B%E5%BB%BA%E6%96%B9%E5%BC%8F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
+<p>一般用一个index的js文件聚合所有导入。</p>
+<h4 id="模块的延迟解析与严格模式"><a href="#模块的延迟解析与严格模式" class="headerlink" title="模块的延迟解析与严格模式"></a>模块的延迟解析与严格模式</h4><p>普通脚本在不做任何设置的时候不会延迟解析，从上至下。<strong>而模块会自动延迟解析</strong>(考虑到模块的依赖)，模块默认运行在严格模式下面。</p>
+<h5 id="模块的有自己独立的作用域。"><a href="#模块的有自己独立的作用域。" class="headerlink" title="模块的有自己独立的作用域。"></a>模块的有自己独立的作用域。</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"module"</span>&gt;</span><br><span class="line">    <span class="keyword">let</span> site = <span class="string">"www.baidu.com"</span></span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">    console.log(site)/</span><span class="regexp">/site is not defined，普通标签无法访问</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br><span class="line"></span><br><span class="line">&lt;script type=<span class="string">"module"</span>&gt;</span><br><span class="line">    <span class="built_in">console</span>.log(site)<span class="comment">//site is not defined，不同的模块也无法访问</span></span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
 
 
 
+<h5 id="模块预解析"><a href="#模块预解析" class="headerlink" title="模块预解析"></a>模块预解析</h5><p>无论加载多少次，<strong>只会在第一次加载的时候执行</strong>，（只有第一次管用）</p>
+<p>打印模块，say.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">"wow"</span>)</span><br></pre></td></tr></table></figure>
 
-  
-    <article id="post-JS对象" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/18/JS%E5%AF%B9%E8%B1%A1/">JS对象</a>
-    </h1>
-  
+<p>引入模块</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"module"</span>&gt;</span><br><span class="line">    <span class="keyword">import</span>&#123;&#125; form <span class="string">'./say.js'</span>;<span class="comment">//wow，只有这一次输出了</span></span><br><span class="line">    <span class="keyword">import</span>&#123;&#125; form <span class="string">'./say.js'</span>;</span><br><span class="line">    <span class="keyword">import</span>&#123;&#125; form <span class="string">'./say.js'</span>;</span><br><span class="line">    <span class="keyword">import</span>&#123;&#125; form <span class="string">'./say.js'</span>;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
 
-        
-        <a href="/2020/06/18/JS%E5%AF%B9%E8%B1%A1/" class="archive-article-date">
-  	<time datetime="2020-06-18T03:04:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="面向对象三大特性：封装、继承、多态"><a href="#面向对象三大特性：封装、继承、多态" class="headerlink" title="面向对象三大特性：封装、继承、多态"></a>面向对象三大特性：封装、继承、多态</h4><h5 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h5><ul>
-<li><p>属性的检测</p>
-<ul>
-<li>对象属性检测<code>obj.hasOwnProperty(&quot;key&quot;)</code>,仅查看自身属性</li>
-<li>原型链属性检测<code>&quot;key&quot; in obj</code>，自身与原型的属性都进行检测</li>
-</ul>
-</li>
-<li><p>属性的计算</p>
-<ul>
-<li>动态计算属性名，reduce方法</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> lessons = [</span><br><span class="line">      &#123;<span class="attr">title</span>: <span class="string">"媒体查询响应式布局"</span>,<span class="attr">click</span>: <span class="number">89</span>,<span class="attr">price</span>: <span class="number">12</span>&#125;,</span><br><span class="line">      &#123;<span class="attr">title</span>: <span class="string">"FLEX 弹性盒模型"</span>,<span class="attr">click</span>: <span class="number">45</span>,<span class="attr">price</span>: <span class="number">120</span>&#125;,</span><br><span class="line">      &#123;<span class="attr">title</span>: <span class="string">"GRID 栅格系统"</span>,<span class="attr">click</span>: <span class="number">19</span>,<span class="attr">price</span>: <span class="number">67</span>&#125;,</span><br><span class="line">      &#123;<span class="attr">title</span>: <span class="string">"盒子模型详解"</span>,<span class="attr">click</span>: <span class="number">29</span>, <span class="attr">price</span>: <span class="number">300</span>&#125;</span><br><span class="line">    ];</span><br><span class="line">    obj=lessons.reduce(<span class="function">(<span class="params">pre,cur,index</span>)=&gt;</span>&#123;</span><br><span class="line">      pre[<span class="string">`<span class="subst">$&#123;cur[<span class="string">'title'</span>]&#125;</span>-<span class="subst">$&#123;index&#125;</span>`</span>]=cur<span class="comment">//每次都添加新的键值对</span></span><br><span class="line">      <span class="keyword">return</span> pre</span><br><span class="line">    &#125;,&#123;&#125;)</span><br><span class="line">    <span class="built_in">console</span>.log(obj)<span class="comment">//&#123;媒体查询响应式布局-0: &#123;…&#125;, FLEX 弹性盒模型-1: &#123;…&#125;, GRID 栅格系统-2: &#123;…&#125;, 盒子模型详解-3: &#123;…&#125;&#125;</span></span><br></pre></td></tr></table></figure>
 
-</li>
-</ul>
-        
-          <a class="article-more-a" href="/2020/06/18/JS%E5%AF%B9%E8%B1%A1/#more">more >></a>
-        
+
+<h5 id="按需动态加载模块"><a href="#按需动态加载模块" class="headerlink" title="按需动态加载模块"></a>按需动态加载模块</h5><p><strong>标签加载必须写在顶层(静态的)</strong>，但是写在顶层不能实现按需加载的要求。<strong>import函数可以动态的加载</strong>，而不是在标签里加载。！！！</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//使用import加载函数</span></span><br><span class="line"><span class="keyword">import</span>(<span class="string">"./say.js"</span>)</span><br></pre></td></tr></table></figure>
+
+
       
 
       
@@ -290,7 +222,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深浅拷贝</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">模块化</a>
         		</li>
       		
 		</ul>
@@ -300,7 +232,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/18/JS%E5%AF%B9%E8%B1%A1/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/06/27/JS%E6%A8%A1%E5%9D%97%E5%8C%96/">展开全文 >></a>
         </p>
       
 
@@ -330,30 +262,169 @@
 
 
   
-    <article id="post-JS抖动与加速" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-数据结构与算法-排序一" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/18/JS%E6%8A%96%E5%8A%A8%E4%B8%8E%E5%8A%A0%E9%80%9F/">JS抖动与加速</a>
+      <a class="article-title" href="/2020/06/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E6%8E%92%E5%BA%8F%E4%B8%80/">数据结构与算法-排序一</a>
     </h1>
   
 
         
-        <a href="/2020/06/18/JS%E6%8A%96%E5%8A%A8%E4%B8%8E%E5%8A%A0%E9%80%9F/" class="archive-article-date">
-  	<time datetime="2020-06-18T01:23:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-18</time>
+        <a href="/2020/06/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E6%8E%92%E5%BA%8F%E4%B8%80/" class="archive-article-date">
+  	<time datetime="2020-06-26T06:30:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-26</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="动画抖动与加速"><a href="#动画抖动与加速" class="headerlink" title="动画抖动与加速"></a>动画抖动与加速</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span>&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"UTF-8"</span> /&gt;</span><br><span class="line">    &lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width, initial-scale=1.0"</span> /&gt;</span><br><span class="line">    &lt;meta http-equiv=<span class="string">"X-UA-Compatible"</span> content=<span class="string">"ie=edge"</span> /&gt;</span><br><span class="line">    &lt;title&gt;后盾人&lt;<span class="regexp">/title&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">      button &#123;</span><br><span class="line">        position: absolute;<span class="comment">/*必须加上这个style标签，不然动不了*/</span></span><br><span class="line">      &#125;</span><br><span class="line">    &lt;<span class="regexp">/style&gt;</span></span><br><span class="line"><span class="regexp">        &lt;button message="按钮"&gt;按钮&lt;/</span>button&gt;</span><br><span class="line">  &lt;<span class="regexp">/body&gt;</span></span><br><span class="line"><span class="regexp">  &lt;script&gt;</span></span><br><span class="line"><span class="regexp">  let btns = document.querySelectorAll("button")</span></span><br><span class="line"><span class="regexp">  btns.forEach((items) =&gt; &#123;</span></span><br><span class="line"><span class="regexp">      /</span><span class="regexp">/let left=1/</span><span class="regexp">/位置2</span></span><br><span class="line"><span class="regexp">    items.addEventlistener("click", function () &#123;</span></span><br><span class="line"><span class="regexp">      /</span><span class="regexp">/let left=1/</span><span class="regexp">/位置1</span></span><br><span class="line"><span class="regexp">     setInterval(function()&#123;</span></span><br><span class="line"><span class="regexp">        items.style.left=left++ +"px"</span></span><br><span class="line"><span class="regexp">      &#125;,100)</span></span><br><span class="line"><span class="regexp">    &#125;)</span></span><br><span class="line"><span class="regexp">  &#125;)</span></span><br><span class="line"><span class="regexp">  &lt;/</span>script&gt;</span><br><span class="line">&lt;<span class="regexp">/html&gt;</span></span><br></pre></td></tr></table></figure>
+        <h4 id="算法的效率表示。"><a href="#算法的效率表示。" class="headerlink" title="算法的效率表示。"></a>算法的效率表示。</h4><ul>
+<li>常数级              o(1)</li>
+<li>对数级              o(log(n))</li>
+<li>线性级              o(n)</li>
+<li>线性对数级      o(nlog(n))</li>
+<li>平方级              o(n^2)</li>
+<li>指数级              o(2^2)</li>
+</ul>
+<h4 id="简单排序（都以升序为例）"><a href="#简单排序（都以升序为例）" class="headerlink" title="简单排序（都以升序为例）"></a>简单排序（都以升序为例）</h4><p>冒泡排序，选择排序</p>
+<ul>
+<li><p>1，冒泡排序法</p>
+<ul>
+<li><p>两层循环</p>
+</li>
+<li><p><strong>比较次数</strong>为(n-1)+(n-2)+……+2+1=<strong>n(n-1)/2</strong>，所以冒泡排序法的时间复杂度为<strong>o(n^2)</strong>。</p>
+</li>
+<li><p>不是每次比较都要交换，交换的概率为1/2，所以交换次数为n(n-1)/4；</p>
+</li>
+</ul>
+</li>
+<li><p>2，选择排序法</p>
+<ul>
+<li>两层循环</li>
+<li><strong>比较次数</strong>为(n-1)+(n-2)+……+2+1=<strong>n(n-1)/2</strong>，所以选择排序法的时间复杂度为<strong>o(n^2)</strong>。</li>
+<li>经过一层循环后挑出最值才进行交换，只交换n-1次；所以交换次数减少为o(n)</li>
+</ul>
+</li>
+<li><p>3，插入排序</p>
+<ul>
+<li>局部有序的思想！有序部分越来越长。</li>
+<li>因为不需要全部比较，只需要和有序部分进行比较(向前比较)，所以可能的比较次数减少了。不过如果是以数组形式的来表示的话，插入，移动元素时可能会浪费一些资源。</li>
+<li><strong>比较次数</strong>减少一半为<strong>n(n-1)/4</strong>，移动次数也为n(n-1)/4；<strong>移动(复制)没有比较消耗性能！比较操作最耗费性能</strong>。插入排序的时间复杂度为<strong>o(n^2)</strong>。</li>
+</ul>
+</li>
+</ul>
+<p><strong>不同时间复杂度的排序，首先看时间复杂度；相同时间复杂度情况下，看比较次数。</strong></p>
+<p>效率，插入排序&gt;选择排序&gt;冒泡排序；所有简单排序都是稳定的。</p>
+<h4 id="高级排序"><a href="#高级排序" class="headerlink" title="高级排序"></a>高级排序</h4><ul>
+<li>1，希尔排序<ul>
+<li>插入排序，新插入数据总是以步长1向前寻找插入位置，<strong>如果新插入数据比较小，那么需要移动的中间数据量就比较大。希尔排序可以做到不必移动所有中间数据</strong>。</li>
+<li><strong>不是一次性把数据移动到正确位置；但是每次移动都会离正确位置更近！</strong></li>
+<li>一开始间隔较大，最后间隔为1。常见增量序列为半数增量（每次长度缩小一倍）；奇数序列增量1，3，5，7，…。</li>
+<li>同一gap的分组进行插入排序，gap逐渐缩减到1。所以有<strong>三层循环！</strong>gap控制一层；相同gap不同分组的插入排序两层！</li>
+<li>希尔的效率因为难以证明，所以简单的认为<strong>效率为o(n^1.5)</strong></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>2，快速排序<ul>
+<li>适用性最广，几乎最快。</li>
+<li>一次循环就可以找到某个元素的正确位置，那么这个枢纽的选取？ 取头中尾的中位数。</li>
+<li>分而治之的思想，每次选的那个元素，就可以找到它正确的位置，左小右大，那么它的位置就确定了。每次选一个元素，最终递归完成，排序完成。</li>
+<li>左右用两个指针。<strong>效率为o(nlog(n))</strong></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//先封装一个列表封装数据</span></span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">ArrayList</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="comment">//属性</span></span><br><span class="line">            <span class="keyword">this</span>.array = []</span><br><span class="line"></span><br><span class="line">            <span class="comment">//插入,展示,交换</span></span><br><span class="line">            ArrayList.prototype.insert = <span class="function"><span class="keyword">function</span> (<span class="params">item</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">this</span>.array.push(item)</span><br><span class="line">            &#125;</span><br><span class="line">            ArrayList.prototype.toString = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">this</span>.array.join(<span class="string">'-'</span>)</span><br><span class="line">            &#125;</span><br><span class="line">            ArrayList.prototype.swap = <span class="function"><span class="keyword">function</span> (<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">let</span> temp = <span class="keyword">this</span>.array[a]</span><br><span class="line">                <span class="keyword">this</span>.array[a] = <span class="keyword">this</span>.array[b]</span><br><span class="line">                <span class="keyword">this</span>.array[b] = temp</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//排序算法，升序</span></span><br><span class="line">            <span class="comment">//简单排序</span></span><br><span class="line">            <span class="comment">//1，冒泡排序</span></span><br><span class="line">            ArrayList.prototype.bubblesort = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="keyword">let</span> length = <span class="keyword">this</span>.array.length</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; length - <span class="number">1</span>; i++) &#123;</span><br><span class="line">                    <span class="keyword">for</span> (<span class="keyword">let</span> j = i; j &lt; length; j++) &#123;</span><br><span class="line">                        <span class="keyword">if</span> (<span class="keyword">this</span>.array[j - <span class="number">1</span>] &gt; <span class="keyword">this</span>.array[j]) &#123;</span><br><span class="line">                            <span class="keyword">this</span>.swap(j - <span class="number">1</span>, j)</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">this</span><span class="comment">//返回对象，以方便继续调用对象方法</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//2，选择排序</span></span><br><span class="line">            ArrayList.prototype.selectionsort = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="keyword">let</span> length = <span class="keyword">this</span>.array.length</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; length - <span class="number">1</span>; i++) &#123;</span><br><span class="line">                    <span class="keyword">let</span> min = i<span class="comment">//初始最小值下标为i</span></span><br><span class="line">                    <span class="keyword">for</span> (<span class="keyword">let</span> j = i; j &lt; length; j++) &#123;</span><br><span class="line">                        <span class="keyword">if</span> (<span class="keyword">this</span>.array[min] &gt; <span class="keyword">this</span>.array[j]) &#123;</span><br><span class="line">                            min = j<span class="comment">//循环一趟造成最小值下标j</span></span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">this</span>.swap(i, min)<span class="comment">//真实最小值下标，找到才交换，所以交换次数减少</span></span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">this</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//3，插入排序</span></span><br><span class="line">            ArrayList.prototype.insertionsort = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="keyword">let</span> length = <span class="keyword">this</span>.array.length</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; length; i++) &#123;<span class="comment">//从第二个位置获取数据，向前面有序部分进行插入</span></span><br><span class="line">                    <span class="comment">//内层循环，获取位置i数据，和前面的数据进行比较</span></span><br><span class="line">                    <span class="keyword">let</span> temp = <span class="keyword">this</span>.array[i]</span><br><span class="line">                    <span class="keyword">let</span> j = i</span><br><span class="line">                    <span class="keyword">while</span> (<span class="keyword">this</span>.array[j - <span class="number">1</span>] &gt; temp &amp;&amp; j &gt; <span class="number">0</span>) &#123;<span class="comment">//不确定循环次数,向前比较，寻找插入位置。与有序部分比较减少次数。</span></span><br><span class="line">                        <span class="keyword">this</span>.array[j] = <span class="keyword">this</span>.array[j - <span class="number">1</span>]<span class="comment">//元素后移</span></span><br><span class="line">                        j--<span class="comment">//继续往前找</span></span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="comment">//把temp插入到正确位置</span></span><br><span class="line">                    <span class="keyword">this</span>.array[j] = temp</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">this</span></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//高级排序</span></span><br><span class="line">            <span class="comment">//1，希尔排序</span></span><br><span class="line">            ArrayList.prototype.shellsort = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="keyword">let</span> length = <span class="keyword">this</span>.array.length</span><br><span class="line">                <span class="comment">//初始化增量</span></span><br><span class="line">                <span class="keyword">let</span> gap = <span class="built_in">Math</span>.floor(length / <span class="number">2</span>)</span><br><span class="line">                <span class="comment">//第一层while循环减小gap</span></span><br><span class="line">                <span class="keyword">while</span> (gap &gt;= <span class="number">1</span>) &#123;</span><br><span class="line">                    <span class="comment">//第二层循环同一gap不同分组的创建</span></span><br><span class="line">                    <span class="comment">//i等于gap，就是从每组的第二个元素开始</span></span><br><span class="line">                    <span class="keyword">for</span> (i = gap; i &lt; length; i++) &#123;<span class="comment">//这里是i++,因为同一gap下的不同分组的起始值是连续分布的，增量为1。</span></span><br><span class="line">                        temp = <span class="keyword">this</span>.array[i]</span><br><span class="line">                        <span class="keyword">let</span> j = i</span><br><span class="line">                        <span class="comment">//第三层循环同一gap同一分组的元素进行插入排序</span></span><br><span class="line">                        <span class="keyword">while</span> (<span class="keyword">this</span>.array[j - gap] &gt; temp &amp;&amp; j &gt; <span class="number">0</span>) &#123;<span class="comment">//同一gap的同一分组的不同元素增量是gap</span></span><br><span class="line">                            <span class="keyword">this</span>.array[j] = <span class="keyword">this</span>.array[j - gap]</span><br><span class="line">                            j -= gap</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="keyword">this</span>.array[j] = temp</span><br><span class="line">                    &#125;</span><br><span class="line">                    gap = <span class="built_in">Math</span>.floor(gap / <span class="number">2</span>)</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">this</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//2,快速排序</span></span><br><span class="line">            <span class="comment">// 选择枢纽</span></span><br><span class="line">            ArrayList.prototype.pivot = <span class="function"><span class="keyword">function</span> (<span class="params">left, right</span>) </span>&#123;</span><br><span class="line">                <span class="comment">// 1.求出中间的位置</span></span><br><span class="line">                <span class="keyword">var</span> center = <span class="built_in">Math</span>.floor((left + right) / <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 2.判断并且进行交换</span></span><br><span class="line">                <span class="keyword">if</span> (<span class="keyword">this</span>.array[left] &gt; <span class="keyword">this</span>.array[center]) &#123;</span><br><span class="line">                    <span class="keyword">this</span>.swap(left, center)<span class="comment">//二者大的到了中间</span></span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (<span class="keyword">this</span>.array[center] &gt; <span class="keyword">this</span>.array[right]) &#123;</span><br><span class="line">                    <span class="keyword">this</span>.swap(center, right)<span class="comment">//最大值到了右边</span></span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (<span class="keyword">this</span>.array[left] &gt; <span class="keyword">this</span>.array[center]) &#123;</span><br><span class="line">                    <span class="keyword">this</span>.swap(left, center)<span class="comment">//次大值到了中间，注意又是比较left与center！！！</span></span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 3.将center移动到right - 1的位置;这样比较操作可以减少一个</span></span><br><span class="line">                <span class="keyword">this</span>.swap(center, right - <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 4.返回pivot</span></span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">this</span>.array[right - <span class="number">1</span>]<span class="comment">//后面要以这个值为基准进行比较。</span></span><br><span class="line">            &#125;</span><br><span class="line">            ArrayList.prototype.quicksort = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">this</span>.quicksortRec(<span class="number">0</span>, <span class="keyword">this</span>.array.length - <span class="number">1</span>)<span class="comment">//初始化调用递归并返回最终对象</span></span><br><span class="line">            &#125;</span><br><span class="line">            ArrayList.prototype.quicksortRec = <span class="function"><span class="keyword">function</span> (<span class="params">left, right</span>) </span>&#123;</span><br><span class="line">                <span class="comment">//1，递归结束条件</span></span><br><span class="line">                <span class="keyword">if</span> (left &gt;= right) <span class="keyword">return</span> <span class="keyword">this</span><span class="comment">//返回设置好的对象</span></span><br><span class="line">                </span><br><span class="line">                <span class="comment">//2，递归函数体</span></span><br><span class="line">                <span class="comment">//获取枢纽</span></span><br><span class="line">                <span class="keyword">let</span> pivot = <span class="keyword">this</span>.pivot(left, right)</span><br><span class="line">                <span class="comment">//指针记录变量，这里的记录的初始值的设定决定了递归调用区间的开闭性。</span></span><br><span class="line">                <span class="keyword">let</span> i = left + <span class="number">1</span><span class="comment">//left已经比right-1枢纽小</span></span><br><span class="line">                <span class="keyword">let</span> j = right - <span class="number">2</span><span class="comment">//right已经比pivot比较，而且没必要和自己比较</span></span><br><span class="line">                <span class="keyword">while</span> (<span class="literal">true</span>) &#123;<span class="comment">//i&lt;=j时，继续进入循环，找下一对可以交换的。</span></span><br><span class="line">                    <span class="keyword">while</span> (<span class="keyword">this</span>.array[i] &lt; pivot) &#123;<span class="comment">//在左边找到比枢纽大的值停下,这里也是要循环的，如果只有if，只变一次</span></span><br><span class="line">                        i++</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">while</span> (<span class="keyword">this</span>.array[j] &gt; pivot) &#123;<span class="comment">//在右边找到比枢纽小的值停下</span></span><br><span class="line">                        j--</span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                    <span class="keyword">if</span> (i &lt; j) &#123;<span class="comment">//等于就没必要交换，自己和自己交换没意义</span></span><br><span class="line">                        <span class="keyword">this</span>.swap(i, j)</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        <span class="keyword">break</span><span class="comment">//不写这句，就算不交换也不会跳出循环</span></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="comment">//3，递归调用</span></span><br><span class="line">                <span class="comment">//这里时i-1与i取决于i和j的初始值的设置；如果设置是j=right-1，那么右区间的就是从i+开始</span></span><br><span class="line">                 <span class="keyword">this</span>.quicksortRec(left, i<span class="number">-1</span>)<span class="comment">//左边设置完毕</span></span><br><span class="line">                 <span class="keyword">return</span> <span class="keyword">this</span>.quicksortRec(i, right)<span class="comment">//右边也设置完毕，返回该对象</span></span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">let</span> list = <span class="keyword">new</span> ArrayList()</span><br><span class="line">        list.insert(<span class="number">66</span>)</span><br><span class="line">        list.insert(<span class="number">88</span>)</span><br><span class="line">        list.insert(<span class="number">12</span>)</span><br><span class="line">        list.insert(<span class="number">87</span>)</span><br><span class="line">        list.insert(<span class="number">100</span>)</span><br><span class="line">        list.insert(<span class="number">5</span>)</span><br><span class="line">        list.insert(<span class="number">566</span>)</span><br><span class="line">        list.insert(<span class="number">23</span>)</span><br><span class="line">        list.insert(<span class="number">99</span>)</span><br><span class="line">        <span class="comment">//所有方法均返回设置好的对象，以便于统一调用toString方法以供展示</span></span><br><span class="line">        <span class="built_in">console</span>.log(list.toString())<span class="comment">//66-88-12-87-100-566-23</span></span><br><span class="line">        <span class="comment">//console.log(list.bubblesort().toString())//冒泡排序12-23-66-87-88-99-100-566</span></span><br><span class="line">        <span class="comment">//console.log(list.selectionsort().toString())//选择排序</span></span><br><span class="line">        <span class="comment">//console.log(list.insertionsort().toString())//插入排序</span></span><br><span class="line">        <span class="comment">//console.log(list.shellsort().toString())//希尔排序</span></span><br><span class="line">        <span class="built_in">console</span>.log(list.quicksort().toString())<span class="comment">//快速排序</span></span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数据结构与算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E6%8E%92%E5%BA%8F%E4%B8%80/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
         
-          <a class="article-more-a" href="/2020/06/18/JS%E6%8A%96%E5%8A%A8%E4%B8%8E%E5%8A%A0%E9%80%9F/#more">more >></a>
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
         
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-JS的class类以及其继承关键字" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/24/JS%E7%9A%84class%E7%B1%BB%E4%BB%A5%E5%8F%8A%E5%85%B6%E7%BB%A7%E6%89%BF%E5%85%B3%E9%94%AE%E5%AD%97/">JS的class类以及其继承关键字</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/24/JS%E7%9A%84class%E7%B1%BB%E4%BB%A5%E5%8F%8A%E5%85%B6%E7%BB%A7%E6%89%BF%E5%85%B3%E9%94%AE%E5%AD%97/" class="archive-article-date">
+  	<time datetime="2020-06-24T03:49:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="需要明确的是类的继承本质上还是原型继承，这里是分析类继承的形式"><a href="#需要明确的是类的继承本质上还是原型继承，这里是分析类继承的形式" class="headerlink" title="需要明确的是类的继承本质上还是原型继承，这里是分析类继承的形式"></a>需要明确的是类的继承本质上还是原型继承，这里是分析类继承的形式</h3><h4 id="1，类的属性继承形式"><a href="#1，类的属性继承形式" class="headerlink" title="1，类的属性继承形式"></a>1，类的属性继承形式</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(name)&#123;</span><br><span class="line">        <span class="keyword">this</span>.name=name</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Admin</span> <span class="keyword">extends</span> <span class="title">User</span></span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(name,age)&#123;<span class="comment">//super会调用父类的构造函数</span></span><br><span class="line">        <span class="keyword">super</span>(name)<span class="comment">//这句话等同于函数声明方式中的User.prototype.constructor.call(this,name)</span></span><br><span class="line">        <span class="comment">//super不会出现this攀升出现的问题。但是super必须写在第一次使用this之前。因为super会先把this指向父类</span></span><br><span class="line">        <span class="comment">//在super之后，this回到子类</span></span><br><span class="line">        <span class="comment">//子类中constructor与super要么不写，要么一起写，而且this要在super下面，不然会报错。</span></span><br><span class="line">        <span class="keyword">this</span>.age=age</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> ad=<span class="keyword">new</span> Admin(<span class="string">'zbb'</span>,<span class="number">24</span>)</span><br><span class="line"><span class="built_in">console</span>.log(ad.name,ad.age)<span class="comment">//zbb,24</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2，类的方法继承形式"><a href="#2，类的方法继承形式" class="headerlink" title="2，类的方法继承形式"></a>2，类的方法继承形式</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    show() &#123;<span class="built_in">console</span>.log(<span class="string">"User"</span>)&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Admin</span> <span class="keyword">extends</span> <span class="title">User</span> </span>&#123; &#125;</span><br><span class="line"><span class="keyword">let</span> ad = <span class="keyword">new</span> Admin()</span><br><span class="line"><span class="built_in">console</span>.log(ad.show())<span class="comment">//User，直接调用</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="3，super关键字"><a href="#3，super关键字" class="headerlink" title="3，super关键字"></a>3，super关键字</h4><p>super还可以实现<strong>多层继承</strong>，<code>this.__proto__.show.call(this)//因为this不会向上。</code>这种方法在超过两层关系的时候就会出现问题，因为this是不会主动攀升的。而用super不会出现这个问题，<strong>super可以解决攀升问题！</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">  show() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"user"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Admin</span> <span class="keyword">extends</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(name) &#123;</span><br><span class="line">    <span class="keyword">super</span>()</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">  &#125;</span><br><span class="line">  show() &#123;</span><br><span class="line">    <span class="keyword">super</span>.show()<span class="comment">//this.__proto__.show.call(this)//因为this不会向上。</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"admin"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> hd = <span class="keyword">new</span> Admin(<span class="string">"zbb"</span>);</span><br><span class="line">hd.show();<span class="comment">//user,admin;因为是进入自己的show，而在自己的show我们又添加了一句super.show()，这就会通过super访问到父级的show，先输出了user然后再输出admin</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="在类中使用访问控制器"><a href="#在类中使用访问控制器" class="headerlink" title="在类中使用访问控制器"></a>在类中使用访问控制器</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Request</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(url) &#123;</span><br><span class="line">        <span class="keyword">this</span>.data = &#123; url &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">set</span> host(url) &#123;<span class="comment">//伪造属性</span></span><br><span class="line">        <span class="keyword">if</span> (!<span class="regexp">/^http?:\/\//i</span>.test(url)) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"请以协议开头"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">this</span>.data.url = url</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">get</span> host()&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.data.url</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> baidu = <span class="keyword">new</span> Request(<span class="string">"http://www.baidu.com"</span>)</span><br><span class="line"><span class="built_in">console</span>.log(baidu)<span class="comment">//Request &#123;data: &#123;…&#125;&#125;</span></span><br><span class="line">baidu.host = <span class="string">'http://baidu?'</span></span><br><span class="line"><span class="built_in">console</span>.log(baidu.host)<span class="comment">//http://baidu?</span></span><br><span class="line">baidu.host=<span class="string">'baidu?'</span><span class="comment">////Uncaught Error: 请以协议开</span></span><br></pre></td></tr></table></figure>
+
+
       
 
       
@@ -368,6 +439,22 @@
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JavaScripe查漏补缺</a>
         		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">访问控制器</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">super关键字</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">class类的属性继承形式</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">class类的方法继承形式</a>
+        		</li>
       		
 		</ul>
 	</div>
@@ -376,7 +463,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/18/JS%E6%8A%96%E5%8A%A8%E4%B8%8E%E5%8A%A0%E9%80%9F/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/06/24/JS%E7%9A%84class%E7%B1%BB%E4%BB%A5%E5%8F%8A%E5%85%B6%E7%BB%A7%E6%89%BF%E5%85%B3%E9%94%AE%E5%AD%97/">展开全文 >></a>
         </p>
       
 
@@ -408,7 +495,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/4/">下一页</a>
+      <a class="extend prev" rel="prev" href="/page/2/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/4/">下一页</a>
     </nav>
   
 
@@ -509,10 +596,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Map类型</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Set类型</a>
               </li>
              
@@ -526,10 +609,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">深浅拷贝</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">访问控制器set，get</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -562,6 +641,58 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">移动端适配</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Map字典类型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">JSON</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Proxy代理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">访问控制器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">正则表达式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">断言匹配</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">模块化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">super关键字</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">class类的属性继承形式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">class类的方法继承形式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">静态属性</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mixin</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">红黑树</a>
               </li>
             
             <div class="clearfix"></div>

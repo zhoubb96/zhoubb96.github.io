@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="https://zhoubb96.github.io">
   <title>JS对象 | 周斌斌的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="面向对象三大特性：封装、继承、多态属性 属性的检测  对象属性检测obj.hasOwnProperty(&quot;key&quot;),仅查看自身属性 原型链属性检测&quot;key&quot; in obj，自身与原型的属性都进行检测   属性的计算  动态计算属性名，reduce方法  1234567891011let lessons &#x3D; [      &amp;#123;title: &quot;媒体查询">
+  <meta name="description" content="属性 属性的检测  对象属性检测obj.hasOwnProperty(&quot;key&quot;),仅查看自身属性 原型链属性检测&quot;key&quot; in obj，自身与原型的属性都进行检测   属性的计算  动态计算属性名，reduce方法  1234567891011let lessons &#x3D; [      &amp;#123;title: &quot;媒体查询响应式布局&quot;,click: 89,">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS对象">
 <meta property="og:url" content="https://zhoubb96.github.io/2020/06/18/JS%E5%AF%B9%E8%B1%A1/index.html">
 <meta property="og:site_name" content="周斌斌的个人博客">
-<meta property="og:description" content="面向对象三大特性：封装、继承、多态属性 属性的检测  对象属性检测obj.hasOwnProperty(&quot;key&quot;),仅查看自身属性 原型链属性检测&quot;key&quot; in obj，自身与原型的属性都进行检测   属性的计算  动态计算属性名，reduce方法  1234567891011let lessons &#x3D; [      &amp;#123;title: &quot;媒体查询">
+<meta property="og:description" content="属性 属性的检测  对象属性检测obj.hasOwnProperty(&quot;key&quot;),仅查看自身属性 原型链属性检测&quot;key&quot; in obj，自身与原型的属性都进行检测   属性的计算  动态计算属性名，reduce方法  1234567891011let lessons &#x3D; [      &amp;#123;title: &quot;媒体查询响应式布局&quot;,click: 89,">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-06-18T03:04:04.000Z">
-<meta property="article:modified_time" content="2020-06-19T03:26:25.194Z">
+<meta property="article:modified_time" content="2020-06-24T07:39:14.208Z">
 <meta property="article:author" content="Zhoubb">
 <meta property="article:tag" content="JavaScripe查漏补缺">
 <meta property="article:tag" content="深浅拷贝">
@@ -180,7 +180,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="面向对象三大特性：封装、继承、多态"><a href="#面向对象三大特性：封装、继承、多态" class="headerlink" title="面向对象三大特性：封装、继承、多态"></a>面向对象三大特性：封装、继承、多态</h4><h5 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h5><ul>
+        <h5 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h5><ul>
 <li><p>属性的检测</p>
 <ul>
 <li>对象属性检测<code>obj.hasOwnProperty(&quot;key&quot;)</code>,仅查看自身属性</li>
@@ -210,13 +210,32 @@
 <li>对象的冻结<code>Object.freeze(obj)</code>不能对对象进行修改，可以使用。</li>
 </ul>
 </li>
+<li><p>属性的保护</p>
+<p>如果属性在内部外部都能访问，那就是公共的属性；但是有的属性我们只想内部访问，防止外部修改，有什么方法？</p>
+<ul>
+<li>使用命名规则来保护属性。_url与url，<strong>但还是可以直接用前者设置，绕开访问控制器。</strong></li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Request</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(url) &#123;</span><br><span class="line">        <span class="keyword">this</span>._url</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">set</span> url(url) &#123;<span class="comment">//伪造属性url,实际内部的是_url</span></span><br><span class="line">        <span class="keyword">if</span> (!<span class="regexp">/^http?:\/\//i</span>.test(url)) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"请以协议开头"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">this</span>._url = url</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">get</span> url()&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>._url</span><br><span class="line">    &#125;    </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> baidu = <span class="keyword">new</span> Request(<span class="string">"http://www.baidu.com"</span>)</span><br><span class="line"><span class="built_in">console</span>.log(baidu)<span class="comment">//Request &#123;data: &#123;…&#125;&#125;</span></span><br><span class="line">baidu.url = <span class="string">'http://baidu?'</span></span><br><span class="line"><span class="built_in">console</span>.log(baidu.url)<span class="comment">//http://baidu?，符合规则修改成功</span></span><br><span class="line">baidu._url=<span class="string">"zhazhahui"</span></span><br><span class="line"><span class="built_in">console</span>.log(baidu.url)<span class="comment">//zhazhahui,绕过控制器</span></span><br><span class="line">baidu.url = <span class="string">'baidu?'</span></span><br><span class="line"><span class="built_in">console</span>.log(baidu.url)<span class="comment">//不符合规则报错</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用Symbol定义protected属性，因为symbol的唯一性，所以在外边不清楚host的情况下不能直接修改url，<strong>必须通过访问控制器。</strong>类似的还要Weakmap等方法。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Request</span> </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> host=<span class="built_in">Symbol</span>(<span class="string">'主机'</span>)<span class="comment">//到时候不暴露这个就行了。</span></span><br><span class="line">    <span class="keyword">constructor</span>(url) &#123;</span><br><span class="line">        <span class="keyword">this</span>[host] =  url </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">set</span> host(url) &#123;<span class="comment">//伪造属性host</span></span><br><span class="line">        <span class="keyword">if</span> (!<span class="regexp">/^http?:\/\//i</span>.test(url)) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"请以协议开头"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">this</span>[host] = url</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">get</span> host()&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>[host]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> baidu = <span class="keyword">new</span> Request(<span class="string">"http://www.baidu.com"</span>)</span><br><span class="line"><span class="built_in">console</span>.log(baidu)<span class="comment">//Request &#123;data: &#123;…&#125;&#125;</span></span><br><span class="line">baidu.host = <span class="string">'http://baidu?'</span></span><br><span class="line"><span class="built_in">console</span>.log(baidu.host)<span class="comment">//http://baidu?</span></span><br><span class="line">baidu.host=<span class="string">'baidu?'</span><span class="comment">////Uncaught Error: 请以协议开头</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用private操作私有属性，在属性前面加井号#，<strong>必须靠访问控制器在内部修改。</strong>不能在外部访问或修改。必须是内部返回或修改。只能在当前类，<strong>直接</strong>使用。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">  #host = "https://baidu.com";</span><br><span class="line">  <span class="keyword">constructor</span>(name) &#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">set</span> host(url) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="regexp">/^https?:/i</span>.test(url)) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"非常网址"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    this.#host = url;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> bd = <span class="keyword">new</span> User(<span class="string">"百度"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(bd)</span><br><span class="line">bd.host = <span class="string">"https://zhazhahui.com"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(bd);</span><br><span class="line"><span class="comment">//bd.#host="okk"//Private field '#host' must be declared in an enclosing class</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
 </ul>
 <h5 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h5><p>将普通函数封装为对象方法的好处在于可以避免函数冲突，而且封装过后调用简单。对象是引用变量，所以通常情况下是传地址，而且是浅拷贝。注意对象中的对象的传递。</p>
 <h4 id="深拷贝，一层一层的处理"><a href="#深拷贝，一层一层的处理" class="headerlink" title="深拷贝，一层一层的处理"></a>深拷贝，一层一层的处理</h4><p>处理对象中的对象的赋值，判断递归</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//浅拷贝，object[key]可能也为一个对象</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">copy</span>(<span class="params">object</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> res=&#123;&#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">const</span> key <span class="keyword">in</span> object)&#123;</span><br><span class="line">        res[key]=object[key]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//深拷贝，递归函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deepcopy</span>(<span class="params">obj</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> res=obj istacneof <span class="built_in">Array</span>?[]:&#123;&#125;<span class="comment">//因为递归进行下去时，最里面的数据可能是数组，因此是数组的情况下应该返回数组</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">const</span>[key,value] <span class="keyword">in</span> <span class="built_in">Object</span>.entries(obj))&#123;<span class="comment">//考虑数组的情况，统一键值对，统一数组与对象的处理方法</span></span><br><span class="line">        res[key]=<span class="keyword">typeof</span> value===<span class="string">'object'</span>?deepcopy(value):value<span class="comment">//是对象就继续递归，不是对象直接赋值</span></span><br><span class="line">    &#125;</span><br><span class="line">     <span class="keyword">return</span> res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-
-
+<p><strong>面向对象三大特性：封装、继承、多态</strong></p>
 
       
 
@@ -493,10 +512,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Map类型</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Set类型</a>
               </li>
              
@@ -510,10 +525,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">深浅拷贝</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">访问控制器set，get</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -546,6 +557,58 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">移动端适配</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Map字典类型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">JSON</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Proxy代理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">访问控制器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">正则表达式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">断言匹配</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">模块化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">super关键字</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">class类的属性继承形式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">class类的方法继承形式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">静态属性</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mixin</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">红黑树</a>
               </li>
             
             <div class="clearfix"></div>

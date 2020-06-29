@@ -156,31 +156,38 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-JS-Set与WeakSet类型" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-JS继承与多态" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/15/JS-Set%E4%B8%8EWeakSet%E7%B1%BB%E5%9E%8B/">JS-Set类型</a>
+      <a class="article-title" href="/2020/06/21/JS%E7%BB%A7%E6%89%BF%E4%B8%8E%E5%A4%9A%E6%80%81/">JS继承与多态</a>
     </h1>
   
 
         
-        <a href="/2020/06/15/JS-Set%E4%B8%8EWeakSet%E7%B1%BB%E5%9E%8B/" class="archive-article-date">
-  	<time datetime="2020-06-15T09:21:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-15</time>
+        <a href="/2020/06/21/JS%E7%BB%A7%E6%89%BF%E4%B8%8E%E5%A4%9A%E6%80%81/" class="archive-article-date">
+  	<time datetime="2020-06-21T01:15:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-21</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1，Set类型：值不能重复的容器。"><a href="#1，Set类型：值不能重复的容器。" class="headerlink" title="1，Set类型：值不能重复的容器。"></a>1，Set类型：值不能重复的容器。</h3><p><strong>数组传参</strong>，<strong>没有键，只有值，或者说键与值是一样的。</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="keyword">set</span> = new Set([1, 1, 2, 3, 4, 5]);</span><br><span class="line">console.log(<span class="keyword">set</span>)//Set(5)&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;,一个对象，自动把第二个<span class="number">1</span>去掉。</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">set</span> = new Set(["hdcms", "houdunren"]);</span><br><span class="line">    // console.log(<span class="keyword">set</span>.clear());</span><br><span class="line">    // console.log(<span class="keyword">set</span>.delete("hdcms.com"));</span><br><span class="line">    console.log(<span class="keyword">set</span>.size);</span><br><span class="line">    // console.log(<span class="keyword">set</span>.delete("hdcms"));</span><br><span class="line">    // console.log(<span class="keyword">set</span>.size);</span><br><span class="line">    // console.log(<span class="keyword">set</span>.values());</span><br><span class="line">    //add has</span><br><span class="line">    // console.log(<span class="keyword">set</span>.size);</span><br><span class="line">    // console.log(<span class="keyword">set</span>.has("hdcms.com"));</span><br><span class="line">    // let <span class="keyword">set</span> = new Set([..."hdcms"]);</span><br><span class="line">    // console.log(<span class="keyword">set</span>);</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2020/06/15/JS-Set%E4%B8%8EWeakSet%E7%B1%BB%E5%9E%8B/#more">more >></a>
-        
+        <h3 id="JS的继承是原型的继承"><a href="#JS的继承是原型的继承" class="headerlink" title="JS的继承是原型的继承"></a>JS的继承是原型的继承</h3><p>函数有两个原型身份，两个身份看你以什么角度看。（其身份的双重性，prototype是作为构造函数自带的，里面有一个construct指回构造函数；——proto——是其作为对象在继承时使用的身份。）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">User</span>(<span class="params">name</span>)</span>&#123; <span class="keyword">this</span>.name=name&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Admin</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"><span class="comment">//继承,原型的继承。//Admin.prototype=User,不叫继承，这是直接改变了原型的指向。也就是要保留原来的原型</span></span><br><span class="line">Admin.prototype.__proto__=User</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="继承对实例的影响"><a href="#继承对实例的影响" class="headerlink" title="继承对实例的影响"></a>继承对实例的影响</h4><p><strong>构造函数设置实例的原型链是一次性的，</strong>如果在实例创建之后再改变原构造函数的继承关系，<strong>实例的原型链不会自动变化</strong>，依然是之前的原型链；所以一般在确定了构造函数的继承关系之后再创建实例。</p>
+<h4 id="继承对construct指针的影响"><a href="#继承对construct指针的影响" class="headerlink" title="继承对construct指针的影响"></a>继承对construct指针的影响</h4><p>construct指向构造函数，可以借用，也可以自己设置，通过原型链寻找。<strong>原型链的设置是构造函数设置的。</strong></p>
+<h3 id="JS多态"><a href="#JS多态" class="headerlink" title="JS多态"></a>JS多态</h3><p>实例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">User</span>(<span class="params"></span>) </span>&#123; &#125;</span><br><span class="line">User.prototype.show = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.description());</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Admin</span>(<span class="params"></span>) </span>&#123; &#125;</span><br><span class="line">Admin.prototype = <span class="built_in">Object</span>.create(User.prototype);<span class="comment">//继承User</span></span><br><span class="line">Admin.prototype.description = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"管理员"</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Member</span>(<span class="params"></span>) </span>&#123; &#125;</span><br><span class="line">Member.prototype = <span class="built_in">Object</span>.create(User.prototype);<span class="comment">//继承User</span></span><br><span class="line">Member.prototype.description = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"会员"</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Enterprise</span>(<span class="params"></span>) </span>&#123; &#125;</span><br><span class="line">Enterprise.prototype = <span class="built_in">Object</span>.create(User.prototype);<span class="comment">//继承User</span></span><br><span class="line">Enterprise.prototype.description = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"企业帐户"</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> value <span class="keyword">of</span> [<span class="keyword">new</span> Admin(), <span class="keyword">new</span> Member(), <span class="keyword">new</span> Enterprise()]) &#123;</span><br><span class="line">    value.show()<span class="comment">//管理员，会员，企业账户</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>根据调用对象的不同，this指向不同的方法，通过this指针实现多态。</strong>简化调用时的判断，（判断在设计时写好了）</p>
+
       
 
       
@@ -195,10 +202,6 @@
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JavaScripe查漏补缺</a>
         		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Set类型</a>
-        		</li>
       		
 		</ul>
 	</div>
@@ -207,7 +210,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/15/JS-Set%E4%B8%8EWeakSet%E7%B1%BB%E5%9E%8B/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/06/21/JS%E7%BB%A7%E6%89%BF%E4%B8%8E%E5%A4%9A%E6%80%81/">展开全文 >></a>
         </p>
       
 
@@ -237,34 +240,86 @@
 
 
   
-    <article id="post-JS-Symbol特性" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-JS原型" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/15/JS-Symbol%E7%89%B9%E6%80%A7/">JS-Symbol特性</a>
+      <a class="article-title" href="/2020/06/19/JS%E5%8E%9F%E5%9E%8B/">JS原型</a>
     </h1>
   
 
         
-        <a href="/2020/06/15/JS-Symbol%E7%89%B9%E6%80%A7/" class="archive-article-date">
-  	<time datetime="2020-06-15T08:12:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-15</time>
+        <a href="/2020/06/19/JS%E5%8E%9F%E5%9E%8B/" class="archive-article-date">
+  	<time datetime="2020-06-19T08:43:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-19</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="Symbol前缀标识"><a href="#Symbol前缀标识" class="headerlink" title="Symbol前缀标识"></a>Symbol前缀标识</h4><p>可以唯一标识一个数据，可以理解为永不重复的字符串</p>
-<p>两种声明方式</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//方式一，字面量方法，symbol不需要new关键字</span></span><br><span class="line"><span class="keyword">let</span> a=symbol(<span class="string">"woshia"</span>)</span><br><span class="line"><span class="keyword">let</span> b=symbol(<span class="string">"woshib"</span>)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> a)<span class="comment">//symble</span></span><br><span class="line"><span class="comment">//方式二，for方法</span></span><br><span class="line"><span class="keyword">let</span> c = <span class="built_in">Symbol</span>.for(<span class="string">"zbb"</span>);<span class="comment">//for方法，系统会记录下这个Symbol</span></span><br><span class="line"><span class="keyword">let</span> d = <span class="built_in">Symbol</span>.for(<span class="string">"zbb"</span>);<span class="comment">//第二次会查之前是否已经声明过，如果声明过就直接拿过来。反复使用同一个Symbol的情况</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(c==d)<span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(a==b)<span class="comment">//false</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Symbol</span>.keyFor(c))<span class="comment">//zbb</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Symbol</span>.keyFor(a))<span class="comment">//undefined,只有for方法定义的才能使用keyFor方法</span></span><br><span class="line"><span class="built_in">console</span>.log(a)<span class="comment">//symbol(woshia)</span></span><br><span class="line"><span class="built_in">console</span>.log(a.toString())<span class="comment">//symbol(woshia),toString依然是返回symbol本身</span></span><br><span class="line"><span class="built_in">console</span>.log(a.description)<span class="comment">//woshia，只有description才是返回内部的描述。注意，是a.description而不是a.description，也就是说description是一个数据属性，不是方法属性</span></span><br></pre></td></tr></table></figure>
+        <h2 id="原型对象"><a href="#原型对象" class="headerlink" title="原型对象"></a>原型对象</h2><p>一开始Js的继承是通过原型实现的。一般原型链是自动设置的。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj1 = &#123;&#125;</span><br><span class="line">   <span class="keyword">let</span> obj2 = &#123;&#125;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="built_in">Object</span>.getPrototypeOf(obj1) == <span class="built_in">Object</span>.getPrototypeOf(obj2))<span class="comment">//true</span></span><br></pre></td></tr></table></figure>
 
-<h4 id="使用实例"><a href="#使用实例" class="headerlink" title="使用实例"></a>使用实例</h4>
-        
-          <a class="article-more-a" href="/2020/06/15/JS-Symbol%E7%89%B9%E6%80%A7/#more">more >></a>
-        
+<p><strong>手动设置原型</strong>：<code>Object.create(parent,obj)</code>，创建出来的obj，第一个参数是其原型。如果设置为null，那么obj就没有原型。这个没父亲（原型的对象）称之为完全的数据字典对象。【只有数据，没有原型】</p>
+<h5 id="原型方法与对象方法的优先级"><a href="#原型方法与对象方法的优先级" class="headerlink" title="原型方法与对象方法的优先级"></a>原型方法与对象方法的优先级</h5><p><strong>对象方法优先级方法高于原型方法</strong>，先在对象里面寻找；再到原型里寻找。</p>
+<h4 id="1，函数有多个原型"><a href="#1，函数有多个原型" class="headerlink" title="1，函数有多个原型"></a>1，函数有多个原型</h4><p>函数也是对象，作为对象时有一个隐式原型——proto——；作为函数时有一个显示原型prototype。对象的原型叫隐式原型，函数的原型叫显示原型。取决于你将其当作当作什么类型使用。<strong>函数有两个原型，显式与隐式都有；普通对象只有一个原型，只有隐式。</strong>函数的显示原型，是在函数构造实例的时候使用的。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr=<span class="keyword">new</span> <span class="built_in">Array</span>()</span><br><span class="line"><span class="built_in">console</span>.log(arr.__proto__==<span class="built_in">Array</span>.prototype)<span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(arr.__proto__.__pproto__==<span class="built_in">Object</span>.prototype)<span class="comment">//true,一般找两层就到头了。</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2，设置对象的原型"><a href="#2，设置对象的原型" class="headerlink" title="2，设置对象的原型"></a>2，设置对象的原型</h4><ul>
+<li><code>Object.create(parent,son)</code>，上面已经提到了</li>
+<li><code>Object.setPrototypeOf(son,parent)</code>，</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj1=&#123;<span class="attr">name</span>: <span class="string">"parent"</span>&#125;</span><br><span class="line"><span class="keyword">let</span> obj2=&#123;<span class="attr">name</span>: <span class="string">"son"</span>&#125;</span><br><span class="line"><span class="built_in">Object</span>.setPrototypeOf(obj2,obj1)</span><br><span class="line"><span class="built_in">console</span>.log(obj2)<span class="comment">//可以看出obj1已经式obj2的原型了。</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="3，显式原型中的constructor引用"><a href="#3，显式原型中的constructor引用" class="headerlink" title="3，显式原型中的constructor引用"></a>3，显式原型中的constructor引用</h4><p>显式prototype可以服务很多对象，隐式——proto——只服务自己。<strong>所以一般操作显示原型，但是如果只想改自己的方法，不往其他原型上加，那就使用隐式原型（ES6才支持直接操作隐式对象）。</strong>注意<strong>直接改变原型指向与给原型追加方法的区别。</strong>因为直接改变原型的指向会导致constructor引用指向的丢失。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">User</span>(<span class="params">name</span>)</span>&#123;<span class="keyword">this</span>.name=name&#125;<span class="comment">//函数</span></span><br><span class="line"><span class="built_in">console</span>.log(User.prototype.__proto__==<span class="built_in">Object</span>.prototype)<span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(User.prototype.constructor==User)<span class="comment">//true</span></span><br><span class="line"><span class="keyword">let</span> zbb=<span class="keyword">new</span> User.prototype.constructor(<span class="string">"zbb"</span>)</span><br><span class="line"><span class="built_in">console</span>.log(zbb)<span class="comment">//User &#123;name: "zbb"&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h2><ol>
+<li><p>读取对象的属性值时: 先在自身属性中查找，找到返回；如果没找到，会自动到原型链中查找，最终没找到会返回undefined</p>
+</li>
+<li><p>设置对象的属性值时: 不会查找原型链, 如果当前对象中没有此属性, 直接添加此属性。</p>
+</li>
+<li><p><strong>方法一般定义在原型中</strong>, <strong>属性一般通过构造函数定义在对象自己身上</strong></p>
+<p>总结：读取会查找原型链，设置不会查找原型链</p>
+</li>
+</ol>
+<h3 id="原型链检测"><a href="#原型链检测" class="headerlink" title="原型链检测"></a>原型链检测</h3><h4 id="1，instanceof"><a href="#1，instanceof" class="headerlink" title="1，instanceof"></a>1，instanceof</h4><p>注意是<strong>原型链检测</strong>，严格来说不算实例检测，也不是类型检测，<strong>就只是原型链检测</strong>，<strong>new它的那个人不一定值得拥有姓名，比如寄生式继承。instanceof是递归的</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">B</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"><span class="keyword">let</span> a=<span class="keyword">new</span> A()</span><br><span class="line"><span class="keyword">let</span> b=<span class="keyword">new</span> B()</span><br><span class="line">A.prototype=b</span><br><span class="line"><span class="built_in">console</span>.log(a <span class="keyword">instanceof</span> A)<span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(a <span class="keyword">instanceof</span> B)<span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(a <span class="keyword">instanceof</span> <span class="built_in">Object</span>)<span class="comment">//true</span></span><br><span class="line"><span class="comment">//自定义原型链检查方法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkPrototype</span>(<span class="params">obj,constructor</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!obj.__proto__) <span class="keyword">return</span> <span class="literal">false</span><span class="comment">//原型不存在</span></span><br><span class="line">    <span class="keyword">if</span>(obj.__proto__==<span class="keyword">constructor</span>.prototype) return true</span><br><span class="line">    return checkPrototype(obj.__proto__,<span class="keyword">constructor</span>)//递归调用，因为有返回值，所以前面也要有个return</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2，obj-isPrototypeOf"><a href="#2，obj-isPrototypeOf" class="headerlink" title="2，obj.isPrototypeOf()"></a>2，obj.isPrototypeOf()</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a=&#123;&#125;</span><br><span class="line"><span class="keyword">let</span> b=&#123;&#125;</span><br><span class="line"><span class="built_in">console</span>.log(b.__proto__.isPrototypeOf(a))<span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="3，使用call与apply借用原型链"><a href="#3，使用call与apply借用原型链" class="headerlink" title="3，使用call与apply借用原型链"></a>3，使用call与apply借用原型链</h4><p>自身原型链上没有这个功能，但是另外一个原型链有。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = &#123;</span><br><span class="line">    data: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">17</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//方法一，设置原型链</span></span><br><span class="line"><span class="built_in">Object</span>.setPrototypeOf(a, &#123;</span><br><span class="line">    max() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.data.sort(<span class="function">(<span class="params">a, b</span>) =&gt;</span> b - a)[<span class="number">0</span>]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//借用原型链</span></span><br><span class="line"><span class="keyword">let</span> zbb = &#123;</span><br><span class="line">    lessons: &#123; <span class="attr">js</span>: <span class="number">90</span>, <span class="attr">nodejs</span>: <span class="number">91</span>, <span class="attr">css</span>: <span class="number">87</span>, <span class="attr">c</span>: <span class="number">92</span> &#125;,</span><br><span class="line">    <span class="keyword">get</span> data() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Object</span>.values(<span class="keyword">this</span>.lessons)<span class="comment">//数组</span></span><br><span class="line">    &#125;<span class="comment">//用这个伪造zbb.data这个属性，以便于调用max函数</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(a.max())<span class="comment">//17</span></span><br><span class="line"><span class="built_in">console</span>.log(a.max.apply(zbb))<span class="comment">//92</span></span><br></pre></td></tr></table></figure>
+
+<p>例子：DOM节点调用Array原型方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;input type=<span class="string">"text"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"red"</span> validate rule=<span class="string">"max:12,min:3"</span> /&gt;</span><br><span class="line">    &lt;input type=<span class="string">"text"</span> content=<span class="string">"ko"</span> validate rule=<span class="string">"max:3,isNumber"</span> /&gt;</span><br><span class="line">&lt;<span class="regexp">/body&gt;</span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">    let arr=[9,5,2,7]</span></span><br><span class="line"><span class="regexp">    console.log(arr.filter((value)=&gt;value&gt;5))/</span><span class="regexp">/[9,7]</span></span><br><span class="line"><span class="regexp">    let btns=document.querySelectorAll('input')</span></span><br><span class="line"><span class="regexp">    let btn=Array.prototype.filter.call(btns,item=&gt;&#123;</span></span><br><span class="line"><span class="regexp">        console.log(item)/</span><span class="regexp">/&lt;input type="text" class="red" validate rule="max:12,min:3" /</span>&gt;...</span><br><span class="line">        <span class="keyword">return</span> item.hasAttribute(<span class="string">'class'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="built_in">console</span>.log(btn)<span class="comment">//[input.red]</span></span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>不管原型怎么变，方法中的this始终指向调用方法对象。</strong></p>
+<p>不要滥用原型链</p>
+<p><strong>原型链顶层：Object.prototype</strong></p>
+<p>Object.prototype.hide=function(){};那么这个函数所有对象都能用到。</p>
+<p>如果滥用的话，可能会造成函数冲突，使代码变得不稳定。所以不要在系统的原型中也就是最顶层添加方法。</p>
+<ul>
+<li><p>prototype定义构造函数的原型。</p>
+</li>
+<li><p>——proto——为单个对象更改原型。<strong>其实这不是一个严格意义的属性，是一个访问控制器setter，getter</strong>，仅在对象的时候才设置成功，所以必然进行了控制。</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> hd=&#123;<span class="attr">prototype</span>:&#123;&#125;,</span><br><span class="line">       <span class="keyword">get</span> __proto__()&#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">this</span>.prototype</span><br><span class="line">       &#125;,</span><br><span class="line">       <span class="keyword">set</span> __proto__(obj)&#123;</span><br><span class="line">           <span class="keyword">if</span>(obj istanceof <span class="built_in">Object</span>)&#123;</span><br><span class="line">               <span class="keyword">this</span>.prototype=obj</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;&#125;<span class="comment">//这就是原理。</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>如果想设置非对象类型的原型，那么只能先将其原型链断开（先让其原型为null），再进行设置。</strong></p>
+
       
 
       
@@ -279,10 +334,6 @@
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JavaScripe查漏补缺</a>
         		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Symbol类型</a>
-        		</li>
       		
 		</ul>
 	</div>
@@ -291,7 +342,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/15/JS-Symbol%E7%89%B9%E6%80%A7/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/06/19/JS%E5%8E%9F%E5%9E%8B/">展开全文 >></a>
         </p>
       
 
@@ -321,28 +372,48 @@
 
 
   
-    <article id="post-JS数组六" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-JSON数据" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/14/JS%E6%95%B0%E7%BB%84%E5%85%AD/">JS数组六</a>
+      <a class="article-title" href="/2020/06/19/JSON%E6%95%B0%E6%8D%AE/">JSON数据</a>
     </h1>
   
 
         
-        <a href="/2020/06/14/JS%E6%95%B0%E7%BB%84%E5%85%AD/" class="archive-article-date">
-  	<time datetime="2020-06-14T08:02:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-14</time>
+        <a href="/2020/06/19/JSON%E6%95%B0%E6%8D%AE/" class="archive-article-date">
+  	<time datetime="2020-06-19T07:39:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-19</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="map映射数组与应用类型处理"><a href="#map映射数组与应用类型处理" class="headerlink" title="map映射数组与应用类型处理"></a>map映射数组与应用类型处理</h4><p><code>map(callbacks(value,index,arr))</code>，return的是value。<strong>前面那些函数是返回的布尔值，这个函数直接返回值value</strong>。返回的也是一个新数组。原数组不会改变，需要定义一个变量接受新数组。<strong>引用类型因为传的是地址，如果不写return语句会直接改变原值</strong>；<strong>普通类型由于是传值的形式，不写return语句也不会改变原值</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="string">"zbb"</span>, <span class="string">"ycy"</span>]</span><br><span class="line"><span class="keyword">let</span> arr2 = arr.map(<span class="function">(<span class="params">value, index</span>) =&gt;</span> &#123;</span><br><span class="line">    value = value  + <span class="string">"gkd"</span></span><br><span class="line">    <span class="keyword">return</span> value <span class="comment">//这一句在引用类型与非引用类型会产生不同的结果</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(arr)<span class="comment">// ["zbb", "ycy"]</span></span><br><span class="line"><span class="built_in">console</span>.log(arr2)<span class="comment">//["zbbgkd", "ycygkd"]</span></span><br></pre></td></tr></table></figure>
+        <h4 id="JSON数据解决了什么问题？"><a href="#JSON数据解决了什么问题？" class="headerlink" title="JSON数据解决了什么问题？"></a>JSON数据解决了什么问题？</h4><p>解决语言之间传递格式化数据的问题。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> zbb=&#123;</span><br><span class="line">        name: <span class="string">"zbb"</span>,</span><br><span class="line">        age: <span class="number">24</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> json =<span class="built_in">JSON</span>.stringify(zbb)</span><br><span class="line">    <span class="built_in">console</span>.log(json)<span class="comment">//&#123;"name":"zbb","age":24&#125;，给属性加上引号了</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">typeof</span> json)<span class="comment">//string</span></span><br><span class="line">	<span class="keyword">let</span> obj=<span class="built_in">JSON</span>.parse(json)</span><br><span class="line">    <span class="built_in">console</span>.log(obj)<span class="comment">//&#123;name: "zbb", age: 24&#125;</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">typeof</span> obj)<span class="comment">//object</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>JSON化方法，<code>JSON.stringify(obj)</code></p>
+</li>
+<li><p>对象化方法，<code>JSON.parse(json)</code></p>
+</li>
+</ul>
+<h4 id="JSON序列化与自定义"><a href="#JSON序列化与自定义" class="headerlink" title="JSON序列化与自定义"></a>JSON序列化与自定义</h4><p><code>JSON.stringify()</code>：第一个参数指定对象，第二个参数指定保留内容（null的话就是不做过滤，全部返回），第三个参数指定制表符格式</p>
+<ul>
+<li>序列化</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> zbb=&#123;</span><br><span class="line">        name: <span class="string">"zbb"</span>,</span><br><span class="line">        age: <span class="number">24</span>,</span><br><span class="line">        education: &#123;</span><br><span class="line">            college: <span class="string">"HUST"</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="keyword">let</span> json = <span class="built_in">JSON</span>.stringify(zbb)</span><br><span class="line">    <span class="built_in">console</span>.log(json)<span class="comment">//&#123;"name":"zbb","age":24&#125;</span></span><br><span class="line">    <span class="keyword">let</span> json2 = <span class="built_in">JSON</span>.stringify(zbb, [<span class="string">"education"</span>])<span class="comment">//第二个参数可以指定保留属性</span></span><br><span class="line">    <span class="built_in">console</span>.log(json2)<span class="comment">//&#123;"education":&#123;&#125;&#125;</span></span><br><span class="line">    <span class="keyword">let</span> json3 = <span class="built_in">JSON</span>.stringify(zbb, [<span class="string">"education"</span>, <span class="string">"name"</span>], <span class="number">2</span>)<span class="comment">//第三个参数可以设置制表位，格式化</span></span><br><span class="line">    <span class="built_in">console</span>.log(json3)</span><br><span class="line">    <span class="comment">// &#123;</span></span><br><span class="line">    <span class="comment">//     "education": &#123; &#125;,</span></span><br><span class="line">    <span class="comment">//     "name": "zbb"</span></span><br><span class="line">    <span class="comment">// &#125;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>自定义</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> zbb = &#123;</span><br><span class="line">    name: <span class="string">"zbb"</span>,</span><br><span class="line">    age: <span class="number">24</span>,</span><br><span class="line">    education: &#123;</span><br><span class="line">        college: <span class="string">"HUST"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    toJSON: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;<span class="comment">//定制接口toJSON</span></span><br><span class="line">        <span class="comment">//指定返回内容</span></span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            name: <span class="keyword">this</span>.name,</span><br><span class="line">            education: <span class="keyword">this</span>.education</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> json = <span class="built_in">JSON</span>.stringify(zbb)<span class="comment">//没有设置</span></span><br><span class="line"><span class="built_in">console</span>.log(json)<span class="comment">//得到了在对象中指定返回的内容，&#123;"name":"zbb","education":&#123;"college":"HUST"&#125;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="JSON转为JS可操作类型"><a href="#JSON转为JS可操作类型" class="headerlink" title="JSON转为JS可操作类型"></a>JSON转为JS可操作类型</h4><p><code>JSON.parse(json,callbacks)</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> zbb = &#123;</span><br><span class="line">    name: <span class="string">"zbb"</span>,</span><br><span class="line">    age: <span class="number">24</span>,</span><br><span class="line">    education: &#123;</span><br><span class="line">        college: <span class="string">"HUST"</span></span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> json = <span class="built_in">JSON</span>.stringify(zbb)</span><br><span class="line"><span class="keyword">let</span> obj = <span class="built_in">JSON</span>.parse(json,(key,value)=&gt;&#123;<span class="comment">//箭头函数多行，指定返回内容</span></span><br><span class="line">    <span class="keyword">if</span>(key==<span class="string">"name"</span>)&#123;</span><br><span class="line">        value=<span class="string">"姓名:"</span>+value</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> value<span class="comment">//要return回去</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(obj)<span class="comment">//&#123;name: "姓名:zbb", age: 24, education: &#123;…&#125;&#125;</span></span><br></pre></td></tr></table></figure>
 
 
       
@@ -361,7 +432,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">map()</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JSON</a>
         		</li>
       		
 		</ul>
@@ -371,7 +442,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/14/JS%E6%95%B0%E7%BB%84%E5%85%AD/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/06/19/JSON%E6%95%B0%E6%8D%AE/">展开全文 >></a>
         </p>
       
 
@@ -403,7 +474,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/5/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/7/">下一页</a>
+      <a class="extend prev" rel="prev" href="/page/5/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/7/">下一页</a>
     </nav>
   
 
@@ -504,10 +575,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Map类型</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Set类型</a>
               </li>
              
@@ -521,10 +588,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">深浅拷贝</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">访问控制器set，get</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -557,6 +620,58 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">移动端适配</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Map字典类型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">JSON</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Proxy代理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">访问控制器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">正则表达式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">断言匹配</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">模块化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">super关键字</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">class类的属性继承形式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">class类的方法继承形式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">静态属性</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mixin</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">红黑树</a>
               </li>
             
             <div class="clearfix"></div>

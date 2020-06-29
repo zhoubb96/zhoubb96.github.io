@@ -156,29 +156,26 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-数据结构与算法-树一" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-JS异步编程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E6%A0%91%E4%B8%80/">数据结构与算法-树一</a>
+      <a class="article-title" href="/2020/06/29/JS%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">JS异步编程</a>
     </h1>
   
 
         
-        <a href="/2020/06/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E6%A0%91%E4%B8%80/" class="archive-article-date">
-  	<time datetime="2020-06-19T03:12:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-19</time>
+        <a href="/2020/06/29/JS%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/" class="archive-article-date">
+  	<time datetime="2020-06-29T02:57:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-29</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="树"><a href="#树" class="headerlink" title="树"></a>树</h4>
-        
-          <a class="article-more-a" href="/2020/06/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E6%A0%91%E4%B8%80/#more">more >></a>
         
       
 
@@ -187,22 +184,11 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数据结构与算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E6%A0%91%E4%B8%80/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/06/29/JS%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">展开全文 >></a>
         </p>
       
 
@@ -232,110 +218,62 @@
 
 
   
-    <article id="post-数据结构与算法-哈希表二" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-JS正则表达式二" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E5%93%88%E5%B8%8C%E8%A1%A8%E4%BA%8C/">数据结构与算法-哈希表二</a>
+      <a class="article-title" href="/2020/06/29/JS%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%BA%8C/">JS正则表达式二</a>
     </h1>
   
 
         
-        <a href="/2020/06/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E5%93%88%E5%B8%8C%E8%A1%A8%E4%BA%8C/" class="archive-article-date">
-  	<time datetime="2020-06-19T01:18:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-19</time>
+        <a href="/2020/06/29/JS%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%BA%8C/" class="archive-article-date">
+  	<time datetime="2020-06-29T01:11:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-29</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="哈希表的扩容思想"><a href="#哈希表的扩容思想" class="headerlink" title="哈希表的扩容思想"></a>哈希表的扩容思想</h4><p><strong>为什么要扩容</strong>？</p>
-<p>随着数据量的增多，填充因子=数据量长度/数组长度，填充因子变大，就会使得哈希表的效率降低。所以需要在合适的时候进行扩容。</p>
-<p><strong>什么时候扩容</strong>？</p>
-<p>常见情况是：loadFactor&gt;0.75的时候进行扩容。loadFactor&lt;0.25就缩小容量</p>
-<p><strong>怎样扩容</strong>？</p>
-<p>保证扩容后的长度<strong>也为质数</strong>，并且扩容后其<strong>他数据项同时修改</strong>。所以扩容比较消耗性能，但是是必须的。</p>
-<p><strong>封装哈希表(链地址法实现)</strong>，<strong>二维数组，有扩容版本</strong>。</p>
-        
-          <a class="article-more-a" href="/2020/06/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E5%93%88%E5%B8%8C%E8%A1%A8%E4%BA%8C/#more">more >></a>
-        
-      
+        <h4 id="正则表达式断言匹配"><a href="#正则表达式断言匹配" class="headerlink" title="正则表达式断言匹配"></a>正则表达式断言匹配</h4><p>正则表达式的条件语句，断言不是一个独立存在的，它是服务于正则表达式的，<strong>条件不是值</strong>，<strong>匹配出来的内容还是正则表达式的内容。</strong>先行后行指的是正则的位置。</p>
+<ul>
+<li><p>1，零宽先行断言，先行断言判断的条件是后面</p>
+<p>后边是谁<code>(？=)</code>，断言也是用括号括起来的，<strong>但是断言不算原子组。</strong></p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//此例中为后盾人后面跟着教程的这个后盾人加上链接。</span></span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;main&gt;</span><br><span class="line">        后盾人不断分享视频教程，学习后盾人教程提升编程能力。</span><br><span class="line">    &lt;<span class="regexp">/main&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>body&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="keyword">let</span> main = <span class="built_in">document</span>.querySelector(<span class="string">'main'</span>)</span><br><span class="line">    <span class="keyword">let</span> reg = <span class="regexp">/后盾人(?=教程)/</span> <span class="comment">//</span></span><br><span class="line">    main.innerHTML = main.innerHTML.replace(reg, <span class="string">`&lt;a href="https://baidu.com"&gt;$&amp;&lt;/a&gt;`</span>)</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
 
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数据结构与算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E5%93%88%E5%B8%8C%E8%A1%A8%E4%BA%8C/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//为价格加上两位小数，00，在回调函数做判断</span></span><br><span class="line">    <span class="keyword">let</span> lessons = <span class="string">`</span></span><br><span class="line"><span class="string">      js,200元,300次</span></span><br><span class="line"><span class="string">      php,300.00元,100次</span></span><br><span class="line"><span class="string">      node.js,180元,260次</span></span><br><span class="line"><span class="string">    `</span></span><br><span class="line">    <span class="keyword">let</span> reg = <span class="regexp">/(\d+)(.00)?(?=元)/ig</span>  <span class="comment">//匹配出所有价格，包括已经有了00的</span></span><br><span class="line">    lessons = lessons.replace(reg, (v, ...args) =&gt; &#123;</span><br><span class="line">        <span class="comment">//console.log(args)  //没有原原子组（.00）的args[1]是吨undefined</span></span><br><span class="line">        args[<span class="number">1</span>] = args[<span class="number">1</span>] || <span class="string">'.00'</span>  <span class="comment">//有就直接取自己，没有就赋值为00，短路返回原值的特性</span></span><br><span class="line">        <span class="keyword">return</span> args.splice(<span class="number">0</span>, <span class="number">2</span>).join(<span class="string">''</span>)  <span class="comment">//返回想要替换的格式</span></span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="built_in">console</span>.log(lessons)</span><br><span class="line">    <span class="comment">// js, 200.00元, 300次</span></span><br><span class="line">    <span class="comment">// php, 300.00元, 100次</span></span><br><span class="line">    <span class="comment">// node.js, 180.00元, 260次</span></span><br></pre></td></tr></table></figure>
 
 
 
+<ul>
+<li><p>2，零宽后行断言，后行断言判断的条件是前面。前面是谁，多了个向前的箭头，位置也在前<code>(?&lt;=)</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> hd=<span class="string">"123后盾人后盾人456"</span></span><br><span class="line">    <span class="keyword">let</span> reg=<span class="regexp">/(?&lt;=\d+)后盾人/</span>  <span class="comment">//匹配出前面是数字的那个后盾人</span></span><br><span class="line">    <span class="built_in">console</span>.log(hd.match(reg))</span><br><span class="line">    <span class="built_in">console</span>.log(hd.replace(reg,<span class="string">'被替换'</span>))<span class="comment">//123被替换后盾人456;前面是是数字的那个后盾人被替换了</span></span><br></pre></td></tr></table></figure>
 
-  
-    <article id="post-JS对象Proxy代理实现双向绑定" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/18/JS%E5%AF%B9%E8%B1%A1Proxy%E4%BB%A3%E7%90%86%E5%AE%9E%E7%8E%B0%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A/">JS对象Proxy代理实现双向绑定</a>
-    </h1>
-  
 
-        
-        <a href="/2020/06/18/JS%E5%AF%B9%E8%B1%A1Proxy%E4%BB%A3%E7%90%86%E5%AE%9E%E7%8E%B0%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A/" class="archive-article-date">
-  	<time datetime="2020-06-18T12:11:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span>&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset=<span class="string">"UTF-8"</span> /&gt;</span><br><span class="line">  &lt;title&gt;&lt;<span class="regexp">/title&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;input type=<span class="string">"text"</span> v-model=<span class="string">"title"</span> /&gt;</span><br><span class="line">  &lt;input type=<span class="string">"text"</span> v-model=<span class="string">"title"</span> /&gt;</span><br><span class="line">  &lt;h4 v-bind=<span class="string">"title"</span>&gt;这里也会发生更新&lt;<span class="regexp">/h4&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>body&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">View</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> proxy = <span class="keyword">new</span> <span class="built_in">Proxy</span>(</span><br><span class="line">      &#123;&#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="keyword">set</span>(obj, key, value) &#123;</span><br><span class="line">          <span class="built_in">console</span>.log(value)<span class="comment">//此时value已经传入</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="keyword">get</span>(obj, key) &#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    );<span class="comment">//代理了一个空对象</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//绑定事件</span></span><br><span class="line">    <span class="keyword">this</span>.init = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="comment">//获取触发事件的对象</span></span><br><span class="line">      <span class="keyword">const</span> els = <span class="built_in">document</span>.querySelectorAll(<span class="string">"[v-model]"</span>)<span class="comment">//属性选择器</span></span><br><span class="line">      <span class="comment">//添加事件</span></span><br><span class="line">      els.forEach(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span><br><span class="line">        item.addEventListener(<span class="string">'keyup'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">          <span class="comment">//触发代理的set</span></span><br><span class="line">          proxy[<span class="keyword">this</span>.getAttribute(<span class="string">'v-model'</span>)] = <span class="keyword">this</span>.value<span class="comment">//往空对象里压入属性</span></span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">new</span> View().init()</span><br></pre></td></tr></table></figure>
 
+</li>
+</ul>
+<p>混合使用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;main&gt;</span><br><span class="line">        &lt;a href=<span class="string">"https://baidu.com"</span>&gt;百度&lt;<span class="regexp">/a&gt;</span></span><br><span class="line"><span class="regexp">        &lt;a href="https:/</span><span class="regexp">/yahoo.com"&gt;雅虎&lt;/</span>a&gt;</span><br><span class="line">    &lt;<span class="regexp">/main&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>body&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="comment">//将所有网址替换为bilibili.com</span></span><br><span class="line">    <span class="keyword">let</span> main = <span class="built_in">document</span>.querySelector(<span class="string">'main'</span>)</span><br><span class="line">    <span class="keyword">let</span> reg = <span class="regexp">/(?&lt;=href=(['"])).+(?=\1)/ig</span>  <span class="comment">//.+就是网址,前面括号前断言，后面括号后端有。第一个括号内括号是原子组表示单双引号</span></span><br><span class="line">    <span class="built_in">console</span>.log(main.innerHTML.match(reg))<span class="comment">//["https://baidu.com", "https://yahoo.com"]</span></span><br><span class="line">    main.innerHTML = main.innerHTML.replace(reg, <span class="string">"https:/bilibili.com"</span>)</span><br><span class="line">    <span class="built_in">console</span>.log(main.innerHTML)</span><br><span class="line">    <span class="comment">// &lt;a href="https:/bilibili.com"&gt;百度&lt;/a&gt;</span></span><br><span class="line">    <span class="comment">// &lt;a href="https:/bilibili.com"&gt;雅虎&lt;/a&gt;</span></span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li><p>3，零宽负向先行断言</p>
+<p>后面不是谁，<code>(?!)</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> hd = <span class="string">"houdunren2010hdcms"</span>;</span><br><span class="line">    <span class="keyword">let</span> reg1 = <span class="regexp">/[a-z]+(?!\d+)/g</span> <span class="comment">//后面不是数字的多个字符（有两个满足的）</span></span><br><span class="line">    <span class="keyword">let</span> reg2 = <span class="regexp">/[a-z]+$(?!\d+)/g</span>;<span class="comment">//且以字母结尾</span></span><br><span class="line">    <span class="built_in">console</span>.log(hd.match(reg1));<span class="comment">//["houdunre", "hdcms"],因为n后面是数字所有n怎样也拿不到</span></span><br><span class="line">    <span class="built_in">console</span>.log(hd.match(reg2));<span class="comment">//hdcms</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>4，零宽负向后行断言</p>
+<p>前面不是谁，<code>(?&lt;!)</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取前面不是数字的字符串。hcms</span></span><br><span class="line">    <span class="keyword">let</span> hd = <span class="string">"hdcms99houdunren"</span>;</span><br><span class="line">    <span class="keyword">let</span> reg=<span class="regexp">/(?&lt;!\d)[a-z]+/</span>  <span class="comment">//不能用\w,因为\w包括字母数字下划线</span></span><br><span class="line">    <span class="built_in">console</span>.log(hd.match(reg))<span class="comment">//"hdcms"</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//用\w是无法区分</span></span><br><span class="line">    <span class="keyword">let</span> reg2=<span class="regexp">/(?&lt;!\d)\w+/</span></span><br><span class="line">    <span class="built_in">console</span>.log(hd.match(reg2))<span class="comment">//"hdcms99houdunren"</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
 
       
 
@@ -351,6 +289,14 @@
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JavaScripe查漏补缺</a>
         		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">正则表达式</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">断言匹配</a>
+        		</li>
       		
 		</ul>
 	</div>
@@ -359,7 +305,88 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/18/JS%E5%AF%B9%E8%B1%A1Proxy%E4%BB%A3%E7%90%86%E5%AE%9E%E7%8E%B0%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/06/29/JS%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%BA%8C/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-数据结构与算法-排序二" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E6%8E%92%E5%BA%8F%E4%BA%8C/">数据结构与算法-排序二</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E6%8E%92%E5%BA%8F%E4%BA%8C/" class="archive-article-date">
+  	<time datetime="2020-06-28T12:03:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h4><pre><code>前面已经实现了冒泡排序，选择排序，插入排序等简单排序（o(n^2)）；也实现了希尔排序（o(n^1.5)），快速排序（o(nlogn)）等高级排序。接下来介绍例外几种高级排序。</code></pre><h4 id="归并排序（合并排序）"><a href="#归并排序（合并排序）" class="headerlink" title="归并排序（合并排序）"></a>归并排序（合并排序）</h4><p>​    初步理解分治策略，就是把大问题分解到小问题，再由小问题合并成大问题，有个分解的过程，这里面的<strong>小问题可以用其他的方法解决。</strong>小问题到大问题的合成中涉及到的问题就是合并有序的数组（这里就和快速排序的指针很像）。</p>
+<p>过程：</p>
+<ul>
+<li>1，将原数组不断拆分到长度为1；可以用递归实现</li>
+<li>2，不断将已经排序的数据合并到原数组。空间复杂度比较不理想，产生了许多小的零时数组。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ArrayList</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">     <span class="comment">//属性</span></span><br><span class="line">     <span class="keyword">this</span>.array = []</span><br><span class="line"></span><br><span class="line">     <span class="comment">//插入,展示,交换</span></span><br><span class="line">     ArrayList.prototype.insert = <span class="function"><span class="keyword">function</span> (<span class="params">item</span>) </span>&#123;</span><br><span class="line">         <span class="keyword">this</span>.array.push(item)</span><br><span class="line">     &#125;</span><br><span class="line">     ArrayList.prototype.toString = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">this</span>.array.join(<span class="string">'-'</span>)</span><br><span class="line">     &#125;</span><br><span class="line">     ArrayList.prototype.swap = <span class="function"><span class="keyword">function</span> (<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">         <span class="keyword">let</span> temp = <span class="keyword">this</span>.array[a]</span><br><span class="line">         <span class="keyword">this</span>.array[a] = <span class="keyword">this</span>.array[b]</span><br><span class="line">         <span class="keyword">this</span>.array[b] = temp</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     <span class="comment">//高级排序</span></span><br><span class="line">     ArrayList.prototype.mergesort = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">this</span>.split(<span class="number">0</span>, <span class="keyword">this</span>.array.length)</span><br><span class="line"></span><br><span class="line">     &#125;</span><br><span class="line">     <span class="comment">//拆分，递归实现,拆分不时间产生零时数组，只是计算好位置</span></span><br><span class="line">     ArrayList.prototype.split = <span class="function"><span class="keyword">function</span> (<span class="params">left, right</span>) </span>&#123;</span><br><span class="line">         <span class="comment">//1，终止条件，直到数组长度为一时返回</span></span><br><span class="line">         <span class="keyword">if</span> (right - left &lt; <span class="number">2</span>) <span class="keyword">return</span> <span class="keyword">this</span></span><br><span class="line">         <span class="keyword">let</span> center = <span class="built_in">Math</span>.floor((left + right) / <span class="number">2</span>)</span><br><span class="line">         <span class="keyword">this</span>.split(left, center)<span class="comment">//左边</span></span><br><span class="line">         <span class="keyword">this</span>.split(center, right)<span class="comment">////右边</span></span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">this</span>.merge(left, center, right)<span class="comment">//利用计算好的位置调用合并，同层次的合并，在最后一步返回就好了</span></span><br><span class="line">     &#125;</span><br><span class="line">     <span class="comment">//合并</span></span><br><span class="line">     ArrayList.prototype.merge = <span class="function"><span class="keyword">function</span> (<span class="params">left, center, right</span>) </span>&#123;</span><br><span class="line">         <span class="comment">//定义两个零时空间</span></span><br><span class="line">         <span class="keyword">let</span> arr1 = <span class="keyword">this</span>.array.slice(left, center)<span class="comment">//注意是不包括结束位置的是开区间</span></span><br><span class="line">         <span class="keyword">let</span> arr2 = <span class="keyword">this</span>.array.slice(center, right)</span><br><span class="line">         <span class="comment">//追加两个正无穷，这样可以减少边界值判断的复杂程度</span></span><br><span class="line">         arr1.push(<span class="built_in">Number</span>.MAX_SAFE_INTEGER)<span class="comment">//用i来记录</span></span><br><span class="line">         arr2.push(<span class="built_in">Number</span>.MAX_SAFE_INTEGER)<span class="comment">//用j来记录</span></span><br><span class="line">         <span class="comment">//i和j为两个零时数组的指针变量，k为被写入数组的位置变量</span></span><br><span class="line">         <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>, j = <span class="number">0</span>, k = left; k &lt; right; k++) &#123;<span class="comment">//因为有正无穷所以免去了ij的判断</span></span><br><span class="line">             <span class="comment">// if(arr1[i]&lt;arr2[j])&#123;</span></span><br><span class="line">             <span class="comment">//     this.array[k]=arr1[i]</span></span><br><span class="line">             <span class="comment">//     i++</span></span><br><span class="line">             <span class="comment">// &#125;else&#123;</span></span><br><span class="line">             <span class="comment">//     this.array[k]=arr2[j]</span></span><br><span class="line">             <span class="comment">//     j++</span></span><br><span class="line">             <span class="comment">// &#125;</span></span><br><span class="line">             <span class="keyword">this</span>.array[k] = arr1[i] &lt; arr2[j] ? arr1[i++] : arr2[j++]<span class="comment">//合并判断赋值和变量累加</span></span><br><span class="line">         &#125;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">this</span></span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">let</span> list = <span class="keyword">new</span> ArrayList()</span><br><span class="line"> list.insert(<span class="number">66</span>)</span><br><span class="line"> list.insert(<span class="number">88</span>)</span><br><span class="line"> list.insert(<span class="number">12</span>)</span><br><span class="line"> list.insert(<span class="number">87</span>)</span><br><span class="line"> list.insert(<span class="number">100</span>)</span><br><span class="line"> list.insert(<span class="number">5</span>)</span><br><span class="line"> list.insert(<span class="number">566</span>)</span><br><span class="line"> list.insert(<span class="number">23</span>)</span><br><span class="line"> list.insert(<span class="number">99</span>)</span><br><span class="line"> <span class="built_in">console</span>.log(list.toString())<span class="comment">//66-88-12-87-100-5-566-23-99</span></span><br><span class="line"> <span class="built_in">console</span>.log(list.mergesort().toString())<span class="comment">//5-12-23-66-87-88-99-100-566</span></span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数据结构与算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E6%8E%92%E5%BA%8F%E4%BA%8C/">展开全文 >></a>
         </p>
       
 
@@ -391,7 +418,7 @@
   
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
     </nav>
   
 
@@ -492,10 +519,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Map类型</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Set类型</a>
               </li>
              
@@ -509,10 +532,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">深浅拷贝</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">访问控制器set，get</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -545,6 +564,58 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">移动端适配</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Map字典类型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">JSON</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Proxy代理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">访问控制器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">正则表达式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">断言匹配</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">模块化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">super关键字</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">class类的属性继承形式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">class类的方法继承形式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">静态属性</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mixin</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">红黑树</a>
               </li>
             
             <div class="clearfix"></div>

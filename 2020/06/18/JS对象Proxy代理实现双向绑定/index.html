@@ -8,17 +8,19 @@
   <link rel="dns-prefetch" href="https://zhoubb96.github.io">
   <title>JS对象Proxy代理实现双向绑定 | 周斌斌的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="123456789101112131415161718192021222324252627282930313233343536373839404142&lt;!DOCTYPE html&gt;&lt;html lang&#x3D;&quot;en&quot;&gt;&lt;head&gt;  &lt;meta charset&#x3D;&quot;UTF-8&quot; &#x2F;&gt;  &lt;title&gt;&lt;&#x2F;title&gt;&lt;&#x2F;head">
+  <meta name="description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455&lt;!DOCTYPE html&gt;&lt;html lang&#x3D;&quot;en&quot;&gt;&lt;head&gt;    &lt;meta charset&#x3D;&quot;UTF-8&quot; &#x2F;&gt;    &lt;ti">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS对象Proxy代理实现双向绑定">
 <meta property="og:url" content="https://zhoubb96.github.io/2020/06/18/JS%E5%AF%B9%E8%B1%A1Proxy%E4%BB%A3%E7%90%86%E5%AE%9E%E7%8E%B0%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A/index.html">
 <meta property="og:site_name" content="周斌斌的个人博客">
-<meta property="og:description" content="123456789101112131415161718192021222324252627282930313233343536373839404142&lt;!DOCTYPE html&gt;&lt;html lang&#x3D;&quot;en&quot;&gt;&lt;head&gt;  &lt;meta charset&#x3D;&quot;UTF-8&quot; &#x2F;&gt;  &lt;title&gt;&lt;&#x2F;title&gt;&lt;&#x2F;head">
+<meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455&lt;!DOCTYPE html&gt;&lt;html lang&#x3D;&quot;en&quot;&gt;&lt;head&gt;    &lt;meta charset&#x3D;&quot;UTF-8&quot; &#x2F;&gt;    &lt;ti">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-06-18T12:11:27.000Z">
-<meta property="article:modified_time" content="2020-06-18T12:45:42.553Z">
+<meta property="article:modified_time" content="2020-06-24T07:56:11.384Z">
 <meta property="article:author" content="Zhoubb">
 <meta property="article:tag" content="JavaScripe查漏补缺">
+<meta property="article:tag" content="Proxy代理">
+<meta property="article:tag" content="访问控制器">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="周斌斌的个人博客" type="application/atom+xml">
@@ -179,8 +181,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span>&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset=<span class="string">"UTF-8"</span> /&gt;</span><br><span class="line">  &lt;title&gt;&lt;<span class="regexp">/title&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;input type=<span class="string">"text"</span> v-model=<span class="string">"title"</span> /&gt;</span><br><span class="line">  &lt;input type=<span class="string">"text"</span> v-model=<span class="string">"title"</span> /&gt;</span><br><span class="line">  &lt;h4 v-bind=<span class="string">"title"</span>&gt;这里也会发生更新&lt;<span class="regexp">/h4&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>body&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">View</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> proxy = <span class="keyword">new</span> <span class="built_in">Proxy</span>(</span><br><span class="line">      &#123;&#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="keyword">set</span>(obj, key, value) &#123;</span><br><span class="line">          <span class="built_in">console</span>.log(value)<span class="comment">//此时value已经传入</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="keyword">get</span>(obj, key) &#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    );<span class="comment">//代理了一个空对象</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//绑定事件</span></span><br><span class="line">    <span class="keyword">this</span>.init = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="comment">//获取触发事件的对象</span></span><br><span class="line">      <span class="keyword">const</span> els = <span class="built_in">document</span>.querySelectorAll(<span class="string">"[v-model]"</span>)<span class="comment">//属性选择器</span></span><br><span class="line">      <span class="comment">//添加事件</span></span><br><span class="line">      els.forEach(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span><br><span class="line">        item.addEventListener(<span class="string">'keyup'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">          <span class="comment">//触发代理的set</span></span><br><span class="line">          proxy[<span class="keyword">this</span>.getAttribute(<span class="string">'v-model'</span>)] = <span class="keyword">this</span>.value<span class="comment">//往空对象里压入属性</span></span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">new</span> View().init()</span><br></pre></td></tr></table></figure>
+        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span>&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"UTF-8"</span> /&gt;</span><br><span class="line">    &lt;title&gt;&lt;<span class="regexp">/title&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;input type=<span class="string">"text"</span> v-model=<span class="string">"title"</span> /&gt;</span><br><span class="line">    &lt;input type=<span class="string">"text"</span> v-model=<span class="string">"title"</span> /&gt;</span><br><span class="line">    &lt;h4 v-bind=<span class="string">"title"</span>&gt;这里也会发生更新&lt;<span class="regexp">/h4&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>body&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">View</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="comment">//1，step1:代理一个匿名空对象</span></span><br><span class="line">        <span class="keyword">let</span> proxy = <span class="keyword">new</span> <span class="built_in">Proxy</span>(</span><br><span class="line">            &#123;&#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">set</span>(obj, key, value) &#123;<span class="comment">//step3:代理执行</span></span><br><span class="line">                    <span class="comment">//console.log(value)//此时value已经传入</span></span><br><span class="line">                    <span class="comment">//把proxy收到的属性同步给输入框2</span></span><br><span class="line">                    <span class="built_in">document</span>.querySelectorAll(<span class="string">`[v-model="<span class="subst">$&#123;key&#125;</span>"]`</span>).forEach(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">                        item.value = value</span><br><span class="line">                    &#125;)</span><br><span class="line">                    </span><br><span class="line">                    <span class="comment">//把proxy收到的属性同步给h4</span></span><br><span class="line">                    <span class="built_in">document</span>.querySelectorAll(<span class="string">`[v-bind="<span class="subst">$&#123;key&#125;</span>"]`</span>).forEach(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">                        item.innerHTML = value<span class="comment">//就算只有一个元素也用All，因为forEach是数组方法</span></span><br><span class="line">                    &#125;)</span><br><span class="line">                &#125;,</span><br><span class="line">                <span class="keyword">get</span>(obj, key) &#123;</span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        );<span class="comment">//代理了一个空对象</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//2，绑定事件</span></span><br><span class="line">        <span class="keyword">this</span>.init = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="comment">//获取触发事件的对象</span></span><br><span class="line">            <span class="keyword">const</span> els = <span class="built_in">document</span>.querySelectorAll(<span class="string">"[v-model]"</span>)<span class="comment">//属性选择器</span></span><br><span class="line">            <span class="comment">//添加事件</span></span><br><span class="line">            els.forEach(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span><br><span class="line">                item.addEventListener(<span class="string">'keyup'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                    <span class="comment">//step2:触发代理对象的的set函数</span></span><br><span class="line">                    proxy[<span class="keyword">this</span>.getAttribute(<span class="string">'v-model'</span>)] = <span class="keyword">this</span>.value<span class="comment">//往空对象里压入输入框1的属性</span></span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">new</span> View().init()</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;/</span>html&gt;</span><br></pre></td></tr></table></figure>
 
+<p>所谓代理（proxy），就是一个表示接口的对象，对它的操作不一定作用在代理对象本身。举个例子，<strong>设置代理对象的一个属性，实际上可能会在另一个对象上调用一个函数。</strong>代理是一种非常有用的抽象机制，能够通过 API只公开部分信息，同时还能对数据源进 行全面控制。 简单来说，Proxy就像一个代理商，拦截就是在中间添加判断与操作。</p>
+<p>上面这个例子就是，<strong>代理一个匿名空对象</strong>接受属性，<strong>触发代理对象机制时</strong>，在set函数里<strong>操纵选定、不同的dom对象</strong>。</p>
 
       
 
@@ -226,6 +230,14 @@
 			 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JavaScripe查漏补缺</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Proxy代理</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">访问控制器</a>
         		</li>
       		
 		</ul>
@@ -453,10 +465,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Map类型</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Set类型</a>
               </li>
              
@@ -470,10 +478,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">深浅拷贝</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">访问控制器set，get</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -506,6 +510,58 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">移动端适配</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Map字典类型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">JSON</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Proxy代理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">访问控制器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">正则表达式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">断言匹配</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">模块化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">super关键字</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">class类的属性继承形式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">class类的方法继承形式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">静态属性</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mixin</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">红黑树</a>
               </li>
             
             <div class="clearfix"></div>

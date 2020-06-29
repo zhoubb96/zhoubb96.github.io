@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="https://zhoubb96.github.io">
   <title>数据结构与算法-哈希表一 | 周斌斌的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="哈希表搞懂哈希表到底如何实现的。理论知识较多，实现并不难。哈希表是基于数组实现的，但是相对与数组有以下优势 优势  可以提供快速的插入，删除，查找操作。 无论数据量为多少，插入与删除的时间复杂度都接近o(1) 速度比树还要快，可以很快的查找。 编码难度比树简单  不足之处  由于内部是无序数据，所以无法以一种固定方式遍历元素。 哈希表的key值不允许重复  哈希函数哈希表对下标值会做一种变换，这个">
+  <meta name="description" content="哈希表搞懂哈希表到底如何实现的。理论知识较多，实现并不难。哈希表是基于数组实现的，但是相对与数组有以下优势 优势  可以提供快速的插入，删除，查找操作。 无论数据量为多少，插入与删除的时间复杂度都接近o(1) 速度比树还要快，可以很快的查找。 编码难度比树简单  不足之处  由于内部是无序数据，所以无法以一种固定方式遍历元素。 哈希表的key值不允许重复 空间利用率不高  哈希函数哈希表对下标值会">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据结构与算法-哈希表一">
 <meta property="og:url" content="https://zhoubb96.github.io/2020/06/16/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E5%93%88%E5%B8%8C%E8%A1%A8%E4%B8%80/index.html">
 <meta property="og:site_name" content="周斌斌的个人博客">
-<meta property="og:description" content="哈希表搞懂哈希表到底如何实现的。理论知识较多，实现并不难。哈希表是基于数组实现的，但是相对与数组有以下优势 优势  可以提供快速的插入，删除，查找操作。 无论数据量为多少，插入与删除的时间复杂度都接近o(1) 速度比树还要快，可以很快的查找。 编码难度比树简单  不足之处  由于内部是无序数据，所以无法以一种固定方式遍历元素。 哈希表的key值不允许重复  哈希函数哈希表对下标值会做一种变换，这个">
+<meta property="og:description" content="哈希表搞懂哈希表到底如何实现的。理论知识较多，实现并不难。哈希表是基于数组实现的，但是相对与数组有以下优势 优势  可以提供快速的插入，删除，查找操作。 无论数据量为多少，插入与删除的时间复杂度都接近o(1) 速度比树还要快，可以很快的查找。 编码难度比树简单  不足之处  由于内部是无序数据，所以无法以一种固定方式遍历元素。 哈希表的key值不允许重复 空间利用率不高  哈希函数哈希表对下标值会">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-06-16T12:06:12.000Z">
-<meta property="article:modified_time" content="2020-06-19T03:24:13.725Z">
+<meta property="article:modified_time" content="2020-06-19T03:44:18.824Z">
 <meta property="article:author" content="Zhoubb">
 <meta property="article:tag" content="数据结构与算法">
 <meta name="twitter:card" content="summary">
@@ -191,6 +191,7 @@
 <ul>
 <li>由于内部是无序数据，所以<strong>无法以一种固定方式遍历元素。</strong></li>
 <li>哈希表的<strong>key值不允许重复</strong></li>
+<li><strong>空间利用率</strong>不高</li>
 </ul>
 <h4 id="哈希函数"><a href="#哈希函数" class="headerlink" title="哈希函数"></a>哈希函数</h4><p>哈希表对下标值会做一种变换，这个变换规则称之为哈希函数，通过哈希函数获取到哈希码，HashCode，一一对应。</p>
 <p>第一次看hash表的时候没有深入了解这个东西。</p>
@@ -516,10 +517,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Map类型</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Set类型</a>
               </li>
              
@@ -533,10 +530,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">深浅拷贝</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">访问控制器set，get</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -569,6 +562,58 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">移动端适配</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Map字典类型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">JSON</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Proxy代理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">访问控制器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">正则表达式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">断言匹配</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">模块化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">super关键字</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">class类的属性继承形式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">class类的方法继承形式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">静态属性</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mixin</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">红黑树</a>
               </li>
             
             <div class="clearfix"></div>
